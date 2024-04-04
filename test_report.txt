@@ -112,5 +112,5 @@ All files                   |      25 |    16.66 |    12.5 |      25 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.311 s
+Time:        2.297 s
 Ran all test suites.
