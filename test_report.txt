@@ -97,7 +97,7 @@ FAIL src/App.test.tsx
 ----------------------------|---------|----------|---------|---------|-------------------
 File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------------------------|---------|----------|---------|---------|-------------------
-All files                   |      25 |    16.66 |    12.5 |      25 |                   
+All files                   |      24 |    16.66 |   11.11 |      24 |                   
  src                        |   28.57 |    16.66 |      20 |   28.57 |                   
   App.tsx                   |      60 |       50 |   33.33 |      60 | 12,20-26          
   index.tsx                 |       0 |      100 |     100 |       0 | 7-19              
@@ -106,11 +106,13 @@ All files                   |      25 |    16.66 |    12.5 |      25 |
   ProgressBar.tsx           |       0 |      100 |       0 |       0 | 2                 
  src/Pages/HomePage         |       0 |      100 |       0 |       0 |                   
   HomePage.tsx              |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/Reports          |       0 |      100 |       0 |       0 |                   
+  reports.tsx               |       0 |      100 |       0 |       0 | 4                 
  src/Services               |       0 |      100 |       0 |       0 |                   
   UserResponse.ts           |       0 |      100 |       0 |       0 | 2                 
 ----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.297 s
+Time:        2.363 s
 Ran all test suites.
