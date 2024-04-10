@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (54 ms)
+  ✕ renders learn react link (47 ms)
 
   ● renders learn react link
 
@@ -50,7 +50,7 @@ FAIL src/App.test.tsx
                       [0m Edwin [0m
                     [36m</li>[39m
                     [36m<li>[39m
-                      [0m Nathan [0m
+                      [0m Nathan Wood [0m
                     [36m</li>[39m
                   [36m</ul>[39m
                 [36m</div>[39m
@@ -118,36 +118,46 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
------------------------------------------------------------|---------|----------|---------|---------|-------------------
-File                                                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                  |      25 |       10 |   14.28 |      25 |                   
- src                                                       |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                                                  |      60 |       50 |   33.33 |      60 | 13,21-27          
-  index.tsx                                                |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts                                       |       0 |        0 |       0 |       0 | 3-10              
- src/Components/ProgressBar                                |       0 |      100 |       0 |       0 |                   
-  ProgressBar.tsx                                          |       0 |      100 |       0 |       0 | 2                 
- src/Interfaces                                            |       0 |        0 |       0 |       0 |                   
-  User.ts                                                  |       0 |        0 |       0 |       0 |                   
- src/Pages/HomePage                                        |       0 |        0 |       0 |       0 |                   
-  HomePage.tsx                                             |       0 |        0 |       0 |       0 | 10-12             
- src/Pages/HomePage/Components/HomePageHeader              |       0 |        0 |       0 |       0 |                   
-  HomePageHeader.tsx                                       |       0 |        0 |       0 |       0 | 6                 
-  HomePageHeaderProperties.ts                              |       0 |        0 |       0 |       0 |                   
- src/Pages/HomePage/Components/HomePageQuizSelectionWidget |       0 |      100 |       0 |       0 |                   
-  HomePageQuizSelectionWidget.tsx                          |       0 |      100 |       0 |       0 | 6                 
- src/Pages/HomePage/Components/HomePageSignUpWidget        |       0 |      100 |       0 |       0 |                   
-  HomePageSignUpWidget.tsx                                 |       0 |      100 |       0 |       0 | 5                 
- src/Pages/MembersPage                                     |   66.66 |      100 |      50 |   66.66 |                   
-  MembersPage.tsx                                          |   66.66 |      100 |      50 |   66.66 | 25                
- src/Pages/Reports                                         |       0 |      100 |       0 |       0 |                   
-  reports.tsx                                              |       0 |      100 |       0 |       0 | 4                 
- src/Services                                              |       0 |      100 |       0 |       0 |                   
-  UserResponse.ts                                          |       0 |      100 |       0 |       0 | 2                 
------------------------------------------------------------|---------|----------|---------|---------|-------------------
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
+File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
+All files                                                         |   20.51 |       10 |      10 |   20.51 |                   
+ src                                                              |   28.57 |    16.66 |      20 |   28.57 |                   
+  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 14,22-28          
+  index.tsx                                                       |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
+ src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
+  ProgressBar.tsx                                                 |       0 |      100 |       0 |       0 | 2                 
+ src/Interfaces                                                   |       0 |        0 |       0 |       0 |                   
+  User.ts                                                         |       0 |        0 |       0 |       0 |                   
+ src/Pages/BasicQuestionsPage                                     |       0 |      100 |       0 |       0 |                   
+  BasicQuestionsPage.tsx                                          |       0 |      100 |       0 |       0 | 9                 
+ src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader |       0 |      100 |       0 |       0 |                   
+  BasicQuestionsPageHeader.tsx                                    |       0 |      100 |       0 |       0 | 5                 
+ src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget    |       0 |      100 |       0 |       0 |                   
+  GeneralQuestionWidget.tsx                                       |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/BasicQuestionsPage/Components/ProgressBarWidget        |       0 |      100 |       0 |       0 |                   
+  ProgressBarWidget.tsx                                           |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/BasicQuestionsPage/Components/QuizInteraction          |       0 |      100 |       0 |       0 |                   
+  QuizInteraction.tsx                                             |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/HomePage                                               |       0 |        0 |       0 |       0 |                   
+  HomePage.tsx                                                    |       0 |        0 |       0 |       0 | 10-12             
+ src/Pages/HomePage/Components/HomePageHeader                     |       0 |        0 |       0 |       0 |                   
+  HomePageHeader.tsx                                              |       0 |        0 |       0 |       0 | 6                 
+  HomePageHeaderProperties.ts                                     |       0 |        0 |       0 |       0 |                   
+ src/Pages/HomePage/Components/HomePageQuizSelectionWidget        |       0 |      100 |       0 |       0 |                   
+  HomePageQuizSelectionWidget.tsx                                 |       0 |      100 |       0 |       0 | 7-16              
+ src/Pages/HomePage/Components/HomePageSignUpWidget               |       0 |      100 |       0 |       0 |                   
+  HomePageSignUpWidget.tsx                                        |       0 |      100 |       0 |       0 | 5                 
+ src/Pages/MembersPage                                            |   66.66 |      100 |      50 |   66.66 |                   
+  MembersPage.tsx                                                 |   66.66 |      100 |      50 |   66.66 | 25                
+ src/Pages/Reports                                                |       0 |      100 |       0 |       0 |                   
+  reports.tsx                                                     |       0 |      100 |       0 |       0 | 4                 
+ src/Services                                                     |       0 |      100 |       0 |       0 |                   
+  UserResponse.ts                                                 |       0 |      100 |       0 |       0 | 2                 
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.501 s
+Time:        2.541 s
 Ran all test suites.
