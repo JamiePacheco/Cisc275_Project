@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (47 ms)
+  ✕ renders learn react link (73 ms)
 
   ● renders learn react link
 
@@ -121,9 +121,9 @@ FAIL src/App.test.tsx
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                         |   20.51 |       10 |      10 |   20.51 |                   
+All files                                                         |   20.83 |     6.25 |   11.11 |   20.83 |                   
  src                                                              |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 14,22-28          
+  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 16,24-30          
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
  src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
@@ -140,13 +140,18 @@ All files                                                         |   20.51 |   
   ProgressBarWidget.tsx                                           |       0 |      100 |       0 |       0 | 4                 
  src/Pages/BasicQuestionsPage/Components/QuizInteraction          |       0 |      100 |       0 |       0 |                   
   QuizInteraction.tsx                                             |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/DetailedPage                                           |       0 |      100 |       0 |       0 |                   
+  DetailedPage.tsx                                                |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/DetailedPage/Components                                |   28.57 |        0 |      20 |   28.57 |                   
+  DetailedPage-interface.ts                                       |     100 |      100 |     100 |     100 |                   
+  QuestionAnswerComponent.tsx                                     |       0 |        0 |       0 |       0 | 7-39              
  src/Pages/HomePage                                               |       0 |        0 |       0 |       0 |                   
   HomePage.tsx                                                    |       0 |        0 |       0 |       0 | 10-12             
  src/Pages/HomePage/Components/HomePageHeader                     |       0 |        0 |       0 |       0 |                   
   HomePageHeader.tsx                                              |       0 |        0 |       0 |       0 | 6                 
   HomePageHeaderProperties.ts                                     |       0 |        0 |       0 |       0 |                   
  src/Pages/HomePage/Components/HomePageQuizSelectionWidget        |       0 |      100 |       0 |       0 |                   
-  HomePageQuizSelectionWidget.tsx                                 |       0 |      100 |       0 |       0 | 7-16              
+  HomePageQuizSelectionWidget.tsx                                 |       0 |      100 |       0 |       0 | 7-20              
  src/Pages/HomePage/Components/HomePageSignUpWidget               |       0 |      100 |       0 |       0 |                   
   HomePageSignUpWidget.tsx                                        |       0 |      100 |       0 |       0 | 5                 
  src/Pages/MembersPage                                            |   66.66 |      100 |      50 |   66.66 |                   
@@ -159,5 +164,5 @@ All files                                                         |   20.51 |   
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.541 s
+Time:        2.705 s
 Ran all test suites.
