@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (47 ms)
+  ✕ renders learn react link (49 ms)
 
   ● renders learn react link
 
@@ -63,6 +63,12 @@ FAIL src/App.test.tsx
                   [36m<div[39m
                     [33mclass[39m=[32m"page-buttons"[39m
                   [36m>[39m
+                    [36m<button>[39m
+                      [0m Home [0m
+                    [36m</button>[39m
+                    [36m<button>[39m
+                      [0m Reports [0m
+                    [36m</button>[39m
                     [36m<button>[39m
                       [0m Home [0m
                     [36m</button>[39m
@@ -127,9 +133,9 @@ FAIL src/App.test.tsx
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                         |   18.51 |     6.25 |    9.37 |   18.51 |                   
+All files                                                         |   16.94 |     6.25 |    8.33 |   16.94 |                   
  src                                                              |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 17,24-30          
+  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 18,25-31          
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
  src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
@@ -162,10 +168,12 @@ All files                                                         |   18.51 |   
   HomePageSignUpWidget.tsx                                        |       0 |      100 |       0 |       0 | 6-18              
  src/Pages/LoginPage                                              |       0 |      100 |       0 |       0 |                   
   LoginPage.tsx                                                   |       0 |      100 |       0 |       0 | 5                 
- src/Pages/MembersPage                                            |      40 |      100 |      25 |      40 |                   
-  MembersPage.tsx                                                 |      40 |      100 |      25 |      40 | 25-27             
- src/Pages/Reports                                                |       0 |      100 |       0 |       0 |                   
-  reports.tsx                                                     |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/MembersPage                                            |   28.57 |      100 |   16.66 |   28.57 |                   
+  MembersPage.tsx                                                 |   28.57 |      100 |   16.66 |   28.57 | 25-29             
+ src/Pages/ReportsPage                                            |       0 |      100 |       0 |       0 |                   
+  ReportsPage.tsx                                                 |       0 |      100 |       0 |       0 | 6                 
+ src/Pages/ReportsPage/Components                                 |       0 |      100 |       0 |       0 |                   
+  ReportsHeader.tsx                                               |       0 |      100 |       0 |       0 | 5-10              
  src/Pages/SignUpPage                                             |       0 |      100 |       0 |       0 |                   
   SignUpPage.tsx                                                  |       0 |      100 |       0 |       0 | 5                 
  src/Services                                                     |       0 |      100 |       0 |       0 |                   
@@ -174,5 +182,5 @@ All files                                                         |   18.51 |   
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.689 s
+Time:        2.839 s
 Ran all test suites.
