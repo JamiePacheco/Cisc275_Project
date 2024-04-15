@@ -8,6 +8,7 @@ import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
 import { DetailedPage } from './Pages/DetailedPage/DetailedPage';
 import { BasicQuestionsPage } from './Pages/BasicQuestionsPage/BasicQuestionsPage';
 
+import { ReportsPage } from './Pages/ReportsPage/ReportsPage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -43,6 +44,7 @@ function App() {
                     <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
                     <Route path = "/detailed-quiz" element = {<DetailedPage/>}> </Route>
                     <Route path = "/" element = {<MembersPage/>}></Route>
+                    <Route path = "reports" element = {<ReportsPage/>}> </Route>
                   </Routes>
                 </HashRouter>
               </div>

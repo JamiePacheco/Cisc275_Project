@@ -1,0 +1,13 @@
+.reports {
+    width: 100%;
+    min-height: 100%;
+    background-color: antiquewhite;
+}
+
+.reports-content {
+    margin: 10vh 10vh 30vh 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
