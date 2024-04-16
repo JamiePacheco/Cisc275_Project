@@ -1,26 +1,32 @@
 .sign-up-page {
     min-height: 100%;
-    width: 100%;  
+    width: 100%;   
 }
 
 .sign-up-page--content {
-    margin: 10vh 10vh 30vh 10vh;
+    margin: 10vh 10vh 0 10vh;
+    padding: 10vh;
+
+    min-width: 500px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+
+
 .sign-up-page--form-container {
    margin: 5vh; 
+   max-width: 40%;
+   min-width: 600px;
 }
 
 .form-container--content {
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 10px;
-
-    min-width: 500px;
 
     padding: 50px;
     margin-block: 20vh 10vh 10vh 10vh;
@@ -32,4 +38,21 @@
 
 .form--selection {
     font-size: xx-large;
+}
+
+.form--row-padding {
+    padding: 2%;
+}
+
+.form--label-heading {
+    text-align: start;
+    padding-left: 30px;
+}
+
+.form--button-padding {
+    padding: 4%;
+}
+
+.form--submit-button {
+    width: 90%;
 }

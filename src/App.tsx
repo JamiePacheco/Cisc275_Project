@@ -1,62 +1,35 @@
-import React, { useState } from 'react';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes} from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage';
 import { MembersPage } from './Pages/MembersPage/MembersPage';
 import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
 import { DetailedPage } from './Pages/DetailedPage/DetailedPage';
 import { BasicQuestionsPage } from './Pages/BasicQuestionsPage/BasicQuestionsPage';
-
 import { ReportsPage } from './Pages/ReportsPage/ReportsPage';
+import { AppHeader } from './Components/Header/AppHeader';
+import { AppFooter } from './Components/Footer/AppFooter';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
-if (prevKey !== null) {
-  keyData = JSON.parse(prevKey);
-}
 
 function App() {
-  const [key, setKey] = useState<string>(keyData); //for api key input
-  //sets the local storage item to the api key the user inputed
-  function handleSubmit() {
-    localStorage.setItem(saveKeyData, JSON.stringify(key));
-    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
-  }
-
-  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
-  function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
-    setKey(event.target.value);
-  }
   return (
-    <div className="App">
-              <header className="App-header">
-                <h1 className = "App-header--heading"> Helpi </h1>
-              </header>
-              <div className = "App-content">
-                <HashRouter>
-                  <Routes>
-                    <Route path = "/home" element = {<HomePage/>}> </Route>
-                    <Route path = "/login" element = {<MembersPage/>}></Route>
-                    <Route path = "/sign-up" element = {<SignUpPage/>}></Route>
-                    <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
-                    <Route path = "/detailed-quiz" element = {<DetailedPage/>}> </Route>
-                    <Route path = "/" element = {<MembersPage/>}></Route>
-                    <Route path = "reports" element = {<ReportsPage/>}> </Route>
-                  </Routes>
-                </HashRouter>
-              </div>
-              <footer className = "App-footer"> 
-                <Form>
-                  <Form.Label>API Key:</Form.Label>
-                  <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-                  <br></br>
-                  <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-                </Form>
-              </footer>
-            </div>
+    <HashRouter>
+      <div className="App">
+        <AppHeader></AppHeader>
+        <div className = "App-content">
+            <Routes>
+              <Route path = "/home" element = {<HomePage/>}> </Route>
+              <Route path = "/login" element = {<MembersPage/>}></Route>
+              <Route path = "/sign-up" element = {<SignUpPage/>}></Route>
+              <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
+              <Route path = "/detailed-quiz" element = {<DetailedPage/>}> </Route>
+              <Route path = "/report" element = {<ReportsPage/>}> </Route>
+              <Route path = "/" element = {<MembersPage/>}></Route>
+            </Routes>
+        </div>
+        <AppFooter></AppFooter>
+      </div>
+    </HashRouter>
   );
 }
 
