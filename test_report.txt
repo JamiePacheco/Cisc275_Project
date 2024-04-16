@@ -19,7 +19,7 @@ FAIL src/App.test.tsx
             [33mclass[39m=[32m"App-header"[39m
           [36m>[39m
             [36m<h1[39m
-              [33mclass[39m=[32m"App-header--heading"[39m
+              [33mclass[39m=[32m"app-header--heading"[39m
             [36m>[39m
               [0m Helpi [0m
             [36m</h1>[39m
@@ -133,11 +133,15 @@ FAIL src/App.test.tsx
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                         |   16.94 |     6.25 |    8.33 |   16.94 |                   
- src                                                              |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                                                         |      60 |       50 |   33.33 |      60 | 18,25-31          
+All files                                                         |      13 |     4.34 |   10.63 |      13 |                   
+ src                                                              |    8.33 |        0 |   33.33 |    8.33 |                   
+  App.tsx                                                         |     100 |      100 |     100 |     100 |                   
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
+ src/Components/Footer                                            |      60 |       50 |   33.33 |      60 |                   
+  AppFooter.tsx                                                   |      60 |       50 |   33.33 |      60 | 10,17-23          
+ src/Components/Header                                            |   66.66 |      100 |      50 |   66.66 |                   
+  AppHeader.tsx                                                   |   66.66 |      100 |      50 |   66.66 | 11                
  src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
   ProgressBar.tsx                                                 |       0 |      100 |       0 |       0 | 2                 
  src/Interfaces                                                   |       0 |        0 |       0 |       0 |                   
@@ -174,13 +178,13 @@ All files                                                         |   16.94 |   
   ReportsPage.tsx                                                 |       0 |      100 |       0 |       0 | 6                 
  src/Pages/ReportsPage/Components                                 |       0 |      100 |       0 |       0 |                   
   ReportsHeader.tsx                                               |       0 |      100 |       0 |       0 | 5-10              
- src/Pages/SignUpPage                                             |       0 |      100 |       0 |       0 |                   
-  SignUpPage.tsx                                                  |       0 |      100 |       0 |       0 | 5                 
+ src/Pages/SignUpPage                                             |       0 |        0 |       0 |       0 |                   
+  SignUpPage.tsx                                                  |       0 |        0 |       0 |       0 | 11-167            
  src/Services                                                     |       0 |      100 |       0 |       0 |                   
   UserResponse.ts                                                 |       0 |      100 |       0 |       0 | 2                 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.839 s
+Time:        2.884 s
 Ran all test suites.
