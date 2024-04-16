@@ -1,0 +1,8 @@
+.header-reports-page{
+    background-color:mistyrose;
+    padding: 10px 20px;
+    color:black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
