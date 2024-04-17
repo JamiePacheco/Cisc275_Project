@@ -47,13 +47,13 @@ export function SignUpPage() : React.JSX.Element {
  
     function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        if (form.checkValidity()) {
+        console.log(form.checkValidity())
+        if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
-            setValidated(false)
+            setValidated(true)
             return;
         } else {
-            setValidated(true);
             const newAccount = createUserObject();
             const accountJSONString = JSON.stringify(newAccount);
             localStorage.setItem("USER_ACCOUNT", accountJSONString)
@@ -148,7 +148,7 @@ export function SignUpPage() : React.JSX.Element {
                                                 setPassword(e.target.value);
                                                 console.log(e)
                                             }}
-                                            pattern="[*]{7}+"
+                                            pattern=".{7,}"
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">
