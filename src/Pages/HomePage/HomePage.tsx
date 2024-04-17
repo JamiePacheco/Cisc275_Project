@@ -15,7 +15,7 @@ export function HomePage() : React.JSX.Element {
         () => {
             localStorage.getItem("CURRENT_USER")
         },
-        [signedIn]
+        []
     );
 
     return (
