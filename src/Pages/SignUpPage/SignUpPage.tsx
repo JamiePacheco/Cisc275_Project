@@ -33,11 +33,13 @@ export function SignUpPage() : React.JSX.Element {
     function createUserObject() : User {
         const age = getAge();
         const newAccount : User = {
+            userId: 1,
             firstName: firstName,
             lastName: lastName,
             email: email,
             birthday: birthday,
-            age: age
+            age: age,
+            password: password
         } 
 
         return newAccount;
@@ -53,8 +55,10 @@ export function SignUpPage() : React.JSX.Element {
         } else {
             setValidated(true);
             const newAccount = createUserObject();
-            localStorage.setItem("USER_ACCOUNT", JSON.stringify(newAccount))
-            nav("/home")
+            const accountJSONString = JSON.stringify(newAccount);
+            localStorage.setItem("USER_ACCOUNT", accountJSONString)
+            localStorage.setItem("CURRENT_USER", accountJSONString)
+            nav(`/home/${newAccount.userId}`)
         }   
     }
 
