@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import "./MembersPage.css"
+import { main } from "../../Services/CareerBear";
 
 
 //TODO Make this into a page where we can put about us stuff
@@ -28,6 +29,12 @@ export function MembersPage() : JSX.Element {
                         <button onClick = {() => nav("/sign-up")}> Sign Up </button>  
                         <button onClick = {() => nav("/short-quiz")}> Short Quiz</button> 
                     </div>
+                </div>
+                <div>
+                    <h1> Test Open AI </h1>
+                    <button
+                    onClick={() => main()}
+                    > test </button>
                 </div>
             </div>
         </div>
