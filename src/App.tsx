@@ -11,15 +11,15 @@ import { AppFooter } from './Components/Footer/AppFooter';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
+
 function App() {
-  console.log(localStorage.setItem("CURRENT_USER", ""))
   return (
     <HashRouter>
       <div className="App">
         <AppHeader></AppHeader>
         <div className = "App-content">
             <Routes>
-              <Route path = "/home/:id" element = {<HomePage/>}> </Route>
+              <Route path = "/home" element = {<HomePage/>}> </Route>
               <Route path = "/login" element = {<MembersPage/>}></Route>
               <Route path = "/sign-up" element = {<SignUpPage/>}></Route>
               <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>

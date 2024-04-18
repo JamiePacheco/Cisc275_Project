@@ -47,7 +47,6 @@ export function SignUpPage() : React.JSX.Element {
  
     function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        console.log(form.checkValidity())
         if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
@@ -56,9 +55,9 @@ export function SignUpPage() : React.JSX.Element {
         } else {
             const newAccount = createUserObject();
             const accountJSONString = JSON.stringify(newAccount);
-            localStorage.setItem("USER_ACCOUNT", accountJSONString)
-            localStorage.setItem("CURRENT_USER", accountJSONString)
-            nav(`/home/${newAccount.userId}`)
+            localStorage.setItem("USER_ACCOUNT", accountJSONString);
+            sessionStorage.setItem("CURRENT_USER", accountJSONString);
+            nav("/home");
         }   
     }
 
