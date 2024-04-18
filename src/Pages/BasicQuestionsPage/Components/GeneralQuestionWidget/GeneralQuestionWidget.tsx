@@ -1,8 +1,21 @@
 import './GeneralQuestionWidget.css';
+import { ProgressBar } from 'react-bootstrap'; 
+import { useState } from 'react';
 
 export function GeneralQuestions() : JSX.Element {
+    const [ complete, setComplete] = useState<number>(0);
+
+    const updateValues = (choice: number) => {
+        setComplete(complete + 1);
+    }
+
+
     return (
         <div className='question-header'>
+            <div className='progress-bar-bootstrap'>
+                <ProgressBar now={complete * 100 / 7} label={complete * 100 / 7}/>
+            </div>
+
             <h1 className='question--heading'>Question 1:</h1>
             <div className='question--choices'>
                 <div className='choice'>
