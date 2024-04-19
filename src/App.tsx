@@ -15,6 +15,8 @@ import { UserPage } from './Pages/UserPage/UserPage';
 
 
 function App() {
+  //TODO reimplement current user state in app scope and trickle it down.
+
   return (
     <HashRouter>
       <div className="App">
