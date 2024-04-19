@@ -1,33 +1,63 @@
 import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { User } from "../../Interfaces/User";
 
 export function LoginPage() : React.JSX.Element {
     
+
     const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState(""); 
+
+    const [emailMessage, setEmailMessage] = useState<string>("")
+    const [passwordMessage, setPasswordMessage] = useState<string>("")
+
     const [validated, setValidated] = useState(false);
-    const [password, setPassword] = useState("");
 
     const nav = useNavigate();
 
-    function validateLogin() {
+    //definitely should be a backend verification but...
+    function validateLogin() : boolean{
         const accountJSONString = localStorage.getItem("USER_ACCOUNT")
         if (accountJSONString != null) {
-            
-            sessionStorage.setItem("CURRENT_USER", accountJSONString);
+
+            const userAccount : User  = JSON.parse(accountJSONString);
+
+            if (userAccount.email === email && userAccount.password === password) {
+                sessionStorage.setItem("CURRENT_USER", accountJSONString);
+                return true;
+            } else {
+                setMessages(userAccount);
+            }
+        }
+        return false;
+    }
+
+    //if time permits should have message be based on POST request error code from authentication API
+    //but until then...
+    function setMessages(userCredentials : User) {
+        if (email === "") {
+            setEmailMessage("Email is required");
+        } else if (email !== userCredentials.email) {
+            setEmailMessage("Not Valid Email");
+        }
+
+        if (password === "") {
+            setPasswordMessage("Password required");
+        } else if (password !== userCredentials.password) {
+            setPasswordMessage("invalid password")
         }
     }
 
 
     function signIn(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        if (!form.checkValidity()) {
+        if (!validateLogin() || !form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
             return;
-        } else {
-           
+        } else {           
             nav("/home");
         }   
     }
@@ -36,7 +66,7 @@ export function LoginPage() : React.JSX.Element {
     return (
         <div className = "sign-up-page">
             <div className = "sign-up-page--content">
-                <h1 className = "sign-up-page--form-header">Let's Make An Account! </h1>
+                <h1 className = "sign-up-page--form-header">Sign In </h1>
                 <div className = "sign-up-page--form-container"> 
                     <div className = "form-container--content">
                         <Form noValidate validated = {validated} onSubmit={signIn}>
@@ -55,11 +85,11 @@ export function LoginPage() : React.JSX.Element {
                                                 setEmail(e.target.value);
                                                 console.log(e)
                                             }}
-                                            pattern="[A-Za-z0-9.]+@[a-zA-Z]+[.]+[a-zA-Z]+"
+                                            isInvalid = {emailMessage!==""}
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">
-                                                Email Required
+                                                {emailMessage}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
@@ -78,11 +108,11 @@ export function LoginPage() : React.JSX.Element {
                                                 setPassword(e.target.value);
                                                 console.log(e)
                                             }}
-                                            pattern=".{7,}"
+                                            isInvalid = {password!==""}
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">
-                                                Invalid Password
+                                                {passwordMessage}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
@@ -91,7 +121,7 @@ export function LoginPage() : React.JSX.Element {
                                     <button
                                     type="submit"
                                     className = "form--submit-button"
-                                    > Create Account </button>
+                                    > Login </button>
                                 </Row>
                             </Container>
                         </Form>

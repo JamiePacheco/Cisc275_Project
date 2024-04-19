@@ -9,24 +9,23 @@ import { User } from "../../Interfaces/User"
 
 export function HomePage() : React.JSX.Element {
 
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | undefined>(undefined);
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
 
-    const loggedUser = useMemo(
+    useMemo(
         () => {
             const userString = sessionStorage.getItem("CURRENT_USER");
             setUser(userString === null ? userString : JSON.parse(userString));
+            setSignedIn(userString !== null);
         },
         []
     );
 
-    console.log(user)
-
     return (
         <div className="homepage">
             <div className = "homepage--content">
-                <HomePageHeader loggedIn={user!==null}></HomePageHeader>
+                <HomePageHeader user={user}></HomePageHeader>
 
                 {!signedIn && <HomePageSignUpWidget></HomePageSignUpWidget>}
 
