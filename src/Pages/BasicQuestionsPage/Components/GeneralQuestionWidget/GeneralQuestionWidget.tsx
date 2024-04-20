@@ -5,18 +5,17 @@ import { Question, placeholders } from "../interface";
 import { Form } from "react-bootstrap";
 
 export function GeneralQuestions(): JSX.Element {
-  const [index, setIndex] = useState<number>(0);
-  const [choice, setChoice] = useState<string>("");
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [index, setIndex] = useState<number>(0); // index in the list of placeholder questions
+  const [choice, setChoice] = useState<string>(""); // for the radio buttons
+  const [answers, setAnswers] = useState<Record<number, string>>({}); // answers is a record of chosen answers used for calculating the progress bar. 
 
   const currQuestion: Question = placeholders[index]; //current question
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAnswers(
-      answers.find((a: number): boolean => currQuestion.questionNumber === a)
-        ? answers
-        : [...answers, currQuestion.questionNumber]
-    );
+    const newAnswers: Record<number, string> = Object.assign({}, answers)
+    newAnswers[currQuestion.questionNumber] = choice;
+
+    setAnswers(newAnswers);
     setChoice(event.target.value);
     setTimeout(() => {
       setIndex(index < 6 ? index + 1 : index);
@@ -25,11 +24,10 @@ export function GeneralQuestions(): JSX.Element {
   };
 
   return (
-    <div className="question-header">
-      <div className="progress-bar-bootstrap">
-        <ProgressBar now={(answers.length * 100) / 7}/>
+    <div className="question-component--content">
+      <div className="progress-bar-bootstrap">  x
+        <ProgressBar now={(Object.keys(answers).length * 100) / 7}/>
       </div>
-
       <h1 className="question--heading">
         {placeholders[index].questionNumber}.<span> {currQuestion.name}</span>
       </h1>
