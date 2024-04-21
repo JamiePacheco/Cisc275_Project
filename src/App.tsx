@@ -12,6 +12,22 @@ import { AppFooter } from './Components/Footer/AppFooter';
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
+  const [signedIn, setSignedIn] = useState<boolean>(false);
+
+  //if any child component signs the user out then this is triggered by embedded callback
+  useEffect(() => {
+    if (signedIn) {
+      const userString = sessionStorage.getItem("CURRENT_USER");
+      if (userString !== null) {
+        setUser(JSON.parse(userString));
+      }
+    } else {
+      setUser(null)
+    }
+  }, [signedIn])
+
+
   return (
     <HashRouter>
       <div className="App">
