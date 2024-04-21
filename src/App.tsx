@@ -43,7 +43,7 @@ function App() {
             <Routes>
               <Route path = "/home" element = {<HomePage user = {user}/>}> </Route>
               <Route path = "/login" element = {<LoginPage setSignedIn={setSignedIn} />}></Route>
-              <Route path = "/sign-up" element = {<SignUpPage/>}></Route>
+              <Route path = "/sign-up" element = {<SignUpPage setSignedIn={setSignedIn}/>}></Route>
               <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
               <Route path = "/detailed-quiz" element = {<DetailedPage/>}> </Route>
               <Route path = "/report" element = {<ReportsPage/>}> </Route>
