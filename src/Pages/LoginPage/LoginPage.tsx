@@ -127,6 +127,7 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
                                     > Login </button>
                                 </Row>
                             </Container>
+                            <span> Don't have an account? Sign up <a href = "/#/sign-up">here</a></span>
                         </Form>
                     </div>
                 </div>
