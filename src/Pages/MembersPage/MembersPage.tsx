@@ -24,7 +24,7 @@ export function MembersPage() : JSX.Element {
                     <div className = "page-buttons">
                         <button onClick = {() => nav("/home")}> Home </button> 
                         <button onClick = {() => nav("/reports")}> Reports </button>  
-                        <button onClick = {() => nav("/login")}> Login </button> 
+                        <button onClick = {() => nav("/home")}> Home </button> 
                         <button onClick = {() => nav("/sign-up")}> Sign Up </button>  
                         <button onClick = {() => nav("/short-quiz")}> Short Quiz</button> 
                     </div>
