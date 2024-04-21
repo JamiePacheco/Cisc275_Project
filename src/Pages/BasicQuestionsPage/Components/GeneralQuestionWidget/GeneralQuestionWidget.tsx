@@ -5,6 +5,7 @@ import { useState } from 'react';
 export function GeneralQuestions() : JSX.Element {
     const [ complete, setComplete] = useState<number>(0);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updateValues = (choice: number) => {
         setComplete(complete + 1);
     }
