@@ -1,28 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useMemo, useState} from "react"
+import { useState} from "react"
 import { HomePageHeader } from "./Components/HomePageHeader/HomePageHeader"
 import "./HomePage.css"
 import { HomePageSignUpWidget } from "./Components/HomePageSignUpWidget/HomePageSignUpWidget"
 import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionWidget/HomePageQuizSelectionWidget"
-import { User } from "../../Interfaces/User"
+import { useNavigate } from "react-router-dom"
 
-export function HomePage({user} : {
-    user : User | null
-}) : React.JSX.Element {
-
-    const [signedIn, setSignedIn] = useState<boolean>(false);
-
-    useMemo(
-        () => {
-            setSignedIn(user !== null);
-        },
-        [user]
-    );
+export function HomePage() : React.JSX.Element {
+    const [signedIn, setSignedIn] = useState<boolean>(false)
 
     return (
         <div className="homepage">
             <div className = "homepage--content">
-                <HomePageHeader user={user}></HomePageHeader>
+                <HomePageHeader loggedIn={signedIn}></HomePageHeader>
 
                 {!signedIn && <HomePageSignUpWidget></HomePageSignUpWidget>}
 
