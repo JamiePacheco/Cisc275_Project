@@ -2,12 +2,12 @@ export interface Question {
     name: string;
     questionNumber: number;
     options: string[];
-    answer: number;
+    answer: string;
 }
 
 
 export function generatePlaceholders(a:number): Question { 
-    return {name:"Lorem ipsum dolor sit amet", questionNumber:a , options:["one", "two", "three", "five"], answer: -1};
+    return {name:"Lorem ipsum dolor sit amet", questionNumber:a , options:["one", "two", "three", "five"], answer: ""};
 }
 
 export const placeholders: Question[] = [
