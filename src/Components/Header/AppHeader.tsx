@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import "./AppHeader.css"
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { User } from "../../Interfaces/User";
-import userEvent from "@testing-library/user-event";
-
+import "./AppHeader.css"
 
 export function AppHeader({user} : {
   user : User | null
