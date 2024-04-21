@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom"
 import "./AppHeader.css"
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { User } from "../../Interfaces/User";
+import userEvent from "@testing-library/user-event";
 
 
-export function AppHeader() : React.JSX.Element {
+export function AppHeader({user} : {
+  user : User | null
+}) : React.JSX.Element {
 
-    const [user, setUser] = useState<User | undefined>(undefined);
     const [signedIn, setSignedIn] = useState<boolean>(false);
     const nav = useNavigate()
 
     useMemo(() => {
-      const userString = sessionStorage.getItem("CURRENT_USER");
-      setUser(userString === null ? userString : JSON.parse(userString));
-      setSignedIn(userString !== null);
-    }, [])
+      setSignedIn(user !== null);
+    }, [user])
 
     return (
         <header className="app-header">

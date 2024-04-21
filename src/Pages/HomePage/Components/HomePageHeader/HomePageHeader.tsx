@@ -10,6 +10,8 @@ export function HomePageHeader({user} : HomePageProps) : React.JSX.Element {
         console.log(`User ${JSON.stringify(user)}`)
         if (user !== null) {
             setSignedIn(true);
+        } else {
+            setSignedIn(false)
         }
     }, [user])
 

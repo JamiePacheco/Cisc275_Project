@@ -2,10 +2,10 @@ import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User";
+import { LoginPageProps } from "./LoginPageProps";
 
-export function LoginPage() : React.JSX.Element {
+export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
     
-
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
 
@@ -40,6 +40,8 @@ export function LoginPage() : React.JSX.Element {
             setEmailMessage("Email is required");
         } else if (email !== userCredentials.email) {
             setEmailMessage("Not Valid Email");
+            setPasswordMessage("invalid password");
+            return;
         }
 
         if (password === "") {
@@ -57,7 +59,8 @@ export function LoginPage() : React.JSX.Element {
             event.stopPropagation();
             setValidated(true)
             return;
-        } else {           
+        } else {          
+            setSignedIn(true); 
             nav("/home");
         }   
     }
@@ -108,7 +111,7 @@ export function LoginPage() : React.JSX.Element {
                                                 setPassword(e.target.value);
                                                 console.log(e)
                                             }}
-                                            isInvalid = {password!==""}
+                                            isInvalid = {passwordMessage!==""}
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">

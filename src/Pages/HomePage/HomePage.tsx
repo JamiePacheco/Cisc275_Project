@@ -4,22 +4,19 @@ import { HomePageHeader } from "./Components/HomePageHeader/HomePageHeader"
 import "./HomePage.css"
 import { HomePageSignUpWidget } from "./Components/HomePageSignUpWidget/HomePageSignUpWidget"
 import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionWidget/HomePageQuizSelectionWidget"
-import { useNavigate, useParams } from "react-router-dom"
 import { User } from "../../Interfaces/User"
 
-export function HomePage() : React.JSX.Element {
-
-    const [user, setUser] = useState<User | undefined>(undefined);
+export function HomePage({user} : {
+    user : User | null
+}) : React.JSX.Element {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
 
     useMemo(
         () => {
-            const userString = sessionStorage.getItem("CURRENT_USER");
-            setUser(userString === null ? userString : JSON.parse(userString));
-            setSignedIn(userString !== null);
+            setSignedIn(user !== null);
         },
-        []
+        [user]
     );
 
     return (

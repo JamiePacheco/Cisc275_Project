@@ -1,13 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { UserPageProps } from "./UserPageProps";
 
-export function UserPage() : React.JSX.Element{
+export function UserPage({setSignedIn} : UserPageProps) : React.JSX.Element{
 
     const nav = useNavigate();
 
     function userLogout() {
-        sessionStorage.setItem("CURRENT_USER", "")
-        nav("/home")
+        sessionStorage.removeItem("CURRENT_USER")
+        setSignedIn(false);
+        nav("/home", {replace: true})
     }
 
     return (
