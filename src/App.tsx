@@ -22,8 +22,8 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
   const [signedIn, setSignedIn] = useState<boolean>(false);
 
+  //if any child component signs the user out then this is triggered by embedded callback
   useEffect(() => {
-    console.log("Activated!!!")
     if (signedIn) {
       const userString = sessionStorage.getItem("CURRENT_USER");
       if (userString !== null) {
