@@ -1,11 +1,10 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar } from "react-bootstrap";
 import { useState } from "react";
-import { Question, placeholders } from "../interface";
+import { Question, placeholders } from "../BasicQuestionInterface";
 import { Form } from "react-bootstrap";
 
-export function GeneralQuestions(): JSX.Element {
-  const [index, setIndex] = useState<number>(0); // index in the list of placeholder questions
+export function GeneralQuestions({index}: { index:number}): JSX.Element { 
   const [choice, setChoice] = useState<string>(""); // for the radio buttons
   const [answers, setAnswers] = useState<Record<number, string>>({}); // answers is a record of chosen answers used for calculating the progress bar. 
 
@@ -17,15 +16,11 @@ export function GeneralQuestions(): JSX.Element {
 
     setAnswers(newAnswers);
     setChoice(event.target.value);
-    setTimeout(() => {
-      setIndex(index < 6 ? index + 1 : index);
-      setChoice(index + 1 < 7 ? "" : event.target.value);
-    }, 300);
   };
 
   return (
     <div className="question-component--content">
-      <div className="progress-bar-bootstrap">  x
+      <div className="progress-bar-bootstrap"> 
         <ProgressBar now={(Object.keys(answers).length * 100) / 7}/>
       </div>
       <h1 className="question--heading">
