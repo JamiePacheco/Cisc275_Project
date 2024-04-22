@@ -4,7 +4,6 @@
     background-color: azure;
 }
 .detailed-quiz--content{
-    margin: 10vh 10vh 30vh 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
