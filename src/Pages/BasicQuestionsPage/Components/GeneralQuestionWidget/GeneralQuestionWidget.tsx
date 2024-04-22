@@ -14,10 +14,10 @@ export function GeneralQuestions({
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newAnswers: Record<number, string> = Object.assign({}, answers);
-    newAnswers[question.questionNumber] = choice;
-
+    newAnswers[question.questionNumber] = event.target.value;
+    question.answer = event.target.value;
     setAnswers(newAnswers);
-    setChoice(event.target.value);
+    setChoice(question.answer);
   };
 
   return (
@@ -35,8 +35,8 @@ export function GeneralQuestions({
             onChange={updateValues}
             id={`basic-${question.questionNumber}-${options}`}
             label={options.toUpperCase()}
-            value={options}
-            checked={choice === options}
+            value={`${question.questionNumber}-${options}`}
+            checked={choice === `${question.questionNumber}-${options}`}
           />
         ))}
       </div>
