@@ -2,9 +2,8 @@ import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User";
-import { LoginPageProps } from "./LoginPageProps";
 
-export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
+export function LoginPage() : React.JSX.Element {
     
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
@@ -60,11 +59,9 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
             setValidated(true)
             return;
         } else {          
-            setSignedIn(true); 
             nav("/home");
         }   
     }
-
 
     return (
         <div className = "sign-up-page">

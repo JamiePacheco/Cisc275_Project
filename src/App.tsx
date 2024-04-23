@@ -20,21 +20,14 @@ function App() {
   //TODO reimplement current user state in app scope and trickle it down.
 
   const [user, setUser] = useState<User | null>(null);
-  const [signedIn, setSignedIn] = useState<boolean>(false);
 
   //if any child component signs the user out then this is triggered by embedded callback
   useEffect(() => {
-    console.log(signedIn);
-    if (signedIn) {
       const userString = sessionStorage.getItem("CURRENT_USER");
       if (userString !== null) {
         setUser(JSON.parse(userString));
       }
-    } else {
-      setUser(null)
-    }
-  }, [signedIn])
-
+    }, []);
 
   return (
     <HashRouter>
@@ -43,12 +36,12 @@ function App() {
         <div className = "App-content">
             <Routes>
               <Route path = "/home" element = {<HomePage user = {user}/>}> </Route>
-              <Route path = "/login" element = {<LoginPage setSignedIn={setSignedIn} />}></Route>
-              <Route path = "/sign-up" element = {<SignUpPage setSignedIn={setSignedIn}/>}></Route>
+              <Route path = "/login" element = {<LoginPage/>}></Route>
+              <Route path = "/sign-up" element = {<SignUpPage/>}></Route>
               <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
               <Route path = "/detailed-quiz" element = {<DetailedPage/>}> </Route>
               <Route path = "/report" element = {<ReportsPage/>}> </Route>
-              <Route path = "/user-page" element = {<UserPage setSignedIn={setSignedIn}/>}> </Route>
+              <Route path = "/user-page" element = {<UserPage setUser = {setUser}/>}> </Route>
               <Route path = "/" element = {<MembersPage/>}></Route>
             </Routes>
         </div>

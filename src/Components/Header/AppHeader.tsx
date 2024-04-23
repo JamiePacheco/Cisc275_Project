@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom"
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { User } from "../../Interfaces/User";
 import "./AppHeader.css"
 
-export function AppHeader({user} : {
-  user : User | null
-}) : React.JSX.Element {
+export function AppHeader({user} : {user : User | null}) : React.JSX.Element {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
     const nav = useNavigate()
+
+    useMemo(() => {
+      if (user !== null) {
+        setSignedIn(true);
+      }
+    }, [user])
+
 
     useMemo(() => {
       setSignedIn(user !== null);
@@ -16,7 +21,7 @@ export function AppHeader({user} : {
 
     return (
         <header className="app-header">
-          <h1 className = "app-header--heading"  onClick={() => {nav("/")}}> Helpi </h1>
+          <h1 className = "app-header--heading"  onClick={() => {nav("/")}}> Career Bear </h1>
 
           <div className = "app-header--profile-container">
             <div 
