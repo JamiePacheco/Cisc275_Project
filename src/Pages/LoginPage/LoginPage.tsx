@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User";
 import { LoginPageProps } from "./LoginPageProps";
 
-export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
+export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
@@ -17,7 +17,7 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
     const nav = useNavigate();
 
     //definitely should be a backend verification but...
-    function validateLogin() : boolean{
+    function validateLogin() : User | null{
         const accountJSONString = localStorage.getItem("USER_ACCOUNT")
         if (accountJSONString != null) {
 
@@ -25,12 +25,12 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
 
             if (userAccount.email === email && userAccount.password === password) {
                 sessionStorage.setItem("CURRENT_USER", accountJSONString);
-                return true;
+                return userAccount;
             } else {
                 setMessages(userAccount);
             }
         }
-        return false;
+        return null;
     }
 
     //if time permits should have message be based on POST request error code from authentication API
@@ -54,13 +54,14 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
 
     function signIn(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        if (!validateLogin() || !form.checkValidity()) {
+        const user = validateLogin();
+        if (user === null || !form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
             return;
         } else {          
-            setSignedIn(true); 
+            setUser(user); 
             nav("/home");
         }   
     }
