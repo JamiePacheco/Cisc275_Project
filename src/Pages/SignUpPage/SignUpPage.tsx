@@ -187,7 +187,7 @@ export function SignUpPage({setSignedIn} : SignUpPageProps) : React.JSX.Element 
                                     > Create Account </button>
                                 </Row>
                             </Container>
-                            <span> Have an account? Sign in <Link to = "/sign-up" relative="path">here</Link></span>
+                            <span> Have an account? Sign in <Link to = "/login" relative="path">here</Link></span>
                         </Form>
                     </div>
                 </div>
