@@ -2,11 +2,14 @@ import {Col, Container, Form, Row} from "react-bootstrap"
 import "./SignUpPage.css"
 import { FormEvent, useState } from "react";
 import { User } from "../../Interfaces/User";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { SignUpPageProps } from "./SignUpPageProps";
 
-export function SignUpPage() : React.JSX.Element {
+export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     //TODO extract password input into own component perhaps???
+    //TODO create hyperlink to login page and vise versa
+    //TODO check if email is already in use
 
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
@@ -33,11 +36,13 @@ export function SignUpPage() : React.JSX.Element {
     function createUserObject() : User {
         const age = getAge();
         const newAccount : User = {
+            userId: 1,
             firstName: firstName,
             lastName: lastName,
             email: email,
             birthday: birthday,
-            age: age
+            age: age,
+            password: password
         } 
 
         return newAccount;
@@ -45,7 +50,6 @@ export function SignUpPage() : React.JSX.Element {
  
     function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        console.log(form.checkValidity())
         if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
@@ -53,8 +57,11 @@ export function SignUpPage() : React.JSX.Element {
             return;
         } else {
             const newAccount = createUserObject();
-            localStorage.setItem("USER_ACCOUNT", JSON.stringify(newAccount))
-            nav("/home")
+            const accountJSONString = JSON.stringify(newAccount);
+            localStorage.setItem("USER_ACCOUNT", accountJSONString);
+            sessionStorage.setItem("CURRENT_USER", accountJSONString);
+            setUser(newAccount);
+            nav("/home");
         }   
     }
 
@@ -180,6 +187,7 @@ export function SignUpPage() : React.JSX.Element {
                                     > Create Account </button>
                                 </Row>
                             </Container>
+                            <span> Have an account? Sign in <Link to = "/login" relative="path">here</Link></span>
                         </Form>
                     </div>
                 </div>

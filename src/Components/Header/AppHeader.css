@@ -1,9 +1,49 @@
-.sign-up-page--form-header {
-    width: 70%;
-    min-width: 500px;
-    text-wrap: nowrap;
+.app-header {
+    /* background-color: #282c34; */
+    background-color: rgb(255, 255, 255);
+    height: 10%;
+    min-width: 100%;
+    padding: 30px;
+
+    z-index: 1;
+  
+    display: flex;
+    position: fixed;
+    top: 0;
+    
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: calc(5x + 2vmin);
+    color: rgb#282c34;
+    text-align: start;
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    transition: 10s;
+  
 }
 
 .app-header--heading {
     cursor: pointer;
 }
+
+.app-header--profile-container {
+    display: flex;
+    align-items: center;
+    right: 0;
+    height: 100%;
+
+}
+
+.profile-container--profile-tab {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+
+    padding: 10px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+
+

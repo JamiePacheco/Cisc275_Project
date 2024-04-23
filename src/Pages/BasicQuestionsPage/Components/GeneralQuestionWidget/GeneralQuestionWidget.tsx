@@ -47,4 +47,5 @@ export function GeneralQuestions(): JSX.Element {
       <QuizInteraction setIndex = {setIndex} index = {index} restoreAnswer={restoreAnswer}/>
     </div>
   );
+
 }

@@ -11,12 +11,21 @@ export function QuestionAnswer(): React.JSX.Element {
       <div className="question-component--content">
         <h1 id="question-number"> {`Question ${q + 1}`}</h1>
         <h3>{placeholders[q].name}</h3>
-        <Form.Group>
-          <Form.Label> {placeholders[q].body}</Form.Label>
-          <Form.Control as="textarea" rows={3} />
-        </Form.Group>
-      </div>
-      <div className="buttons-navigation">
+        {placeholders[q].type === "radio" ? (
+          placeholders[q].options.map((question: string) => (
+            <Form.Check
+              type="radio"
+              name="response"
+              label={question}
+              className="radio-buttons"
+            />
+          ))
+        ) : (
+          <Form.Group>
+            <Form.Control />
+          </Form.Group>
+        )}
+        <div className="buttons-navigation">
           <Button
             id="back-button"
             disabled={q === 0 ? true : false}
@@ -32,6 +41,7 @@ export function QuestionAnswer(): React.JSX.Element {
             Next
           </Button>
         </div>
+      </div>
     </div>
   );
 }

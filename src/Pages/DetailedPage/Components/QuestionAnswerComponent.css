@@ -1,5 +1,4 @@
 .question-component{
-    display: flex;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
@@ -13,20 +12,18 @@
     margin-block: 5vh;
 
     align-self: center;
-    flex-direction:column; 
-    flex:1;
 }
 
-.question-component--content{
-    padding-top: 5vh;
+.radio-buttons{
+    display:inline;
+    text-align: left;
+    gap: 10px;
+    
 }
-
-
 
 .buttons-navigation{
-    margin-top:auto;
-    padding-bottom: 1vh;
     vertical-align:bottom;
+    display:flex;
     flex-wrap:wrap;
     justify-content: space-between;
 }
