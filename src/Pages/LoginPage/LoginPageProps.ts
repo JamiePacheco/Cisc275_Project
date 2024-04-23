@@ -1,3 +1,5 @@
+import { User } from "../../Interfaces/User";
+
 export interface LoginPageProps {
-    setSignedIn : React.Dispatch<React.SetStateAction<boolean>>
+    setUser : React.Dispatch<React.SetStateAction<User | null>>
 }
