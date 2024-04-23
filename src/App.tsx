@@ -24,6 +24,7 @@ function App() {
 
   //if any child component signs the user out then this is triggered by embedded callback
   useEffect(() => {
+    console.log(signedIn);
     if (signedIn) {
       const userString = sessionStorage.getItem("CURRENT_USER");
       if (userString !== null) {

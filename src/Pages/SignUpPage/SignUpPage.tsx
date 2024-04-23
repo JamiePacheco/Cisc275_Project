@@ -2,7 +2,7 @@ import {Col, Container, Form, Row} from "react-bootstrap"
 import "./SignUpPage.css"
 import { FormEvent, useState } from "react";
 import { User } from "../../Interfaces/User";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
 
 export function SignUpPage({setSignedIn} : SignUpPageProps) : React.JSX.Element {
@@ -187,7 +187,7 @@ export function SignUpPage({setSignedIn} : SignUpPageProps) : React.JSX.Element 
                                     > Create Account </button>
                                 </Row>
                             </Container>
-                            <span> Have an account? Sign in <a href = "/#/login">here</a></span>
+                            <span> Have an account? Sign in <Link to = "/login" relative="path">here</Link></span>
                         </Form>
                     </div>
                 </div>
