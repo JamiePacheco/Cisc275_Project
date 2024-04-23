@@ -2,13 +2,8 @@
 > starter_helpi@0.1.0 test
 > react-scripts test --coverage
 
-  console.log
-    false
-
-      at src/App.tsx:27:13
-
 FAIL src/App.test.tsx
-  ✕ renders learn react link (66 ms)
+  ✕ renders learn react link (51 ms)
 
   ● renders learn react link
 
@@ -26,7 +21,7 @@ FAIL src/App.test.tsx
             [36m<h1[39m
               [33mclass[39m=[32m"app-header--heading"[39m
             [36m>[39m
-              [0m Helpi [0m
+              [0m Career Bear [0m
             [36m</h1>[39m
             [36m<div[39m
               [33mclass[39m=[32m"app-header--profile-container"[39m
@@ -151,15 +146,15 @@ FAIL src/App.test.tsx
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                         |   13.17 |      9.8 |   11.47 |   13.17 |                   
- src                                                              |   33.33 |     12.5 |      50 |   33.33 |                   
-  App.tsx                                                         |      70 |       25 |     100 |      70 | 29-31             
+All files                                                         |   12.19 |     10.2 |   11.47 |   12.19 |                   
+ src                                                              |   29.41 |    16.66 |      50 |   29.41 |                   
+  App.tsx                                                         |   83.33 |       50 |     100 |   83.33 | 28                
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-20              
   reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
  src/Components/Footer                                            |      60 |       50 |   33.33 |      60 |                   
   AppFooter.tsx                                                   |      60 |       50 |   33.33 |      60 | 10,17-23          
  src/Components/Header                                            |   55.55 |       75 |      40 |   55.55 |                   
-  AppHeader.tsx                                                   |   55.55 |       75 |      40 |   55.55 | 19-37             
+  AppHeader.tsx                                                   |   55.55 |       75 |      40 |   55.55 | 17-35             
  src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
   ProgressBar.tsx                                                 |       0 |      100 |       0 |       0 | 2                 
  src/Interfaces                                                   |       0 |        0 |       0 |       0 |                   
@@ -189,7 +184,7 @@ All files                                                         |   13.17 |   
  src/Pages/HomePage/Components/HomePageSignUpWidget               |       0 |      100 |       0 |       0 |                   
   HomePageSignUpWidget.tsx                                        |       0 |      100 |       0 |       0 | 6-18              
  src/Pages/LoginPage                                              |       0 |        0 |       0 |       0 |                   
-  LoginPage.tsx                                                   |       0 |        0 |       0 |       0 | 9-112             
+  LoginPage.tsx                                                   |       0 |        0 |       0 |       0 | 9-113             
   LoginPageProps.ts                                               |       0 |        0 |       0 |       0 |                   
  src/Pages/MembersPage                                            |   28.57 |      100 |   16.66 |   28.57 |                   
   MembersPage.tsx                                                 |   28.57 |      100 |   16.66 |   28.57 | 25-29             
@@ -209,5 +204,5 @@ All files                                                         |   13.17 |   
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.012 s
+Time:        2.971 s
 Ran all test suites.
