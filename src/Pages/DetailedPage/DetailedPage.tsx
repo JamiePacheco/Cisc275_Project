@@ -5,16 +5,20 @@ import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt
 
 import "./DetailedPage.css";
 import { initalizeCareerBear, sendMessageToCareerBear } from "../../Services/CareerBear";
-import { ChatCompletion } from "openai/resources";
+import { Completion } from "openai/resources";
 import { Button, Form } from "react-bootstrap";
 
 export function DetailedPage(): React.JSX.Element {
 
   const [initalized, setInitalized] = useState<boolean>(false);
+  const [paused, setPaused] = useState<boolean>(false);
+
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>("");
   const [careerBearMessages, setCareerBearMessages] = useState<string[]>([]);
   
+  
+
   const [userMessage, setUserMessage] = useState("");
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export function DetailedPage(): React.JSX.Element {
 
   useMemo(() => {
     console.log(initalized)
-    if (!initalized) {
+    if (!initalized && careerBearTalking) {
       initalizeCareerBear().then((value) => {
           if (value !== null &&  value !== undefined) {
           const bearMessage = value.choices[0].message.content
@@ -44,15 +48,23 @@ export function DetailedPage(): React.JSX.Element {
 
       })
     }
-  }, [initalized])
+  }, [careerBearTalking, initalized])
+
+  useEffect(() => {
+    if (!careerBearTalking) {
+      setCareerBearMessage("...(thinking)");
+    } 
+  }, [careerBearTalking])
 
   function answerQuestion() {
+    setCareerBearTalking(false);
     sendMessageToCareerBear(userMessage).then((value) => {
       if (value !== null && value !== undefined) {
-        const bearMessage = value.choices[0].message.content
+        const bearMessage = value.choices[0].message.content;
         console.log(bearMessage)
         if (bearMessage !== undefined && bearMessage !== null) {
-          setCareerBearMessage(bearMessage)
+          setCareerBearMessage(bearMessage);
+          setCareerBearTalking(true);
         }
       }
     })
@@ -70,7 +82,8 @@ export function DetailedPage(): React.JSX.Element {
           console.log(userMessage)
         }}>
         </Form.Control>
-        <Button onClick={() => answerQuestion()}> Send </Button>
+        <Button onClick={answerQuestion}> Send </Button>
+        <Button onClick={() => setPaused(prev => !prev)}> {paused ? "Pause" : "Start"} </Button>
       </div>
     </div>
   );

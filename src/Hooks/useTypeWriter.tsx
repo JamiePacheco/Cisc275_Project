@@ -9,7 +9,7 @@ export function useTypeWriter(text : string, speed = 50) {
             const typingInterval = setInterval(() => {
                 if (i < text.length) {
                     setDisplayText((prevText: string) => prevText + text.charAt(i));
-                    i++;
+                    ++i;
                 } else {
                     clearInterval(typingInterval);
                 }
