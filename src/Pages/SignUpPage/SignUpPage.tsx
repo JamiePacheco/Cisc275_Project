@@ -3,8 +3,9 @@ import "./SignUpPage.css"
 import { FormEvent, useState } from "react";
 import { User } from "../../Interfaces/User";
 import { Link, useNavigate } from "react-router-dom";
+import { SignUpPageProps } from "./SignUpPageProps";
 
-export function SignUpPage() : React.JSX.Element {
+export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     //TODO extract password input into own component perhaps???
     //TODO create hyperlink to login page and vise versa
@@ -59,6 +60,7 @@ export function SignUpPage() : React.JSX.Element {
             const accountJSONString = JSON.stringify(newAccount);
             localStorage.setItem("USER_ACCOUNT", accountJSONString);
             sessionStorage.setItem("CURRENT_USER", accountJSONString);
+            setUser(newAccount);
             nav("/home");
         }   
     }

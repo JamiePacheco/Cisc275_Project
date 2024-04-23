@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { User } from "../../Interfaces/User";
 import "./AppHeader.css"
 
@@ -7,13 +7,6 @@ export function AppHeader({user} : {user : User | null}) : React.JSX.Element {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
     const nav = useNavigate()
-
-    useMemo(() => {
-      if (user !== null) {
-        setSignedIn(true);
-      }
-    }, [user])
-
 
     useMemo(() => {
       setSignedIn(user !== null);
