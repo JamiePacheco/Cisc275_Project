@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User";
 import { LoginPageProps } from "./LoginPageProps";
 
@@ -127,7 +127,7 @@ export function LoginPage({setSignedIn} : LoginPageProps) : React.JSX.Element {
                                     > Login </button>
                                 </Row>
                             </Container>
-                            <span> Don't have an account? Sign up <a href = "/#/sign-up">here</a></span>
+                            <span> Don't have an account? Sign up <Link to = "/sign-up" relative="path">here</Link> </span>
                         </Form>
                     </div>
                 </div>
