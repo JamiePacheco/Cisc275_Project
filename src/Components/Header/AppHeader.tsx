@@ -14,7 +14,7 @@ export function AppHeader({user} : {user : User | null}) : React.JSX.Element {
 
     return (
         <header className="app-header">
-          <h1 className = "app-header--heading"  onClick={() => {nav("/")}}> Career Bear </h1>
+          <h1 className = "app-header--heading"  onClick={() => {nav("/")}}> CareerBear </h1>
 
           <div className = "app-header--profile-container">
             <div 
