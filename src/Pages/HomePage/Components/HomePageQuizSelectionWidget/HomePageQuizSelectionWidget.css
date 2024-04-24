@@ -59,3 +59,12 @@
     margin-top: 10%;
 }
 
+.quiz-selection-description-text{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 10vw;
+    padding: 3vb;
+}
