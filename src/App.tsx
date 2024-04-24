@@ -34,12 +34,7 @@ function App() {
   return (
     <HashRouter>
       <div 
-      className="App" 
-      style = {
-        {
-          backgroundImage: `url(${background})`,
-          backgroundAttachment: "fixed"
-        }}>
+      className="App">
         <AppHeader user={user}></AppHeader>
         <div className = "App-content">
             <Routes>

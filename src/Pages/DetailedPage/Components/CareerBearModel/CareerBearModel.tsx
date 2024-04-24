@@ -4,8 +4,6 @@ import neutralBear from "../../../../assets/career-bear/neutral_career_bear.png"
 
 import "./CareerBearModel.css";
 
-
-
 export type BearEmotion = "neutral" | "sad" | "happy"
 
 

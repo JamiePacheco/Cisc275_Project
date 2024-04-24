@@ -1,6 +1,6 @@
 .app-header {
     /* background-color: #282c34; */
-    background-color: #f4ece2;
+    background-color: #6c4c41;
     height: 10%;
     min-width: 100%;
     padding: 30px;
@@ -16,7 +16,7 @@
     justify-content: space-between;
 
     font-size: calc(5x + 2vmin);
-    color: rgb#282c34;
+    color: rgb#f4ece2;
     text-align: start;
     box-shadow: 0px 2.98256px 7.4564px rgba(35, 20, 20, 0.1);
     transition: 10s;
@@ -25,6 +25,7 @@
 
 .app-header--heading {
     cursor: pointer;
+    color: #f4ece2;
 }
 
 .app-header--profile-container {
@@ -36,13 +37,19 @@
 }
 
 .profile-container--profile-tab {
-    background-color: rgb(255, 255, 255);
+    background-color: #6c4c41;    ;
     border-radius: 10px;
     box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
-
+    color: #f4ece2;
     padding: 10px;
     font-size: large;
     cursor: pointer;
+    transition: .5s;
+}
+
+.profile-container--profile-tab:hover {
+    color: #6c4c41;
+    background-color: #f4ece2;
 }
 
 

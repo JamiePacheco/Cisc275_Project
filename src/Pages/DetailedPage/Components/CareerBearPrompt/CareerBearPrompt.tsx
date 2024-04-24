@@ -14,12 +14,11 @@ export function CareerBearPrompt({message} : {message : string}) : React.JSX.Ele
 
     const typedMessage = useTypeWriter(displayText);
 
-
     return (
         <div className = "career-bear-prompt">
             <div className = "career-bear-prompt--content">
-                <div className = "content--text">
-                    <span>
+                <div className = "content--text-box">
+                    <span className = "content--text">
                         {typedMessage}
                     </span>
                 </div>

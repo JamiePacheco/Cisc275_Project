@@ -76,7 +76,7 @@ export function DetailedPage(): React.JSX.Element {
           console.log(userMessage)
         }}>
         </Form.Control>
-        <button onClick={answerQuestion}> Send </button>
+        <button onClick={answerQuestion} disabled={!initalized}> Send </button>
         <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
       </div>
     </div>
