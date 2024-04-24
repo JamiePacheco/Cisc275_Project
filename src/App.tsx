@@ -1,4 +1,6 @@
 import './App.css';
+import background from "./assets/images/career-bear-forest.jpg"
+
 import { HashRouter, Route, Routes} from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage';
 import { MembersPage } from './Pages/MembersPage/MembersPage';
@@ -31,7 +33,13 @@ function App() {
 
   return (
     <HashRouter>
-      <div className="App">
+      <div 
+      className="App" 
+      style = {
+        {
+          backgroundImage: `url(${background})`,
+          backgroundAttachment: "fixed"
+        }}>
         <AppHeader user={user}></AppHeader>
         <div className = "App-content">
             <Routes>

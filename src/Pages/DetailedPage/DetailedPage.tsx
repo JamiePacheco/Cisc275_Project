@@ -1,12 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useMemo, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
-
-
-import "./DetailedPage.css";
 import { initalizeCareerBear, sendMessageToCareerBear } from "../../Services/CareerBear";
-import { Completion } from "openai/resources";
 import { Button, Form } from "react-bootstrap";
+import "./DetailedPage.css";
 
 export function DetailedPage(): React.JSX.Element {
 
@@ -15,10 +12,7 @@ export function DetailedPage(): React.JSX.Element {
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>("");
-  const [careerBearMessages, setCareerBearMessages] = useState<string[]>([]);
   
-  
-
   const [userMessage, setUserMessage] = useState("");
 
   useEffect(() => {
