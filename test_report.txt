@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (51 ms)
+  ✕ renders learn react link (54 ms)
 
   ● renders learn react link
 
@@ -146,7 +146,7 @@ FAIL src/App.test.tsx
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                         |   12.19 |     10.2 |   11.47 |   12.19 |                   
+All files                                                         |   11.95 |     8.77 |   11.76 |   11.95 |                   
  src                                                              |   29.41 |    16.66 |      50 |   29.41 |                   
   App.tsx                                                         |   83.33 |       50 |     100 |   83.33 | 28                
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-20              
@@ -160,15 +160,18 @@ All files                                                         |   12.19 |   
  src/Interfaces                                                   |       0 |        0 |       0 |       0 |                   
   User.ts                                                         |       0 |        0 |       0 |       0 |                   
  src/Pages/BasicQuestionsPage                                     |       0 |      100 |       0 |       0 |                   
-  BasicQuestionsPage.tsx                                          |       0 |      100 |       0 |       0 | 9                 
+  BasicQuestionsPage.tsx                                          |       0 |      100 |       0 |       0 | 12                
  src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader |       0 |      100 |       0 |       0 |                   
   BasicQuestionsPageHeader.tsx                                    |       0 |      100 |       0 |       0 | 5                 
  src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget    |       0 |      100 |       0 |       0 |                   
-  GeneralQuestionWidget.tsx                                       |       0 |      100 |       0 |       0 | 4                 
+  GeneralQuestionWidget.tsx                                       |       0 |      100 |       0 |       0 | 9-37              
+ src/Pages/BasicQuestionsPage/Components/Interfaces               |     100 |      100 |     100 |     100 |                   
+  BasicQuestionInterface.ts                                       |     100 |      100 |     100 |     100 |                   
  src/Pages/BasicQuestionsPage/Components/ProgressBarWidget        |       0 |      100 |       0 |       0 |                   
   ProgressBarWidget.tsx                                           |       0 |      100 |       0 |       0 | 4                 
- src/Pages/BasicQuestionsPage/Components/QuizInteraction          |       0 |      100 |       0 |       0 |                   
-  QuizInteraction.tsx                                             |       0 |      100 |       0 |       0 | 4                 
+ src/Pages/BasicQuestionsPage/Components/QuizInteraction          |       0 |        0 |       0 |       0 |                   
+  QuestionIndexProp.ts                                            |       0 |        0 |       0 |       0 |                   
+  QuizInteraction.tsx                                             |       0 |        0 |       0 |       0 | 5-15              
  src/Pages/DetailedPage                                           |       0 |      100 |       0 |       0 |                   
   DetailedPage.tsx                                                |       0 |      100 |       0 |       0 | 8                 
  src/Pages/DetailedPage/Components                                |   28.57 |        0 |      20 |   28.57 |                   
@@ -204,5 +207,5 @@ All files                                                         |   12.19 |   
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.971 s
+Time:        3.468 s
 Ran all test suites.
