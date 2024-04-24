@@ -4,12 +4,11 @@
   display: block;
   min-height: 100vh;
   width: 100%;
-  background-color: azure;
+  background-color: #d7c0a8;
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(227, 205, 180);
   min-height: 10%;
   min-width: 100%;
 
