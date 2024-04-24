@@ -45,8 +45,8 @@ button {
   border-radius: 20px;
   padding: 10px;
   border: none;
-  background-color: #282c34;
-  color: white;
+  background-color: #6c4c41;
+  color: #f4ece2;
   transition: 0.5s;
 
   padding: 10px 25px 10px 25px;
@@ -56,6 +56,6 @@ button {
 }
 
 button:hover {
-  background-color: white;
-  color:#282c34;
+  background-color: #f4ece2;
+  color:#6c4c41;
 }

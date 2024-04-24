@@ -8,7 +8,7 @@ import "./DetailedPage.css";
 export function DetailedPage(): React.JSX.Element {
 
   const [initalized, setInitalized] = useState<boolean>(false);
-  const [paused, setPaused] = useState<boolean>(false);
+  const [paused, setPaused] = useState<boolean>(true);
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>("");
@@ -28,7 +28,7 @@ export function DetailedPage(): React.JSX.Element {
 
   useMemo(() => {
     console.log(initalized)
-    if (!initalized && careerBearTalking) {
+    if (!initalized && careerBearTalking && !paused) {
       initalizeCareerBear().then((value) => {
           if (value !== null &&  value !== undefined) {
           const bearMessage = value.choices[0].message.content
@@ -42,7 +42,7 @@ export function DetailedPage(): React.JSX.Element {
 
       })
     }
-  }, [careerBearTalking, initalized])
+  }, [careerBearTalking, initalized, paused])
 
   useEffect(() => {
     if (!careerBearTalking) {
@@ -76,8 +76,8 @@ export function DetailedPage(): React.JSX.Element {
           console.log(userMessage)
         }}>
         </Form.Control>
-        <Button onClick={answerQuestion}> Send </Button>
-        <Button onClick={() => setPaused(prev => !prev)}> {paused ? "Pause" : "Start"} </Button>
+        <button onClick={answerQuestion}> Send </button>
+        <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
       </div>
     </div>
   );
