@@ -1,6 +1,6 @@
 .App-footer {
     /* background-color:#282c34; */
-    background-color: #f4ece2;
+    background-color: #6c4c41;
     box-shadow: 0px -2.98256px 7.4564px rgba(0, 0, 0, 0.1);
   
     bottom: 0;
@@ -10,7 +10,6 @@
   
     z-index: 1;
   
-    margin-top: 1vh;
     min-height: 15vh;
     min-width: 100%;
   }

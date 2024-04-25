@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "./MembersPage.css"
+import { initalizeCareerBear } from "../../Services/CareerBear";
+import OpenAI from "openai";
 
 
 //TODO Make this into a page where we can put about us stuff
@@ -28,6 +30,19 @@ export function MembersPage() : JSX.Element {
                         <button onClick = {() => nav("/sign-up")}> Sign Up </button>  
                         <button onClick = {() => nav("/short-quiz")}> Short Quiz</button> 
                     </div>
+                </div>
+                <div>
+                    <h1> Test Open AI </h1>
+                    <button
+                    onClick={() => {
+                        initalizeCareerBear().then((reponse : OpenAI.Chat.Completions.ChatCompletion | undefined) => {
+                            console.log((
+                                reponse?.choices
+                            ))
+                        })
+                    }
+                    }
+                    > test </button>
                 </div>
             </div>
         </div>

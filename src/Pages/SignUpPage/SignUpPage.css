@@ -3,6 +3,16 @@
     width: 100%;   
 }
 
+.sign-up-page input {
+    background-color: #f4ece2;
+}
+
+.sign-up-page input:focus {
+    border: 1px solid #6c4c41;
+    box-shadow: none;
+    background: #FFF6EC;
+}
+
 .sign-up-page--content {
     margin: 10vh 10vh 0 10vh;
     padding: 10vh;
@@ -25,7 +35,7 @@
 
 .form-container--content {
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #FFF6EC;
     border-radius: 10px;
 
     padding: 50px;
