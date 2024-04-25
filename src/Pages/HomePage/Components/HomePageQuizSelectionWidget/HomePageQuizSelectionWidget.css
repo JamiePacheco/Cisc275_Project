@@ -57,5 +57,15 @@
     width: 50%;
     margin-inline: auto;
     margin-top: 10%;
+    background-color: #6c4c41;
 }
 
+.quiz-selection-description-text{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 10vw;
+    padding: 3vb;
+}

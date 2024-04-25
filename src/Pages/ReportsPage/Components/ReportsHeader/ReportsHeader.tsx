@@ -1,13 +1,12 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 
-export function ReportsHeader() : JSX.Element {
-    const nav = useNavigate();
+export function ReportsHeader() : React.JSX.Element {
+    //const nav = useNavigate();
     return(
     <div className='header-report-page'>
-        <h1>Reports Page</h1>
-        <p>Placeholder for Reports Body</p>
-        <button onClick = {() => nav("/home")}> Home </button>
+        <p>CarrerBear has compiled all your responses and decided that this career will be fitting...</p>
+        <h1>Career Suggested</h1>
     </div>
     )
 };
