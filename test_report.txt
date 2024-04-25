@@ -126,9 +126,14 @@ FAIL src/App.test.tsx
               [36m/>[39m
               [36m<br />[39m
               [36m<button[39m
-                [33mclass[39m=[32m"Submit-Button"[39m
+                [33mclass[39m=[32m""[39m
               [36m>[39m
                 [0mSubmit[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m""[39m
+              [36m>[39m
+                [0m Clear Key [0m
               [36m</button>[39m
             [36m</form>[39m
           [36m</footer>[39m
@@ -157,13 +162,13 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    8.88 |     5.15 |    7.36 |    8.95 |                   
+All files                                                                    |    8.77 |     5.76 |    7.21 |    8.83 |                   
  src                                                                         |   29.41 |    16.66 |      50 |   29.41 |                   
   App.tsx                                                                    |   83.33 |       50 |     100 |   83.33 | 29                
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
   reportWebVitals.ts                                                         |       0 |        0 |       0 |       0 | 3-10              
- src/Components/Footer                                                       |      60 |       50 |   33.33 |      60 |                   
-  AppFooter.tsx                                                              |      60 |       50 |   33.33 |      60 | 10,17-23          
+ src/Components/Footer                                                       |      50 |       50 |      25 |      50 |                   
+  AppFooter.tsx                                                              |      50 |       50 |      25 |      50 | 10,17-28          
  src/Components/Header                                                       |   55.55 |       75 |      40 |   55.55 |                   
   AppHeader.tsx                                                              |   55.55 |       75 |      40 |   55.55 | 22-42             
  src/Components/ProgressBar                                                  |       0 |      100 |       0 |       0 |                   
@@ -191,8 +196,9 @@ All files                                                                    |  
   QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 6-20              
  src/Pages/BasicQuestionsPage/Components/QuizInteraction/RevealAnswersButton |       0 |      100 |       0 |       0 |                   
   RevealAnswersButton.tsx                                                    |       0 |      100 |       0 |       0 | 7-9               
- src/Pages/DetailedPage                                                      |       0 |        0 |       0 |       0 |                   
-  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 13-105            
+ src/Pages/DetailedPage                                                      |    1.69 |        0 |       0 |    1.75 |                   
+  CareerBearPhrases.ts                                                       |     100 |      100 |     100 |     100 |                   
+  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 14-136            
  src/Pages/DetailedPage/Components                                           |       0 |      100 |       0 |       0 |                   
   DetailedPage-interface.ts                                                  |       0 |      100 |       0 |       0 | 13-16             
   QuestionAnswerComponent.tsx                                                |       0 |      100 |       0 |       0 | 8                 
@@ -232,5 +238,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.418 s
+Time:        3.317 s
 Ran all test suites.
