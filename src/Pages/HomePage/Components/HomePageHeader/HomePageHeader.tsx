@@ -6,6 +6,7 @@ import darkLogo from "../../../../assets/logos/career-bear-logo-2-dark.png"
 
 export function HomePageHeader({user} : HomePageProps) : React.JSX.Element {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [signedIn, setSignedIn] = useState<boolean>(false);
 
     useEffect(() => {
