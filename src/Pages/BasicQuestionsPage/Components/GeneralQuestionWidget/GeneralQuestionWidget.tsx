@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Question, placeholders } from "../Interfaces/BasicQuestionInterface";
 import { Form } from "react-bootstrap";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
-import { RevealAnswers } from "../QuizInteraction/RevealAnswersButton/RevealAnswersButton";
 
 export function GeneralQuestions({}): JSX.Element {
   const [choice, setChoice] = useState<string>(""); // for the radio buttons
@@ -12,7 +11,6 @@ export function GeneralQuestions({}): JSX.Element {
   const [index, setIndex] = useState<number>(0); // index in the list of placeholder questions
   const question : Question = placeholders[index];
   const totalQuestions = placeholders.length;
-  const isProgressBarFull = Object.keys(answers).length === totalQuestions;
 
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>) => {
