@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useMemo, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CAREER_BEAR_PERSONALITY, initalizeCareerBear, sendMessageToCareerBear } from "../../Services/CareerBear";
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
