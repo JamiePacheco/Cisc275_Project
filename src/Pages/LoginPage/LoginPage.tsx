@@ -105,7 +105,7 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
                                             <Form.Control
                                             required
                                             className = "form--font" 
-                                            placeholder="password123 (Please Don't Use This...)" 
+                                            placeholder="password123" 
                                             value = {password}
                                             size = "lg"
                                             onChange={(e) => {

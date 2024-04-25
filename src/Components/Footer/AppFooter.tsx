@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import {Form } from "react-bootstrap";
 import "./AppFooter.css"
 
 
@@ -29,7 +29,7 @@ export function AppFooter() : React.JSX.Element {
             <Form.Label>API Key:</Form.Label>
             <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
             <br></br>
-            <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+            <button className="Submit-Button" onClick={handleSubmit}>Submit</button>
           </Form>
         </footer>
     )
