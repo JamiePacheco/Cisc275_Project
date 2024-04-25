@@ -1,4 +1,5 @@
 import "./RevealAnswersButton.css";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { IndexState } from "../QuestionIndexProp";
 
 export function RevealAnswers(): JSX.Element {
