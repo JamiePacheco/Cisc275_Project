@@ -6,7 +6,7 @@ import "./AppFooter.css"
 let keyData = "";
 const saveKeyData = "MYKEY";
 const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
-if (prevKey !== null) {
+if (prevKey !== null && prevKey !== "") {
   keyData = JSON.parse(prevKey);
 }
 
@@ -23,13 +23,19 @@ export function AppFooter() : React.JSX.Element {
       setKey(event.target.value);
     }
 
+    function clearKey() {
+      localStorage.setItem("MYKEY", "");
+      console.log("Key has been cleared");
+    }
+
     return (
         <footer className = "App-footer"> 
           <Form>
             <Form.Label>API Key:</Form.Label>
             <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
             <br></br>
-            <button className="Submit-Button" onClick={handleSubmit}>Submit</button>
+            <button className="" onClick={handleSubmit}>Submit</button>
+            <button className="" onClick={clearKey}> Clear Key </button>
           </Form>
         </footer>
     )
