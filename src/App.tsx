@@ -1,5 +1,4 @@
 import './App.css';
-import background from "./assets/images/career-bear-forest.jpg"
 
 import { HashRouter, Route, Routes} from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage';
