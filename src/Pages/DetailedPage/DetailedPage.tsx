@@ -125,8 +125,19 @@ export function DetailedPage(): React.JSX.Element {
           </div>
           
           <div className = "user-interface--buttons">
-            <button onClick={answerQuestion} disabled={!initalized}> Send </button>
-            <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
+            <button 
+              onClick={answerQuestion} 
+              disabled={!initalized}
+            > 
+              Send 
+            </button>
+
+            <button 
+              onClick={() => setPaused(prev => !prev)}
+              disabled={!validKey}  
+            >
+                {paused ? "Start" : "Pause"} 
+              </button>
           </div>
         </div>
       </div>
