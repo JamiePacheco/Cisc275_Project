@@ -27,7 +27,7 @@ export function GeneralQuestions({}): JSX.Element {
     if (savedAnswer) {
       setChoice(savedAnswer);
     } else {
-      setChoice(""); //reset choice
+      setChoice(""); // reset choice
     }
 
   }, [index, answers, question.questionNumber]);
