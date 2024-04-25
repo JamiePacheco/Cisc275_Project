@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (54 ms)
+  ✕ renders learn react link (57 ms)
 
   ● renders learn react link
 
@@ -157,7 +157,7 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    8.82 |     5.15 |    7.29 |    8.88 |                   
+All files                                                                    |    8.88 |     5.15 |    7.36 |    8.95 |                   
  src                                                                         |   29.41 |    16.66 |      50 |   29.41 |                   
   App.tsx                                                                    |   83.33 |       50 |     100 |   83.33 | 29                
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
@@ -207,7 +207,7 @@ All files                                                                    |  
   HomePageHeader.tsx                                                         |       0 |        0 |       0 |       0 | 10-21             
   HomePageProps.ts                                                           |       0 |        0 |       0 |       0 |                   
  src/Pages/HomePage/Components/HomePageQuizSelectionWidget                   |       0 |      100 |       0 |       0 |                   
-  HomePageQuizSelectionWidget.tsx                                            |       0 |      100 |       0 |       0 | 7-20              
+  HomePageQuizSelectionWidget.tsx                                            |       0 |      100 |       0 |       0 | 7-21              
  src/Pages/HomePage/Components/HomePageSignUpWidget                          |       0 |      100 |       0 |       0 |                   
   HomePageSignUpWidget.tsx                                                   |       0 |      100 |       0 |       0 | 6-18              
  src/Pages/LoginPage                                                         |       0 |        0 |       0 |       0 |                   
@@ -218,7 +218,7 @@ All files                                                                    |  
  src/Pages/ReportsPage                                                       |       0 |      100 |       0 |       0 |                   
   ReportsPage.tsx                                                            |       0 |      100 |       0 |       0 | 7                 
  src/Pages/ReportsPage/Components/ReportsHeader                              |       0 |      100 |       0 |       0 |                   
-  ReportsHeader.tsx                                                          |       0 |      100 |       0 |       0 | 5-10              
+  ReportsHeader.tsx                                                          |       0 |      100 |       0 |       0 | 6                 
  src/Pages/SignUpPage                                                        |       0 |        0 |       0 |       0 |                   
   SignUpPage.tsx                                                             |       0 |        0 |       0 |       0 | 14-174            
   SignUpPageProps.ts                                                         |       0 |        0 |       0 |       0 |                   
@@ -232,5 +232,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.348 s
+Time:        3.418 s
 Ran all test suites.
