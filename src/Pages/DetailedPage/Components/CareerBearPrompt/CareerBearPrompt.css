@@ -6,7 +6,7 @@
 
 .career-bear-prompt--content {
     margin-inline: 10vw;
-    justify-content:end;
+    justify-content: flex-end;
     display: flex;
 }
 
