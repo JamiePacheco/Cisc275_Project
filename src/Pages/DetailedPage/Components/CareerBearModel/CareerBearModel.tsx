@@ -9,6 +9,7 @@ export type BearEmotion = "neutral" | "sad" | "happy"
 
 export function CareerBearModel() : React.JSX.Element {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [emotion, setEmotion] = useState<BearEmotion>("neutral")
 
     return (<div className = "career-bear-model">

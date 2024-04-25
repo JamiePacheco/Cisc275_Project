@@ -1,9 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useMemo, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
-import { initalizeCareerBear, sendMessageToCareerBear } from "../../Services/CareerBear";
-import { Button, Form } from "react-bootstrap";
+import { CAREER_BEAR_PERSONALITY, initalizeCareerBear, sendMessageToCareerBear } from "../../Services/CareerBear";
+import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
+
+import background from "../../assets/images/career-bear-forest.jpg"
 
 export function DetailedPage(): React.JSX.Element {
 
@@ -46,7 +48,7 @@ export function DetailedPage(): React.JSX.Element {
 
   useEffect(() => {
     if (!careerBearTalking) {
-      setCareerBearMessage("...(thinking)");
+      setCareerBearMessage("(Career Bear is thinking...)");
     } 
   }, [careerBearTalking])
 
@@ -65,19 +67,29 @@ export function DetailedPage(): React.JSX.Element {
   }
 
   return (
-    <div className="detailed-quiz">
+    <div className="detailed-quiz" style={{backgroundImage: `url(${background})`}}>
       <div className="detailed-quiz--content">
         <CareerBearPrompt message={careerBearMessage} ></CareerBearPrompt>
-        <Form.Control 
-        type = "area" 
-        value = {userMessage} 
-        onChange={(e) => {
-          setUserMessage(e.target.value)
-          console.log(userMessage)
-        }}>
-        </Form.Control>
-        <button onClick={answerQuestion} disabled={!initalized}> Send </button>
-        <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
+        <div className = "content--user-interface">
+
+          <div className = "user-interface--user-prompts">
+            <Form.Control 
+              type = "area" 
+              value = {userMessage} 
+              placeholder="Enter Response Here (Remember to be bear-y nice to Career Bear)"
+              className = "user-prompts--user-input"
+              onChange={(e) => {
+                setUserMessage(e.target.value)
+                console.log(userMessage)
+              }}>
+            </Form.Control>
+          </div>
+          
+          <div className = "user-interface--buttons">
+            <button onClick={answerQuestion} disabled={!initalized}> Send </button>
+            <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 .detailed-quiz{
     width: 100%;
-    min-height: 100%;
 }
+
 .detailed-quiz--content{
     display: flex;
     flex-direction: column;
@@ -9,3 +9,24 @@
     justify-content: center;
 }
 
+.user-interface--buttons {
+    display: flex;
+    
+    flex-direction: row;
+    column-gap: 3vw;
+
+    padding-top: 20px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.user-prompts--user-input {
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.user-prompts--user-input:focus {
+    border: 1px solid #6c4c41;
+    box-shadow: none;
+}

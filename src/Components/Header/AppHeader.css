@@ -28,6 +28,10 @@
     color: #f4ece2;
 }
 
+.heading--logo {
+    width: 25vw;
+}
+
 .app-header--profile-container {
     display: flex;
     align-items: center;

@@ -18,9 +18,9 @@ export function CareerBearPrompt({message} : {message : string}) : React.JSX.Ele
         <div className = "career-bear-prompt">
             <div className = "career-bear-prompt--content">
                 <div className = "content--text-box">
-                    <span className = "content--text">
+                    {typedMessage !== "" && <span className = "content--text">
                         {typedMessage}
-                    </span>
+                    </span>}
                 </div>
                 <CareerBearModel></CareerBearModel>
             </div>

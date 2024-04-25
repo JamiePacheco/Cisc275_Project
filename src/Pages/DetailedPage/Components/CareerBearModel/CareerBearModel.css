@@ -1,7 +1,7 @@
 .career-bear-model {
     max-width: 30vw;
     width: 300px;
-    position: fixed;
+    min-width: 150px;
     right: 0;
 }
 
