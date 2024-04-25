@@ -6,6 +6,8 @@ import { HomePageSignUpWidget } from "./Components/HomePageSignUpWidget/HomePage
 import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionWidget/HomePageQuizSelectionWidget"
 import { User } from "../../Interfaces/User"
 
+import darkLogo from "../../assets/logos/career-bear-logo-2-dark.png"
+
 export function HomePage({user} : {
     user : User | null
 }) : React.JSX.Element {

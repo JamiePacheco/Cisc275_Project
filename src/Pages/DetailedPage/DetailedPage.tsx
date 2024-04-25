@@ -17,12 +17,26 @@ export function DetailedPage(): React.JSX.Element {
   
   const [userMessage, setUserMessage] = useState("");
 
+  const [bearClicked, setBearClicked] = useState<number>(0);
+
+  const onBearClick = () => {
+    setBearClicked(prev => prev + 1);
+    setCareerBearMessage("")
+  }
+
   useEffect(() => {
     window.addEventListener('beforeunload', alterUser)
     return () => {
       window.removeEventListener('beforeunload', alterUser)
     }
   }, []);
+
+  useEffect(() => {
+    if (bearClicked === 3 && paused) {
+      setBearClicked(0);
+      setCareerBearMessage("That's not bear-y nice...")
+    }
+  }, [bearClicked, paused])
 
   const alterUser = (e : Event) => {
     e.preventDefault();
@@ -69,7 +83,7 @@ export function DetailedPage(): React.JSX.Element {
   return (
     <div className="detailed-quiz" style={{backgroundImage: `url(${background})`}}>
       <div className="detailed-quiz--content">
-        <CareerBearPrompt message={careerBearMessage} ></CareerBearPrompt>
+        <CareerBearPrompt message={careerBearMessage} bearClickHandler = {onBearClick} ></CareerBearPrompt>
         <div className = "content--user-interface">
 
           <div className = "user-interface--user-prompts">

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useMemo, useState } from "react";
 import { User } from "../../Interfaces/User";
 
-import logo from "../../assets/images/careerbearlogo.png"
+import lightLogo from "../../assets/logos/career-bear-logo-1-light.png"
 
 import "./AppHeader.css"
 
@@ -20,7 +20,7 @@ export function AppHeader({user} : {user : User | null}) : React.JSX.Element {
           {/* <img className = "heading--logo" src={logo} alt = "Career Bear"></img> */}
 
           <h1 className = "app-header--heading"  onClick={() => {nav("/")}}>
-            Career Bear
+            <img className = "heading--logo" src={lightLogo} alt = "Career Bear"/>
           </h1>
 
           <div className = "app-header--profile-container">

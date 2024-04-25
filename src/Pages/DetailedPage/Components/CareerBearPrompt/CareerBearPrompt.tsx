@@ -3,8 +3,11 @@ import { useTypeWriter } from "../../../../Hooks/useTypeWriter";
 import { useMemo, useState } from "react";
 
 import { CareerBearModel } from "../CareerBearModel/CareerBearModel";
+import { CareerBearPromptProps } from "./CareerBearPromptProps";
 
-export function CareerBearPrompt({message} : {message : string}) : React.JSX.Element { 
+export function CareerBearPrompt(
+    {message, bearClickHandler} : CareerBearPromptProps 
+) : React.JSX.Element { 
 
     const [displayText, setDisplayText] = useState("");
 
@@ -22,7 +25,7 @@ export function CareerBearPrompt({message} : {message : string}) : React.JSX.Ele
                         {typedMessage}
                     </span>}
                 </div>
-                <CareerBearModel></CareerBearModel>
+                <CareerBearModel onBearClick = {bearClickHandler}/>
             </div>
         </div>
     )

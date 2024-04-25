@@ -1,8 +1,16 @@
 .detailed-quiz{
     width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%
 }
 
 .detailed-quiz--content{
+    width: 100%;
+    height: 100%;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
