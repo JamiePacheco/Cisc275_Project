@@ -7,11 +7,13 @@ import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
 import background from "../../assets/images/career-bear-forest.jpg"
+import { UPSET_PHRASES } from "./CareerBearPhrases";
 
 export function DetailedPage(): React.JSX.Element {
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
+  const [validKey, setValidKey] = useState<boolean>(false);
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>("");
@@ -25,6 +27,7 @@ export function DetailedPage(): React.JSX.Element {
     setCareerBearMessage("")
   }
 
+  //used to prevent sudden page refresh
   useEffect(() => {
     window.addEventListener('beforeunload', alterUser)
     return () => {
@@ -32,20 +35,42 @@ export function DetailedPage(): React.JSX.Element {
     }
   }, []);
 
+  //checks if user has clicked on career bear and prompts message
   useEffect(() => {
     if (bearClicked === 3 && paused) {
       setBearClicked(0);
-      setCareerBearMessage("That's not bear-y nice...")
+      setCareerBearMessage(UPSET_PHRASES[Math.floor(Math.random() * UPSET_PHRASES.length)]);
     }
   }, [bearClicked, paused])
+
+  //Checks if the user has a valid key stored otherwise presents message
+  useEffect(() => {
+    const userKey = localStorage.getItem("MYKEY")
+    console.log(`User Key : '${userKey}'`);
+    if (userKey !== "") {
+      setValidKey(true);
+    } else {
+      console.log("invalid")
+      setValidKey(false)
+      setCareerBearMessage("hmmmm, I'm bear-y sorry, but I can only talk to you if you have an API key")
+    }
+  }, [])
+
+  //Checks if career bear is talking or thinking of a response (awaiting gpt promise) and presents message
+  useEffect(() => {
+    if (!careerBearTalking) {
+      setCareerBearMessage("(Career Bear is thinking...)");
+    } 
+  }, [careerBearTalking])
 
   const alterUser = (e : Event) => {
     e.preventDefault();
   }
 
+  //Initalized career bear is user has pressed start and there is a valid key 
   useMemo(() => {
     console.log(initalized)
-    if (!initalized && careerBearTalking && !paused) {
+    if (!initalized && careerBearTalking && !paused && validKey) {
       initalizeCareerBear().then((value) => {
           if (value !== null &&  value !== undefined) {
           const bearMessage = value.choices[0].message.content
@@ -55,18 +80,15 @@ export function DetailedPage(): React.JSX.Element {
             setCareerBearMessage(bearMessage);
           }
         }
-      }).catch((reason) => {
-
+      }).catch((reason : Error) => {
+        if (reason.message.includes("Incorrect API")) {
+          setCareerBearMessage("It appears your key is not working...")
+        }
       })
     }
-  }, [careerBearTalking, initalized, paused])
+  }, [careerBearTalking, initalized, paused, validKey])
 
-  useEffect(() => {
-    if (!careerBearTalking) {
-      setCareerBearMessage("(Career Bear is thinking...)");
-    } 
-  }, [careerBearTalking])
-
+  //called when user sends message to career bear that changes state and sends message
   function answerQuestion() {
     setCareerBearTalking(false);
     sendMessageToCareerBear(userMessage).then((value) => {
@@ -80,6 +102,8 @@ export function DetailedPage(): React.JSX.Element {
       }
     })
   }
+
+  console.log(careerBearMessage)
 
   return (
     <div className="detailed-quiz" style={{backgroundImage: `url(${background})`}}>
@@ -101,8 +125,19 @@ export function DetailedPage(): React.JSX.Element {
           </div>
           
           <div className = "user-interface--buttons">
-            <button onClick={answerQuestion} disabled={!initalized}> Send </button>
-            <button onClick={() => setPaused(prev => !prev)}> {paused ? "Start" : "Pause"} </button>
+            <button 
+              onClick={answerQuestion} 
+              disabled={!initalized}
+            > 
+              Send 
+            </button>
+
+            <button 
+              onClick={() => setPaused(prev => !prev)}
+              disabled={!validKey}  
+            >
+                {paused ? "Start" : "Pause"} 
+              </button>
           </div>
         </div>
       </div>
