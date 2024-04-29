@@ -6,7 +6,7 @@ import { CareerBearModel } from "../CareerBearModel/CareerBearModel";
 import { CareerBearPromptProps } from "./CareerBearPromptProps";
 
 export function CareerBearPrompt(
-    {message, bearClickHandler} : CareerBearPromptProps 
+    {message, bearClickHandler, bearEmotion} : CareerBearPromptProps 
 ) : React.JSX.Element { 
 
     const [displayText, setDisplayText] = useState("");
@@ -25,7 +25,10 @@ export function CareerBearPrompt(
                         {typedMessage}
                     </span>}
                 </div>
-                <CareerBearModel onBearClick = {bearClickHandler}/>
+                <CareerBearModel 
+                    onBearClick = {bearClickHandler}
+                    bearEmotion = {bearEmotion}    
+                />
             </div>
         </div>
     )
