@@ -215,7 +215,7 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
         },
         {
           role : "system",
-          content : "Format the user's personality traits and career suggestions into the json format," + USER_DATA_FORMAT
+          content : "Format the user's personality traits and career suggestions into the json format specificed," + USER_DATA_FORMAT
         }
       ],
       response_format : {
