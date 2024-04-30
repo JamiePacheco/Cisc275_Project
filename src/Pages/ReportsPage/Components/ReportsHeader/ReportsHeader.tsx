@@ -1,4 +1,5 @@
 import React from 'react';
+import './ReportsHeader.css';
 //import { useNavigate } from "react-router-dom"
 
 export function ReportsHeader() : React.JSX.Element {
