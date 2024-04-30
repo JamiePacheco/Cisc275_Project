@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (57 ms)
+  ✕ renders learn react link (52 ms)
 
   ● renders learn react link
 
@@ -162,7 +162,7 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    8.77 |     5.76 |    7.21 |    8.83 |                   
+All files                                                                    |    8.74 |     5.76 |    7.14 |     8.8 |                   
  src                                                                         |   29.41 |    16.66 |      50 |   29.41 |                   
   App.tsx                                                                    |   83.33 |       50 |     100 |   83.33 | 29                
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
@@ -222,9 +222,11 @@ All files                                                                    |  
  src/Pages/MembersPage                                                       |   22.22 |      100 |    12.5 |   22.22 |                   
   MembersPage.tsx                                                            |   22.22 |      100 |    12.5 |   22.22 | 27-39             
  src/Pages/ReportsPage                                                       |       0 |      100 |       0 |       0 |                   
-  ReportsPage.tsx                                                            |       0 |      100 |       0 |       0 | 7                 
+  ReportsPage.tsx                                                            |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/ReportsPage/Components/Folder-Background                          |       0 |      100 |       0 |       0 |                   
+  FolderBackground.tsx                                                       |       0 |      100 |       0 |       0 | 5                 
  src/Pages/ReportsPage/Components/ReportsHeader                              |       0 |      100 |       0 |       0 |                   
-  ReportsHeader.tsx                                                          |       0 |      100 |       0 |       0 | 6                 
+  ReportsHeader.tsx                                                          |       0 |      100 |       0 |       0 | 7                 
  src/Pages/SignUpPage                                                        |       0 |        0 |       0 |       0 |                   
   SignUpPage.tsx                                                             |       0 |        0 |       0 |       0 | 14-174            
   SignUpPageProps.ts                                                         |       0 |        0 |       0 |       0 |                   
@@ -238,5 +240,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.317 s
+Time:        3.38 s
 Ran all test suites.
