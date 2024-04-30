@@ -114,7 +114,7 @@ export function DetailedPage(): React.JSX.Element {
         }
       }).catch((reason : Error) => {
         if (reason.message.includes("Incorrect API")) {
-          setCareerBearMessage("It appears your key is not working...")
+          setCareerBearMessage("(It appears career bear does not like your key...)")
         }
       })
     }
