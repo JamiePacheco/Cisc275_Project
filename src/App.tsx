@@ -16,11 +16,38 @@ import { User } from './Interfaces/User';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
+let keyData = "";
+const saveKeyData = "MYKEY";
+const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+if (prevKey !== null && prevKey !== "") {
+  keyData = JSON.parse(prevKey);
+}
+
 
 function App() {
   //TODO reimplement current user state in app scope and trickle it down.
 
+  //throwing errors in deployment but will be used in future applications
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [key, setKey] = useState<string>(keyData); 
   const [user, setUser] = useState<User | null>(null);
+
+  //for api key input
+  //sets the local storage item to the api key the user inputed
+  const handleSubmit = (newKey : string) => {
+    localStorage.setItem(saveKeyData, JSON.stringify(newKey));
+    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
+  }
+
+  // //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
+  // const changeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setKey(event.target.value);
+  // }
+
+  const clearKey = () => {
+    localStorage.setItem("MYKEY", "");
+    console.log("Key has been cleared");
+  }
 
   //if any child component signs the user out then this is triggered by embedded callback
   useEffect(() => {
@@ -37,7 +64,7 @@ function App() {
         <AppHeader user={user}></AppHeader>
         <div className = "App-content">
             <Routes>
-              <Route path = "/home" element = {<HomePage user = {user}/>}> </Route>
+              <Route path = "/home" element = {<HomePage user = {user} handleKeySubmit={handleSubmit} handleKeyClear={clearKey}/>}> </Route>
               <Route path = "/login" element = {<LoginPage setUser={setUser}/>}></Route>
               <Route path = "/sign-up" element = {<SignUpPage setUser = {setUser}/>}></Route>
               <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>

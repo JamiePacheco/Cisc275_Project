@@ -7,13 +7,17 @@ import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionW
 import { User } from "../../Interfaces/User"
 
 import darkLogo from "../../assets/logos/career-bear-logo-2-dark.png"
+import { HomePageApiKeyWidget } from "./Components/HomePageApiKeyWidget/HomePageApiKeyWidget"
 
-export function HomePage({user} : {
+export function HomePage({user, handleKeySubmit, handleKeyClear} : {
     user : User | null
+    handleKeySubmit : (newKey : string) => void,
+    handleKeyClear : () => void
 }) : React.JSX.Element {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
 
+    //changes the signed in state based on the state within the parent app.tsx component
     useMemo(
         () => {
             setSignedIn(user !== null);
@@ -27,6 +31,8 @@ export function HomePage({user} : {
                 <HomePageHeader user={user}></HomePageHeader>
 
                 {!signedIn && <HomePageSignUpWidget></HomePageSignUpWidget>}
+
+                <HomePageApiKeyWidget handleKeyClear={handleKeyClear} handleKeySubmit={handleKeySubmit}/>
 
                 <HomePageQuizSelectionWidget></HomePageQuizSelectionWidget>
             </div>
