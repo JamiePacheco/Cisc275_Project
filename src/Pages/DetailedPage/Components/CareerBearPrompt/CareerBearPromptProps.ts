@@ -1,4 +1,7 @@
+import { BearEmotion } from "../../DetailedPage";
+
 export interface CareerBearPromptProps {
     message : string;
-    bearClickHandler : () => void
+    bearEmotion : BearEmotion;
+    bearClickHandler : () => void;
 }

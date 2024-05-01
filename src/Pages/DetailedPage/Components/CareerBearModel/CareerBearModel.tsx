@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import neutralBear from "../../../../assets/career-bear/neutral_career_bear.png";
+import sadBear from "../../../../assets/career-bear/sad-career-bear-2.png"
 
 import "./CareerBearModel.css";
+import { CareerBearModelProps } from "./CareerBearModelProps";
+import { BearEmotion } from "../../DetailedPage";
 
-export type BearEmotion = "neutral" | "sad" | "happy"
+const careerBearImages : Record<BearEmotion, string> = {
+    "neutral" : neutralBear,
+    "sad" : sadBear,
+    "happy" : ""
+}
 
+export function CareerBearModel({onBearClick, bearEmotion} : CareerBearModelProps) : React.JSX.Element {
 
-export function CareerBearModel({onBearClick} : {onBearClick : () => void}) : React.JSX.Element {
+    const [bearImage, setBearImage] = useState<string>("");
+
+    useEffect(() => {
+        setBearImage(careerBearImages[bearEmotion]);
+    }, [bearEmotion])
+
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [emotion, setEmotion] = useState<BearEmotion>("neutral")
-
     return (<div className = "career-bear-model">
-        <img alt = "career-bear" src = {neutralBear} onClick={() => onBearClick()}/>
+        <img alt = "career-bear" src = {bearImage} onClick={() => onBearClick()}/>
     </div>)
 }
