@@ -30,8 +30,10 @@ export function HomePageApiKeyWidget() : React.JSX.Element{
                     <div className = "content--api-key-input">
                         <Form.Control 
                             className = "api-key-input--input-box"
+                            
                             value = {userKey}
-                            onChange = {(e) => setUserKey(e.target.value) }  
+                            onChange = {(e) => setUserKey(e.target.value)}
+                            placeholder="api key here"  
                         />
 
                         <button className = "content--submit-button"> Hand Over Key </button>
