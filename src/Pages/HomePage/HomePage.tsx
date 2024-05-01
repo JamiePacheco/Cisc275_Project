@@ -17,6 +17,7 @@ export function HomePage({user, handleKeySubmit, handleKeyClear} : {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
 
+    //changes the signed in state based on the state within the parent app.tsx component
     useMemo(
         () => {
             setSignedIn(user !== null);

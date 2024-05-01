@@ -5,20 +5,22 @@ import { useEffect, useState } from "react";
 import {Form, InputGroup } from "react-bootstrap";
 import { HomePageApiKeyWidgetProps } from "./HomePageApiKeyWidgetProps";
 
+//funny bear intern quips
 const quips = ["I promise not to lose it!", "I'll be bear-y careful", "I wonder if I can sell it..."]
 
 export function HomePageApiKeyWidget({handleKeyClear, handleKeySubmit} : HomePageApiKeyWidgetProps) : React.JSX.Element{
-
+    
     const [internMessage, setInternMessage] = useState("");
     
+    //used to manage key state in widget
     const [userKey, setUserKey] = useState("");
-
     const [inputKey, setInputKey] = useState("");
     
     useEffect(() => {
         setInternMessage(quips[Math.floor(Math.random() * 3)]);
     }, [])
 
+    //checks if there is a valid key within the system
     useEffect(() => {
         const key = localStorage.getItem("MYKEY");
         if (key !== null && key !== "") {
@@ -26,6 +28,7 @@ export function HomePageApiKeyWidget({handleKeyClear, handleKeySubmit} : HomePag
         }
     }, [userKey])
 
+    //utility functions to save and clear api key while also changing local state
     function saveApiKey() {
         setUserKey(inputKey);
         handleKeySubmit(inputKey);
@@ -52,7 +55,7 @@ export function HomePageApiKeyWidget({handleKeyClear, handleKeySubmit} : HomePag
                         <img src = {fitzWilly} alt = "career bear intern"/>
                     </div>
                     
-
+                        {/* TODO when the chance arises extract these in sub components for clearner code */}
                         <div className = "content--api-key-input">
                             {
                                 userKey === "" &&

@@ -27,8 +27,9 @@ if (prevKey !== null && prevKey !== "") {
 function App() {
   //TODO reimplement current user state in app scope and trickle it down.
 
+  //throwing errors in deployment but will be used in future applications
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [key, setKey] = useState<string>(keyData); 
-
   const [user, setUser] = useState<User | null>(null);
 
   //for api key input
@@ -38,10 +39,10 @@ function App() {
     window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
   }
 
-  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
-  const changeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKey(event.target.value);
-  }
+  // //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
+  // const changeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setKey(event.target.value);
+  // }
 
   const clearKey = () => {
     localStorage.setItem("MYKEY", "");
