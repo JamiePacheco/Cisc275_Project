@@ -229,7 +229,4 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
     }
   }
 
-
-
 }
-
