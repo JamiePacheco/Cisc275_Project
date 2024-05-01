@@ -1,7 +1,7 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { Question, placeholders } from "../Interfaces/BasicQuestionInterface";
+import { Question, placeholders } from "../Interfaces/QuestionInterface";
 import { Form } from "react-bootstrap";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 

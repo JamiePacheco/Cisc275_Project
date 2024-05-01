@@ -1,6 +1,6 @@
 import "./QuizInteraction.css";
 import { IndexState } from "./QuestionIndexProp";
-import { placeholders } from "../Interfaces/BasicQuestionInterface";
+import { placeholders } from "../Interfaces/QuestionInterface";
 
 export function QuizInteraction({ setIndex, index, isProgressBarFull }: IndexState): JSX.Element {
   const handleClick = (value: boolean) => {
