@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (52 ms)
+  ✕ renders learn react link (56 ms)
 
   ● renders learn react link
 
@@ -162,7 +162,7 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    8.74 |     5.76 |    7.14 |     8.8 |                   
+All files                                                                    |    7.24 |     5.66 |    5.94 |    7.31 |                   
  src                                                                         |   29.41 |    16.66 |      50 |   29.41 |                   
   App.tsx                                                                    |   83.33 |       50 |     100 |   83.33 | 29                
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
@@ -186,14 +186,16 @@ All files                                                                    |  
  src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader            |       0 |      100 |       0 |       0 |                   
   BasicQuestionsPageHeader.tsx                                               |       0 |      100 |       0 |       0 | 5                 
  src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget               |       0 |        0 |       0 |       0 |                   
-  GeneralQuestionWidget.tsx                                                  |       0 |        0 |       0 |       0 | 9-46              
- src/Pages/BasicQuestionsPage/Components/Interfaces                          |     100 |      100 |     100 |     100 |                   
-  BasicQuestionInterface.ts                                                  |     100 |      100 |     100 |     100 |                   
+  GeneralQuestionWidget.tsx                                                  |       0 |        0 |       0 |       0 | 15-63             
+ src/Pages/BasicQuestionsPage/Components/Interfaces                          |       0 |      100 |       0 |       0 |                   
+  BasicQuizInterface.ts                                                      |       0 |        0 |       0 |       0 |                   
+  QuestionFunctions.ts                                                       |       0 |      100 |       0 |       0 | 5-78              
+  QuestionInterface.ts                                                       |       0 |        0 |       0 |       0 |                   
  src/Pages/BasicQuestionsPage/Components/ProgressBarWidget                   |       0 |      100 |       0 |       0 |                   
   ProgressBarWidget.tsx                                                      |       0 |      100 |       0 |       0 | 4                 
  src/Pages/BasicQuestionsPage/Components/QuizInteraction                     |       0 |        0 |       0 |       0 |                   
   QuestionIndexProp.ts                                                       |       0 |        0 |       0 |       0 |                   
-  QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 6-20              
+  QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 5-19              
  src/Pages/BasicQuestionsPage/Components/QuizInteraction/RevealAnswersButton |       0 |      100 |       0 |       0 |                   
   RevealAnswersButton.tsx                                                    |       0 |      100 |       0 |       0 | 7-9               
  src/Pages/DetailedPage                                                      |    1.69 |        0 |       0 |    1.75 |                   
@@ -240,5 +242,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.38 s
+Time:        3.456 s
 Ran all test suites.
