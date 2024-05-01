@@ -1,0 +1,72 @@
+.home-page-api-key-widget {
+    border-radius: 25px;
+    background-color: #FFF6EC;
+    box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
+
+    min-height: 30vh;
+    min-width: 50vh;
+    width: 80%;
+
+    padding: 5vh 5vw;
+    margin-block: 5vh;
+}
+
+.api-key-widget--text-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 0;
+    padding: 15px
+}
+
+.api-key-widget--text-content p {
+    font-size: larger;
+}
+
+.content--fitz-widget {
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.content--fitz-widget img {
+    max-width: 150px;
+}
+
+.fitz-widget--speech {
+    background-color: #fff8f3;
+    border-radius: 25px;
+    box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
+    margin-inline: 20px;
+    padding: 15px;
+    height: fit-content;
+}
+
+.content--api-key-input {
+    background-color: #fff8f3;
+    border-radius: 15px;
+    box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
+
+    display: inline;
+
+    
+    max-width: 800px;
+    width: 100%;
+    padding: 25px;
+
+}
+
+.api-key-input--input-box {
+  background-color: #f4ece2;
+}
+
+.api-key-input--input-box:focus {
+  border: 1px solid #6c4c41;
+  box-shadow: none;
+  background: #FFF6EC;
+}
+
+.content--submit-button {
+    margin: 10px;
+}

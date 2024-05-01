@@ -218,9 +218,9 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
           content : "Format the user's personality traits and career suggestions into the json format specificed," + USER_DATA_FORMAT
         }
       ],
-      response_format : {
-        type : "json_object"
-      },
+      // response_format : {
+      //   type : "json_object"
+      // },
       model : "gpt-4-turbo"
     });
 
