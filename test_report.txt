@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (56 ms)
+  ✕ renders learn react link (49 ms)
 
   ● renders learn react link
 
@@ -110,33 +110,7 @@ FAIL src/App.test.tsx
           [36m</div>[39m
           [36m<footer[39m
             [33mclass[39m=[32m"App-footer"[39m
-          [36m>[39m
-            [36m<form[39m
-              [33mclass[39m=[32m""[39m
-            [36m>[39m
-              [36m<label[39m
-                [33mclass[39m=[32m"form-label"[39m
-              [36m>[39m
-                [0mAPI Key:[0m
-              [36m</label>[39m
-              [36m<input[39m
-                [33mclass[39m=[32m"form-control"[39m
-                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
-                [33mtype[39m=[32m"password"[39m
-              [36m/>[39m
-              [36m<br />[39m
-              [36m<button[39m
-                [33mclass[39m=[32m""[39m
-              [36m>[39m
-                [0mSubmit[0m
-              [36m</button>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m""[39m
-              [36m>[39m
-                [0m Clear Key [0m
-              [36m</button>[39m
-            [36m</form>[39m
-          [36m</footer>[39m
+          [36m/>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -162,13 +136,13 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    7.24 |     5.66 |    5.94 |    7.31 |                   
- src                                                                         |   29.41 |    16.66 |      50 |   29.41 |                   
-  App.tsx                                                                    |   83.33 |       50 |     100 |   83.33 | 29                
+All files                                                                    |    8.01 |      3.7 |    4.76 |    8.09 |                   
+ src                                                                         |   41.37 |       30 |   33.33 |   41.37 |                   
+  App.tsx                                                                    |   66.66 |       50 |      50 |   66.66 | 23,38-39,48-49,56 
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
   reportWebVitals.ts                                                         |       0 |        0 |       0 |       0 | 3-10              
- src/Components/Footer                                                       |      50 |       50 |      25 |      50 |                   
-  AppFooter.tsx                                                              |      50 |       50 |      25 |      50 | 10,17-28          
+ src/Components/Footer                                                       |     100 |      100 |     100 |     100 |                   
+  AppFooter.tsx                                                              |     100 |      100 |     100 |     100 |                   
  src/Components/Header                                                       |   55.55 |       75 |      40 |   55.55 |                   
   AppHeader.tsx                                                              |   55.55 |       75 |      40 |   55.55 | 22-42             
  src/Components/ProgressBar                                                  |       0 |      100 |       0 |       0 |                   
@@ -178,9 +152,10 @@ All files                                                                    |  
  src/Interfaces                                                              |       0 |        0 |       0 |       0 |                   
   User.ts                                                                    |       0 |        0 |       0 |       0 |                   
  src/Interfaces/QuizInterfaces                                               |       0 |        0 |       0 |       0 |                   
-  BearAnswer.ts                                                              |       0 |        0 |       0 |       0 |                   
-  BearQuestion.ts                                                            |       0 |        0 |       0 |       0 |                   
-  Quiz.ts                                                                    |       0 |        0 |       0 |       0 |                   
+  BearInteraction.ts                                                         |       0 |        0 |       0 |       0 |                   
+  BearPrompt.ts                                                              |       0 |        0 |       0 |       0 |                   
+  DetailedQuiz.ts                                                            |       0 |        0 |       0 |       0 |                   
+  UserResponse.ts                                                            |       0 |        0 |       0 |       0 |                   
  src/Pages/BasicQuestionsPage                                                |       0 |      100 |       0 |       0 |                   
   BasicQuestionsPage.tsx                                                     |       0 |      100 |       0 |       0 | 11                
  src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader            |       0 |      100 |       0 |       0 |                   
@@ -198,19 +173,23 @@ All files                                                                    |  
   QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 5-19              
  src/Pages/BasicQuestionsPage/Components/QuizInteraction/RevealAnswersButton |       0 |      100 |       0 |       0 |                   
   RevealAnswersButton.tsx                                                    |       0 |      100 |       0 |       0 | 7-9               
- src/Pages/DetailedPage                                                      |    1.69 |        0 |       0 |    1.75 |                   
+ src/Pages/DetailedPage                                                      |    0.99 |        0 |       0 |    1.02 |                   
   CareerBearPhrases.ts                                                       |     100 |      100 |     100 |     100 |                   
-  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 14-136            
+  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 18-258            
  src/Pages/DetailedPage/Components                                           |       0 |      100 |       0 |       0 |                   
   DetailedPage-interface.ts                                                  |       0 |      100 |       0 |       0 | 13-16             
   QuestionAnswerComponent.tsx                                                |       0 |      100 |       0 |       0 | 8                 
- src/Pages/DetailedPage/Components/CareerBearModel                           |       0 |      100 |       0 |       0 |                   
-  CareerBearModel.tsx                                                        |       0 |      100 |       0 |       0 | 13-16             
+ src/Pages/DetailedPage/Components/CareerBearModel                           |   16.66 |      100 |       0 |   16.66 |                   
+  CareerBearModel.tsx                                                        |   16.66 |      100 |       0 |   16.66 | 18-27             
+  CareerBearModelProps.ts                                                    |       0 |        0 |       0 |       0 |                   
  src/Pages/DetailedPage/Components/CareerBearPrompt                          |       0 |        0 |       0 |       0 |                   
   CareerBearPrompt.tsx                                                       |       0 |        0 |       0 |       0 | 12-20             
   CareerBearPromptProps.ts                                                   |       0 |        0 |       0 |       0 |                   
  src/Pages/HomePage                                                          |       0 |        0 |       0 |       0 |                   
-  HomePage.tsx                                                               |       0 |        0 |       0 |       0 | 15-24             
+  HomePage.tsx                                                               |       0 |        0 |       0 |       0 | 18-28             
+ src/Pages/HomePage/Components/HomePageApiKeyWidget                          |    5.26 |        0 |       0 |    5.26 |                   
+  HomePageApiKeyWidget.tsx                                                   |    5.26 |        0 |       0 |    5.26 | 13-91             
+  HomePageApiKeyWidgetProps.ts                                               |       0 |        0 |       0 |       0 |                   
  src/Pages/HomePage/Components/HomePageHeader                                |       0 |        0 |       0 |       0 |                   
   HomePageHeader.tsx                                                         |       0 |        0 |       0 |       0 | 10-21             
   HomePageProps.ts                                                           |       0 |        0 |       0 |       0 |                   
@@ -235,12 +214,14 @@ All files                                                                    |  
  src/Pages/UserPage                                                          |       0 |      100 |       0 |       0 |                   
   UserPage.tsx                                                               |       0 |      100 |       0 |       0 | 7-19              
   UserPageProps.ts                                                           |       0 |        0 |       0 |       0 |                   
- src/Services                                                                |   10.52 |        0 |       0 |   10.52 |                   
-  CareerBear.ts                                                              |   11.11 |        0 |       0 |   11.11 | 25-73             
+ src/Services                                                                |       0 |      100 |       0 |       0 |                   
   UserResponse.ts                                                            |       0 |      100 |       0 |       0 | 2                 
+ src/Services/DetailedQuiz                                                   |      16 |        0 |       0 |      16 |                   
+  CareerBear.ts                                                              |   14.28 |        0 |       0 |   14.28 | 59-228            
+  CareerBearQuestionFrames.ts                                                |     100 |      100 |     100 |     100 |                   
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.456 s
+Time:        3.763 s
 Ran all test suites.
