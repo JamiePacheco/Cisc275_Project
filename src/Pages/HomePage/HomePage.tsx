@@ -7,6 +7,7 @@ import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionW
 import { User } from "../../Interfaces/User"
 
 import darkLogo from "../../assets/logos/career-bear-logo-2-dark.png"
+import { HomePageApiKeyWidget } from "./Components/HomePageApiKeyWidget/HomePageApiKeyWidget"
 
 export function HomePage({user} : {
     user : User | null
@@ -27,6 +28,8 @@ export function HomePage({user} : {
                 <HomePageHeader user={user}></HomePageHeader>
 
                 {!signedIn && <HomePageSignUpWidget></HomePageSignUpWidget>}
+
+                <HomePageApiKeyWidget/>
 
                 <HomePageQuizSelectionWidget></HomePageQuizSelectionWidget>
             </div>
