@@ -9,8 +9,10 @@ import { User } from "../../Interfaces/User"
 import darkLogo from "../../assets/logos/career-bear-logo-2-dark.png"
 import { HomePageApiKeyWidget } from "./Components/HomePageApiKeyWidget/HomePageApiKeyWidget"
 
-export function HomePage({user} : {
+export function HomePage({user, handleKeySubmit, handleKeyClear} : {
     user : User | null
+    handleKeySubmit : (newKey : string) => void,
+    handleKeyClear : () => void
 }) : React.JSX.Element {
 
     const [signedIn, setSignedIn] = useState<boolean>(false);
@@ -29,7 +31,7 @@ export function HomePage({user} : {
 
                 {!signedIn && <HomePageSignUpWidget></HomePageSignUpWidget>}
 
-                <HomePageApiKeyWidget/>
+                <HomePageApiKeyWidget handleKeyClear={handleKeyClear} handleKeySubmit={handleKeySubmit}/>
 
                 <HomePageQuizSelectionWidget></HomePageQuizSelectionWidget>
             </div>

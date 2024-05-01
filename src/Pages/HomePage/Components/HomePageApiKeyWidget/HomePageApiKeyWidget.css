@@ -48,17 +48,37 @@
     border-radius: 15px;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
 
-    display: inline;
+    display: flex;
+    align-items: center;
 
-    
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
-    padding: 25px;
-
+    padding: 15px;
 }
 
 .api-key-input--input-box {
   background-color: #f4ece2;
+  max-height: 50px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.clear-key-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.clear-api-key--button {
+    font-size: medium;
+    min-width: 200px;
+    width: 20%;
 }
 
 .api-key-input--input-box:focus {
@@ -67,6 +87,20 @@
   background: #FFF6EC;
 }
 
+.input-box--reveal {
+    background-color: #f4ece2;
+}
+
 .content--submit-button {
     margin: 10px;
+    max-height: 50px;
+    font-size: 15px;
+
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.clear-warning {
+    font-size: small;
+    margin: 5px
 }
