@@ -219,6 +219,8 @@ export async function notifyUser() : Promise<OpenAI.Chat.Completions.ChatComplet
   }
 }
 
+//I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
+//@ts-ignore
 export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
   let completion = null;
 
