@@ -1,6 +1,6 @@
 import { DetailedPeerCertificate } from "tls"
 import { QuizResults } from "../../../Interfaces/Results/QuizResults"
-import { DetailedQuiz } from "../../../Interfaces/DetailedQuestionInterfaces/DetailedQuiz"
+import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 
 //JSON.parse(DataSetOne) will turn this into an object
 export const DataSetOne : DetailedQuiz = {

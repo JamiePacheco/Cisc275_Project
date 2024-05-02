@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { QUESTION_FRAMES } from "./CareerBearQuestionFrames";
-import { DetailedQuiz } from "../../Interfaces/DetailedQuestionInterfaces/DetailedQuiz";
-import { BearInteraction } from "../../Interfaces/DetailedQuestionInterfaces/BearInteraction";
+import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
+import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { User } from "../../Interfaces/User";
 
 let openai : OpenAI;

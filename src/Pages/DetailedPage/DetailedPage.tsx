@@ -6,8 +6,8 @@ import "./DetailedPage.css";
 
 import background from "../../assets/images/career-bear-forest.jpg"
 import { UPSET_PHRASES } from "./CareerBearPhrases";
-import { BearInteraction } from "../../Interfaces/DetailedQuestionInterfaces/BearInteraction";
-import { DetailedQuiz } from "../../Interfaces/DetailedQuestionInterfaces/DetailedQuiz";
+import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
+import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
 
