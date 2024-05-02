@@ -10,10 +10,13 @@ import background from "../../assets/images/career-bear-forest.jpg"
 import { UPSET_PHRASES } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuiz";
+import { User } from "../../Interfaces/User";
+import { DetailedPageProps } from "./DetailedPageProps";
+import { QuizResults } from "../../Interfaces/Results/QuizResults";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
-export function DetailedPage(): React.JSX.Element {
+export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -33,16 +36,31 @@ export function DetailedPage(): React.JSX.Element {
   const [userMessage, setUserMessage] = useState("");
 
   const [bearClicked, setBearClicked] = useState<number>(0);
-  const [quizData, setQuizData] = useState<DetailedQuiz>();
-
-  const onBearClick = () => {
-    setBearClicked(prev => prev + 1);
-    setCareerBearMessage("")
-  }
+  const [quizData, setQuizData] = useState<DetailedQuiz>(
+    {
+      interactions: []
+    }
+  );
   
-  const alterUser = (e : Event) => {
-    e.preventDefault();
-  }
+  //Initalized career bear is user has pressed start and there is a valid key 
+  useMemo(() => {
+    if (!initalized && careerBearTalking && !paused && validKey) {
+      initalizeCareerBear(user).then((value) => {
+          if (value !== null &&  value !== undefined) {
+          const bearMessage = value.choices[0].message.content
+          console.log(bearMessage)
+          if (bearMessage !== undefined && bearMessage !== null) {
+            setInitalized(true);
+            setCareerBearMessage(bearMessage);
+          }
+        }
+      }).catch((reason : Error) => {
+        if (reason.message.includes("Incorrect API")) {
+          setCareerBearMessage("(It appears career bear does not like your key...)")
+        }
+      })
+    }
+  }, [careerBearTalking, initalized, paused, user, validKey])
 
   //used to prevent sudden page refresh
   useEffect(() => {
@@ -83,6 +101,28 @@ export function DetailedPage(): React.JSX.Element {
     setConsulting(careerBearEmotion !== "sad")
   }, [careerBearEmotion])
 
+  
+  const onBearClick = () => {
+    setBearClicked(prev => prev + 1);
+    setCareerBearMessage("")
+  }
+  
+  const alterUser = (e : Event) => {
+    e.preventDefault();
+  }
+
+
+  function saveResults(generatedResults :  QuizResults) {
+    setQuizData((prev) => {
+        return {
+          ...prev,
+          results: generatedResults
+        }
+      }
+    )
+  }
+
+
   function notifyUserResults() {
     console.log(interactions)
     if (interactions >= 3) {
@@ -100,25 +140,6 @@ export function DetailedPage(): React.JSX.Element {
     }
   }
 
-  //Initalized career bear is user has pressed start and there is a valid key 
-  useMemo(() => {
-    if (!initalized && careerBearTalking && !paused && validKey) {
-      initalizeCareerBear().then((value) => {
-          if (value !== null &&  value !== undefined) {
-          const bearMessage = value.choices[0].message.content
-          console.log(bearMessage)
-          if (bearMessage !== undefined && bearMessage !== null) {
-            setInitalized(true);
-            setCareerBearMessage(bearMessage);
-          }
-        }
-      }).catch((reason : Error) => {
-        if (reason.message.includes("Incorrect API")) {
-          setCareerBearMessage("(It appears career bear does not like your key...)")
-        }
-      })
-    }
-  }, [careerBearTalking, initalized, paused, validKey])
 
   function updateQuizData() {
     const interaction : BearInteraction = {
@@ -133,6 +154,7 @@ export function DetailedPage(): React.JSX.Element {
     if (quizData !== undefined){
       setQuizData(
         {
+          ...quizData,
           interactions : [
             ...quizData.interactions, interaction
           ]
@@ -174,19 +196,20 @@ export function DetailedPage(): React.JSX.Element {
     })
   }
 
-  function getResults() {
-    setCareerBearTalking(false);
-    notifyUser().then((value) => {
-      if (value !== null && value !== undefined) {
-        const bearMessage = value.choices[0].message.content;
-        if (bearMessage !== undefined && bearMessage !== null) {
-          setCareerBearMessage(bearMessage);
-          setCareerBearTalking(true);
-          setPaused(true);
-        }
-      }
-    })
-  }
+  //this function lets the user know that career bear has sufficient infomation to give them a career suggestion
+  // function notifyOfProcessing() {
+  //   setCareerBearTalking(false);
+  //   notifyUser().then((value) => {
+  //     if (value !== null && value !== undefined) {
+  //       const bearMessage = value.choices[0].message.content;
+  //       if (bearMessage !== undefined && bearMessage !== null) {
+  //         setCareerBearMessage(bearMessage);
+  //         setCareerBearTalking(true);
+  //         setPaused(true);
+  //       }
+  //     }
+  //   })
+  // }
 
   function getData() {
     console.log(quizData);
@@ -194,13 +217,14 @@ export function DetailedPage(): React.JSX.Element {
       evaluateUserCareerFromQuiz(quizData).then((value) => {
         if (value !== null && value !== undefined) {
           const data = value.choices[0].message.content;
-          console.log(data);
+          if (data !== null){
+            saveResults(JSON.parse(data));
+            console.log("%j",quizData)
+          }
         }
       })
     }
   }
-
-  console.log(careerBearMessage)
 
   return (
     <div className="detailed-quiz" style={{backgroundImage: `url(${background})`}}>
@@ -220,7 +244,6 @@ export function DetailedPage(): React.JSX.Element {
               className = "user-prompts--user-input"
               onChange={(e) => {
                 setUserMessage(e.target.value)
-                console.log(userMessage)
               }}>
             </Form.Control>
           </div>
@@ -237,21 +260,14 @@ export function DetailedPage(): React.JSX.Element {
               onClick={() => setPaused(prev => !prev)}
               disabled={!validKey}  
             >
-                {paused ? "Start" : "Pause"} 
+                {paused ? "Continue" : "Pause"} 
               </button>
 
             <button
-              onClick = {getResults}
+              onClick = {getData}
               disabled={!initalized}
             >
               End Session
-            </button>
-
-            <button
-              onClick = {getData}
-              disabled = {!initalized}
-            >
-              Get Data
             </button>
 
             <button

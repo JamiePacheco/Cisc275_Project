@@ -8,4 +8,6 @@ export interface User {
     birthday: string;
     email: string;
     password: string;
+    //have they taken a detailed quiz yet?
+    newAccount: boolean;
 }
