@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (49 ms)
+  ✕ renders learn react link (47 ms)
 
   ● renders learn react link
 
@@ -143,6 +143,9 @@ All files                                                                    |  
   useTypeWriter.tsx                                                          |       0 |        0 |       0 |       0 | 5-24              
  src/Interfaces                                                              |       0 |        0 |       0 |       0 |                   
   User.ts                                                                    |       0 |        0 |       0 |       0 |                   
+ src/Interfaces/BasicQuestionInterfaces                                      |       0 |        0 |       0 |       0 |                   
+  BasicQuizInterface.ts                                                      |       0 |        0 |       0 |       0 |                   
+  QuestionInterface.ts                                                       |       0 |        0 |       0 |       0 |                   
  src/Interfaces/QuizInterfaces                                               |       0 |        0 |       0 |       0 |                   
   BearInteraction.ts                                                         |       0 |        0 |       0 |       0 |                   
   BearPrompt.ts                                                              |       0 |        0 |       0 |       0 |                   
@@ -158,10 +161,7 @@ All files                                                                    |  
   BasicQuestionsPageHeader.tsx                                               |       0 |      100 |       0 |       0 | 5                 
  src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget               |       0 |        0 |       0 |       0 |                   
   GeneralQuestionWidget.tsx                                                  |       0 |        0 |       0 |       0 | 15-63             
- src/Pages/BasicQuestionsPage/Components/Interfaces                          |       0 |      100 |       0 |       0 |                   
-  BasicQuizInterface.ts                                                      |       0 |        0 |       0 |       0 |                   
   QuestionFunctions.ts                                                       |       0 |      100 |       0 |       0 | 5-78              
-  QuestionInterface.ts                                                       |       0 |        0 |       0 |       0 |                   
  src/Pages/BasicQuestionsPage/Components/ProgressBarWidget                   |       0 |      100 |       0 |       0 |                   
   ProgressBarWidget.tsx                                                      |       0 |      100 |       0 |       0 | 4                 
  src/Pages/BasicQuestionsPage/Components/QuizInteraction                     |       0 |        0 |       0 |       0 |                   
@@ -222,5 +222,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.709 s
+Time:        3.617 s
 Ran all test suites.
