@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import "./MembersPage.css"
-import { initalizeCareerBear } from "../../Services/DetailedQuiz/CareerBear";
-import OpenAI from "openai";
 
 
 //TODO Make this into a page where we can put about us stuff

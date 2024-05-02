@@ -114,7 +114,7 @@ export async function initalizeCareerBear(user : User | null) : Promise<OpenAI.C
       messages: [
         { 
           role: "system", 
-          content: CAREER_BEAR_PERSONALITY
+          content: CAREER_BEAR_PERSONALITY + CAREER_BEAR_METHODOLOGY
         },
         {
           role: "system",
@@ -143,7 +143,7 @@ export async function sendMessageToCareerBear(message : string) :  Promise<OpenA
         },
         {
           role : "system",
-          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS
+          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS + BEAR_PUNS
         },
         {
           role : "system",
