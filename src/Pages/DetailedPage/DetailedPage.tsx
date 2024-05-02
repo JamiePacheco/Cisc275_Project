@@ -1,8 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useMemo, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CAREER_BEAR_PERSONALITY, evaluateUserCareerFromQuiz, getQuizSessionData, initalizeCareerBear, notifyUser, sendMessageToCareerBear } from "../../Services/DetailedQuiz/CareerBear";
+import { evaluateUserCareerFromQuiz, initalizeCareerBear, notifyUser, sendMessageToCareerBear } from "../../Services/DetailedQuiz/CareerBear";
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
@@ -10,7 +8,6 @@ import background from "../../assets/images/career-bear-forest.jpg"
 import { UPSET_PHRASES } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuiz";
-import { User } from "../../Interfaces/User";
 import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
 
@@ -112,6 +109,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }
 
 
+  //saves the generated results to the current quiz session 
   function saveResults(generatedResults :  QuizResults) {
     setQuizData((prev) => {
         return {
@@ -123,6 +121,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }
 
 
+  //notifies the user that the results may be compiled
   function notifyUserResults() {
     console.log(interactions)
     if (interactions >= 3) {
@@ -140,7 +139,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     }
   }
 
-
+  //updates the current quiz session data
   function updateQuizData() {
     const interaction : BearInteraction = {
       careerBearPrompt : {
@@ -211,6 +210,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //   })
   // }
 
+  //makes career bear compile all of the data from the session convo
   function getData() {
     console.log(quizData);
     if (quizData !== undefined){
@@ -219,7 +219,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           const data = value.choices[0].message.content;
           if (data !== null){
             saveResults(JSON.parse(data));
-            console.log("%j",quizData)
+            console.log(quizData)
           }
         }
       })

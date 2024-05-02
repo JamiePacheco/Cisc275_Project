@@ -114,7 +114,7 @@ export async function initalizeCareerBear(user : User | null) : Promise<OpenAI.C
       messages: [
         { 
           role: "system", 
-          content: CAREER_BEAR_PERSONALITY
+          content: CAREER_BEAR_PERSONALITY + CAREER_BEAR_METHODOLOGY
         },
         {
           role: "system",
@@ -143,7 +143,7 @@ export async function sendMessageToCareerBear(message : string) :  Promise<OpenA
         },
         {
           role : "system",
-          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS
+          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS + BEAR_PUNS
         },
         {
           role : "system",
@@ -219,7 +219,6 @@ export async function notifyUser() : Promise<OpenAI.Chat.Completions.ChatComplet
   }
 }
 
-//I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
 
 export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
   let completion = null;
@@ -254,6 +253,7 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
           content : "Format the user's personality traits and career suggestions into the json format specificed," + USER_DATA_FORMAT
         }
       ],
+      //I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
       //@ts-ignore
       response_format : {type : "json_object"},
       model : "gpt-4-turbo"
