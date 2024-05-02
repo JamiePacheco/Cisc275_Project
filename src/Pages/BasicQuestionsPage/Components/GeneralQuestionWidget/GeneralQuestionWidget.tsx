@@ -1,11 +1,11 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { Question } from "../Interfaces/QuestionInterface";
-import { BasicQuiz } from "../Interfaces/BasicQuizInterface";
+import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { Form } from "react-bootstrap";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
-import { quizObjects } from "../Interfaces/QuestionFunctions";
+import { quizObjects } from "./QuestionFunctions";
 
 export function GeneralQuestions(): JSX.Element { 
   /**
