@@ -31,19 +31,6 @@ export function MembersPage() : JSX.Element {
                         <button onClick = {() => nav("/short-quiz")}> Short Quiz</button> 
                     </div>
                 </div>
-                <div>
-                    <h1> Test Open AI </h1>
-                    <button
-                    onClick={() => {
-                        initalizeCareerBear().then((reponse : OpenAI.Chat.Completions.ChatCompletion | undefined) => {
-                            console.log((
-                                reponse?.choices
-                            ))
-                        })
-                    }
-                    }
-                    > test </button>
-                </div>
             </div>
         </div>
     )

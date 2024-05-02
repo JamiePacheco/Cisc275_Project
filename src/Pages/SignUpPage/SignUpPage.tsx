@@ -42,7 +42,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
             email: email,
             birthday: birthday,
             age: age,
-            password: password
+            password: password,
+            newAccount: true
         } 
 
         return newAccount;
