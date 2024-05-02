@@ -4,10 +4,8 @@ export function BasicQuestionsPageHeader() : JSX.Element {
 
     return (
        <div className ='basic-questions-page-header'>
-        <h1 className ='basic-questions-page--heading'>Short Quiz!</h1>
-        <h2 className = 'basic-questions-page--sub-header'>
-            Let's Begin! Take your Time.
-        </h2>
+        {/* <h1>Career Assessment</h1> */}
+        <p>Carefully think about each answer, and no cheating!</p>
        </div>
     )
 }

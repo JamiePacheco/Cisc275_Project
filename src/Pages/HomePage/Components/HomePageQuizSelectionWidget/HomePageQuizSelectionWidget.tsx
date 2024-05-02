@@ -14,7 +14,7 @@ export function HomePageQuizSelectionWidget() : JSX.Element {
                 <div className = "quiz-selection-widget--choice-card">
                     <h2 className = "choice-card--header">In a rush?</h2>
                     <button className = "choice-card--button" onClick={() => nav('/short-quiz')}>Short Quiz</button>
-                    <p className = "quiz-selection-description-text">In this short quiz, you will have a brief test administered by CareerBear where he'll suggest a career based off of your selected answers!</p>
+                    <p className = "quiz-selection-description-text">In this short quiz, you will have a brief test administered by CareerBear's intern where they'll suggest a career based off of your selected answers!</p>
                 </div> 
                 <div className = "quiz-selection-widget--choice-card">
                     <h2 className = "choice-card--header"> Chat with CareerBear!</h2>
