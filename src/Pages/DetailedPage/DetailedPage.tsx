@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
 import { evaluateUserCareerFromQuiz, initalizeCareerBear, notifyUser, sendMessageToCareerBear } from "../../Services/DetailedQuiz/CareerBear";
 import { Form } from "react-bootstrap";
@@ -6,14 +6,16 @@ import "./DetailedPage.css";
 
 import background from "../../assets/images/career-bear-forest.jpg"
 import { UPSET_PHRASES } from "./CareerBearPhrases";
-import { BearInteraction } from "../../Interfaces/QuizInterfaces/BearInteraction";
-import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuiz";
+import { BearInteraction } from "../../Interfaces/DetailedQuestionInterfaces/BearInteraction";
+import { DetailedQuiz } from "../../Interfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
+
+  const [debugging, setDebugging] = useState(true);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -40,10 +42,11 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   );
   
   //Initalized career bear is user has pressed start and there is a valid key 
-  useMemo(() => {
+  useEffect(() => {
+    console.log("initalizing career bear " + initalized)
     if (!initalized && careerBearTalking && !paused && validKey) {
       initalizeCareerBear(user).then((value) => {
-          if (value !== null &&  value !== undefined) {
+        if (value !== null &&  value !== undefined) {
           const bearMessage = value.choices[0].message.content
           console.log(bearMessage)
           if (bearMessage !== undefined && bearMessage !== null) {
@@ -58,6 +61,12 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       })
     }
   }, [careerBearTalking, initalized, paused, user, validKey])
+
+  useEffect(() => {
+    if (debugging) {
+      console.log(JSON.stringify(quizData, null, 4));
+    }
+  }, [quizData, debugging])
 
   //used to prevent sudden page refresh
   useEffect(() => {
@@ -118,11 +127,13 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         }
       }
     )
+
+    console.log();
   }
 
 
   //notifies the user that the results may be compiled
-  function notifyUserResults() {
+  function notifyUserResults() : boolean {
     console.log(interactions)
     if (interactions >= 3) {
       notifyUser().then((value) => {
@@ -132,11 +143,13 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           if (bearMessage !== undefined && bearMessage !== null) {
             setCareerBearMessage(bearMessage)
           }
+          return true
         }
       }).catch((reason : Error) => {
         console.log(reason.message);
       }) 
     }
+    return false;
   }
 
   //updates the current quiz session data
@@ -174,22 +187,24 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     sendMessageToCareerBear(userMessage).then((value) => {
       if (value !== null && value !== undefined) {
         const bearMessage = value.choices[0].message.content;
-        console.log(bearMessage)
+        setCareerBearTalking(true);
         if (bearMessage !== undefined && bearMessage !== null) {
           updateQuizData();
-          setCareerBearMessage(bearMessage);
-          setCareerBearTalking(true);
-          console.log(`Consulting : ${consulting}`)
           if (consulting) {
+            const resultsReady = notifyUserResults();
             setInteractions(prev => prev + 1);
-            notifyUserResults();
+            
+            if (!resultsReady) {
+              setCareerBearMessage(bearMessage);
+              console.log(`Consulting : ${consulting}`)
+              if (bearMessage.trim() === "...") {
+                setCareerBearEmotion("sad");
+              } else {
+                setCareerBearEmotion("neutral")
+              }
+              console.log(careerBearEmotion)
+            }
           }
-          if (bearMessage.trim() === "...") {
-            setCareerBearEmotion("sad");
-          } else {
-            setCareerBearEmotion("neutral")
-          }
-          console.log(careerBearEmotion)
         }
       }
     })
@@ -214,12 +229,16 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   function getData() {
     console.log(quizData);
     if (quizData !== undefined){
+      setCareerBearTalking(false);
       evaluateUserCareerFromQuiz(quizData).then((value) => {
         if (value !== null && value !== undefined) {
           const data = value.choices[0].message.content;
           if (data !== null){
-            saveResults(JSON.parse(data));
-            console.log(quizData)
+            setCareerBearTalking(true)
+            const jsonData = JSON.parse(data);
+            //TODO remove after reports page is done
+            setCareerBearMessage("I have compiled your results! Check the console to your results! (Make sure to enable debugging)")
+            saveResults(jsonData);
           }
         }
       })
@@ -274,6 +293,12 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               onClick = {() => setCareerBearEmotion(careerBearEmotion === "neutral" ? "sad" : "neutral")}
             >
               manipulate
+            </button>
+
+            <button
+              onClick = {() => setDebugging(prev => !prev)}
+            >
+              {!debugging ? "Start Debugging Mode" : "Stop Debugging Mode"}
             </button>
           </div>
         </div>
