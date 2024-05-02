@@ -184,7 +184,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //called when user sends message to career bear that changes state and sends message
   function answerQuestion() {
     setCareerBearTalking(false);
-    sendMessageToCareerBear(userMessage).then((value) => {
+    sendMessageToCareerBear(userMessage, careerBearMessage).then((value) => {
       if (value !== null && value !== undefined) {
         const bearMessage = value.choices[0].message.content;
         setCareerBearTalking(true);

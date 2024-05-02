@@ -2,6 +2,8 @@ import { DetailedPeerCertificate } from "tls"
 import { QuizResults } from "../../../Interfaces/Results/QuizResults"
 import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 
+//data to be used for testing of reports/user storage services/users page
+
 //JSON.parse(DataSetOne) will turn this into an object
 export const DataSetOne : DetailedQuiz = {
     "interactions": [
@@ -166,6 +168,86 @@ export const DataSetTwo : DetailedQuiz = {
           {
               "career": "Conservation Technology Specialist",
               "careerDescription": "Combines technology and environmental science to develop tools and technologies to aid in conservation and natural resource management. This can include software for tracking animal migrations, analyzing habitat data, and other applications to support ecological goals."
+          }
+      ]
+  }
+}
+
+const DataSetThree : DetailedQuiz = {
+  "interactions": [
+      {
+          "careerBearPrompt": {
+              "prompt": "Hello there! I'm Career Bear, your friendly career guide with a passion for helping you find the perfect job. Let's start off with a simple question: What's your name? 🐻"
+          },
+          "userResponse": {
+              "response": "Jamie"
+          }
+      },
+      {
+          "careerBearPrompt": {
+              "prompt": "Hello Jamie! It's great to meet you. Let's kick off our adventure with a fun question: If you could have any superpower while at work, would you rather have the ability to fly or be invisible? 🦸‍♂️🐾"
+          },
+          "userResponse": {
+              "response": "fly cause I could then avoid 5 o clock traffic"
+          }
+      },
+      {
+          "careerBearPrompt": {
+              "prompt": "That's a pawsitively great choice, Jamie! Flying would definitely be a bear-rilliant way to beat the traffic and get to meetings on time, especially in big cities. Speaking of cities, if you could work in any city in the world, which one would be your top pick and why? 🌍✈️"
+          },
+          "userResponse": {
+              "response": "tokyo because the culture, city, and overall aesthetic is very nice"
+          }
+      },
+      {
+          "careerBearPrompt": {
+              "prompt": "Tokyo does have a fascinating blend of traditional and modern influences, making it a vibrant place to explore, both culturally and aesthetically. Are you thinking about visiting Tokyo, or is there something specific about the city's culture or aesthetics that you find particularly inspiring or relevant to your interests or career goals? 🌆🍣"
+          },
+          "userResponse": {
+              "response": "I find the way they implement technology in their daily lives and within the city to be really fascinating "
+          }
+      }
+  ],
+  "results": {
+      "personalityTraits": [
+          {
+              "trait": "Innovative",
+              "traitDescription": "Being able to find creative and effective solutions or ideas that are not usually obvious.",
+              "traitLogic": "Jamie's fascination with Tokyo's integration of technology in daily life suggests a keen interest in innovative practices and modern solutions."
+          },
+          {
+              "trait": "Adventurous",
+              "traitDescription": "Eager to try new things and embrace new experiences.",
+              "traitLogic": "Choosing Tokyo, a city known for its vibrant blend of traditional and modern elements, indicates a desire to explore and experience diverse environments."
+          },
+          {
+              "trait": "Problem Solver",
+              "traitDescription": "Ability to identify, assess, and solve problems quickly and effectively.",
+              "traitLogic": "Preferring to fly to avoid traffic demonstrates a practical approach to solving issues related to inefficiency and time management."
+          },
+          {
+              "trait": "Tech-Savvy",
+              "traitDescription": "Highly skilled or knowledgeable in the use of technology.",
+              "traitLogic": "Jamie's appreciation for technological integration into city life suggests a strong competency and interest in technological advancements."
+          },
+          {
+              "trait": "Culturally Aware",
+              "traitDescription": "Having an understanding and appreciation of different cultures and practices.",
+              "traitLogic": "The choice of Tokyo due to its cultural and aesthetic qualities highlights a sensitivity and openness to diverse cultural experiences."
+          }
+      ],
+      "careerSuggestions": [
+          {
+              "career": "Urban Planner",
+              "careerDescription": "Urban planners develop plans and programs for the use of land to create communities, accommodate growth, and revitalize physical facilities in towns, cities, counties, and metropolitan areas. They often need a good understanding of both modern and traditional influences, particularly in city aesthetics and infrastructure."
+          },
+          {
+              "career": "Technology Consultant",
+              "careerDescription": "Technology consultants help businesses implement technology solutions in a cost-effective way by determining the requirements of a project or program, and communicating them clearly to stakeholders, facilitators and partners. They stay abreast of technological developments and how they can be utilized to improve business efficiency and productivity."
+          },
+          {
+              "career": "Cultural Liaison",
+              "careerDescription": "Cultural liaisons work to build bridges between different cultures, often within an international business or diplomatic context. This job requires a deep understanding of different cultures, and the ability to effectively communicate and negotiate across cultural boundaries, often enhancing cooperation in multicultural settings."
           }
       ]
   }
