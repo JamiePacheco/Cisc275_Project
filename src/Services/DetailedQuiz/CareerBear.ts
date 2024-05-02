@@ -220,7 +220,7 @@ export async function notifyUser() : Promise<OpenAI.Chat.Completions.ChatComplet
 }
 
 //I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
-//@ts-ignore
+
 export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
   let completion = null;
 
@@ -254,9 +254,8 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
           content : "Format the user's personality traits and career suggestions into the json format specificed," + USER_DATA_FORMAT
         }
       ],
-      response_format : {
-        type : "json_object"
-      },
+      //@ts-ignore
+      response_format : {type : "json_object"},
       model : "gpt-4-turbo"
     });
 
