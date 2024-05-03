@@ -4,7 +4,6 @@ import { evaluateUserCareerFromQuiz, initalizeCareerBear, notifyUser, sendMessag
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
-import background from "../../assets/images/career-bear-forest.jpg"
 import { UPSET_PHRASES } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
@@ -22,7 +21,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [paused, setPaused] = useState<boolean>(true);
   const [validKey, setValidKey] = useState<boolean>(false);
 
-  const [loadingData, setLoading] = useState<boolean>(true);
+  const [loadingData, setLoading] = useState<boolean>(false);
 
   //state to specifically keep track of whether to progress the quiz or not
   //if career bear is mad, sad, etc and dialouge is not related to user's career this will not progress
@@ -236,14 +235,17 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     console.log(quizData);
     if (quizData !== undefined){
       setCareerBearTalking(false);
+      setLoading(true);
       evaluateUserCareerFromQuiz(quizData).then((value) => {
         if (value !== null && value !== undefined) {
           const data = value.choices[0].message.content;
+          setLoading(false)
           if (data !== null){
             setCareerBearTalking(true)
             const jsonData = JSON.parse(data);
             //TODO remove after reports page is done
-            setCareerBearMessage("I have compiled your results! Check the console to your results! (Make sure to enable debugging)")
+            setCareerBearMessage("I have compiled your results! Check the console to view them! (Make sure to enable debugging)")
+            setPaused(true);
             saveResults(jsonData);
           }
         }
