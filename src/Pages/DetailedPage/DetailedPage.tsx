@@ -21,7 +21,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [paused, setPaused] = useState<boolean>(true);
   const [validKey, setValidKey] = useState<boolean>(false);
 
-  const [loadingData, setLoading] = useState<boolean>(true);
+  const [loadingData, setLoading] = useState<boolean>(false);
 
   //state to specifically keep track of whether to progress the quiz or not
   //if career bear is mad, sad, etc and dialouge is not related to user's career this will not progress
