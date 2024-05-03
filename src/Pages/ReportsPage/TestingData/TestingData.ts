@@ -1,5 +1,3 @@
-import { DetailedPeerCertificate } from "tls"
-import { QuizResults } from "../../../Interfaces/Results/QuizResults"
 import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 
 //data to be used for testing of reports/user storage services/users page
