@@ -10,6 +10,7 @@ import { BearInteraction } from "../../Interfaces/QuizInterfaces/BearInteraction
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuiz";
 import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
+import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
@@ -18,6 +19,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
   const [validKey, setValidKey] = useState<boolean>(false);
+
+  const [loadingData, setLoading] = useState<boolean>(true);
 
   //state to specifically keep track of whether to progress the quiz or not
   //if career bear is mad, sad, etc and dialouge is not related to user's career this will not progress
@@ -224,6 +227,10 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         }
       })
     }
+  }
+
+  if (loadingData) {
+    return (<LoadingScreen message="Career Bear is thinking..." />)
   }
 
   return (
