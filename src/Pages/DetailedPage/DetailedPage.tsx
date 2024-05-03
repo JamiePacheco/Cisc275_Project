@@ -29,6 +29,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [careerBearEmotion, setCareerBearEmotion] = useState<BearEmotion>("neutral");
   //the amount of thoughtful, valid interactions the user has had with career bear
   const [interactions, setInteractions] = useState<number>(0);
+  //state to check if the user has been notified about their session being able to be processed
+  const [notified, setNotified] = useState<boolean>(false);
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>("");
@@ -135,13 +137,14 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //notifies the user that the results may be compiled
   function notifyUserResults() : boolean {
     console.log(interactions)
-    if (interactions >= 3) {
+    if (interactions >= 3 && !notified) {
       notifyUser().then((value) => {
         if (value !== null && value !== undefined) {
           const bearMessage = value.choices[0].message.content;
           console.log(bearMessage);
           if (bearMessage !== undefined && bearMessage !== null) {
             setCareerBearMessage(bearMessage)
+            setNotified(true);
           }
           return true
         }
@@ -184,7 +187,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //called when user sends message to career bear that changes state and sends message
   function answerQuestion() {
     setCareerBearTalking(false);
-    sendMessageToCareerBear(userMessage).then((value) => {
+    sendMessageToCareerBear(userMessage, careerBearMessage).then((value) => {
       if (value !== null && value !== undefined) {
         const bearMessage = value.choices[0].message.content;
         setCareerBearTalking(true);
@@ -246,7 +249,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }
 
   return (
-    <div className="detailed-quiz" style={{backgroundImage: `url(${background})`}}>
+    //style={{backgroundImage: `url(${background})`}}
+    <div className="detailed-quiz">
       <div className="detailed-quiz--content">
         <CareerBearPrompt 
           message={careerBearMessage} 
