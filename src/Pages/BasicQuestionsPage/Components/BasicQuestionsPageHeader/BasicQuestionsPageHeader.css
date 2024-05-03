@@ -1,5 +1,9 @@
 .basic-questions-page-header {
-    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-radius: 10px;
     background-color: white;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
 
@@ -10,11 +14,11 @@
 
     margin-bottom: 50px;
     padding: 1vh 2.5vw;
-    margin-top: -30vh;
+    margin-top: -30vh; */
 }
 
-.basic-questions-page--heading {
+/* .basic-questions-page--heading {
     width: 100%;
     font-size: 4vh;
     margin: 1% 0 0 0
-}
+} */

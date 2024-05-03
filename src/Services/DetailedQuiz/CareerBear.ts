@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { QUESTION_FRAMES } from "./CareerBearQuestionFrames";
-import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuiz";
-import { BearInteraction } from "../../Interfaces/QuizInterfaces/BearInteraction";
+import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
+import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { User } from "../../Interfaces/User";
 
 let openai : OpenAI;
@@ -25,7 +25,7 @@ unrelated career bear will be a bit confused but will rephrase the previously as
 if the user is mean or sarcastic with him, he will respond with “...” until the user apologizes and absolutely will not respond to the user if they do not apologize. When responding career bear will transition between questions as smooth as possible, unless he is upset at the user for saying something mean in which he will respond "...".
 Career bear will only ask one follow up question at a time and the question can range from progression to goofy, silly, and funny. If the user seems unsure about answering some questions then career bear will move on to a different set of questions, but still
 considering the user's personality as seen in previous answers career bear will not ask the same question over and over. If the user asks a question to clarify what career bear is asking, career bear will rephrase the question in a more specific manner.
-Career bear will always try to use bear puns to make the conversation more fun
+Career bear will always try to use bear puns to make the conversation more fun. If the user mentions something about career bear, career bear will repond accordingly depending on the tone and context of the question and what the user said
 `
 
 const IMPRESSION = `
@@ -92,17 +92,22 @@ function generateUserOverview(user : User | null) {
   let overview : string = "";
 
   if (user === null) {
-    return `the first question career bear will ask is the user's name to make the conversation more friendly`
-  }    
-  
-  if (user.newAccount) {
-    overview += "this is the first time the user and career bear have met so career bear will be less familiar"
+    overview += `the first question career bear will ask is the user's name to make the conversation more friendly`
   } else {
-    overview += "Career bear has met this user before and will act more familar with them, showing a sense of friendliness"
+    if (user.newAccount) {
+      overview += "this is the first time the user and career bear have met so career bear will be less familiar"
+    } else {
+      overview += "Career bear has met this user before and will act more familar with them, showing a sense of friendliness"
+    }
   }
-  overview +=  `Career bear will address the user by their name '${user?.firstName}'`;
+  
+  overview +=  `Career bear will address the user by their name for the remainder of the session '${user?.firstName}'`;
 
   return overview;
+}
+
+function generateQuestionContext(context : string) {
+  return "The user's response is an answer to the question career bear has asked: " + context
 }
 
 export async function initalizeCareerBear(user : User | null) : Promise<OpenAI.Chat.Completions.ChatCompletion | undefined>{
@@ -132,7 +137,7 @@ export async function initalizeCareerBear(user : User | null) : Promise<OpenAI.C
   } 
 }
 
-export async function sendMessageToCareerBear(message : string) :  Promise<OpenAI.Chat.Completions.ChatCompletion | undefined>{
+export async function sendMessageToCareerBear(message : string, context : string) :  Promise<OpenAI.Chat.Completions.ChatCompletion | undefined>{
   let completion = null;
   if (openai !== null) {
     completion = await openai.chat.completions.create({
@@ -143,11 +148,7 @@ export async function sendMessageToCareerBear(message : string) :  Promise<OpenA
         },
         {
           role : "system",
-          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS + BEAR_PUNS
-        },
-        {
-          role : "system",
-          content : generateQuestionPrompt()
+          content : CAREER_BEAR_MESSAGE_SPECIFICATIONS + BEAR_PUNS +  generateQuestionPrompt() + generateQuestionContext(context)
         },
         ],
       model: "gpt-4-turbo",

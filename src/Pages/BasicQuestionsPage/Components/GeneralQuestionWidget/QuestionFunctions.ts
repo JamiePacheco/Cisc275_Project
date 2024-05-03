@@ -1,5 +1,5 @@
-import { BasicQuiz } from "./BasicQuizInterface";
-import { Question } from "./QuestionInterface";
+import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
+import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 
 export function generateQuestions(a: number): Question {
   const uniqueNames = [

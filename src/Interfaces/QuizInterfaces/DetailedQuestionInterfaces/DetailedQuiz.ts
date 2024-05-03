@@ -1,4 +1,4 @@
-import { QuizResults } from "../Results/QuizResults";
+import { QuizResults } from "../../Results/QuizResults";
 import { BearInteraction } from "./BearInteraction";
 
 export interface DetailedQuiz {

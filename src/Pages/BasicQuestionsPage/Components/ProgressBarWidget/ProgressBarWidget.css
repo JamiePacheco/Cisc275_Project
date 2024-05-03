@@ -24,6 +24,6 @@
 .progress-bar-fill {
     height: 100%;
     border-radius: 10px;
-    background-color: rgb(19, 161, 0);
+    background-color: rgb(251, 221, 88);
     transition: width 0.5s ease-out;
 }
