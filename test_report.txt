@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (53 ms)
+  ✕ renders learn react link (48 ms)
 
   ● renders learn react link
 
@@ -128,7 +128,7 @@ FAIL src/App.test.tsx
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |    8.04 |     3.57 |    4.65 |    8.14 |                   
+All files                                                                    |    8.15 |     3.52 |    4.44 |    8.29 |                   
  src                                                                         |   41.37 |       30 |   33.33 |   41.37 |                   
   App.tsx                                                                    |   66.66 |       50 |      50 |   66.66 | 23,38-39,48-49,56 
   index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
@@ -137,6 +137,8 @@ All files                                                                    |  
   AppFooter.tsx                                                              |     100 |      100 |     100 |     100 |                   
  src/Components/Header                                                       |   55.55 |       75 |      40 |   55.55 |                   
   AppHeader.tsx                                                              |   55.55 |       75 |      40 |   55.55 | 22-42             
+ src/Components/LoadingScreen                                                |   15.38 |      100 |       0 |   18.18 |                   
+  LoadingScreen.tsx                                                          |   15.38 |      100 |       0 |   18.18 | 20-36             
  src/Components/ProgressBar                                                  |       0 |      100 |       0 |       0 |                   
   ProgressBar.tsx                                                            |       0 |      100 |       0 |       0 | 2                 
  src/Hooks                                                                   |       0 |        0 |       0 |       0 |                   
@@ -170,9 +172,9 @@ All files                                                                    |  
   QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 5-19              
  src/Pages/BasicQuestionsPage/Components/QuizInteraction/RevealAnswersButton |       0 |      100 |       0 |       0 |                   
   RevealAnswersButton.tsx                                                    |       0 |      100 |       0 |       0 | 7-9               
- src/Pages/DetailedPage                                                      |     0.9 |        0 |       0 |    0.94 |                   
+ src/Pages/DetailedPage                                                      |    0.86 |        0 |       0 |    0.89 |                   
   CareerBearPhrases.ts                                                       |     100 |      100 |     100 |     100 |                   
-  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 17-302            
+  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 18-312            
   DetailedPageProps.ts                                                       |       0 |        0 |       0 |       0 |                   
  src/Pages/DetailedPage/Components                                           |       0 |      100 |       0 |       0 |                   
   DetailedPage-interface.ts                                                  |       0 |      100 |       0 |       0 | 13-16             
@@ -223,5 +225,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.68 s
+Time:        3.642 s
 Ran all test suites.
