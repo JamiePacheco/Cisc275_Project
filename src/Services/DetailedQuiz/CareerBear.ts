@@ -41,7 +41,7 @@ const QUIZ_DATA_PROMPT = `
 const QUIZ_DATA_FORMAT = `
 
 question json format: {
-  question : <career bear question>, 
+  question : <list of questions asked>, 
   userResponses : <list of all of the user responses>
 }
 questions json format: {

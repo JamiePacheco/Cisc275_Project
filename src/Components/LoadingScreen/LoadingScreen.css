@@ -1,0 +1,18 @@
+
+.loading-screen-body {
+    height: 100%;
+    width: 100%;
+}
+
+.loading-screen--image img {
+    max-width: 300px;
+}
+
+
+.loading-screen--message-container {
+    padding: 50px
+}
+
+.loading-screen--message-container h1 {
+    font-size: xx-large;
+}
