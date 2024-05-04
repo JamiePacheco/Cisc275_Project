@@ -1,11 +1,10 @@
-import { DetailedPeerCertificate } from "tls"
-import { QuizResults } from "../../../Interfaces/Results/QuizResults"
 import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 
 //data to be used for testing of reports/user storage services/users page
 
 //JSON.parse(DataSetOne) will turn this into an object
 export const DataSetOne : DetailedQuiz = {
+    "dateTaken" : new Date().toISOString(),
     "interactions": [
       {
         "careerBearPrompt": {
@@ -86,6 +85,7 @@ export const DataSetOne : DetailedQuiz = {
 }
 
 export const DataSetTwo : DetailedQuiz = {
+  "dateTaken" : new Date().toISOString(),
   "interactions": [
       {
           "careerBearPrompt": {
@@ -174,6 +174,7 @@ export const DataSetTwo : DetailedQuiz = {
 }
 
 const DataSetThree : DetailedQuiz = {
+  "dateTaken" : new Date().toISOString(),
   "interactions": [
       {
           "careerBearPrompt": {
