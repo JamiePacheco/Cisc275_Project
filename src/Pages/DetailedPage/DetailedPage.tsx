@@ -41,6 +41,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [bearClicked, setBearClicked] = useState<number>(0);
   const [quizData, setQuizData] = useState<DetailedQuiz>(
     {
+      dateTaken : new Date().toISOString(),
       interactions: []
     }
   );
@@ -175,12 +176,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           interactions : [
             ...quizData.interactions, interaction
           ]
-        }
-      )
-    } else {
-      setQuizData(
-        {
-          interactions : [interaction]
         }
       )
     }

@@ -12,7 +12,7 @@ import { AppFooter } from './Components/Footer/AppFooter';
 import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { UserPage } from './Pages/UserPage/UserPage';
 import { useEffect, useState } from 'react';
-import { User } from './Interfaces/User';
+import { User } from './Interfaces/User/User';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 

@@ -1,9 +1,11 @@
 import {Col, Container, Form, Row} from "react-bootstrap"
 import "./SignUpPage.css"
 import { FormEvent, useState } from "react";
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
+import { createUser } from "../../Services/UserServices/UserCredentialService";
+import {AxiosError, AxiosResponse } from "axios";
 
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
@@ -58,11 +60,19 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
             return;
         } else {
             const newAccount = createUserObject();
-            const accountJSONString = JSON.stringify(newAccount);
-            localStorage.setItem("USER_ACCOUNT", accountJSONString);
-            sessionStorage.setItem("CURRENT_USER", accountJSONString);
-            setUser(newAccount);
-            nav("/home");
+
+            createUser(newAccount).then((response : AxiosResponse<User> ) => {
+                const accountJSONString = JSON.stringify(response.data, null, 4);
+                console.log(accountJSONString);
+            }).catch((e : AxiosError) => {
+                console.log(e);
+            })
+
+            
+            // localStorage.setItem("USER_ACCOUNT", accountJSONString);
+            // sessionStorage.setItem("CURRENT_USER", accountJSONString);
+            // setUser(newAccount);
+            // nav("/home");
         }   
     }
 

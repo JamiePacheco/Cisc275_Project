@@ -4,7 +4,7 @@ import { HomePageHeader } from "./Components/HomePageHeader/HomePageHeader"
 import "./HomePage.css"
 import { HomePageSignUpWidget } from "./Components/HomePageSignUpWidget/HomePageSignUpWidget"
 import { HomePageQuizSelectionWidget } from "./Components/HomePageQuizSelectionWidget/HomePageQuizSelectionWidget"
-import { User } from "../../Interfaces/User"
+import { User } from "../../Interfaces/User/User"
 
 import darkLogo from "../../assets/logos/career-bear-logo-2-dark.png"
 import { HomePageApiKeyWidget } from "./Components/HomePageApiKeyWidget/HomePageApiKeyWidget"

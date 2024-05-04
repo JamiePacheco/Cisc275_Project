@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 import { LoginPageProps } from "./LoginPageProps";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {

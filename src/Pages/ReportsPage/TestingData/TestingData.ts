@@ -4,6 +4,7 @@ import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestio
 
 //JSON.parse(DataSetOne) will turn this into an object
 export const DataSetOne : DetailedQuiz = {
+    "dateTaken" : new Date().toISOString(),
     "interactions": [
       {
         "careerBearPrompt": {
@@ -84,6 +85,7 @@ export const DataSetOne : DetailedQuiz = {
 }
 
 export const DataSetTwo : DetailedQuiz = {
+  "dateTaken" : new Date().toISOString(),
   "interactions": [
       {
           "careerBearPrompt": {
@@ -172,6 +174,7 @@ export const DataSetTwo : DetailedQuiz = {
 }
 
 const DataSetThree : DetailedQuiz = {
+  "dateTaken" : new Date().toISOString(),
   "interactions": [
       {
           "careerBearPrompt": {
