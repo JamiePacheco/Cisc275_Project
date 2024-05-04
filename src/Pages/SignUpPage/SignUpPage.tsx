@@ -20,6 +20,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     const [validated, setValidated] = useState(false);
     const [password, setPassword] = useState("");
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const nav = useNavigate();
 
     function getAge() : number {
