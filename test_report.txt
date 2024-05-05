@@ -91,7 +91,7 @@ All files                                                                    |  
   BasicQuestionsPageHeader.tsx                                               |       0 |      100 |       0 |       0 | 5                 
  src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget               |       0 |        0 |       0 |       0 |                   
   GeneralQuestionWidget.tsx                                                  |       0 |        0 |       0 |       0 | 15-63             
-  QuestionFunctions.ts                                                       |       0 |      100 |       0 |       0 | 5-78              
+  QuestionFunctions.ts                                                       |       0 |      100 |       0 |       0 | 5-113             
  src/Pages/BasicQuestionsPage/Components/ProgressBarWidget                   |       0 |      100 |       0 |       0 |                   
   ProgressBarWidget.tsx                                                      |       0 |      100 |       0 |       0 | 4                 
  src/Pages/BasicQuestionsPage/Components/QuizInteraction                     |       0 |        0 |       0 |       0 |                   
@@ -155,5 +155,5 @@ All files                                                                    |  
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.132 s
+Time:        4.319 s
 Ran all test suites.
