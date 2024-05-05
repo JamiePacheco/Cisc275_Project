@@ -73,6 +73,20 @@ export function generateQuestions(a: number): Question {
   };
 }
 
+export function shuffleQuestions(array:Question[]): Question[]{
+  let n: number = array.length-1;
+  const currentArray: Question[] = array.map((question:Question) => ({...question, options:[...question.options]}));
+  let j: number;
+  while(n > 0){
+        j = Math.random() * (n+1)
+        currentArray.splice(n,1,...currentArray.splice(j,1, currentArray[n]));
+        n = n -1;
+        console.log(currentArray);
+  }
+  return currentArray;
+}
+
+
 
 export function quizObjects(): BasicQuiz {
   return {
