@@ -90,7 +90,7 @@ export function generateQuestions(a: number, b: number): Question {
 
 export function shuffleNumbers(array: number[]): number[] {
   let n: number = array.length - 1;
-  const currentArray: number[] = [...array];
+  const currentArray:number[] = [...array];
   let j: number;
   while (n > 0) {
     j = Math.random() * (n + 1);
@@ -100,7 +100,8 @@ export function shuffleNumbers(array: number[]): number[] {
   return currentArray;
 }
 
-export function range(len: number) {
+
+export function range(len:number){
   return Array.from(Array(len).keys());
 }
 
