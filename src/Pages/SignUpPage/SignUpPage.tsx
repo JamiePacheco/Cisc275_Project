@@ -52,7 +52,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
         return newAccount;
     }
  
-    function createAccount(event : FormEvent<HTMLFormElement>) {
+    async function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
         if (!form.checkValidity()) {
             event.preventDefault();
@@ -62,18 +62,14 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
         } else {
             const newAccount = createUserObject();
 
-            createUser(newAccount).then((response : AxiosResponse<User> ) => {
+            await createUser(newAccount).then((response : AxiosResponse<User> ) => {
                 const accountJSONString = JSON.stringify(response.data, null, 4);
-                console.log(accountJSONString);
-            }).catch((e : AxiosError) => {
+                sessionStorage.setItem("CURRENT_USER", accountJSONString);
+                setUser(newAccount);
+                nav("/home")
+        }).catch((e : AxiosError) => {
                 console.log(e);
             })
-
-            
-            // localStorage.setItem("USER_ACCOUNT", accountJSONString);
-            // sessionStorage.setItem("CURRENT_USER", accountJSONString);
-            // setUser(newAccount);
-            // nav("/home");
         }   
     }
 
