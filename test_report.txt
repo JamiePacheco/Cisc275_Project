@@ -37,7 +37,7 @@ FAIL src/App.test.tsx
         | ^
       2 | import { User } from "../../Interfaces/User/User"
       3 |
-      4 | const BASE_USER_URL = process.env.api_key;
+      4 | //api url 
 
       at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1728:14)
       at Object.<anonymous> (src/Services/UserServices/UserCredentialService.ts:1:1)
@@ -125,7 +125,7 @@ All files                                                                    |  
  src/Pages/HomePage/Components/HomePageSignUpWidget                          |       0 |      100 |       0 |       0 |                   
   HomePageSignUpWidget.tsx                                                   |       0 |      100 |       0 |       0 | 6-18              
  src/Pages/LoginPage                                                         |       0 |        0 |       0 |       0 |                   
-  LoginPage.tsx                                                              |       0 |        0 |       0 |       0 | 9-113             
+  LoginPage.tsx                                                              |       0 |        0 |       0 |       0 | 10-93             
   LoginPageProps.ts                                                          |       0 |        0 |       0 |       0 |                   
  src/Pages/MembersPage                                                       |       0 |      100 |       0 |       0 |                   
   MembersPage.tsx                                                            |       0 |      100 |       0 |       0 | 8-29              
@@ -138,7 +138,7 @@ All files                                                                    |  
  src/Pages/ReportsPage/TestingData                                           |       0 |      100 |     100 |       0 |                   
   TestingData.ts                                                             |       0 |      100 |     100 |       0 | 6-176             
  src/Pages/SignUpPage                                                        |       0 |        0 |       0 |       0 |                   
-  SignUpPage.tsx                                                             |       0 |        0 |       0 |       0 | 16-186            
+  SignUpPage.tsx                                                             |       0 |        0 |       0 |       0 | 16-182            
   SignUpPageProps.ts                                                         |       0 |        0 |       0 |       0 |                   
  src/Pages/UserPage                                                          |       0 |      100 |       0 |       0 |                   
   UserPage.tsx                                                               |       0 |      100 |       0 |       0 | 7-19              
@@ -149,11 +149,11 @@ All files                                                                    |  
   CareerBear.ts                                                              |       0 |        0 |       0 |       0 | 9-264             
   CareerBearQuestionFrames.ts                                                |       0 |      100 |     100 |       0 | 1                 
  src/Services/UserServices                                                   |       0 |        0 |       0 |       0 |                   
-  UserCredentialService.ts                                                   |       0 |      100 |       0 |       0 | 4-7               
+  UserCredentialService.ts                                                   |       0 |      100 |       0 |       0 | 5-20              
   UserDataService.ts                                                         |       0 |        0 |       0 |       0 | 10-26             
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.319 s
+Time:        4.203 s
 Ran all test suites.
