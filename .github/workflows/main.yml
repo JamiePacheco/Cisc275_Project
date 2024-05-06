@@ -49,4 +49,3 @@ jobs:
                   user_email: "github-actions[bot]@users.noreply.github.com"
                   github_token: ${{ secrets.GH_TOKEN }}
                   repository: ${{ github.repository }}
-                  api_key: ${{ secrets.BASE_API_URL }}
