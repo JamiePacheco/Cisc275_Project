@@ -3,6 +3,7 @@ import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User/User";
 import { LoginPageProps } from "./LoginPageProps";
+import { authenticateUser } from "../../Services/UserServices/UserCredentialService";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
@@ -17,44 +18,49 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     const nav = useNavigate();
 
     //definitely should be a backend verification but...
-    function validateLogin() : User | null{
-        const accountJSONString = localStorage.getItem("USER_ACCOUNT")
-        if (accountJSONString != null) {
+    //THERE IS NOW A BACKEND!!!!!
+    function validateLogin() {
 
-            const userAccount : User  = JSON.parse(accountJSONString);
+        let user : User | null = null;
 
-            if (userAccount.email === email && userAccount.password === password) {
-                sessionStorage.setItem("CURRENT_USER", accountJSONString);
-                return userAccount;
-            } else {
-                setMessages(userAccount);
+        if (email.trimEnd() === "") {
+            setEmailMessage("Email is required")
+            return user;
+        }
+
+        if (password.trim() === "") {
+            setPasswordMessage("Password is required")
+            return user;
+        }
+
+        authenticateUser(email, password).then((response) => {
+            if (response !== null) {
+                user = response.data;
+                console.log(user)
+                console.log(response);
+                sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));
             }
-        }
-        return null;
+        }).catch((e : Error) => {
+            setPasswordMessage(e.message);
+            console.log(e.message);
+        })
+        return user;
     }
 
-    //if time permits should have message be based on POST request error code from authentication API
-    //but until then...
-    function setMessages(userCredentials : User) {
-        if (email === "") {
-            setEmailMessage("Email is required");
-        } else if (email !== userCredentials.email) {
-            setEmailMessage("Not Valid Email");
-            setPasswordMessage("invalid password");
-            return;
-        }
-
-        if (password === "") {
-            setPasswordMessage("Password required");
-        } else if (password !== userCredentials.password) {
-            setPasswordMessage("invalid password")
-        }
-    }
-
-
-    function signIn(event : FormEvent<HTMLFormElement>) {
+    async function signIn(event : FormEvent<HTMLFormElement>) {
+        let user : User | null = null;
         const form = event.currentTarget;
-        const user = validateLogin();
+
+        await authenticateUser(email, password).then((response) => {
+                user = response.data;
+                console.log(user)
+                console.log(response);
+                sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));        
+        }).catch((e : Error) => {
+            setPasswordMessage(e.message);
+        })
+
+        console.log("User: " + user);
         if (user === null || !form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
