@@ -19,34 +19,6 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
 
     //definitely should be a backend verification but...
     //THERE IS NOW A BACKEND!!!!!
-    function validateLogin() {
-
-        let user : User | null = null;
-
-        if (email.trimEnd() === "") {
-            setEmailMessage("Email is required")
-            return user;
-        }
-
-        if (password.trim() === "") {
-            setPasswordMessage("Password is required")
-            return user;
-        }
-
-        authenticateUser(email, password).then((response) => {
-            if (response !== null) {
-                user = response.data;
-                console.log(user)
-                console.log(response);
-                sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));
-            }
-        }).catch((e : Error) => {
-            setPasswordMessage(e.message);
-            console.log(e.message);
-        })
-        return user;
-    }
-
     async function signIn(event : FormEvent<HTMLFormElement>) {
         let user : User | null = null;
         const form = event.currentTarget;
