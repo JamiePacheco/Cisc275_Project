@@ -10,6 +10,8 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
 
+    //will use this but until then...
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [emailMessage, setEmailMessage] = useState<string>("")
     const [passwordMessage, setPasswordMessage] = useState<string>("")
 
