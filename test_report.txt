@@ -149,11 +149,11 @@ All files                                                                    |  
   CareerBear.ts                                                              |       0 |        0 |       0 |       0 | 9-264             
   CareerBearQuestionFrames.ts                                                |       0 |      100 |     100 |       0 | 1                 
  src/Services/UserServices                                                   |       0 |        0 |       0 |       0 |                   
-  UserCredentialService.ts                                                   |       0 |      100 |       0 |       0 | 5-20              
+  UserCredentialService.ts                                                   |       0 |      100 |       0 |       0 | 5-21              
   UserDataService.ts                                                         |       0 |        0 |       0 |       0 | 10-26             
 -----------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.256 s
+Time:        4.175 s
 Ran all test suites.

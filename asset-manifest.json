@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Cisc275_Project/static/css/main.2041c106.css",
-    "main.js": "/Cisc275_Project/static/js/main.b48cc28b.js",
+    "main.js": "/Cisc275_Project/static/js/main.5711bad3.js",
     "static/js/453.bad6c33a.chunk.js": "/Cisc275_Project/static/js/453.bad6c33a.chunk.js",
     "static/media/neutral_career_bear.png": "/Cisc275_Project/static/media/neutral_career_bear.315d7cbdf55b0a2db4d0.png",
     "static/media/bear-in-chair_left.jpg": "/Cisc275_Project/static/media/bear-in-chair_left.3e45688e926a7f825560.jpg",
@@ -12,11 +12,11 @@
     "static/media/career-bear-2-neutral.png": "/Cisc275_Project/static/media/career-bear-2-neutral.7f675e13af8e09ac5d7e.png",
     "index.html": "/Cisc275_Project/index.html",
     "main.2041c106.css.map": "/Cisc275_Project/static/css/main.2041c106.css.map",
-    "main.b48cc28b.js.map": "/Cisc275_Project/static/js/main.b48cc28b.js.map",
+    "main.5711bad3.js.map": "/Cisc275_Project/static/js/main.5711bad3.js.map",
     "453.bad6c33a.chunk.js.map": "/Cisc275_Project/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2041c106.css",
-    "static/js/main.b48cc28b.js"
+    "static/js/main.5711bad3.js"
   ]
 }
