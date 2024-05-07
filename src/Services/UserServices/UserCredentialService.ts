@@ -2,7 +2,9 @@ import axios, { AxiosResponse } from "axios"
 import { User } from "../../Interfaces/User/User"
 
 //api url 
-const BASE_USER_URL = process.env.REACT_APP_API_KEY + "/user";
+// const BASE_USER_URL = process.env.REACT_APP_API_KEY + "/user";
+const BASE_USER_URL = "http://localhost:8080/api/v1/user"
+
 
 console.log(BASE_USER_URL);
 
