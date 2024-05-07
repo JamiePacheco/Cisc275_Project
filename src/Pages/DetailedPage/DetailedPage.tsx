@@ -10,6 +10,8 @@ import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionIn
 import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
 import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
+import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
+import { AxiosResponse } from "axios";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
@@ -124,16 +126,22 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
 
   //saves the generated results to the current quiz session 
-  function saveResults(generatedResults :  QuizResults) {
-    setQuizData((prev) => {
-        return {
-          ...prev,
-          results: generatedResults
-        }
-      }
-    )
+  function computeResultData(generatedResults :  QuizResults) : DetailedQuiz {
 
-    console.log();
+    setQuizData((prev) => {
+      return {
+        ...prev,
+        results: generatedResults
+      }
+    }
+  )
+
+    //return the most up-to-date user data to send to backend server
+    return {
+      ...quizData,
+      results: generatedResults
+    }
+    
   }
 
 
@@ -241,7 +249,15 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
             //TODO remove after reports page is done
             setCareerBearMessage("I have compiled your results! Check the console to view them! (Make sure to enable debugging)")
             setPaused(true);
-            saveResults(jsonData);
+            const requestData = computeResultData(jsonData);
+            
+            if (user !== null) {
+              requestData.userAccount = user;
+              saveDetailedQuizData(requestData, user.userId).then((res : AxiosResponse<DetailedQuiz>) => {
+                console.log("Data saved!!!!")
+                console.log(JSON.stringify(res.data, null, 2))
+              }) 
+            } 
           }
         }
       })
