@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User/User";
 import { LoginPageProps } from "./LoginPageProps";
 import { authenticateUser } from "../../Services/UserServices/UserCredentialService";
+import axios, { AxiosError } from "axios";
+import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
@@ -19,31 +21,54 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
 
     const nav = useNavigate();
 
+    function setErrorMessages() {
+        if (email === "") {
+            setEmailMessage("Email is required");
+        }
+
+        if (password === "") {
+            setPasswordMessage("Password is required")
+        }
+    }
+
     //definitely should be a backend verification but...
     //THERE IS NOW A BACKEND!!!!!
     async function signIn(event : FormEvent<HTMLFormElement>) {
         let user : User | null = null;
         const form = event.currentTarget;
 
-        await authenticateUser(email, password).then((response) => {
-                user = response.data;
-                console.log(user)
-                console.log(response);
-                sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));        
-        }).catch((e : Error) => {
-            setPasswordMessage(e.message);
-        })
-
-        console.log("User: " + user);
-        if (user === null || !form.checkValidity()) {
+        if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
+            setErrorMessages();
             return;
-        } else {          
-            setUser(user); 
-            nav("/home");
-        }   
+        }
+
+        await authenticateUser(email, password).then((response) => {
+                user = response.data;
+                if (user !== null) {
+                    sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));   
+                    setUser(user); 
+                    nav("/home"); 
+                }
+        }).catch((e : AxiosError<ApiCallResponseError>) => {
+            if (axios.isAxiosError(e) && e.response && e.response.data) {
+                //placeholder until I can deduce proper embeded type
+                const message = e.response.data.message;
+
+                if (message.toLowerCase().includes("email")) {
+                    setEmailMessage(message);
+                    setPasswordMessage("");
+                } 
+                if (message.toLowerCase().includes("password")) {
+                    setPasswordMessage(message);
+                    setEmailMessage("");
+                }
+
+
+            }
+        })
     }
 
 
