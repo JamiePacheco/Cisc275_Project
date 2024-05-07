@@ -5,7 +5,8 @@ import { User } from "../../Interfaces/User/User";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
 import { createUser } from "../../Services/UserServices/UserCredentialService";
-import {AxiosError, AxiosResponse } from "axios";
+import axios, {AxiosError, AxiosResponse } from "axios";
+import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
 
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
@@ -19,6 +20,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     const [birthday, setBirthday] = useState<string>("");
     const [validated, setValidated] = useState(false);
     const [password, setPassword] = useState("");
+
+    const [emailMessage, setEmailMessage] = useState<string>("");
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const nav = useNavigate();
@@ -55,6 +58,9 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     async function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
         if (!form.checkValidity()) {
+            
+            setEmailMessage("Invalid Email")
+
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
@@ -67,8 +73,14 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
                 sessionStorage.setItem("CURRENT_USER", accountJSONString);
                 setUser(newAccount);
                 nav("/home")
-        }).catch((e : AxiosError) => {
-                console.log(e);
+        }).catch((e : AxiosError<ApiCallResponseError>) => {
+                if (axios.isAxiosError(e) && e.response && e.response.data) {
+                    const message = e.response?.data.message;
+
+                    if (message.includes("email")) {
+                        setEmailMessage(message);
+                    }
+                }
             })
         }   
     }
@@ -137,10 +149,11 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
                                                 console.log(e)
                                             }}
                                             pattern="[A-Za-z0-9.]+@[a-zA-Z]+[.]+[a-zA-Z]+"
+                                            isInvalid = {emailMessage !== ""}
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">
-                                                Email Required
+                                                {emailMessage}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
