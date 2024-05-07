@@ -12,8 +12,8 @@ export function QuizInteraction({ setIndex, index, isProgressBarFull, length}: I
         Previous
       </button>
       {isProgressBarFull && ( //temporarily set as a browser alert until fully implemented 
-        <button className="submit-button" onClick={() => alert('Answers Submitted')}> 
-          Submit
+        <button className="submit-button" onClick={() => alert('balls')}> 
+          Review Answers
         </button>
       )}
       <button className="next-button" onClick={() => handleClick(true)} disabled={index === length-1}>

@@ -3,7 +3,6 @@ import './BasicQuestionsPage.css';
 import { BasicQuestionsPageHeader } from "./Components/BasicQuestionsPageHeader/BasicQuestionsPageHeader";
 import { GeneralQuestions } from "./Components/GeneralQuestionWidget/GeneralQuestionWidget";
 import { useState } from 'react';
-import { RevealAnswers } from './Components/QuizInteraction/RevealAnswersButton/RevealAnswersButton';
 
 
 export function BasicQuestionsPage() : React.JSX.Element {
@@ -12,7 +11,6 @@ export function BasicQuestionsPage() : React.JSX.Element {
         <div className='BasicQuestionsPage'> 
             <BasicQuestionsPageHeader/>
             <GeneralQuestions/>
-            <RevealAnswers/>
         </div>
     );
 }
