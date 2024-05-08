@@ -8,7 +8,7 @@ import { quizObjects } from './Components/GeneralQuestionWidget/QuestionFunction
 export function BasicQuestionsPage(): JSX.Element {
     const [isVisible, setIsVisible] = useState(true);
     const [reviewIsVisible, setReviewIsVisible] = useState(false);
-    const [quiz, setQuiz] = useState(() => quizObjects()); 
+    const [quiz] = useState(() => quizObjects()); 
     const [answers, setAnswers] = useState<string[]>(() => Array(quiz.questionList.length).fill(""));
 
     useEffect(() => {

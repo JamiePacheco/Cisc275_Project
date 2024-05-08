@@ -1,6 +1,6 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar, Form } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 

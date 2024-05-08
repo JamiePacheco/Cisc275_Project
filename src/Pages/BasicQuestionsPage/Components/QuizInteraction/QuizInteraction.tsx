@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./QuizInteraction.css";
 import { IndexState } from "./QuestionIndexProp";
 
