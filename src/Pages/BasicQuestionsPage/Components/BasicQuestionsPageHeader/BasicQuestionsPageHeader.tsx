@@ -1,6 +1,6 @@
 import './BasicQuestionsPageHeader.css';
 
-export function BasicQuestionsPageHeader() : JSX.Element {
+  export function BasicQuestionsPageHeader(): JSX.Element {
 
     return (
        <div className ='basic-questions-page-header'>

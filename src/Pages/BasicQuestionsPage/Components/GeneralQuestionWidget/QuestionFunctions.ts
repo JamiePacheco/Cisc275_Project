@@ -1,7 +1,7 @@
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 
-export function generateQuestions(a: number, b: number): Question {
+export function generateQuestions(a: number, questionNumber: number): Question {
   const uniqueNames = [
     "What aspect of work excites you the most?",
     "When you envision your future career– where are you?",
@@ -67,9 +67,9 @@ export function generateQuestions(a: number, b: number): Question {
   ];
   return {
     name: uniqueNames[a],
-    questionNumber: b,
+    questionNumber: questionNumber, 
     options: uniqueQuestions[a],
-    answer: "",
+    answer: ""
   };
 }
 
@@ -106,12 +106,16 @@ export function range(len:number){
 }
 
 export function quizObjects(): BasicQuiz {
-  const unique: number[] = shuffleNumbers(range(8));
-  const array: Question[] = unique.map(
-    (a: number, index: number): Question => generateQuestions(a, index + 1)
-  );
+  const totalQuestions = 8;
+  const questions: Question[] = range(totalQuestions).map(index => generateQuestions(index, index + 1));
+  const shuffledIndices = shuffleNumbers(range(totalQuestions));
+  const shuffledQuestions = shuffledIndices.map((shuffledIndex, index) => ({
+    ...questions[shuffledIndex],
+    questionNumber: index + 1  
+  }));
   return {
-    questionList: array,
+    questionList: shuffledQuestions,
     numAnswered: 0,
+    displayOrder: shuffledIndices
   };
 }

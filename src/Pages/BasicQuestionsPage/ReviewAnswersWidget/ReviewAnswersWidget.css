@@ -1,0 +1,37 @@
+.review-container {
+    box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
+    background-color: #FFF6EC;
+    border-radius: 10px;
+
+    padding: 50px;
+    margin-block: 20vh 10vh 10vh 10vh;
+    
+    
+    font-weight:600;
+    font-size: larger;
+}
+
+.review-header {
+    text-align: center;
+    width: 100%;
+}
+
+.review-content {
+    width: 100%;
+    min-height: 20vh;
+    padding: 10px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.change-answers-button {
+    margin-top: 25px;
+    border-radius: 6px;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    min-height: 50px;
+    max-height: 100px;
+    min-width: 150px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

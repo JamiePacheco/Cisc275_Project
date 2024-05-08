@@ -1,81 +1,65 @@
 import "./GeneralQuestionWidget.css";
-import { ProgressBar } from "react-bootstrap";
+import { ProgressBar, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
-import { Form } from "react-bootstrap";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
-import { quizObjects } from "./QuestionFunctions";
 
-export function GeneralQuestions(): JSX.Element { 
-  /**
-   * this is where the majority of the logic for the component is. may be subject to change in the future. 
-   * 
-   */
-  const [choice, setChoice] = useState<string>(""); // for the radio buttons
-  const [index, setIndex] = useState<number>(0); // index in the list of placeholder questions
-  const [quiz, setQuiz] = useState<BasicQuiz>(() => quizObjects());
+interface GeneralQuestionsProps {
+  isVisible: boolean;
+  setIsVisible: (visible: boolean) => void;
+  setReviewIsVisible: (reviewIsVisible: boolean) => void;
+  quiz: BasicQuiz;
+  displayOrder: number[];
+  answers: string[];
+  setAnswers: (answers: string[]) => void;
+}
 
-  const question: Question = quiz.questionList[index];
-  const totalQuestions = quiz.questionList.length;
+export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers }: GeneralQuestionsProps): JSX.Element | null {
+  const [index, setIndex] = useState<number>(0);
 
-  const updateValues = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (question.answer !== event.target.value) {
-      const newQuestion: Question = {
-        ...question,
-        options: [...question.options],
-        answer: event.target.value,
-      };
-      const newQuizList = quiz.questionList.map(
-        (question: Question): Question => ({
-          ...question,
-          options: [...question.options],
-        })
-      );
-      newQuizList.splice(newQuestion.questionNumber - 1, 1, newQuestion);
-      const newQuiz: BasicQuiz = { ...quiz, questionList: newQuizList, numAnswered: quiz.numAnswered+1 };
-      setQuiz(newQuiz);
-    }
+  const updateValues = (event: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
+    const newAnswer = event.target.value;
+    const newAnswers = [...answers];
+    newAnswers[displayOrder[questionIndex]] = newAnswer; //map answer to original question index using displayOrder
+    setAnswers(newAnswers);
 
-    setChoice(event.target.value);
+    console.log("Answers after update:", newAnswers);  //debug test
+
   };
 
-  useEffect(() => {
-    //this will check if an answer is already stored when the index changes.
-    const savedAnswer = question.answer;
-    if (savedAnswer) {
-      setChoice(savedAnswer);
-    } else {
-      setChoice(""); // reset choice
-    }
-  }, [index, question.answer]);
+  if (!isVisible) {
+    return null; //do not render the component if not visible
+  }
 
   return (
     <div className="question-component--content">
       <div className="progress-bar-bootstrap">
-        <ProgressBar now={quiz.numAnswered * 100 / totalQuestions} />
+        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} />
       </div>
       <h1 className="question--heading">
-        {question.questionNumber}.<span> {question.name}</span>
+        {quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
       </h1>
       <div className="question--choices">
-        {question.options.map((options: string) => (
+        {quiz.questionList[index].options.map((option, optionIndex) => (
           <Form.Check
-            key={`${question.questionNumber}-${options}`}
-            type="radio"
-            onChange={updateValues}
-            id={`basic-${question.questionNumber}-${options}`}
-            label={options}
-            value={`${question.questionNumber}-${options}`}
-            checked={choice === `${question.questionNumber}-${options}`}
+              key={optionIndex}
+              type="radio"
+              name={`question-${index}`}
+              id={`option-${index}-${optionIndex}`}
+              label={option}
+              value={option}
+              checked={answers[displayOrder[index]] === option} //checks if the answer at the position of this question in displayOrder matches this option
+              onChange={(e) => updateValues(e, index)}
           />
         ))}
       </div>
       <QuizInteraction
         setIndex={setIndex}
         index={index}
-        isProgressBarFull={quiz.numAnswered === totalQuestions}
+        isProgressBarFull={answers.every(ans => ans !== "")}
         length={quiz.questionList.length}
+        setIsVisible={setIsVisible}
+        setReviewIsVisible={setReviewIsVisible}
       />
     </div>
   );
