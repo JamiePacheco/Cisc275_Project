@@ -252,7 +252,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
             const requestData = computeResultData(jsonData);
             
             if (user !== null) {
-              requestData.userAccount = user;
+              requestData.userId = user.userId;
               saveDetailedQuizData(requestData, user.userId).then((res : AxiosResponse<DetailedQuiz>) => {
                 console.log("Data saved!!!!")
                 console.log(JSON.stringify(res.data, null, 2))
