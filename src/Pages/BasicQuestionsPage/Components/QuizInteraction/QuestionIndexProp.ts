@@ -3,4 +3,6 @@ export interface IndexState {
   index: number;
   isProgressBarFull: boolean;
   length: number;
+  setIsVisible: (isVisible: boolean) => void;
+  setReviewIsVisible: (reviewIsVisible: boolean) => void;
 }
