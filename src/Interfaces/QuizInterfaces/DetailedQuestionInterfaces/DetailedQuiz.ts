@@ -7,5 +7,5 @@ export interface DetailedQuiz {
     dateTaken : string;
     interactions : BearInteraction[];
     results? : QuizResults;
-    userAccount? : User;
+    userId? : number;
 } 
