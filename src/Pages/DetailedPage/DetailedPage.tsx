@@ -106,14 +106,18 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //Checks if the user has a valid key stored otherwise presents message
   useEffect(() => {
     const userKey = localStorage.getItem("MYKEY")
-    if (userKey !== "") {
+    if (userKey !== "" && userKey !== undefined && userKey !== null) {
       setValidKey(true);
     } else {
-      console.log("invalid")
       setValidKey(false)
-      setCareerBearMessage("hmmmm, I'm bear-y sorry, but I can only talk to you if you have an API key")
+      setCareerBearMessage(
+        careerBearEmotion !== "sleeping" ?
+        "hmmmm, I'm bear-y sorry, but I can only talk to you if you have an API key" :
+        "(it appears your invalid api key caused career bear to fall asleep...)"
+        
+      )
     }
-  }, [])
+  }, [careerBearEmotion])
 
   //Checks if career bear is talking or thinking of a response (awaiting gpt promise) and presents message
   useEffect(() => {
@@ -122,6 +126,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     } 
   }, [careerBearTalking])
 
+  //checks if career bear is consuling the user based on his emotions (only is consulting if neutral)
   useEffect(() => {
     setConsulting(careerBearEmotion === "neutral" && !paused)
   }, [careerBearEmotion, paused])
