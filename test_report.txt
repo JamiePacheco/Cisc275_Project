@@ -54,7 +54,7 @@ File                                                              | % Stmts | % 
 ------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 All files                                                         |       0 |        0 |       0 |       0 |                   
  src                                                              |       0 |        0 |       0 |       0 |                   
-  App.tsx                                                         |       0 |        0 |       0 |       0 | 19-65             
+  App.tsx                                                         |       0 |        0 |       0 |       0 | 20-67             
   index.tsx                                                       |       0 |      100 |     100 |       0 | 7-20              
   reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
  src/Components/Footer                                            |       0 |      100 |       0 |       0 |                   
@@ -129,12 +129,16 @@ All files                                                         |       0 |   
   LoginPageProps.ts                                               |       0 |        0 |       0 |       0 |                   
  src/Pages/MembersPage                                            |       0 |      100 |       0 |       0 |                   
   MembersPage.tsx                                                 |       0 |      100 |       0 |       0 | 8-29              
- src/Pages/ReportsPage                                            |       0 |      100 |       0 |       0 |                   
-  ReportsPage.tsx                                                 |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/ReportsPage                                            |       0 |        0 |       0 |       0 |                   
+  ReportsPage.tsx                                                 |       0 |        0 |       0 |       0 | 10-19             
+ src/Pages/ReportsPage/Components/FileView                        |       0 |      100 |       0 |       0 |                   
+  FileView.tsx                                                    |       0 |      100 |       0 |       0 | 5                 
  src/Pages/ReportsPage/Components/Folder-Background               |       0 |      100 |       0 |       0 |                   
-  FolderBackground.tsx                                            |       0 |      100 |       0 |       0 | 5                 
+  FolderBackground.tsx                                            |       0 |      100 |       0 |       0 | 12-52             
  src/Pages/ReportsPage/Components/ReportsHeader                   |       0 |      100 |       0 |       0 |                   
-  ReportsHeader.tsx                                               |       0 |      100 |       0 |       0 | 7                 
+  ReportsHeader.tsx                                               |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/ReportsPage/Components/ViewPersonality                 |       0 |        0 |       0 |       0 |                   
+  PersonalityTab.tsx                                              |       0 |        0 |       0 |       0 | 6-18              
  src/Pages/ReportsPage/TestingData                                |       0 |      100 |     100 |       0 |                   
   TestingData.ts                                                  |       0 |      100 |     100 |       0 | 6-92              
  src/Pages/SignUpPage                                             |       0 |        0 |       0 |       0 |                   
@@ -155,5 +159,5 @@ All files                                                         |       0 |   
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.277 s
+Time:        4.498 s
 Ran all test suites.
