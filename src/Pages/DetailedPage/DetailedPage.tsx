@@ -12,6 +12,7 @@ import { QuizResults } from "../../Interfaces/Results/QuizResults";
 import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
 import { AxiosResponse } from "axios";
+import { DataSetOne } from "../ReportsPage/TestingData/TestingData";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
@@ -41,8 +42,11 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [userMessage, setUserMessage] = useState("");
 
   const [bearClicked, setBearClicked] = useState<number>(0);
+  const [interactionNumber, setInteractionNumber] = useState<number>(1);
+
   const [quizData, setQuizData] = useState<DetailedQuiz>(
     {
+      bearClicked: 0,
       dateTaken : new Date().toISOString(),
       interactions: []
     }
@@ -85,8 +89,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //checks if user has clicked on career bear and prompts message
   useEffect(() => {
-    if (bearClicked === 3 && paused) {
-      setBearClicked(0);
+    if (bearClicked > 0 && bearClicked % 3 === 0 && paused) {
       setCareerBearMessage(UPSET_PHRASES[Math.floor(Math.random() * UPSET_PHRASES.length)]);
     }
   }, [bearClicked, paused])
@@ -131,6 +134,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     setQuizData((prev) => {
       return {
         ...prev,
+        bearClicked: bearClicked,
         results: generatedResults
       }
     }
@@ -169,6 +173,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //updates the current quiz session data
   function updateQuizData() {
     const interaction : BearInteraction = {
+      position : interactionNumber,
       careerBearPrompt : {
         prompt : careerBearMessage
       },
@@ -187,6 +192,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         }
       )
     }
+
+    setInteractionNumber(prev => prev + 1);
   }
 
   //called when user sends message to career bear that changes state and sends message
@@ -218,21 +225,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     })
   }
 
-  //this function lets the user know that career bear has sufficient infomation to give them a career suggestion
-  // function notifyOfProcessing() {
-  //   setCareerBearTalking(false);
-  //   notifyUser().then((value) => {
-  //     if (value !== null && value !== undefined) {
-  //       const bearMessage = value.choices[0].message.content;
-  //       if (bearMessage !== undefined && bearMessage !== null) {
-  //         setCareerBearMessage(bearMessage);
-  //         setCareerBearTalking(true);
-  //         setPaused(true);
-  //       }
-  //     }
-  //   })
-  // }
-
   //makes career bear compile all of the data from the session convo
   function getData() {
     console.log(quizData);
@@ -252,8 +244,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
             const requestData = computeResultData(jsonData);
             
             if (user !== null) {
-              requestData.userId = user.userId;
-              saveDetailedQuizData(requestData, user.userId).then((res : AxiosResponse<DetailedQuiz>) => {
+              requestData.user = user;
+              saveDetailedQuizData(requestData, user).then((res : AxiosResponse<DetailedQuiz>) => {
                 console.log("Data saved!!!!")
                 console.log(JSON.stringify(res.data, null, 2))
               }) 
@@ -307,7 +299,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               </button>
 
             <button
-              onClick = {getData}
+              onClick = {() => getData()}
               disabled={!initalized}
             >
               End Session

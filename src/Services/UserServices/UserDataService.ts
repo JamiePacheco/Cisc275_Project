@@ -20,11 +20,11 @@ export function createUserQuizData(user : User) {
 
 //method for saving detailed quiz session data to be shown in other views
 //when backend is developed api call to RESTful app should be here
-export async function saveDetailedQuizData(quizData : DetailedQuiz, userId : number) : Promise<AxiosResponse<DetailedQuiz>> {
+export async function saveDetailedQuizData(quizData : DetailedQuiz, user : User) : Promise<AxiosResponse<DetailedQuiz>> {
     
     const response = await axios.post(`${BASE_USER_DATA_URL}/save-quiz-data`, quizData, {
         params : {
-            userId
+            "userId" : Number(user.id)
         }
     })
 

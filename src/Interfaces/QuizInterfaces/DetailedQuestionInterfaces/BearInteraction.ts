@@ -4,4 +4,5 @@ import { UserResponse } from "./UserResponse";
 export interface BearInteraction {
     careerBearPrompt : BearPrompt;
     userResponse : UserResponse;
+    position: number;
 }

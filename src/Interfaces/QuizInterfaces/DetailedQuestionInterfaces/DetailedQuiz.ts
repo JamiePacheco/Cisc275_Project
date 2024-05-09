@@ -5,7 +5,8 @@ import { BearInteraction } from "./BearInteraction";
 export interface DetailedQuiz {
     id? : number;
     dateTaken : string;
+    bearClicked : number
     interactions : BearInteraction[];
     results? : QuizResults;
-    userId? : number;
+    user? : User;
 } 
