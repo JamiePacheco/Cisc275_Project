@@ -1,10 +1,11 @@
+import axios, { AxiosResponse } from "axios";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { User } from "../../Interfaces/User/User";
 import { UserQuizData } from "../../Interfaces/User/UserQuizData";
 
-export function CreateNewUserInstance() {
 
-}
+const BASE_USER_DATA_URL = process.env.REACT_APP_LOCAL_API_KEY + "/quiz" 
+console.log(BASE_USER_DATA_URL);
 
 export function createUserQuizData(user : User) {
     const userQuizData : UserQuizData = {
@@ -19,13 +20,13 @@ export function createUserQuizData(user : User) {
 
 //method for saving detailed quiz session data to be shown in other views
 //when backend is developed api call to RESTful app should be here
-export function saveDetailedQuizData(quizData : DetailedQuiz) {
+export async function saveDetailedQuizData(quizData : DetailedQuiz, user : User) : Promise<AxiosResponse<DetailedQuiz>> {
     
-    const userQuizData = localStorage.getItem(`USER_DATA_`);
+    const response = await axios.post(`${BASE_USER_DATA_URL}/save-quiz-data`, quizData, {
+        params : {
+            "userId" : Number(user.id)
+        }
+    })
 
-    if (userQuizData === null) {
-
-    }
-
-
+    return response;
 }

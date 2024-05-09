@@ -11,8 +11,6 @@ import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponse
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     //TODO extract password input into own component perhaps???
-    //TODO create hyperlink to login page and vise versa
-    //TODO check if email is already in use
 
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
@@ -23,7 +21,6 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     const [emailMessage, setEmailMessage] = useState<string>("");
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const nav = useNavigate();
 
     function getAge() : number {
@@ -42,7 +39,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     function createUserObject() : User {
         const age = getAge();
         const newAccount : User = {
-            userId: 1,
+            //is only temporary, will get actual user Id from backend
+            id: -1,
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -55,10 +53,11 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
         return newAccount;
     }
  
-    async function createAccount(event : FormEvent<HTMLFormElement>) {
+    function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
+        console.log("Creating new account")
         if (!form.checkValidity()) {
-            
+            console.log("Form is invalid")
             setEmailMessage("Invalid Email")
 
             event.preventDefault();
@@ -66,12 +65,15 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
             setValidated(true)
             return;
         } else {
+            console.log("creating user account")
             const newAccount = createUserObject();
 
-            await createUser(newAccount).then((response : AxiosResponse<User> ) => {
+            createUser(newAccount).then((response : AxiosResponse<User> ) => {
+                console.log("parsing axios response")
                 const accountJSONString = JSON.stringify(response.data, null, 4);
+                console.log(accountJSONString);
                 sessionStorage.setItem("CURRENT_USER", accountJSONString);
-                setUser(newAccount);
+                setUser(response.data);
                 nav("/home")
         }).catch((e : AxiosError<ApiCallResponseError>) => {
                 if (axios.isAxiosError(e) && e.response && e.response.data) {
@@ -91,7 +93,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
                 <h1 className = "sign-up-page--form-header">Let's Make An Account! </h1>
                 <div className = "sign-up-page--form-container"> 
                     <div className = "form-container--content">
-                        <Form noValidate validated = {validated} onSubmit={createAccount}>
+                        <Form noValidate validated = {validated} onSubmit={(e) => createAccount(e)}>
                             <Container fluid>
                                 <Row className="form--row-padding">
                                     <Form.Label className = "form--label-heading"> Name </Form.Label>

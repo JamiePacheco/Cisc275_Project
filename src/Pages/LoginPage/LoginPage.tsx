@@ -33,7 +33,7 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
 
     //definitely should be a backend verification but...
     //THERE IS NOW A BACKEND!!!!!
-    async function signIn(event : FormEvent<HTMLFormElement>) {
+    function signIn(event : FormEvent<HTMLFormElement>) {
         let user : User | null = null;
         const form = event.currentTarget;
 
@@ -45,7 +45,8 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
             return;
         }
 
-        await authenticateUser(email, password).then((response) => {
+        authenticateUser(email, password).then((response) => {
+                console.log(JSON.stringify(response, null, 4))
                 user = response.data;
                 if (user !== null) {
                     sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));   
@@ -54,7 +55,8 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
                 }
         }).catch((e : AxiosError<ApiCallResponseError>) => {
             if (axios.isAxiosError(e) && e.response && e.response.data) {
-                //placeholder until I can deduce proper embeded type
+                //placeholder until I can deduce proper embeded type...
+                //Proper typing has been deduced :)
                 const message = e.response.data.message;
 
                 if (message.toLowerCase().includes("email")) {

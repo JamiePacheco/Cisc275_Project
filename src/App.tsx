@@ -57,6 +57,11 @@ function App() {
       }
     }, []);
 
+  //Just to double check if the user has a global account state that is active after signing/logging in
+  // useEffect(() => {
+  //   console.log(`Active, Signed In Account: ${JSON.stringify(user, null, 4)}`)
+  // }, [user])
+
   return (
     <HashRouter>
       <div 

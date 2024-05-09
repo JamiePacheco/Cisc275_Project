@@ -1,7 +1,7 @@
 //TODO finish implementing user interface properties
 
 export interface User {
-    userId: number;
+    id: number;
     firstName : string;
     lastName : string;
     age: number;
