@@ -49,113 +49,111 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
------------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-File                                                                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                                                    |       0 |        0 |       0 |       0 |                   
- src                                                                         |       0 |        0 |       0 |       0 |                   
-  App.tsx                                                                    |       0 |        0 |       0 |       0 | 19-60             
-  index.tsx                                                                  |       0 |      100 |     100 |       0 | 7-20              
-  reportWebVitals.ts                                                         |       0 |        0 |       0 |       0 | 3-10              
- src/Components/Footer                                                       |       0 |      100 |       0 |       0 |                   
-  AppFooter.tsx                                                              |       0 |      100 |       0 |       0 | 9                 
- src/Components/Header                                                       |       0 |        0 |       0 |       0 |                   
-  AppHeader.tsx                                                              |       0 |        0 |       0 |       0 | 11-42             
- src/Components/LoadingScreen                                                |       0 |      100 |       0 |       0 |                   
-  LoadingScreen.tsx                                                          |       0 |      100 |       0 |       0 | 9-36              
- src/Components/ProgressBar                                                  |       0 |      100 |       0 |       0 |                   
-  ProgressBar.tsx                                                            |       0 |      100 |       0 |       0 | 2                 
- src/Hooks                                                                   |       0 |        0 |       0 |       0 |                   
-  useTypeWriter.tsx                                                          |       0 |        0 |       0 |       0 | 5-24              
- src/Interfaces/BasicQuestionInterfaces                                      |       0 |        0 |       0 |       0 |                   
-  BasicQuizInterface.ts                                                      |       0 |        0 |       0 |       0 |                   
-  QuestionInterface.ts                                                       |       0 |        0 |       0 |       0 |                   
- src/Interfaces/QuizInterfaces/DetailedQuestionInterfaces                    |       0 |        0 |       0 |       0 |                   
-  BearInteraction.ts                                                         |       0 |        0 |       0 |       0 |                   
-  BearPrompt.ts                                                              |       0 |        0 |       0 |       0 |                   
-  DetailedQuiz.ts                                                            |       0 |        0 |       0 |       0 |                   
-  UserResponse.ts                                                            |       0 |        0 |       0 |       0 |                   
- src/Interfaces/Responses                                                    |       0 |        0 |       0 |       0 |                   
-  ApiCallResponseError.ts                                                    |       0 |        0 |       0 |       0 |                   
- src/Interfaces/Results                                                      |       0 |        0 |       0 |       0 |                   
-  CareerFieldSuggestion.ts                                                   |       0 |        0 |       0 |       0 |                   
-  CareerSuggestion.ts                                                        |       0 |        0 |       0 |       0 |                   
-  PersonalityTrait.ts                                                        |       0 |        0 |       0 |       0 |                   
-  QuizResults.ts                                                             |       0 |        0 |       0 |       0 |                   
- src/Interfaces/User                                                         |       0 |        0 |       0 |       0 |                   
-  User.ts                                                                    |       0 |        0 |       0 |       0 |                   
-  UserPersonalityData.ts                                                     |       0 |        0 |       0 |       0 |                   
-  UserQuizData.ts                                                            |       0 |        0 |       0 |       0 |                   
- src/Pages/BasicQuestionsPage                                                |       0 |      100 |       0 |       0 |                   
-  BasicQuestionData.ts                                                       |       0 |      100 |     100 |       0 | 1                 
-  BasicQuestionsPage.tsx                                                     |       0 |      100 |       0 |       0 | 11                
- src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader            |       0 |      100 |       0 |       0 |                   
-  BasicQuestionsPageHeader.tsx                                               |       0 |      100 |       0 |       0 | 5                 
- src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget               |       0 |        0 |       0 |       0 |                   
-  GeneralQuestionWidget.tsx                                                  |       0 |        0 |       0 |       0 | 15-63             
-  QuestionFunctions.ts                                                       |       0 |      100 |       0 |       0 | 5-113             
- src/Pages/BasicQuestionsPage/Components/ProgressBarWidget                   |       0 |      100 |       0 |       0 |                   
-  ProgressBarWidget.tsx                                                      |       0 |      100 |       0 |       0 | 4                 
- src/Pages/BasicQuestionsPage/Components/QuizInteraction                     |       0 |        0 |       0 |       0 |                   
-  QuestionIndexProp.ts                                                       |       0 |        0 |       0 |       0 |                   
-  QuizInteraction.tsx                                                        |       0 |        0 |       0 |       0 | 5-19              
- src/Pages/BasicQuestionsPage/Components/QuizInteraction/RevealAnswersButton |       0 |      100 |       0 |       0 |                   
-  RevealAnswersButton.tsx                                                    |       0 |      100 |       0 |       0 | 7-9               
- src/Pages/DetailedPage                                                      |       0 |        0 |       0 |       0 |                   
-  CareerBearPhrases.ts                                                       |       0 |      100 |     100 |       0 | 1                 
-  DetailedPage.tsx                                                           |       0 |        0 |       0 |       0 | 18-307            
-  DetailedPageProps.ts                                                       |       0 |        0 |       0 |       0 |                   
- src/Pages/DetailedPage/Components                                           |       0 |      100 |       0 |       0 |                   
-  DetailedPage-interface.ts                                                  |       0 |      100 |       0 |       0 | 13-16             
-  QuestionAnswerComponent.tsx                                                |       0 |      100 |       0 |       0 | 8                 
- src/Pages/DetailedPage/Components/CareerBearModel                           |       0 |      100 |       0 |       0 |                   
-  CareerBearModel.tsx                                                        |       0 |      100 |       0 |       0 | 10-27             
-  CareerBearModelProps.ts                                                    |       0 |        0 |       0 |       0 |                   
- src/Pages/DetailedPage/Components/CareerBearPrompt                          |       0 |        0 |       0 |       0 |                   
-  CareerBearPrompt.tsx                                                       |       0 |        0 |       0 |       0 | 12-20             
-  CareerBearPromptProps.ts                                                   |       0 |        0 |       0 |       0 |                   
- src/Pages/HomePage                                                          |       0 |        0 |       0 |       0 |                   
-  HomePage.tsx                                                               |       0 |        0 |       0 |       0 | 18-28             
- src/Pages/HomePage/Components/HomePageApiKeyWidget                          |       0 |        0 |       0 |       0 |                   
-  HomePageApiKeyWidget.tsx                                                   |       0 |        0 |       0 |       0 | 9-91              
-  HomePageApiKeyWidgetProps.ts                                               |       0 |        0 |       0 |       0 |                   
- src/Pages/HomePage/Components/HomePageHeader                                |       0 |        0 |       0 |       0 |                   
-  HomePageHeader.tsx                                                         |       0 |        0 |       0 |       0 | 10-21             
-  HomePageProps.ts                                                           |       0 |        0 |       0 |       0 |                   
- src/Pages/HomePage/Components/HomePageQuizSelectionWidget                   |       0 |      100 |       0 |       0 |                   
-  HomePageQuizSelectionWidget.tsx                                            |       0 |      100 |       0 |       0 | 7-21              
- src/Pages/HomePage/Components/HomePageSignUpWidget                          |       0 |      100 |       0 |       0 |                   
-  HomePageSignUpWidget.tsx                                                   |       0 |      100 |       0 |       0 | 6-18              
- src/Pages/LoginPage                                                         |       0 |        0 |       0 |       0 |                   
-  LoginPage.tsx                                                              |       0 |        0 |       0 |       0 | 12-118            
-  LoginPageProps.ts                                                          |       0 |        0 |       0 |       0 |                   
- src/Pages/MembersPage                                                       |       0 |      100 |       0 |       0 |                   
-  MembersPage.tsx                                                            |       0 |      100 |       0 |       0 | 8-29              
- src/Pages/ReportsPage                                                       |       0 |      100 |       0 |       0 |                   
-  ReportsPage.tsx                                                            |       0 |      100 |       0 |       0 | 8                 
- src/Pages/ReportsPage/Components/Folder-Background                          |       0 |      100 |       0 |       0 |                   
-  FolderBackground.tsx                                                       |       0 |      100 |       0 |       0 | 5                 
- src/Pages/ReportsPage/Components/ReportsHeader                              |       0 |      100 |       0 |       0 |                   
-  ReportsHeader.tsx                                                          |       0 |      100 |       0 |       0 | 7                 
- src/Pages/ReportsPage/TestingData                                           |       0 |      100 |     100 |       0 |                   
-  TestingData.ts                                                             |       0 |      100 |     100 |       0 | 6-176             
- src/Pages/SignUpPage                                                        |       0 |        0 |       0 |       0 |                   
-  SignUpPage.tsx                                                             |       0 |        0 |       0 |       0 | 17-195            
-  SignUpPageProps.ts                                                         |       0 |        0 |       0 |       0 |                   
- src/Pages/UserPage                                                          |       0 |      100 |       0 |       0 |                   
-  UserPage.tsx                                                               |       0 |      100 |       0 |       0 | 7-19              
-  UserPageProps.ts                                                           |       0 |        0 |       0 |       0 |                   
- src/Services                                                                |       0 |      100 |       0 |       0 |                   
-  UserResponse.ts                                                            |       0 |      100 |       0 |       0 | 2                 
- src/Services/DetailedQuiz                                                   |       0 |        0 |       0 |       0 |                   
-  CareerBear.ts                                                              |       0 |        0 |       0 |       0 | 9-264             
-  CareerBearQuestionFrames.ts                                                |       0 |      100 |     100 |       0 | 1                 
- src/Services/UserServices                                                   |       0 |        0 |       0 |       0 |                   
-  UserCredentialService.ts                                                   |       0 |      100 |       0 |       0 | 5-23              
-  UserDataService.ts                                                         |       0 |        0 |       0 |       0 | 10-26             
------------------------------------------------------------------------------|---------|----------|---------|---------|-------------------
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
+File                                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
+All files                                                         |       0 |        0 |       0 |       0 |                   
+ src                                                              |       0 |        0 |       0 |       0 |                   
+  App.tsx                                                         |       0 |        0 |       0 |       0 | 19-65             
+  index.tsx                                                       |       0 |      100 |     100 |       0 | 7-20              
+  reportWebVitals.ts                                              |       0 |        0 |       0 |       0 | 3-10              
+ src/Components/Footer                                            |       0 |      100 |       0 |       0 |                   
+  AppFooter.tsx                                                   |       0 |      100 |       0 |       0 | 9                 
+ src/Components/Header                                            |       0 |        0 |       0 |       0 |                   
+  AppHeader.tsx                                                   |       0 |        0 |       0 |       0 | 11-42             
+ src/Components/LoadingScreen                                     |       0 |      100 |       0 |       0 |                   
+  LoadingScreen.tsx                                               |       0 |      100 |       0 |       0 | 9-36              
+ src/Components/ProgressBar                                       |       0 |      100 |       0 |       0 |                   
+  ProgressBar.tsx                                                 |       0 |      100 |       0 |       0 | 2                 
+ src/Hooks                                                        |       0 |        0 |       0 |       0 |                   
+  useTypeWriter.tsx                                               |       0 |        0 |       0 |       0 | 5-24              
+ src/Interfaces/BasicQuestionInterfaces                           |       0 |        0 |       0 |       0 |                   
+  BasicQuizInterface.ts                                           |       0 |        0 |       0 |       0 |                   
+  QuestionInterface.ts                                            |       0 |        0 |       0 |       0 |                   
+ src/Interfaces/QuizInterfaces/DetailedQuestionInterfaces         |       0 |        0 |       0 |       0 |                   
+  BearInteraction.ts                                              |       0 |        0 |       0 |       0 |                   
+  BearPrompt.ts                                                   |       0 |        0 |       0 |       0 |                   
+  DetailedQuiz.ts                                                 |       0 |        0 |       0 |       0 |                   
+  UserResponse.ts                                                 |       0 |        0 |       0 |       0 |                   
+ src/Interfaces/Responses                                         |       0 |        0 |       0 |       0 |                   
+  ApiCallResponseError.ts                                         |       0 |        0 |       0 |       0 |                   
+ src/Interfaces/Results                                           |       0 |        0 |       0 |       0 |                   
+  CareerFieldSuggestion.ts                                        |       0 |        0 |       0 |       0 |                   
+  CareerSuggestion.ts                                             |       0 |        0 |       0 |       0 |                   
+  PersonalityTrait.ts                                             |       0 |        0 |       0 |       0 |                   
+  QuizResults.ts                                                  |       0 |        0 |       0 |       0 |                   
+ src/Interfaces/User                                              |       0 |        0 |       0 |       0 |                   
+  User.ts                                                         |       0 |        0 |       0 |       0 |                   
+  UserPersonalityData.ts                                          |       0 |        0 |       0 |       0 |                   
+  UserQuizData.ts                                                 |       0 |        0 |       0 |       0 |                   
+ src/Pages/BasicQuestionsPage                                     |       0 |        0 |       0 |       0 |                   
+  BasicQuestionData.ts                                            |       0 |      100 |     100 |       0 | 1                 
+  BasicQuestionsPage.tsx                                          |       0 |        0 |       0 |       0 | 9-19              
+ src/Pages/BasicQuestionsPage/Components/BasicQuestionsPageHeader |       0 |      100 |       0 |       0 |                   
+  BasicQuestionsPageHeader.tsx                                    |       0 |      100 |       0 |       0 | 5                 
+ src/Pages/BasicQuestionsPage/Components/GeneralQuestionWidget    |       0 |        0 |       0 |       0 |                   
+  GeneralQuestionWidget.tsx                                       |       0 |        0 |       0 |       0 | 18-62             
+  QuestionFunctions.ts                                            |       0 |      100 |       0 |       0 | 5-116             
+ src/Pages/BasicQuestionsPage/Components/QuizInteraction          |       0 |        0 |       0 |       0 |                   
+  QuestionIndexProp.ts                                            |       0 |        0 |       0 |       0 |                   
+  QuizInteraction.tsx                                             |       0 |        0 |       0 |       0 | 5-24              
+ src/Pages/BasicQuestionsPage/ReviewAnswersWidget                 |       0 |      100 |       0 |       0 |                   
+  ReviewAnswersWidget.tsx                                         |       0 |      100 |       0 |       0 | 13-34             
+ src/Pages/DetailedPage                                           |       0 |        0 |       0 |       0 |                   
+  CareerBearPhrases.ts                                            |       0 |      100 |     100 |       0 | 1                 
+  DetailedPage.tsx                                                |       0 |        0 |       0 |       0 | 20-325            
+  DetailedPageProps.ts                                            |       0 |        0 |       0 |       0 |                   
+ src/Pages/DetailedPage/Components                                |       0 |      100 |       0 |       0 |                   
+  DetailedPage-interface.ts                                       |       0 |      100 |       0 |       0 | 13-16             
+  QuestionAnswerComponent.tsx                                     |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/DetailedPage/Components/CareerBearModel                |       0 |      100 |       0 |       0 |                   
+  CareerBearModel.tsx                                             |       0 |      100 |       0 |       0 | 11-29             
+  CareerBearModelProps.ts                                         |       0 |        0 |       0 |       0 |                   
+ src/Pages/DetailedPage/Components/CareerBearPrompt               |       0 |        0 |       0 |       0 |                   
+  CareerBearPrompt.tsx                                            |       0 |        0 |       0 |       0 | 12-20             
+  CareerBearPromptProps.ts                                        |       0 |        0 |       0 |       0 |                   
+ src/Pages/HomePage                                               |       0 |        0 |       0 |       0 |                   
+  HomePage.tsx                                                    |       0 |        0 |       0 |       0 | 18-28             
+ src/Pages/HomePage/Components/HomePageApiKeyWidget               |       0 |        0 |       0 |       0 |                   
+  HomePageApiKeyWidget.tsx                                        |       0 |        0 |       0 |       0 | 9-91              
+  HomePageApiKeyWidgetProps.ts                                    |       0 |        0 |       0 |       0 |                   
+ src/Pages/HomePage/Components/HomePageHeader                     |       0 |        0 |       0 |       0 |                   
+  HomePageHeader.tsx                                              |       0 |        0 |       0 |       0 | 10-21             
+  HomePageProps.ts                                                |       0 |        0 |       0 |       0 |                   
+ src/Pages/HomePage/Components/HomePageQuizSelectionWidget        |       0 |      100 |       0 |       0 |                   
+  HomePageQuizSelectionWidget.tsx                                 |       0 |      100 |       0 |       0 | 7-21              
+ src/Pages/HomePage/Components/HomePageSignUpWidget               |       0 |      100 |       0 |       0 |                   
+  HomePageSignUpWidget.tsx                                        |       0 |      100 |       0 |       0 | 6-18              
+ src/Pages/LoginPage                                              |       0 |        0 |       0 |       0 |                   
+  LoginPage.tsx                                                   |       0 |        0 |       0 |       0 | 12-120            
+  LoginPageProps.ts                                               |       0 |        0 |       0 |       0 |                   
+ src/Pages/MembersPage                                            |       0 |      100 |       0 |       0 |                   
+  MembersPage.tsx                                                 |       0 |      100 |       0 |       0 | 8-29              
+ src/Pages/ReportsPage                                            |       0 |      100 |       0 |       0 |                   
+  ReportsPage.tsx                                                 |       0 |      100 |       0 |       0 | 8                 
+ src/Pages/ReportsPage/Components/Folder-Background               |       0 |      100 |       0 |       0 |                   
+  FolderBackground.tsx                                            |       0 |      100 |       0 |       0 | 5                 
+ src/Pages/ReportsPage/Components/ReportsHeader                   |       0 |      100 |       0 |       0 |                   
+  ReportsHeader.tsx                                               |       0 |      100 |       0 |       0 | 7                 
+ src/Pages/ReportsPage/TestingData                                |       0 |      100 |     100 |       0 |                   
+  TestingData.ts                                                  |       0 |      100 |     100 |       0 | 6-92              
+ src/Pages/SignUpPage                                             |       0 |        0 |       0 |       0 |                   
+  SignUpPage.tsx                                                  |       0 |        0 |       0 |       0 | 15-197            
+  SignUpPageProps.ts                                              |       0 |        0 |       0 |       0 |                   
+ src/Pages/UserPage                                               |       0 |      100 |       0 |       0 |                   
+  UserPage.tsx                                                    |       0 |      100 |       0 |       0 | 7-19              
+  UserPageProps.ts                                                |       0 |        0 |       0 |       0 |                   
+ src/Services                                                     |       0 |      100 |       0 |       0 |                   
+  UserResponse.ts                                                 |       0 |      100 |       0 |       0 | 2                 
+ src/Services/DetailedQuiz                                        |       0 |        0 |       0 |       0 |                   
+  CareerBear.ts                                                   |       0 |        0 |       0 |       0 | 9-268             
+  CareerBearQuestionFrames.ts                                     |       0 |      100 |     100 |       0 | 1                 
+ src/Services/UserServices                                        |       0 |      100 |       0 |       0 |                   
+  UserCredentialService.ts                                        |       0 |      100 |       0 |       0 | 5-23              
+  UserDataService.ts                                              |       0 |      100 |       0 |       0 | 7-31              
+------------------------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.402 s
+Time:        4.277 s
 Ran all test suites.
