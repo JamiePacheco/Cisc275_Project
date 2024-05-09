@@ -1,14 +1,19 @@
 import React, { FormEvent, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 import { LoginPageProps } from "./LoginPageProps";
+import { authenticateUser } from "../../Services/UserServices/UserCredentialService";
+import axios, { AxiosError } from "axios";
+import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
 
+    //will use this but until then...
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [emailMessage, setEmailMessage] = useState<string>("")
     const [passwordMessage, setPasswordMessage] = useState<string>("")
 
@@ -16,54 +21,56 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
 
     const nav = useNavigate();
 
-    //definitely should be a backend verification but...
-    function validateLogin() : User | null{
-        const accountJSONString = localStorage.getItem("USER_ACCOUNT")
-        if (accountJSONString != null) {
-
-            const userAccount : User  = JSON.parse(accountJSONString);
-
-            if (userAccount.email === email && userAccount.password === password) {
-                sessionStorage.setItem("CURRENT_USER", accountJSONString);
-                return userAccount;
-            } else {
-                setMessages(userAccount);
-            }
-        }
-        return null;
-    }
-
-    //if time permits should have message be based on POST request error code from authentication API
-    //but until then...
-    function setMessages(userCredentials : User) {
+    function setErrorMessages() {
         if (email === "") {
             setEmailMessage("Email is required");
-        } else if (email !== userCredentials.email) {
-            setEmailMessage("Not Valid Email");
-            setPasswordMessage("invalid password");
-            return;
         }
 
         if (password === "") {
-            setPasswordMessage("Password required");
-        } else if (password !== userCredentials.password) {
-            setPasswordMessage("invalid password")
+            setPasswordMessage("Password is required")
         }
     }
 
-
+    //definitely should be a backend verification but...
+    //THERE IS NOW A BACKEND!!!!!
     function signIn(event : FormEvent<HTMLFormElement>) {
+        let user : User | null = null;
         const form = event.currentTarget;
-        const user = validateLogin();
-        if (user === null || !form.checkValidity()) {
+
+        if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
+            setErrorMessages();
             return;
-        } else {          
-            setUser(user); 
-            nav("/home");
-        }   
+        }
+
+        authenticateUser(email, password).then((response) => {
+                console.log(JSON.stringify(response, null, 4))
+                user = response.data;
+                if (user !== null) {
+                    sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));   
+                    setUser(user); 
+                    nav("/home"); 
+                }
+        }).catch((e : AxiosError<ApiCallResponseError>) => {
+            if (axios.isAxiosError(e) && e.response && e.response.data) {
+                //placeholder until I can deduce proper embeded type...
+                //Proper typing has been deduced :)
+                const message = e.response.data.message;
+
+                if (message.toLowerCase().includes("email")) {
+                    setEmailMessage(message);
+                    setPasswordMessage("");
+                } 
+                if (message.toLowerCase().includes("password")) {
+                    setPasswordMessage(message);
+                    setEmailMessage("");
+                }
+
+
+            }
+        })
     }
 
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useMemo, useState } from "react";
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 
 import lightLogo from "../../assets/logos/career-bear-logo-1-light.png"
 

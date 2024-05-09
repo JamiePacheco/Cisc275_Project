@@ -1,7 +1,7 @@
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 
-export function generateQuestions(a: number): Question {
+export function generateQuestions(a: number, questionNumber: number): Question {
   const uniqueNames = [
     "What aspect of work excites you the most?",
     "When you envision your future career– where are you?",
@@ -66,26 +66,56 @@ export function generateQuestions(a: number): Question {
     ],
   ];
   return {
-    name: uniqueNames[a - 1],
-    questionNumber: a,
-    options: uniqueQuestions[a - 1],
-    answer: "",
+    name: uniqueNames[a],
+    questionNumber: questionNumber, 
+    options: uniqueQuestions[a],
+    answer: ""
   };
 }
 
+// export function shuffleQuestions(array: Question[]): Question[] {
+//   let n: number = array.length - 1;
+//   const currentArray: Question[] = array.map((question: Question) => ({
+//     ...question,
+//     options: [...question.options],
+//   }));
+//   let j: number;
+//   while (n > 0) {
+//     j = Math.random() * (n + 1);
+//     currentArray.splice(n, 1, ...currentArray.splice(j, 1, currentArray[n]));
+//     n = n - 1;
+//   }
+//   return currentArray;
+// }
+
+export function shuffleNumbers(array: number[]): number[] {
+  let n: number = array.length - 1;
+  const currentArray:number[] = [...array];
+  let j: number;
+  while (n > 0) {
+    j = Math.random() * (n + 1);
+    currentArray.splice(n, 1, ...currentArray.splice(j, 1, currentArray[n]));
+    n = n - 1;
+  }
+  return currentArray;
+}
+
+
+export function range(len:number){
+  return Array.from(Array(len).keys());
+}
 
 export function quizObjects(): BasicQuiz {
+  const totalQuestions = 8;
+  const questions: Question[] = range(totalQuestions).map(index => generateQuestions(index, index + 1));
+  const shuffledIndices = shuffleNumbers(range(totalQuestions));
+  const shuffledQuestions = shuffledIndices.map((shuffledIndex, index) => ({
+    ...questions[shuffledIndex],
+    questionNumber: index + 1  
+  }));
   return {
-    questionList: [
-      generateQuestions(1),
-      generateQuestions(2),
-      generateQuestions(3),
-      generateQuestions(4),
-      generateQuestions(5),
-      generateQuestions(6),
-      generateQuestions(7),
-      generateQuestions(8),
-    ],
+    questionList: shuffledQuestions,
     numAnswered: 0,
+    displayOrder: shuffledIndices
   };
 }

@@ -1,4 +1,4 @@
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 
 export interface DetailedPageProps {
     user: User | null;

@@ -1,15 +1,16 @@
 import {Col, Container, Form, Row} from "react-bootstrap"
 import "./SignUpPage.css"
 import { FormEvent, useState } from "react";
-import { User } from "../../Interfaces/User";
+import { User } from "../../Interfaces/User/User";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
+import { createUser } from "../../Services/UserServices/UserCredentialService";
+import axios, {AxiosError, AxiosResponse } from "axios";
+import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
 
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     //TODO extract password input into own component perhaps???
-    //TODO create hyperlink to login page and vise versa
-    //TODO check if email is already in use
 
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
@@ -17,6 +18,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     const [birthday, setBirthday] = useState<string>("");
     const [validated, setValidated] = useState(false);
     const [password, setPassword] = useState("");
+
+    const [emailMessage, setEmailMessage] = useState<string>("");
 
     const nav = useNavigate();
 
@@ -36,7 +39,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     function createUserObject() : User {
         const age = getAge();
         const newAccount : User = {
-            userId: 1,
+            //is only temporary, will get actual user Id from backend
+            id: -1,
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -51,18 +55,35 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
  
     function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
+        console.log("Creating new account")
         if (!form.checkValidity()) {
+            console.log("Form is invalid")
+            setEmailMessage("Invalid Email")
+
             event.preventDefault();
             event.stopPropagation();
             setValidated(true)
             return;
         } else {
+            console.log("creating user account")
             const newAccount = createUserObject();
-            const accountJSONString = JSON.stringify(newAccount);
-            localStorage.setItem("USER_ACCOUNT", accountJSONString);
-            sessionStorage.setItem("CURRENT_USER", accountJSONString);
-            setUser(newAccount);
-            nav("/home");
+
+            createUser(newAccount).then((response : AxiosResponse<User> ) => {
+                console.log("parsing axios response")
+                const accountJSONString = JSON.stringify(response.data, null, 4);
+                console.log(accountJSONString);
+                sessionStorage.setItem("CURRENT_USER", accountJSONString);
+                setUser(response.data);
+                nav("/home")
+        }).catch((e : AxiosError<ApiCallResponseError>) => {
+                if (axios.isAxiosError(e) && e.response && e.response.data) {
+                    const message = e.response?.data.message;
+
+                    if (message.includes("email")) {
+                        setEmailMessage(message);
+                    }
+                }
+            })
         }   
     }
 
@@ -72,7 +93,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
                 <h1 className = "sign-up-page--form-header">Let's Make An Account! </h1>
                 <div className = "sign-up-page--form-container"> 
                     <div className = "form-container--content">
-                        <Form noValidate validated = {validated} onSubmit={createAccount}>
+                        <Form noValidate validated = {validated} onSubmit={(e) => createAccount(e)}>
                             <Container fluid>
                                 <Row className="form--row-padding">
                                     <Form.Label className = "form--label-heading"> Name </Form.Label>
@@ -130,10 +151,11 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
                                                 console.log(e)
                                             }}
                                             pattern="[A-Za-z0-9.]+@[a-zA-Z]+[.]+[a-zA-Z]+"
+                                            isInvalid = {emailMessage !== ""}
                                             >
                                             </Form.Control>
                                             <Form.Control.Feedback type = "invalid">
-                                                Email Required
+                                                {emailMessage}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>

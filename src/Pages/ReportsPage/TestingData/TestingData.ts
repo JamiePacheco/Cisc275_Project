@@ -1,13 +1,14 @@
-import { DetailedPeerCertificate } from "tls"
-import { QuizResults } from "../../../Interfaces/Results/QuizResults"
 import { DetailedQuiz } from "../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 
 //data to be used for testing of reports/user storage services/users page
 
 //JSON.parse(DataSetOne) will turn this into an object
 export const DataSetOne : DetailedQuiz = {
+    "bearClicked" : 10,
+    "dateTaken" : new Date().toISOString(),
     "interactions": [
       {
+        "position" : 1,
         "careerBearPrompt": {
           "prompt": "Hello Jamie! I'm Career Bear, and I'm here to help you paw-sibly find the best fit for your career path. Let's get started! To get to know you a little bear-ter, could you tell me about some of your hobbies or activities you enjoy? 🐻"
         },
@@ -16,6 +17,7 @@ export const DataSetOne : DetailedQuiz = {
         }
       },
       {
+        "position" : 2,
         "careerBearPrompt": {
           "prompt": "That's wonderful! Reading can open up so many worlds. What types of books do you usually enjoy reading?"
         },
@@ -24,6 +26,7 @@ export const DataSetOne : DetailedQuiz = {
         }
       },
       {
+        "position" : 3,
         "careerBearPrompt": {
           "prompt": "That's paw-some! Philosophy can open up new ways of thinking about the world. What's the last philosophy book you read, and what did you find most intriguing about it?"
         },
@@ -32,6 +35,7 @@ export const DataSetOne : DetailedQuiz = {
         }
       },
       {
+        "position" : 4,
         "careerBearPrompt": {
           "prompt": "It's wonderful to hear you enjoyed Kant's writings—his ideas really make us think deeply about our understanding of the world and morality. Speaking of deep thoughts, if you were a philosopher, what philosophical question would you ponder the most? Maybe something like, \"What if teddy bears ruled the world?\" 🐻 Let's have some fun thinking about it!"
         },
@@ -86,8 +90,11 @@ export const DataSetOne : DetailedQuiz = {
 }
 
 export const DataSetTwo : DetailedQuiz = {
+  "bearClicked" : 10,
+  "dateTaken" : new Date().toISOString(),
   "interactions": [
       {
+        "position" : 1,
           "careerBearPrompt": {
               "prompt": "Hello Jamie! I’m Career Bear, here to help you paw through the possibilities 🐾 of your future career. To get started, could you tell me what hobbies or activities you enjoy in your spare time?"
           },
@@ -96,6 +103,7 @@ export const DataSetTwo : DetailedQuiz = {
           }
       },
       {
+        "position" : 2,
           "careerBearPrompt": {
               "prompt": "That's pawsome! Coding is a great skill to have. What programming languages do you enjoy using, or are you looking to learn any new ones soon? 🐻💻"
           },
@@ -104,6 +112,7 @@ export const DataSetTwo : DetailedQuiz = {
           }
       },
       {
+        "position" : 3,
           "careerBearPrompt": {
               "prompt": "That's pawsome! Java and TypeScript are great languages, and diving into C++ will definitely help broaden your programming skills. C++ is known for its performance and control over system resources, making it ideal for software that requires high performance like games, real-time systems, and applications that need direct interaction with hardware.\n\nGiven that you like both Java and TypeScript, you might appreciate the object-oriented features of C++, as well as the power it gives you to manage memory manually. Just a heads-up, C++ can be a bit more complex due to its features like pointers and manual memory management, but don't worry! Once you get the hang of it, you'll be clawing through the code like a pro!\n\nIf you're ready to start, I'd suggest beginning with the basics of syntax and gradually moving to more advanced topics like data structures, pointers, and object-oriented programming in C++. It's also a good idea to implement some small projects or contribute to open source to get practical experience.\n\nNow, for a little fun—would you rather write a program that helps track salmon migrations or one that calculates the optimal amount of honey a bear needs per day? 🐻"
           },
@@ -112,6 +121,7 @@ export const DataSetTwo : DetailedQuiz = {
           }
       },
       {
+        "position" : 4,
           "careerBearPrompt": {
               "prompt": "That sounds like a fin-tastic idea! Tracking salmon migrations could indeed provide valuable data for conservation efforts and fisheries management. What sparked your interest in salmon migrations?"
           },
@@ -120,6 +130,7 @@ export const DataSetTwo : DetailedQuiz = {
           }
       },
       {
+        "position" : 5,
           "careerBearPrompt": {
               "prompt": "Oh, I think there might have been a little mix-up in our conversation, but no worries! Since I'm here to help you uncover your career path, let's talk about your interests. Would you rather explore a career that involves working outdoors or one that focuses on indoor activities? 🌲 vs. 🏢 What suits your fur-tastic style more?"
           },
@@ -173,82 +184,83 @@ export const DataSetTwo : DetailedQuiz = {
   }
 }
 
-const DataSetThree : DetailedQuiz = {
-  "interactions": [
-      {
-          "careerBearPrompt": {
-              "prompt": "Hello there! I'm Career Bear, your friendly career guide with a passion for helping you find the perfect job. Let's start off with a simple question: What's your name? 🐻"
-          },
-          "userResponse": {
-              "response": "Jamie"
-          }
-      },
-      {
-          "careerBearPrompt": {
-              "prompt": "Hello Jamie! It's great to meet you. Let's kick off our adventure with a fun question: If you could have any superpower while at work, would you rather have the ability to fly or be invisible? 🦸‍♂️🐾"
-          },
-          "userResponse": {
-              "response": "fly cause I could then avoid 5 o clock traffic"
-          }
-      },
-      {
-          "careerBearPrompt": {
-              "prompt": "That's a pawsitively great choice, Jamie! Flying would definitely be a bear-rilliant way to beat the traffic and get to meetings on time, especially in big cities. Speaking of cities, if you could work in any city in the world, which one would be your top pick and why? 🌍✈️"
-          },
-          "userResponse": {
-              "response": "tokyo because the culture, city, and overall aesthetic is very nice"
-          }
-      },
-      {
-          "careerBearPrompt": {
-              "prompt": "Tokyo does have a fascinating blend of traditional and modern influences, making it a vibrant place to explore, both culturally and aesthetically. Are you thinking about visiting Tokyo, or is there something specific about the city's culture or aesthetics that you find particularly inspiring or relevant to your interests or career goals? 🌆🍣"
-          },
-          "userResponse": {
-              "response": "I find the way they implement technology in their daily lives and within the city to be really fascinating "
-          }
-      }
-  ],
-  "results": {
-      "personalityTraits": [
-          {
-              "trait": "Innovative",
-              "traitDescription": "Being able to find creative and effective solutions or ideas that are not usually obvious.",
-              "traitLogic": "Jamie's fascination with Tokyo's integration of technology in daily life suggests a keen interest in innovative practices and modern solutions."
-          },
-          {
-              "trait": "Adventurous",
-              "traitDescription": "Eager to try new things and embrace new experiences.",
-              "traitLogic": "Choosing Tokyo, a city known for its vibrant blend of traditional and modern elements, indicates a desire to explore and experience diverse environments."
-          },
-          {
-              "trait": "Problem Solver",
-              "traitDescription": "Ability to identify, assess, and solve problems quickly and effectively.",
-              "traitLogic": "Preferring to fly to avoid traffic demonstrates a practical approach to solving issues related to inefficiency and time management."
-          },
-          {
-              "trait": "Tech-Savvy",
-              "traitDescription": "Highly skilled or knowledgeable in the use of technology.",
-              "traitLogic": "Jamie's appreciation for technological integration into city life suggests a strong competency and interest in technological advancements."
-          },
-          {
-              "trait": "Culturally Aware",
-              "traitDescription": "Having an understanding and appreciation of different cultures and practices.",
-              "traitLogic": "The choice of Tokyo due to its cultural and aesthetic qualities highlights a sensitivity and openness to diverse cultural experiences."
-          }
-      ],
-      "careerSuggestions": [
-          {
-              "career": "Urban Planner",
-              "careerDescription": "Urban planners develop plans and programs for the use of land to create communities, accommodate growth, and revitalize physical facilities in towns, cities, counties, and metropolitan areas. They often need a good understanding of both modern and traditional influences, particularly in city aesthetics and infrastructure."
-          },
-          {
-              "career": "Technology Consultant",
-              "careerDescription": "Technology consultants help businesses implement technology solutions in a cost-effective way by determining the requirements of a project or program, and communicating them clearly to stakeholders, facilitators and partners. They stay abreast of technological developments and how they can be utilized to improve business efficiency and productivity."
-          },
-          {
-              "career": "Cultural Liaison",
-              "careerDescription": "Cultural liaisons work to build bridges between different cultures, often within an international business or diplomatic context. This job requires a deep understanding of different cultures, and the ability to effectively communicate and negotiate across cultural boundaries, often enhancing cooperation in multicultural settings."
-          }
-      ]
-  }
-}
+// const DataSetThree : DetailedQuiz = {
+//   "dateTaken" : new Date().toISOString(),
+//   "interactions": [
+//       {
+//           "careerBearPrompt": {
+//               "prompt": "Hello there! I'm Career Bear, your friendly career guide with a passion for helping you find the perfect job. Let's start off with a simple question: What's your name? 🐻"
+//           },
+//           "userResponse": {
+//               "response": "Jamie"
+//           }
+//       },
+//       {
+//           "careerBearPrompt": {
+//               "prompt": "Hello Jamie! It's great to meet you. Let's kick off our adventure with a fun question: If you could have any superpower while at work, would you rather have the ability to fly or be invisible? 🦸‍♂️🐾"
+//           },
+//           "userResponse": {
+//               "response": "fly cause I could then avoid 5 o clock traffic"
+//           }
+//       },
+//       {
+//           "careerBearPrompt": {
+//               "prompt": "That's a pawsitively great choice, Jamie! Flying would definitely be a bear-rilliant way to beat the traffic and get to meetings on time, especially in big cities. Speaking of cities, if you could work in any city in the world, which one would be your top pick and why? 🌍✈️"
+//           },
+//           "userResponse": {
+//               "response": "tokyo because the culture, city, and overall aesthetic is very nice"
+//           }
+//       },
+//       {
+//           "careerBearPrompt": {
+//               "prompt": "Tokyo does have a fascinating blend of traditional and modern influences, making it a vibrant place to explore, both culturally and aesthetically. Are you thinking about visiting Tokyo, or is there something specific about the city's culture or aesthetics that you find particularly inspiring or relevant to your interests or career goals? 🌆🍣"
+//           },
+//           "userResponse": {
+//               "response": "I find the way they implement technology in their daily lives and within the city to be really fascinating "
+//           }
+//       }
+//   ],
+//   "results": {
+//       "personalityTraits": [
+//           {
+//               "trait": "Innovative",
+//               "traitDescription": "Being able to find creative and effective solutions or ideas that are not usually obvious.",
+//               "traitLogic": "Jamie's fascination with Tokyo's integration of technology in daily life suggests a keen interest in innovative practices and modern solutions."
+//           },
+//           {
+//               "trait": "Adventurous",
+//               "traitDescription": "Eager to try new things and embrace new experiences.",
+//               "traitLogic": "Choosing Tokyo, a city known for its vibrant blend of traditional and modern elements, indicates a desire to explore and experience diverse environments."
+//           },
+//           {
+//               "trait": "Problem Solver",
+//               "traitDescription": "Ability to identify, assess, and solve problems quickly and effectively.",
+//               "traitLogic": "Preferring to fly to avoid traffic demonstrates a practical approach to solving issues related to inefficiency and time management."
+//           },
+//           {
+//               "trait": "Tech-Savvy",
+//               "traitDescription": "Highly skilled or knowledgeable in the use of technology.",
+//               "traitLogic": "Jamie's appreciation for technological integration into city life suggests a strong competency and interest in technological advancements."
+//           },
+//           {
+//               "trait": "Culturally Aware",
+//               "traitDescription": "Having an understanding and appreciation of different cultures and practices.",
+//               "traitLogic": "The choice of Tokyo due to its cultural and aesthetic qualities highlights a sensitivity and openness to diverse cultural experiences."
+//           }
+//       ],
+//       "careerSuggestions": [
+//           {
+//               "career": "Urban Planner",
+//               "careerDescription": "Urban planners develop plans and programs for the use of land to create communities, accommodate growth, and revitalize physical facilities in towns, cities, counties, and metropolitan areas. They often need a good understanding of both modern and traditional influences, particularly in city aesthetics and infrastructure."
+//           },
+//           {
+//               "career": "Technology Consultant",
+//               "careerDescription": "Technology consultants help businesses implement technology solutions in a cost-effective way by determining the requirements of a project or program, and communicating them clearly to stakeholders, facilitators and partners. They stay abreast of technological developments and how they can be utilized to improve business efficiency and productivity."
+//           },
+//           {
+//               "career": "Cultural Liaison",
+//               "careerDescription": "Cultural liaisons work to build bridges between different cultures, often within an international business or diplomatic context. This job requires a deep understanding of different cultures, and the ability to effectively communicate and negotiate across cultural boundaries, often enhancing cooperation in multicultural settings."
+//           }
+//       ]
+//   }
+// }

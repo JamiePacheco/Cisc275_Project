@@ -12,8 +12,7 @@ import { AppFooter } from './Components/Footer/AppFooter';
 import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { UserPage } from './Pages/UserPage/UserPage';
 import { useEffect, useState } from 'react';
-import { User } from './Interfaces/User';
-import { DataSetOne } from './Pages/ReportsPage/TestingData/TestingData';
+import { User } from './Interfaces/User/User';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
@@ -58,6 +57,11 @@ function App() {
         setUser(JSON.parse(userString));
       }
     }, []);
+
+  //Just to double check if the user has a global account state that is active after signing/logging in
+  // useEffect(() => {
+  //   console.log(`Active, Signed In Account: ${JSON.stringify(user, null, 4)}`)
+  // }, [user])
 
   return (
     <HashRouter>

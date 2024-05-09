@@ -1,8 +1,7 @@
 .basic-questions-page-header {
-    padding: 10px 20px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
      border-radius: 10px;
     background-color: white;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
@@ -21,4 +20,13 @@
     width: 100%;
     font-size: 4vh;
     margin: 1% 0 0 0
+=======
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.main-header {
+    font-size: 50px;
+    font-weight: 600;
+>>>>>>> bdee72647bfc50ea22022fe1f1e69bff21a53e9c
 }
