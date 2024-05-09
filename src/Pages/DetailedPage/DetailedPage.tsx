@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { CareerBearPrompt } from "./Components/CareerBearPrompt/CareerBearPrompt";
-import { evaluateUserCareerFromQuiz, initalizeCareerBear, notifyUser, sendMessageToCareerBear } from "../../Services/DetailedQuiz/CareerBear";
+import { evaluateUserCareerFromQuiz, initalizeCareerBear, sendMessageToCareerBear } from "../../Services/DetailedQuiz/CareerBear";
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
+
+import background from "../../assets/images/career-bear-forest-9.jpg"
 
 import { UPSET_PHRASES } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
@@ -12,7 +14,6 @@ import { QuizResults } from "../../Interfaces/Results/QuizResults";
 import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
 import { AxiosResponse } from "axios";
-import { DataSetOne } from "../ReportsPage/TestingData/TestingData";
 
 export type BearEmotion = "neutral" | "sad" | "happy"
 
@@ -150,24 +151,13 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
 
   //notifies the user that the results may be compiled
-  function notifyUserResults() : boolean {
+  function formBearMessage(bearMessage : string) : string {
     console.log(interactions)
     if (interactions >= 3 && !notified) {
-      notifyUser().then((value) => {
-        if (value !== null && value !== undefined) {
-          const bearMessage = value.choices[0].message.content;
-          console.log(bearMessage);
-          if (bearMessage !== undefined && bearMessage !== null) {
-            setCareerBearMessage(bearMessage)
-            setNotified(true);
-          }
-          return true
-        }
-      }).catch((reason : Error) => {
-        console.log(reason.message);
-      }) 
+      setNotified(true);
+      return bearMessage + " Also I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }
-    return false;
+    return bearMessage;
   }
 
   //updates the current quiz session data
@@ -206,19 +196,16 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         if (bearMessage !== undefined && bearMessage !== null) {
           updateQuizData();
           if (consulting) {
-            const resultsReady = notifyUserResults();
             setInteractions(prev => prev + 1);
-            
-            if (!resultsReady) {
-              setCareerBearMessage(bearMessage);
-              console.log(`Consulting : ${consulting}`)
-              if (bearMessage.trim() === "...") {
-                setCareerBearEmotion("sad");
-              } else {
-                setCareerBearEmotion("neutral")
-              }
-              console.log(careerBearEmotion)
+
+            setCareerBearMessage(formBearMessage(bearMessage));
+            console.log(`Consulting : ${consulting}`)
+            if (bearMessage.trim() === "...") {
+              setCareerBearEmotion("sad");
+            } else {
+              setCareerBearEmotion("neutral")
             }
+            console.log(careerBearEmotion)
           }
         }
       }
@@ -261,8 +248,16 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }
 
   return (
-    //style={{backgroundImage: `url(${background})`}}
-    <div className="detailed-quiz">
+    
+    <div 
+      // style={
+      //   // {
+      //   //   backgroundImage: `url(${background})`,
+      //   //   backgroundSize: "cover"
+      //   // }
+      // } 
+      className="detailed-quiz"
+    >
       <div className="detailed-quiz--content">
         <CareerBearPrompt 
           message={careerBearMessage} 
@@ -295,7 +290,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               onClick={() => setPaused(prev => !prev)}
               disabled={!validKey}  
             >
-                {paused ? "Continue" : "Pause"} 
+                {paused ? (initalized ? "Continue" : "Start") : "Pause"} 
               </button>
 
             <button
