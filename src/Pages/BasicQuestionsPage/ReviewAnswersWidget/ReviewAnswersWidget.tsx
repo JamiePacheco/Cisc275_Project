@@ -15,17 +15,19 @@ export function ReviewWidget({ setReviewIsVisible, setIsVisible, questions, disp
 
     return (
         <div>
-            <div className="review-header"><h2>Review Answers</h2></div>
+            <div className="review-header"><h2>🐻 Review Answers 🐻</h2></div>
             <div className="review-container">
                 {displayOrder.map((index, position) => {
                     const question = questions[position]; //get the question based on position
                     const answer = answers[displayOrder[position]]; //get the answer based on the original question index
                     return (
-                        <div key={index}>
-                            <h3>{position + 1}. {question.name}</h3>
-                            <p>Answer: {answer}</p>
+                        <div key={index} className="question-answer-container">
+                        <h3 className="question-name">{position + 1}. {question.name}</h3>
+                        <div className="answer-text-default">
+                            <strong>You Chose:</strong> <span className="answer-text">{answer}</span>
                         </div>
-                    );
+                    </div>
+                );
                 })}
                 <button className="change-answers-button" onClick={() => {
                     setReviewIsVisible(false);
