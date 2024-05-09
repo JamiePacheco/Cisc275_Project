@@ -4,8 +4,6 @@ import { evaluateUserCareerFromQuiz, initalizeCareerBear, sendMessageToCareerBea
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
-import background from "../../assets/images/career-bear-forest-9.jpg"
-
 import { UPSET_PHRASES } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
