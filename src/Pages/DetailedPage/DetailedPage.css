@@ -29,6 +29,10 @@
     
 }
 
+.user-interface--buttons button {
+    transition: 1s;
+}
+
 .user-prompts--user-input {
     padding: 15px;
     border-radius: 15px;

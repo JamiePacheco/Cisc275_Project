@@ -15,7 +15,7 @@ import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
 import { AxiosResponse } from "axios";
 
-export type BearEmotion = "neutral" | "sad" | "happy"
+export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
@@ -29,10 +29,10 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //state to specifically keep track of whether to progress the quiz or not
   //if career bear is mad, sad, etc and dialouge is not related to user's career this will not progress
-  const [consulting, setConsulting] = useState<boolean>(true);
+  const [consulting, setConsulting] = useState<boolean>(false);
   
   //current emotion is career bear is feeling...
-  const [careerBearEmotion, setCareerBearEmotion] = useState<BearEmotion>("neutral");
+  const [careerBearEmotion, setCareerBearEmotion] = useState<BearEmotion>("sleeping");
   //the amount of thoughtful, valid interactions the user has had with career bear
   const [interactions, setInteractions] = useState<number>(0);
   //state to check if the user has been notified about their session being able to be processed
@@ -43,6 +43,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [userMessage, setUserMessage] = useState("");
 
   const [bearClicked, setBearClicked] = useState<number>(0);
+  
   const [interactionNumber, setInteractionNumber] = useState<number>(1);
 
   const [quizData, setQuizData] = useState<DetailedQuiz>(
@@ -62,6 +63,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           const bearMessage = value.choices[0].message.content
           console.log(bearMessage)
           if (bearMessage !== undefined && bearMessage !== null) {
+            setCareerBearEmotion("neutral")
             setInitalized(true);
             setCareerBearMessage(bearMessage);
           }
@@ -90,10 +92,16 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //checks if user has clicked on career bear and prompts message
   useEffect(() => {
-    if (bearClicked > 0 && bearClicked % 3 === 0 && paused) {
+    if (bearClicked > 0 && bearClicked % 3 === 0 && paused && !consulting) {
+      if (careerBearEmotion === "sleeping") {
+        setCareerBearMessage("(Career Bear Is Sleeping...)")
+        return;
+      }
       setCareerBearMessage(UPSET_PHRASES[Math.floor(Math.random() * UPSET_PHRASES.length)]);
     }
-  }, [bearClicked, paused])
+    console.log("Bear touched???\ntouched: " + bearClicked)
+    console.log("consulting: " + consulting)
+  }, [bearClicked, careerBearEmotion, consulting, paused])
 
   //Checks if the user has a valid key stored otherwise presents message
   useEffect(() => {
@@ -115,8 +123,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }, [careerBearTalking])
 
   useEffect(() => {
-    setConsulting(careerBearEmotion !== "sad")
-  }, [careerBearEmotion])
+    setConsulting(careerBearEmotion === "neutral" && !paused)
+  }, [careerBearEmotion, paused])
 
   
   const onBearClick = () => {
@@ -128,6 +136,10 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     e.preventDefault();
   }
 
+  function cycleEmotion() {
+    const emotions : BearEmotion[] = ["sleeping", "sad", "neutral"]
+    setCareerBearEmotion(emotions[Math.floor(Math.random() * 3)])
+  }
 
   //saves the generated results to the current quiz session 
   function computeResultData(generatedResults :  QuizResults) : DetailedQuiz {
@@ -155,7 +167,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     console.log(interactions)
     if (interactions >= 3 && !notified) {
       setNotified(true);
-      return bearMessage + " Also I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
+      return bearMessage + "\n\nAlso I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }
     return bearMessage;
   }
@@ -290,18 +302,18 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               onClick={() => setPaused(prev => !prev)}
               disabled={!validKey}  
             >
-                {paused ? (initalized ? "Continue" : "Start") : "Pause"} 
-              </button>
+              {paused ? (initalized ? "Continue" : "Start") : "Pause"} 
+            </button>
 
-            <button
+            {notified && <button
               onClick = {() => getData()}
               disabled={!initalized}
             >
               End Session
             </button>
-
+            }     
             <button
-              onClick = {() => setCareerBearEmotion(careerBearEmotion === "neutral" ? "sad" : "neutral")}
+              onClick = {() => cycleEmotion()}
             >
               manipulate
             </button>
