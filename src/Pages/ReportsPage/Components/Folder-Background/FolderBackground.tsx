@@ -13,13 +13,11 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
 
   const tabs = quizData?.results?.careerSuggestions.map((career, i) => {
     return (
-      <Tab eventKey={`tab${i + 1}`}  title={career.career}>
+      <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tabs-title-text'>{career.career}</span>}>
         <FileView data={career}></FileView>
       </Tab>
     )})
  
-  
-  
   return (
     <div className="manilla-folder">
       <ReportsHeader></ReportsHeader>
@@ -29,7 +27,7 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         onSelect={(k) => setKey(k as string)}
       >
         {/* content for overview tab */}
-         <Tab eventKey="tab4" title="Overview">
+         <Tab eventKey="tab4" title={<span className = 'tabs-title-text'>Overview</span>}>
          <Container>
           <div>
             <Row className = "tabs-content">
@@ -78,7 +76,7 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         </Container>
         </Tab>
         
-        <Tab eventKey={"tab5"} title="Personality">
+        <Tab eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
           <h3>Your personality</h3>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
         </Tab>

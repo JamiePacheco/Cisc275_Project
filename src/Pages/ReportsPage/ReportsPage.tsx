@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './ReportsPage'
 import { FolderBackground } from './Components/Folder-Background/FolderBackground'
 import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
-
-import "./ReportsPage.css"
 
 export function ReportsPage() : JSX.Element{
 

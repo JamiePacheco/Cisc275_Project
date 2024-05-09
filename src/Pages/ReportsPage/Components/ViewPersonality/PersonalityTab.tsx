@@ -16,7 +16,7 @@ export function PersonalityTab({personalityData} : {personalityData : Personalit
     })
 
     return (
-        <div className = "personality-tab">
+        <div className = "personality-tab-container">
             <div className = "personality-tab--content">
                 {mappedPersonalityData}
             </div>
