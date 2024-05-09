@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ReportsPage'
-import { ReportsHeader } from './Components/ReportsHeader/ReportsHeader'
 import { FolderBackground } from './Components/Folder-Background/FolderBackground'
-// import { FolderBackground } from "./Components/Folder/Folder-Background"
+import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
+
+import "./ReportsPage.css"
 
 export function ReportsPage() : JSX.Element{
+
+    const [quizData, setQuizData] = useState<DetailedQuiz | null>(null);
+
+    useEffect(() => {
+        const quizSessionData = sessionStorage.getItem("DETAILED_QUIZ_DATA");
+        if(quizSessionData){
+            setQuizData(JSON.parse(quizSessionData));
+        }
+    }, [])
+
     return(
         <div className="reports-page">
-            <ReportsHeader></ReportsHeader>
-            <FolderBackground></FolderBackground>
+            <FolderBackground quizData={quizData}></FolderBackground>
         </div>
     )
 };
