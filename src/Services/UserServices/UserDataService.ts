@@ -4,7 +4,7 @@ import { User } from "../../Interfaces/User/User";
 import { UserQuizData } from "../../Interfaces/User/UserQuizData";
 
 
-const BASE_USER_DATA_URL = process.env.REACT_APP_LOCAL_API_KEY + "/quiz" 
+const BASE_USER_DATA_URL = process.env.REACT_APP_API_KEY + "/quiz" 
 console.log(BASE_USER_DATA_URL);
 
 export function createUserQuizData(user : User) {
