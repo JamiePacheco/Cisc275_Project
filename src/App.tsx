@@ -13,6 +13,7 @@ import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { UserPage } from './Pages/UserPage/UserPage';
 import { useEffect, useState } from 'react';
 import { User } from './Interfaces/User/User';
+import { DataSetOne } from './Pages/ReportsPage/TestingData/TestingData';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
@@ -23,6 +24,7 @@ if (prevKey !== null && prevKey !== "") {
   keyData = JSON.parse(prevKey);
 }
 
+sessionStorage.setItem("DETAILED_QUIZ_DATA", JSON.stringify(DataSetOne))
 
 function App() {
   //TODO reimplement current user state in app scope and trickle it down.
