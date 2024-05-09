@@ -1,28 +1,23 @@
 .previous-button, .next-button, .review-button {
-    margin-top: 25px;
     border-radius: 6px;
-    background-color: rgb(49, 49, 49);
+    background-color: #6c4c41;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
-    color: rgb(255, 255, 255);
+    color: #FFF6EC;
     min-height: 50px;
     max-height: 100px;
     min-width: 150px;
 }
 
 .buttons {
+    position: absolute;
+    bottom: 75px; 
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-around;
-    margin-top: 25px;
 }
 
 .buttons > button {
     margin: 0 20px;
 }
 
-
-/*
-.submit-container {
-    margin-top: 10px;  
-    width: 100%;  
-}
-*/

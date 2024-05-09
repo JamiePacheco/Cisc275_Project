@@ -2,36 +2,49 @@
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
     background-color: #FFF6EC;
     border-radius: 10px;
-
     padding: 50px;
-    margin-block: 20vh 10vh 10vh 10vh;
-    
-    
+    margin-top: 20px;
+
+    font-size: 22px;
+}
+
+.question-answer-container {
+    padding: 20px;  
+    margin-bottom: 20px;  
+    background-color: #ece4db; 
+    border-radius: 8px;  
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);  
+}
+
+.review-header h2{
+    margin-top: 60px;
+    text-align: center;
+    width: 100%;
+    font-size: 50px;  
+    font-weight: bold;
+}
+
+.question-name {
     font-weight:600;
-    font-size: larger;
-}
-
-.review-header {
-    text-align: center;
-    width: 100%;
-}
-
-.review-content {
-    width: 100%;
-    min-height: 20vh;
-    padding: 10px;
-    overflow-y: auto;
-    text-align: center;
+    color: rgb(105, 77, 60);  
 }
 
 .change-answers-button {
     margin-top: 25px;
     border-radius: 6px;
-    background-color: rgb(49, 49, 49);
-    color: white;
+    background-color: #6c4c41;
+    color: #FFF6EC;
     min-height: 50px;
     max-height: 100px;
     min-width: 150px;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.answer-text-default {
+    font-weight: 100px;
+}
+
+.answer-text {
+    font-weight: normal; 
 }

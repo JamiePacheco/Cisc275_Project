@@ -1,6 +1,6 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar, Form } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 
@@ -33,9 +33,6 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
 
   return (
     <div className="question-component--content">
-      <div className="progress-bar-bootstrap">
-        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} />
-      </div>
       <h1 className="question--heading">
         {quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
       </h1>
@@ -48,7 +45,7 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
               id={`option-${index}-${optionIndex}`}
               label={option}
               value={option}
-              checked={answers[displayOrder[index]] === option} //checks if the answer at the position of this question in displayOrder matches this option
+              checked={answers[displayOrder[index]] === option} // Checks if the answer at the position of this question in displayOrder matches this option
               onChange={(e) => updateValues(e, index)}
           />
         ))}
@@ -61,6 +58,9 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
         setIsVisible={setIsVisible}
         setReviewIsVisible={setReviewIsVisible}
       />
+      <div className="progress-bar-bootstrap">
+        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} className="custom-progress-bar" />
+      </div>
     </div>
   );
 }
