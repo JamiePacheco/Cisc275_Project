@@ -30,3 +30,14 @@ export async function saveDetailedQuizData(quizData : DetailedQuiz, user : User)
 
     return response;
 }
+
+export async function getDetailedQuizData(user : User) {
+
+    const response = await axios.get(`${BASE_USER_DATA_URL}/get-quiz-data`, {
+        params : {
+            "userId" : user.id
+        }
+    })
+
+    return response;
+}
