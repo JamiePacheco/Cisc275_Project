@@ -12,6 +12,7 @@ import { QuizResults } from "../../Interfaces/Results/QuizResults";
 import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
 import { AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom";
 
 export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
 
@@ -51,6 +52,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       interactions: []
     }
   );
+
+  const nav = useNavigate();
   
   //Initalized career bear is user has pressed start and there is a valid key 
   useEffect(() => {
@@ -250,7 +253,9 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               saveDetailedQuizData(requestData, user).then((res : AxiosResponse<DetailedQuiz>) => {
                 console.log("Data saved!!!!")
                 console.log(JSON.stringify(res.data, null, 2))
-              }) 
+              })
+              sessionStorage.setItem("QUIZ_DATA", JSON.stringify(requestData))
+              nav("/reports")
             } 
           }
         }

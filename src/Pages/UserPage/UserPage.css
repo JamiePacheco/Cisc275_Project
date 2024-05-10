@@ -4,10 +4,10 @@
 }
 
 .user-page--content {
-    margin: 10vh 10vh 0 10vh;
     padding: 10vh;
 
-    min-width: 500px;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;

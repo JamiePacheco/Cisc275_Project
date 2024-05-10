@@ -24,7 +24,7 @@ if (prevKey !== null && prevKey !== "") {
   keyData = JSON.parse(prevKey);
 }
 
-sessionStorage.setItem("DETAILED_QUIZ_DATA", JSON.stringify(DataSetOne))
+// sessionStorage.setItem("DETAILED_QUIZ_DATA", JSON.stringify(DataSetOne))
 
 function App() {
   //TODO reimplement current user state in app scope and trickle it down.
