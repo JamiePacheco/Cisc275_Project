@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { User } from "../../../../Interfaces/User/User";
 import { MetricDisplay } from "../MetricDisplay/MetricDisplay";
 import { QuizDataDisplay } from "../QuizDataDisplay/QuizDataDisplay";
@@ -14,7 +14,7 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
     const [loading, setLoading] = useState<boolean>(true);
 
-    useMemo(() => {
+    useEffect(() => {
         getDetailedQuizData(user).then((res : AxiosResponse<DetailedQuiz[]>) => {
             setQuizData(res.data);
             setLoading(false)
