@@ -8,26 +8,29 @@ import { ErrorScreen } from "../../Components/ErrorScreen/ErrorScreen";
 export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
 
     const [userData, setUserData] = useState<User | undefined>(undefined);
-
+  
     const nav = useNavigate();
     
+    //Checks the current logged user and reroutes if the user is undefined or null
     useEffect(() => {
         const loggedUser = sessionStorage.getItem("CURRENT_USER");
         if (loggedUser !== null && loggedUser !== undefined) {
-            // setUserData(JSON.parse(loggedUser));
+            setUserData(JSON.parse(loggedUser));
         } else {
             nav("/home")
         }
-    }, [userData])
+    }, [])
 
+    //button to log out of the application
     function userLogout() {
         sessionStorage.removeItem("CURRENT_USER");
         setUser(null);
         nav("/home", {replace: true});
     }
 
+
     if (userData === undefined) {
-        return <div> <h1> ERROR </h1> </div>
+        return <div> <ErrorScreen></ErrorScreen> </div>
     }
 
     return (
@@ -41,9 +44,6 @@ export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
                 
                     <button onClick = {() => userLogout()}> Logout </button>
                 </div>
-
-
-
             </div>
         </div>
     )

@@ -12,3 +12,19 @@
 .quiz-data-card--content {
     padding: 20px;
 }
+
+.quiz-data-card--header {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;    
+}
+
+.quiz--message-logs {
+    
+}
+
+.bold-span {
+    font-weight: 600;
+}

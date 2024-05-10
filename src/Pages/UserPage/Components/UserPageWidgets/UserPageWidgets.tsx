@@ -46,8 +46,6 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
     }
 
-
-
     return (
         <div className = "user-page-widget-view">
 
@@ -55,7 +53,7 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
             <MetricDisplay detailedQuizData={quizData} ></MetricDisplay>
 
-            { quizData !== undefined && <QuizDataDisplay quizData={quizData} userData={user} loading = {loading}></QuizDataDisplay>}
+            {quizData !== undefined && <QuizDataDisplay quizData={quizData} userData={user} loading = {loading}></QuizDataDisplay>}
         </div>
     )
 }
