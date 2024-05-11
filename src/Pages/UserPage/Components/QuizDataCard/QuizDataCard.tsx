@@ -34,6 +34,10 @@ export function QuizDataCard({detailedQuizData, userData} : {detailedQuizData : 
     return (
         <div className = "quiz-data-card">
             <div className = "quiz-data-card--header">
+                
+            </div>
+
+            <div className = "quiz-data-card--content">
                 <h5> Date Taken: {detailedQuiz.dateTaken} </h5>
                 <h5> Interactions:  {detailedQuiz.bearInteractions && detailedQuiz.bearInteractions.length} </h5>
                 <h5> PersonalityTraits: {traits && formatListingItems(traits)} </h5>

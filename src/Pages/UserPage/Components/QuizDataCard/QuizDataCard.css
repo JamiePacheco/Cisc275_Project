@@ -21,7 +21,7 @@
     padding: 20px;
 }
 
-.quiz-data-card--header {
+.quiz-data-card--content {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
     align-items: start;    
 }
 
-.quiz-data-card--header h5 {
+.quiz-data-card--content h5 {
     text-align: start;
 }
 
