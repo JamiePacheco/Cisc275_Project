@@ -1,9 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserPageProps } from "./UserPageProps";
 import { UserPageWidgetsView } from "./Components/UserPageWidgets/UserPageWidgets";
 import { User } from "../../Interfaces/User/User";
 import { ErrorScreen } from "../../Components/ErrorScreen/ErrorScreen";
+
+import fitzWilliam from "../../assets/career-intern/confused-intern.png"
+
+import "./UserPage.css"
 
 export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
 
@@ -19,14 +23,9 @@ export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
         } else {
             nav("/home")
         }
-    }, [])
+    }, [nav])
 
-    //button to log out of the application
-    function userLogout() {
-        sessionStorage.removeItem("CURRENT_USER");
-        setUser(null);
-        nav("/home", {replace: true});
-    }
+
 
 
     if (userData === undefined) {
@@ -36,14 +35,9 @@ export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
     return (
         <div className = "user-page">
             <div className = "user-page--content">
-                <div className = "content--header">
+                {userData !== undefined && <UserPageWidgetsView user={userData}/> }
 
-                    <h1> Hello {userData.firstName} </h1>
-
-                    {userData !== undefined && <UserPageWidgetsView user={userData}/> }
-                
-                    <button onClick = {() => userLogout()}> Logout </button>
-                </div>
+                <img src={fitzWilliam} alt = "fitz-willy" className = "user-page--fitz"/>
             </div>
         </div>
     )

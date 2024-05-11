@@ -59,13 +59,15 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
                 //Proper typing has been deduced :)
                 const message = e.response.data.message;
 
-                if (message.toLowerCase().includes("email")) {
-                    setEmailMessage(message);
-                    setPasswordMessage("");
-                } 
-                if (message.toLowerCase().includes("password")) {
-                    setPasswordMessage(message);
-                    setEmailMessage("");
+                if (message !== undefined){
+                    if (message.toLowerCase().includes("email")) {
+                        setEmailMessage(message);
+                        setPasswordMessage("");
+                    } 
+                    if (message.toLowerCase().includes("password")) {
+                        setPasswordMessage(message);
+                        setEmailMessage("");
+                    }
                 }
 
 

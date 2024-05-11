@@ -13,3 +13,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.user-page--fitz {
+    width: 20%;
+    min-width: 100px;
+    position: absolute;
+    top: 40%;
+    right: 5%;
+}

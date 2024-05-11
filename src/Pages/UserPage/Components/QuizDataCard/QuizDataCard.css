@@ -5,8 +5,16 @@
 
     width: 100%;
 
-    height: 250px;
-    overflow-y: scroll;
+    transition: 0.5s;
+
+    overflow: hidden;
+
+    padding: 10px
+}
+
+.quiz-data-card:hover {
+    margin-right: 20px;
+
 }
 
 .quiz-data-card--content {
@@ -21,8 +29,8 @@
     align-items: start;    
 }
 
-.quiz--message-logs {
-    
+.quiz-data-card--header h5 {
+    text-align: start;
 }
 
 .bold-span {

@@ -10,5 +10,6 @@ export interface DetailedQuiz {
     bearClicked : number
     interactions : BearInteraction[];
     results? : QuizResults;
+    quizResults? : QuizResults;
     user? : User;
 } 

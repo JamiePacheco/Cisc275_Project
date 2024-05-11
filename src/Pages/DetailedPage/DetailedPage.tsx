@@ -171,7 +171,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //notifies the user that the results may be compiled
   function formBearMessage(bearMessage : string) : string {
     console.log(interactions)
-    if (interactions >= 3 && !notified) {
+    if (interactions >= 1 && !notified) {
       setNotified(true);
       return bearMessage + "\n\nAlso I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }

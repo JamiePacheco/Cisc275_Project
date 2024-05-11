@@ -48,7 +48,12 @@
     padding: 10px;
     font-size: large;
     cursor: pointer;
-    transition: .5s;
+    transition: .2s;
+    overflow: hidden;
+
+    position: absolute;
+    right: 40px;
+    top: 25px;
 }
 
 .profile-container--profile-tab:hover {
@@ -56,5 +61,42 @@
     background-color: #f4ece2;
 }
 
+.profile-tab--content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    transition: .2s;
+}
 
+.profile-tab-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 10px;
+}
 
+.profile-tab-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.profile-tab-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.profile-tab-item:hover {
+    text-decoration: underline solid #6c4c41 ;
+}
+
+.tab-extended {
+    max-height: 400px;
+}
+
+.tab-closed {
+    max-height: 25px;
+}

@@ -18,8 +18,18 @@ export function MetricDisplay({detailedQuizData} : {detailedQuizData : DetailedQ
 
     return (
         <div className = "metric-display">
-            <MetricCard metricTitle="Quizzes Taken" metric={quizAmount}/>
-            <MetricCard metricTitle="Career Bear Touched" metric={bearTouched} />
+
+            <div className = "quiz-data-display--header">
+                <h4 className = "quiz-data--heading"> Quiz Metrics </h4>
+                <div> 
+                    <button> Refresh </button>
+                </div>
+            </div>
+            <div className = "metrics-data-card--content">
+                <MetricCard metricTitle="Quizzes Taken" metric={quizAmount}/>
+                <MetricCard metricTitle="Career Bear Pokes" metric={bearTouched} />
+            </div>
+
         </div>
     )
 }

@@ -13,7 +13,6 @@ import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { UserPage } from './Pages/UserPage/UserPage';
 import { useEffect, useState } from 'react';
 import { User } from './Interfaces/User/User';
-import { DataSetOne } from './Pages/ReportsPage/TestingData/TestingData';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
@@ -68,7 +67,7 @@ function App() {
     <HashRouter>
       <div 
       className="App">
-        <AppHeader user={user}></AppHeader>
+        <AppHeader user={user} setUser={setUser}></AppHeader>
         <div className = "App-content">
             <Routes>
               <Route path = "/home" element = {<HomePage user = {user} handleKeySubmit={handleSubmit} handleKeyClear={clearKey}/>}> </Route>
