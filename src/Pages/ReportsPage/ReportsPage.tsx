@@ -4,17 +4,23 @@ import { FolderBackground } from './Components/Folder-Background/FolderBackgroun
 import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
 
 import "./ReportsPage.css"
+import { useNavigate } from 'react-router-dom'
 
 export function ReportsPage() : JSX.Element{
 
     const [quizData, setQuizData] = useState<DetailedQuiz | null>(null);
 
+    const nav = useNavigate();
+
     useEffect(() => {
-        const quizSessionData = sessionStorage.getItem("DETAILED_QUIZ_DATA");
+        const quizSessionData = sessionStorage.getItem("QUIZ_DATA");
         if(quizSessionData){
             setQuizData(JSON.parse(quizSessionData));
+            return;
+        } else {
+            nav("/home")
         }
-    }, [])
+    }, [nav])
 
     return(
         <div className="reports-page">

@@ -11,7 +11,9 @@ import { DetailedPageProps } from "./DetailedPageProps";
 import { QuizResults } from "../../Interfaces/Results/QuizResults";
 import { LoadingScreen } from "../../Components/LoadingScreen/LoadingScreen";
 import { saveDetailedQuizData } from "../../Services/UserServices/UserDataService";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom";
+import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 
 export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
 
@@ -51,6 +53,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       interactions: []
     }
   );
+
+  const nav = useNavigate();
   
   //Initalized career bear is user has pressed start and there is a valid key 
   useEffect(() => {
@@ -168,7 +172,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //notifies the user that the results may be compiled
   function formBearMessage(bearMessage : string) : string {
     console.log(interactions)
-    if (interactions >= 3 && !notified) {
+    if (interactions >= 1 && !notified) {
       setNotified(true);
       return bearMessage + "\n\nAlso I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }
@@ -247,10 +251,14 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
             
             if (user !== null) {
               requestData.user = user;
-              saveDetailedQuizData(requestData, user).then((res : AxiosResponse<DetailedQuiz>) => {
-                console.log("Data saved!!!!")
-                console.log(JSON.stringify(res.data, null, 2))
-              }) 
+              saveDetailedQuizData(requestData, user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz>>) => {
+                const savedData = res.data.responseContent;
+                console.log(JSON.stringify(savedData, null, 2))
+              }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz>>) => {
+                console.log(e.response?.data);
+              })
+              sessionStorage.setItem("QUIZ_DATA", JSON.stringify(requestData))
+              nav("/reports")
             } 
           }
         }

@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User/User";
 import { LoginPageProps } from "./LoginPageProps";
 import { authenticateUser } from "../../Services/UserServices/UserCredentialService";
-import axios, { AxiosError } from "axios";
-import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
@@ -45,27 +45,29 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
             return;
         }
 
-        authenticateUser(email, password).then((response) => {
-                console.log(JSON.stringify(response, null, 4))
-                user = response.data;
+        authenticateUser(email, password).then((response : AxiosResponse<ApiCallResponse<User>>) => {
+                const user = response.data.responseContent;
                 if (user !== null) {
                     sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));   
                     setUser(user); 
                     nav("/home"); 
                 }
-        }).catch((e : AxiosError<ApiCallResponseError>) => {
+        }).catch((e : AxiosError<ApiCallResponse<User>>) => {
             if (axios.isAxiosError(e) && e.response && e.response.data) {
+                console.log(e)
                 //placeholder until I can deduce proper embeded type...
                 //Proper typing has been deduced :)
-                const message = e.response.data.message;
+                const message = e.response.data;
 
-                if (message.toLowerCase().includes("email")) {
-                    setEmailMessage(message);
-                    setPasswordMessage("");
-                } 
-                if (message.toLowerCase().includes("password")) {
-                    setPasswordMessage(message);
-                    setEmailMessage("");
+                if (message !== undefined){
+                    if (message.detailedMessage.toLowerCase().includes("email")) {
+                        setEmailMessage(message.detailedMessage);
+                        setPasswordMessage("");
+                    } 
+                    if (message.detailedMessage.toLowerCase().includes("password")) {
+                        setPasswordMessage(message.detailedMessage);
+                        setEmailMessage("");
+                    }
                 }
 
 
