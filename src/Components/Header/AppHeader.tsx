@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { Dispatch, SetStateAction} from "react";
 import { User } from "../../Interfaces/User/User";
 
 import lightLogo from "../../assets/logos/career-bear-logo-1-light.png"

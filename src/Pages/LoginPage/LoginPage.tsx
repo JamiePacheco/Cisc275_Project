@@ -34,7 +34,6 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     //definitely should be a backend verification but...
     //THERE IS NOW A BACKEND!!!!!
     function signIn(event : FormEvent<HTMLFormElement>) {
-        let user : User | null = null;
         const form = event.currentTarget;
 
         if (!form.checkValidity()) {
