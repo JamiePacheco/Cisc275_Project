@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 import "./QuizDataCard.css"
-import { BearInteraction } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction"
 import { User } from "../../../../Interfaces/User/User"
 
 export function QuizDataCard({detailedQuizData, userData} : {detailedQuizData : DetailedQuiz, userData : User}) : React.JSX.Element {

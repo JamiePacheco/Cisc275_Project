@@ -1,5 +1,3 @@
-import BearChairRight from "../../assets/career-bear/bear-in-chair_right.png"
-import BearChairLeft from "../../assets/career-bear/bear-in-chair_left.jpg"
 import { useEffect, useState } from "react"
 
 import careerBearSleeping from "../../assets/career-bear/career-bear-sleeping.gif"
@@ -7,8 +5,6 @@ import careerBearSleeping from "../../assets/career-bear/career-bear-sleeping.gi
 import "./LoadingScreen.css"
 
 // import { useTypeWriter } from "../../Hooks/useTypeWriter"
-
-const images = [BearChairLeft, BearChairRight]
 
 const funny_loading_quips = [
     "career bear is processing user data...",
@@ -19,8 +15,6 @@ const funny_loading_quips = [
 
 export function LoadingScreen() : React.JSX.Element {
     
-    const [currentImage] = useState<number>(0);
-
     const [loadingMessage, setLoadingMessage] = useState<string>("")
 
     // useEffect(() => {

@@ -8,7 +8,7 @@ export function ErrorScreen({message} : ErrorScreenProps) : React.JSX.Element {
     return (
         <div className = "ErrorScreen">
             <div className = "ErrorScreenContent">
-                <img className = "ConfusedFitz" src = {confusedFitz}/> 
+                <img className = "ConfusedFitz" src = {confusedFitz} alt = "confused-fitz"/> 
                 <h1> Fitz can't seem to find your data... </h1>
             </div>
         </div>        
