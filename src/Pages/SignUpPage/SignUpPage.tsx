@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
 import { createUser } from "../../Services/UserServices/UserCredentialService";
 import axios, {AxiosError, AxiosResponse } from "axios";
-import { ApiCallResponseError } from "../../Interfaces/Responses/ApiCallResponseError";
+import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
@@ -68,19 +68,22 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
             console.log("creating user account")
             const newAccount = createUserObject();
 
-            createUser(newAccount).then((response : AxiosResponse<User> ) => {
-                console.log("parsing axios response")
-                const accountJSONString = JSON.stringify(response.data, null, 4);
+            createUser(newAccount).then((response : AxiosResponse<ApiCallResponse<User>>) => {
+                
+                const responseData = response.data;
+
+                const accountJSONString = JSON.stringify(responseData.responseContent, null, 4);
                 console.log(accountJSONString);
                 sessionStorage.setItem("CURRENT_USER", accountJSONString);
-                setUser(response.data);
+                setUser(responseData.responseContent);
                 nav("/home")
-        }).catch((e : AxiosError<ApiCallResponseError>) => {
+        }).catch((e : AxiosError<ApiCallResponse<User>>) => {
                 if (axios.isAxiosError(e) && e.response && e.response.data) {
-                    const message = e.response?.data.message;
+                    console.log(e)
+                    const errorResponse = e.response?.data;
 
-                    if (message.includes("email")) {
-                        setEmailMessage(message);
+                    if (errorResponse.detailedMessage.includes("email")) {
+                        setEmailMessage(errorResponse.detailedMessage);
                     }
                 }
             })

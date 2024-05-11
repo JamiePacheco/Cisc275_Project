@@ -5,8 +5,6 @@ import { UserPageWidgetsView } from "./Components/UserPageWidgets/UserPageWidget
 import { User } from "../../Interfaces/User/User";
 import { ErrorScreen } from "../../Components/ErrorScreen/ErrorScreen";
 
-import fitzWilliam from "../../assets/career-intern/confused-intern.png"
-
 import "./UserPage.css"
 
 export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
@@ -36,8 +34,6 @@ export function UserPage({setUser} : UserPageProps) : React.JSX.Element{
         <div className = "user-page">
             <div className = "user-page--content">
                 {userData !== undefined && <UserPageWidgetsView user={userData}/> }
-
-                <img src={fitzWilliam} alt = "fitz-willy" className = "user-page--fitz"/>
             </div>
         </div>
     )

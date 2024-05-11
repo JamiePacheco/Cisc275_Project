@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../../../Interfaces/User/User";
 import { MetricDisplay } from "../MetricDisplay/MetricDisplay";
 import { QuizDataDisplay } from "../QuizDataDisplay/QuizDataDisplay";
@@ -6,18 +6,26 @@ import { QuizDataDisplay } from "../QuizDataDisplay/QuizDataDisplay";
 import "./UserPageWidgetsView.css"
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { getDetailedQuizData } from "../../../../Services/UserServices/UserDataService";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
+import { ApiCallResponse } from "../../../../Interfaces/Responses/ApiCallResponse";
+
+import fitzWilliam from "../../../../assets/career-intern/confused-intern.png"
 
 export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element {
 
     const [quizData, setQuizData] = useState<DetailedQuiz[]>()
 
+    const [dataError, setDataError] = useState(false);
+
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getDetailedQuizData(user).then((res : AxiosResponse<DetailedQuiz[]>) => {
-            setQuizData(res.data);
+        getDetailedQuizData(user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz[]>>) => {
+            setQuizData(res.data.responseContent);
             setLoading(false)
+        }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz[]>>) => {
+            setDataError(true)
+            console.log(e)
         })
     }, [user]) 
 
@@ -51,9 +59,24 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
             <h1 className = "user-page--greeting"> {`${getTimeBasedGreeting()}, ${user.firstName}`}</h1>
 
-            <MetricDisplay detailedQuizData={quizData} ></MetricDisplay>
+            {
+                !dataError &&
+                <div className = "user-page--widget-view-content">
+                    <MetricDisplay detailedQuizData={quizData} ></MetricDisplay>
+                    {quizData !== undefined && <QuizDataDisplay quizData={quizData} userData={user} loading = {loading}></QuizDataDisplay>}
+                </div> 
+            }
 
-            {quizData !== undefined && <QuizDataDisplay quizData={quizData} userData={user} loading = {loading}></QuizDataDisplay>}
+            {
+                dataError && 
+                <div className = "user-page--widget-view-content">
+                    <img src={fitzWilliam} alt = "fitz-willy" className = "user-page--fitz"/>
+                    <h1> Fitz could not find your data...  </h1>
+                </div>
+                
+            }
+
+           
         </div>
     )
 }

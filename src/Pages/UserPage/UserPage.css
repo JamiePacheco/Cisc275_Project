@@ -15,9 +15,6 @@
 }
 
 .user-page--fitz {
-    width: 20%;
+    width: 50%;
     min-width: 100px;
-    position: absolute;
-    top: 40%;
-    right: 5%;
 }
