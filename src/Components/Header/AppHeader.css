@@ -54,6 +54,7 @@
     position: absolute;
     right: 40px;
     top: 25%;
+
 }
 
 .profile-container--profile-tab:hover {
@@ -98,5 +99,5 @@
 }
 
 .tab-closed {
-    max-height: 25px;
+    height: 50%;
 }
