@@ -5,8 +5,8 @@ import { UserQuizData } from "../../Interfaces/User/UserQuizData";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 
-// const BASE_USER_DATA_URL = process.env.REACT_APP_API_KEY + "/quiz" 
-const BASE_USER_DATA_URL = "http://localhost:8080/api/v1/quiz"
+const BASE_USER_DATA_URL = process.env.REACT_APP_API_KEY + "/quiz" 
+// const BASE_USER_DATA_URL = "http://localhost:8080/api/v1/quiz"
 
 export function createUserQuizData(user : User) {
     const userQuizData : UserQuizData = {
