@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './BasicQuestionsPage.css';
-import { BasicQuestionsPageHeader } from "./Components/BasicQuestionsPageHeader/BasicQuestionsPageHeader";
 import { GeneralQuestions } from "./Components/GeneralQuestionWidget/GeneralQuestionWidget";
 import { ReviewWidget } from "./ReviewAnswersWidget/ReviewAnswersWidget";
 import { generateBasicQuiz} from './Components/GeneralQuestionWidget/QuestionFunctions';
@@ -24,7 +23,6 @@ export function BasicQuestionsPage(): JSX.Element {
     return (
         <div className='BasicQuestionsPage'>
             <div style={{ display: isVisible ? 'block' : 'none' }}>
-                <BasicQuestionsPageHeader />
                 <GeneralQuestions 
                     isVisible={isVisible}
                     setIsVisible={setIsVisible}

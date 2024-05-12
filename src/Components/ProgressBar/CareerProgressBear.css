@@ -1,0 +1,27 @@
+.progress-bar-bootstrap {
+    position: absolute;
+    bottom: 10px; 
+    left: 0;
+    right: 0;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-progress-bar .progress-bar { 
+    background-color: #691900; /*change progressbar color if needed*/
+    height: 20px;
+    border-radius: 5px;
+}
+
+.progress-bear-image {
+    width: 10vh;
+    position: absolute;
+    transition: 0.5s;
+    bottom: 10px;
+    transform: rotateY(180deg)
+
+}

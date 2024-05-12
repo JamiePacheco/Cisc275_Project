@@ -6,8 +6,8 @@ import './BasicQuestionsPageHeader.css';
         <div className='main-header'>
             <p>Career Assesment</p>
             <div className ='basic-questions-page-header'>
-            <p>Carefully think about each answer, and no cheating!</p>
-       </div>
+                 <p>Carefully think about each answer, and no cheating!</p>
+            </div>
         </div>
      
     )

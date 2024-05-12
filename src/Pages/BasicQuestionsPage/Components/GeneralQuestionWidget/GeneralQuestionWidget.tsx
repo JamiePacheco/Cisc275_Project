@@ -3,6 +3,10 @@ import { ProgressBar, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
+import { BasicQuestionsPageHeader } from "../BasicQuestionsPageHeader/BasicQuestionsPageHeader";
+
+import careerBearSleeping from "../../../../assets/career-bear/sleeping-career-bear.png"
+import { CareerProgressBear } from "../../../../Components/ProgressBar/ProgressBar";
 
 interface GeneralQuestionsProps {
   isVisible: boolean;
@@ -18,6 +22,8 @@ interface GeneralQuestionsProps {
 
 export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers, startingIndex, setQuiz}: GeneralQuestionsProps): JSX.Element | null {
   const [index, setIndex] = useState<number>(startingIndex);
+
+  const [progress, setProgress] = useState<number>(answers.filter(ans => ans !== "").length);
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const newAnswer = event.target.value;
@@ -40,6 +46,11 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
   };
 
   useEffect(() => {
+    setProgress(answers.filter(ans => ans !== "").length);
+  }, [answers, quiz])
+
+
+  useEffect(() => {
     setIndex(startingIndex)
   }, [startingIndex])
 
@@ -49,34 +60,41 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
 
   return (
     <div className="question-component--content">
-      <h1 className="question--heading">
-        {quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
-      </h1>
-      <div className="question--choices">
-        {quiz.questionList[index].options.map((option, optionIndex) => (
-          <Form.Check
-              key={optionIndex}
-              type="radio"
-              name={`question-${index}`}
-              id={`option-${index}-${optionIndex}`}
-              label={option}
-              value={option}
-              checked={answers[index] === option} // Checks if the answer at the position of this question in displayOrder matches this option
-              onChange={(e) => updateValues(e, index)}
-          />
-        ))}
+      <BasicQuestionsPageHeader />
+     
+      <div className = "question--main-content">
+        <h1 className="question--heading">
+          {quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
+        </h1>
+        <div className="question--choices">
+          {quiz.questionList[index].options.map((option, optionIndex) => (
+            <Form.Check
+                key={optionIndex}
+                type="radio"
+                name={`question-${index}`}
+                id={`option-${index}-${optionIndex}`}
+                label={option}
+                value={option}
+                checked={answers[index] === option} // Checks if the answer at the position of this question in displayOrder matches this option
+                onChange={(e) => updateValues(e, index)}
+            />
+          ))}
+        </div>
+        <QuizInteraction
+          setIndex={setIndex}
+          index={index}
+          isProgressBarFull={answers.every(ans => ans !== "")}
+          length={quiz.questionList.length}
+          setIsVisible={setIsVisible}
+          setReviewIsVisible={setReviewIsVisible}
+        />
       </div>
-      <QuizInteraction
-        setIndex={setIndex}
-        index={index}
-        isProgressBarFull={answers.every(ans => ans !== "")}
-        length={quiz.questionList.length}
-        setIsVisible={setIsVisible}
-        setReviewIsVisible={setReviewIsVisible}
-      />
-      <div className="progress-bar-bootstrap">
-        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} className="custom-progress-bar" color="#6c4c41"/>
-      </div>
+        {/* (answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100 */}
+      <CareerProgressBear 
+        curr={progress} 
+        total={quiz.questionList.length}
+        mode="career"
+      ></CareerProgressBear>
     </div>
   );
 }
