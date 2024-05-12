@@ -5,6 +5,7 @@ import { BasicQuiz } from "../../../Interfaces/BasicQuestionInterfaces/BasicQuiz
 import { LoadingScreen } from "../../../Components/LoadingScreen/LoadingScreen";
 import { useState } from "react";
 import { BasicQuizResults } from "../../../Interfaces/Results/BasicQuizResults";
+import { saveBasicQuestionData } from "../../../Services/UserServices/UserDataService";
 
 interface ReviewWidgetProps {
     quizData : BasicQuiz,
@@ -26,7 +27,6 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
         const userBasicQuizData = {...quizData}
         setLoading(true);
         evaluateUserCareerFieldFromBasicQuiz(quizData).then((value) => {
-            setLoading(false);
             if (value === undefined) {
                 return;
             }
@@ -34,6 +34,17 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
             if (data !== null) {
                 const jsonData : BasicQuizResults = JSON.parse(data);
                 userBasicQuizData.basicQuizResults = jsonData;
+                
+                const userData = sessionStorage.getItem("CURRENT_USER");
+                if (userData !== null) {
+                    const parsedUserData = JSON.parse(userData)
+                    saveBasicQuestionData(parsedUserData, userBasicQuizData).then((res) => {
+                        console.log(JSON.stringify(res.data.responseContent, null, 4 ))
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
+                setLoading(false);
                 console.log(JSON.stringify(jsonData, null, 4))
             }
         })
