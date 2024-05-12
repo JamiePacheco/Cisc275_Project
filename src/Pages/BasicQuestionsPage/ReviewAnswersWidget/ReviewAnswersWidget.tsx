@@ -1,13 +1,16 @@
 import "./ReviewAnswersWidget.css";
-import { Question } from "../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { BasicQuestion } from "../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 import { evaluateUserCareerFieldFromBasicQuiz } from "../../../Services/DetailedQuiz/CareerBear";
 import { BasicQuiz } from "../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
+import { LoadingScreen } from "../../../Components/LoadingScreen/LoadingScreen";
+import { useState } from "react";
+import { BasicQuizResults } from "../../../Interfaces/Results/BasicQuizResults";
 
 interface ReviewWidgetProps {
     quizData : BasicQuiz,
     setReviewIsVisible: (isVisible: boolean) => void;
     setIsVisible:  React.Dispatch<React.SetStateAction<boolean>>
-    questions: Question[];
+    questions: BasicQuestion[];
     displayOrder: number[];
     answers: string[];
     setStartingIndex : React.Dispatch<React.SetStateAction<number>>
@@ -17,18 +20,27 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
     console.log("Answers in ReviewWidget:", answers); //debug test
     console.log("Display Order in ReviewWidget:", displayOrder); //debug test
 
+    const [loading, setLoading] = useState<boolean>(false);
 
     function submitBasicQuiz() {
+        const userBasicQuizData = {...quizData}
+        setLoading(true);
         evaluateUserCareerFieldFromBasicQuiz(quizData).then((value) => {
+            setLoading(false);
             if (value === undefined) {
                 return;
             }
             const data = value.choices[0].message.content;
             if (data !== null) {
-                const jsonData = JSON.parse(data);
+                const jsonData : BasicQuizResults = JSON.parse(data);
+                userBasicQuizData.basicQuizResults = jsonData;
                 console.log(JSON.stringify(jsonData, null, 4))
             }
         })
+    }
+
+    if (loading) {
+        return <LoadingScreen/>
     }
 
     return (

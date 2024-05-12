@@ -12,10 +12,11 @@ interface GeneralQuestionsProps {
   displayOrder: number[];
   answers: string[];
   setAnswers: (answers: string[]) => void;
-  startingIndex: number
+  startingIndex: number,
+  setQuiz : React.Dispatch<React.SetStateAction<BasicQuiz>>
 }
 
-export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers, startingIndex }: GeneralQuestionsProps): JSX.Element | null {
+export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers, startingIndex, setQuiz}: GeneralQuestionsProps): JSX.Element | null {
   const [index, setIndex] = useState<number>(startingIndex);
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
@@ -26,6 +27,15 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
     setAnswers(newAnswers);
 
     console.log("Answers after update:", newAnswers);  //debug test
+
+    const newQuestions = quiz.questionList;
+    newQuestions[index].answer = newAnswer;
+    setQuiz(
+      {
+        ...quiz,
+        questionList:  newQuestions
+      }
+    )
 
   };
 

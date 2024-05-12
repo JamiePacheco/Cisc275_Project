@@ -4,7 +4,7 @@ import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionIn
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { User } from "../../Interfaces/User/User";
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
-import { Question } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { BasicQuestion } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 
 let openai : OpenAI;
 
@@ -303,10 +303,13 @@ export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz)
   let careerBearQuestions = "Career Bear Questions: ";
   let userResponses = "User Responses: ";
 
-  quizData.questionList.forEach((question : Question) => {
+  quizData.questionList.forEach((question : BasicQuestion) => {
     careerBearQuestions += `,"${question.name}"`;
     userResponses += `,"${question.answer}"`;
   })
+
+  console.log(careerBearQuestions)
+  console.log(userResponses)
 
   if (openai !== null) {
     completion = await openai.chat.completions.create({

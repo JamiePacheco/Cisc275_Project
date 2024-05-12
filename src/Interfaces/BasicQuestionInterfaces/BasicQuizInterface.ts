@@ -1,11 +1,11 @@
 import { BasicQuizResults } from "../Results/BasicQuizResults";
 import { User } from "../User/User";
-import { Question } from "./QuestionInterface";
+import { BasicQuestion } from "./QuestionInterface";
 
 export interface BasicQuiz{
     basicQuizId?: number;
     dateTaken: string;
-    questionList: Question[]; 
+    questionList: BasicQuestion[]; 
     numAnswered: number;     
     currentQuestion : number; 
     displayOrder: number[];

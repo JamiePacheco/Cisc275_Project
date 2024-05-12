@@ -10,7 +10,7 @@ export function BasicQuestionsPage(): JSX.Element {
     const [reviewIsVisible, setReviewIsVisible] = useState(false);
     // const [quiz] = useState(() => quizObjects());
     //added new method of generating quiz that contains question list is presented order
-    const [quiz] = useState(() => generateBasicQuiz()) 
+    const [quiz, setQuiz] = useState(() => generateBasicQuiz()) 
     const [answers, setAnswers] = useState<string[]>(() => Array(quiz.questionList.length).fill(""));
     const [startingIndex, setStartingIndex] = useState<number>(quiz.currentQuestion - 1)
 
@@ -34,6 +34,7 @@ export function BasicQuestionsPage(): JSX.Element {
                     answers={answers}
                     setAnswers={setAnswers}
                     startingIndex={startingIndex}
+                    setQuiz={setQuiz}
                 />
             </div>
             <div style={{ display: reviewIsVisible ? 'block' : 'none' }}>

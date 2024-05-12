@@ -1,9 +1,9 @@
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
-import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { BasicQuestion } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 import { User } from "../../../../Interfaces/User/User";
 import { QUESTION_DATA } from "../../BasicQuestionData";
 
-export function generateQuestions(a: number, questionNumber: number): Question {
+export function generateQuestions(a: number, questionNumber: number): BasicQuestion {
   const uniqueNames = [
     "What aspect of work excites you the most?",
     "When you envision your future career– where are you?",
@@ -120,7 +120,7 @@ export function getCurrentUser() : User | undefined {
 
 export function quizObjects(): BasicQuiz {
   const totalQuestions = 8;
-  const questions: Question[] = range(totalQuestions).map(index => generateQuestions(index, index + 1));
+  const questions: BasicQuestion[] = range(totalQuestions).map(index => generateQuestions(index, index + 1));
   let shuffledIndices = shuffleNumbers(range(totalQuestions));
   let shuffledQuestions = shuffledIndices.map((shuffledIndex, index) => ({
     ...questions[shuffledIndex],
@@ -156,7 +156,7 @@ export function generateBasicQuiz(length? : number) {
 
   const questionPool = [...QUESTION_DATA.questions]
 
-  const quizQuestions : Question[] = [];
+  const quizQuestions : BasicQuestion[] = [];
   
   //first for loop I have wrote in this class... YIPPIE!!!!
   for (let i : number = 0; i <= length; i++) {
@@ -179,7 +179,7 @@ export function generateBasicQuiz(length? : number) {
 
   //very crucial question that will always be the last one
   //CRUCIAL TO THE INTEGRITY OF THE QUIZ, WILL EXPLODE IF REMOVED!!!!!!
-  const bearQuestion : Question = {
+  const bearQuestion : BasicQuestion = {
     name : "Do you like bears?",
     questionNumber : quizQuestions.length + 1,
     options : ["Bear-y much", "Yes", "Meh", "Not Really", "I hate them"],
