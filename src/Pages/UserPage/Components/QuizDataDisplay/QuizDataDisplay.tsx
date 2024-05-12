@@ -43,8 +43,21 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
             )
         })
 
-        setCardData(sortCardData([...detailedCards, ...basicCards]));
-    })
+        let concatCards : displayCard[] = [...detailedCards, ...basicCards];
+
+        const sortingType = sortingTypes[cardSorting % sortingTypes.length];
+
+        if (sortingType === "basic") {
+            concatCards = concatCards.filter((card) => card.quizType === "basic");
+        }
+
+        if (sortingType === "detailed") {
+            concatCards = concatCards.filter((card) => card.quizType === "detailed");
+        }
+
+
+        setCardData(concatCards);
+    }, [basicData, cardSorting, quizData, setCardData])
 
     //predicate to check if card is basic quiz 
     function isBasicQuiz(displayCard : BasicQuiz | DetailedQuiz): displayCard is BasicQuiz {
@@ -56,25 +69,7 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
         return true;
     }
 
-    function sortCardData(cards : displayCard[]) : displayCard[] {
 
-        const sortingType = sortingTypes[cardSorting % sortingTypes.length];
-
-        if (sortingType === "default") {
-            return cards
-        }
-
-        if (sortingType === "basic") {
-            return cards.filter((card) => card.quizType === "basic");
-        }
-
-        if (sortingType === "detailed") {
-            return cards.filter((card) => card.quizType === "detailed");
-        }
-
-        return cards;
-
-    }
 
     return (
         <div className="quiz-data-display">
