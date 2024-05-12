@@ -5,15 +5,18 @@ import { QuizDataDisplay } from "../QuizDataDisplay/QuizDataDisplay";
 
 import "./UserPageWidgetsView.css"
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
-import { getDetailedQuizData } from "../../../../Services/UserServices/UserDataService";
+import { getBasicQuizData, getDetailedQuizData } from "../../../../Services/UserServices/UserDataService";
 import { AxiosError, AxiosResponse } from "axios";
 import { ApiCallResponse } from "../../../../Interfaces/Responses/ApiCallResponse";
 
 import fitzWilliam from "../../../../assets/career-intern/confused-intern.png"
+import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 
 export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element {
 
-    const [quizData, setQuizData] = useState<DetailedQuiz[]>()
+    const [detailedQuizData, setDetailedQuizData] = useState<DetailedQuiz[]>()
+
+    const [basicQuizData, setBasicQuizData] = useState<BasicQuiz[]>();
 
     const [dataError, setDataError] = useState(false);
 
@@ -21,13 +24,21 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
     useEffect(() => {
         getDetailedQuizData(user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz[]>>) => {
-            setQuizData(res.data.responseContent);
-            setLoading(false)
+            setDetailedQuizData(res.data.responseContent);
         }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz[]>>) => {
             setDataError(true)
             console.log(e)
         })
-    }, [user]) 
+        getBasicQuizData(user).then((res : AxiosResponse<ApiCallResponse<BasicQuiz[]>>) => {
+            setBasicQuizData(res.data.responseContent);
+
+        }).catch((e : AxiosError<ApiCallResponse<BasicQuiz[]>>) => {
+            setDataError(true)
+            console.log(e)
+        })
+
+        setLoading(false)
+    }, [user])
 
     function getTimeBasedGreeting() {
 
@@ -62,8 +73,8 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
             {
                 !dataError &&
                 <div className = "user-page--widget-view-content">
-                    <MetricDisplay detailedQuizData={quizData} ></MetricDisplay>
-                    {quizData !== undefined && <QuizDataDisplay quizData={quizData} userData={user} loading = {loading}></QuizDataDisplay>}
+                    <MetricDisplay detailedQuizData={detailedQuizData} basicQuizData={basicQuizData}></MetricDisplay>
+                    {(detailedQuizData !== undefined && basicQuizData !== undefined) && <QuizDataDisplay quizData={detailedQuizData} basicData={basicQuizData} userData={user} loading = {loading}></QuizDataDisplay>}
                 </div> 
             }
 

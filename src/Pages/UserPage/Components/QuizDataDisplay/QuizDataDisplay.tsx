@@ -1,14 +1,80 @@
+import { useEffect, useState } from "react";
+import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { User } from "../../../../Interfaces/User/User";
+import { BasicQuizDataCard } from "../QuizDataCard/BasicQuizCard";
 import { QuizDataCard } from "../QuizDataCard/QuizDataCard";
 import "./QuizDataDisplay.css"
 
-export function QuizDataDisplay({quizData, userData, loading} : {quizData : DetailedQuiz[], userData : User , loading: boolean}) : React.JSX.Element {
+export type quizType = "basic" | "detailed";
 
-    const mappedQuizData = quizData.map((quiz) => {
-        return (
-            <QuizDataCard detailedQuizData={quiz} userData={userData} key = {quiz.detailedQuizId} />
-        )})
+interface displayCard {
+    quizType : quizType
+    data: BasicQuiz | DetailedQuiz
+}
+
+const sortingTypes = ["default", "basic", "detailed", "date-descending", "date-ascending"]
+
+export function QuizDataDisplay({quizData, basicData ,userData, loading} 
+    : {quizData : DetailedQuiz[], basicData : BasicQuiz[] ,userData : User , loading: boolean}
+) : React.JSX.Element {
+
+    const [cardSorting, setCardSorting] = useState(0);
+
+    const [cardData, setCardData] = useState<displayCard[]>([])
+
+    useEffect(() => {
+
+        const detailedCards = quizData.map((card) : displayCard => {
+            return (
+                {
+                    quizType: "detailed",
+                    data: card
+                }
+            )
+        })
+
+        const basicCards = basicData.map((card) : displayCard => {
+            return (
+                {
+                    quizType: "basic",
+                    data: card
+                }
+            )
+        })
+
+        setCardData(sortCardData([...detailedCards, ...basicCards]));
+    })
+
+    //predicate to check if card is basic quiz 
+    function isBasicQuiz(displayCard : BasicQuiz | DetailedQuiz): displayCard is BasicQuiz {
+        return true;
+    }
+
+    //predicate to check if card is detailed quiz
+    function isDetailedQuiz(displayCard : BasicQuiz | DetailedQuiz): displayCard is DetailedQuiz {
+        return true;
+    }
+
+    function sortCardData(cards : displayCard[]) : displayCard[] {
+
+        const sortingType = sortingTypes[cardSorting % sortingTypes.length];
+
+        if (sortingType === "default") {
+            return cards
+        }
+
+        if (sortingType === "basic") {
+            return cards.filter((card) => card.quizType === "basic");
+        }
+
+        if (sortingType === "detailed") {
+            return cards.filter((card) => card.quizType === "detailed");
+        }
+
+        return cards;
+
+    }
 
     return (
         <div className="quiz-data-display">
@@ -16,14 +82,21 @@ export function QuizDataDisplay({quizData, userData, loading} : {quizData : Deta
             <div className = "quiz-data-display--header">
                 <h4 className = "quiz-data--heading"> Quiz History </h4>
                 <div> 
-                    <button> Sort </button>
+                    <button onClick={() => setCardSorting(prev => prev + 1)}> Sort { cardSorting % sortingTypes.length !== 0 && `(${sortingTypes[cardSorting % sortingTypes.length]})`} </button>
                 </div>
             </div>
-            
 
-            { !loading && 
-                mappedQuizData
+            {
+                cardData.map((displayCard) => {
+                    if (displayCard.quizType === "basic" && isBasicQuiz(displayCard.data)) {
+                        return <BasicQuizDataCard basicQuizData={displayCard.data} userData={userData}/>
+                    } else if (displayCard.quizType === "detailed" && isDetailedQuiz(displayCard.data)) {
+                        return <QuizDataCard detailedQuizData={displayCard.data} userData={userData} />
+                    }
+                })
             }
+
+
         </div>
     )
 }
