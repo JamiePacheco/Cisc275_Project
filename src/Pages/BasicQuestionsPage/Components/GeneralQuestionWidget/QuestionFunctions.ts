@@ -1,5 +1,7 @@
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { Question } from "../../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { User } from "../../../../Interfaces/User/User";
+import { QUESTION_DATA } from "../../BasicQuestionData";
 
 export function generateQuestions(a: number, questionNumber: number): Question {
   const uniqueNames = [
@@ -105,17 +107,96 @@ export function range(len:number){
   return Array.from(Array(len).keys());
 }
 
+export function getCurrentUser() : User | undefined {
+  
+  const savedUser = sessionStorage.getItem("CURRENT_USER");
+
+  if (savedUser === null) {
+    return undefined;
+  }
+
+  return JSON.parse(savedUser);
+}
+
 export function quizObjects(): BasicQuiz {
   const totalQuestions = 8;
   const questions: Question[] = range(totalQuestions).map(index => generateQuestions(index, index + 1));
-  const shuffledIndices = shuffleNumbers(range(totalQuestions));
-  const shuffledQuestions = shuffledIndices.map((shuffledIndex, index) => ({
+  let shuffledIndices = shuffleNumbers(range(totalQuestions));
+  let shuffledQuestions = shuffledIndices.map((shuffledIndex, index) => ({
     ...questions[shuffledIndex],
     questionNumber: index + 1  
   }));
+
+  shuffledQuestions = [...shuffledQuestions, 
+    {
+      name : "Do you like bears?",
+      questionNumber : totalQuestions + 1,
+      options : ["Bear-y much", "Yes", "Meh", "Not Really", "I hate them"],
+      answer: ""
+    }
+  ]
+
+  shuffledIndices = [...shuffledIndices, 9]
+
   return {
+    dateTaken : new Date().toISOString(),
     questionList: shuffledQuestions,
     numAnswered: 0,
-    displayOrder: shuffledIndices
+    displayOrder: shuffledIndices,
+    currentQuestion: 1,
+    user : getCurrentUser()
   };
+}
+
+export function generateBasicQuiz(length? : number) {
+
+  if (length === undefined) {
+    length = 7;
+  }
+
+  const questionPool = [...QUESTION_DATA.questions]
+
+  const quizQuestions : Question[] = [];
+  
+  //first for loop I have wrote in this class... YIPPIE!!!!
+  for (let i : number = 0; i <= length; i++) {
+    //gets a random question from pool of questions and removes from pool array
+    const selectedQuestion = questionPool.splice(Math.floor(Math.random() * questionPool.length) - 1, 1)[0];
+    
+    //sets the i-th question to the random question
+    quizQuestions[i] = {
+      name : selectedQuestion.name,
+      questionNumber : i + 1,
+      options : selectedQuestion.options,
+      answer : ""
+    }
+
+    // if the pull of questions has been completely drained break from loop
+    if (questionPool.length < 1) {
+      break;
+    }
+  }
+
+  //very crucial question that will always be the last one
+  //CRUCIAL TO THE INTEGRITY OF THE QUIZ, WILL EXPLODE IF REMOVED!!!!!!
+  const bearQuestion : Question = {
+    name : "Do you like bears?",
+    questionNumber : quizQuestions.length + 1,
+    options : ["Bear-y much", "Yes", "Meh", "Not Really", "I hate them"],
+    answer: ""
+  }
+
+  const generatedQuestions =  [...quizQuestions, bearQuestion]
+
+  const generatedBasicQuiz : BasicQuiz = {
+    dateTaken: new Date().toISOString(),
+    questionList: generatedQuestions,
+    numAnswered: 0,
+    currentQuestion: 1,
+    displayOrder: generatedQuestions.map((q) => q.questionNumber),
+    user: getCurrentUser()
+  }
+
+  //return quiz questions
+  return generatedBasicQuiz;
 }

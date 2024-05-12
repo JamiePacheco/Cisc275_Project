@@ -1,6 +1,6 @@
 import "./GeneralQuestionWidget.css";
 import { ProgressBar, Form } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 
@@ -12,20 +12,26 @@ interface GeneralQuestionsProps {
   displayOrder: number[];
   answers: string[];
   setAnswers: (answers: string[]) => void;
+  startingIndex: number
 }
 
-export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers }: GeneralQuestionsProps): JSX.Element | null {
-  const [index, setIndex] = useState<number>(0);
+export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers, startingIndex }: GeneralQuestionsProps): JSX.Element | null {
+  const [index, setIndex] = useState<number>(startingIndex);
 
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const newAnswer = event.target.value;
     const newAnswers = [...answers];
-    newAnswers[displayOrder[questionIndex]] = newAnswer; //map answer to original question index using displayOrder
+    newAnswers[questionIndex] = newAnswer; //map answer to original question index using displayOrder
+    console.log("question: " + questionIndex);
     setAnswers(newAnswers);
 
     console.log("Answers after update:", newAnswers);  //debug test
 
   };
+
+  useEffect(() => {
+    setIndex(startingIndex)
+  }, [startingIndex])
 
   if (!isVisible) {
     return null; //do not render the component if not visible
@@ -45,7 +51,7 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
               id={`option-${index}-${optionIndex}`}
               label={option}
               value={option}
-              checked={answers[displayOrder[index]] === option} // Checks if the answer at the position of this question in displayOrder matches this option
+              checked={answers[index] === option} // Checks if the answer at the position of this question in displayOrder matches this option
               onChange={(e) => updateValues(e, index)}
           />
         ))}
@@ -59,7 +65,7 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
         setReviewIsVisible={setReviewIsVisible}
       />
       <div className="progress-bar-bootstrap">
-        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} className="custom-progress-bar" />
+        <ProgressBar now={(answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100} className="custom-progress-bar" color="#6c4c41"/>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { QUESTION_FRAMES } from "./CareerBearQuestionFrames";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { User } from "../../Interfaces/User/User";
+import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
+import { Question } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 
 let openai : OpenAI;
 
@@ -70,6 +72,28 @@ results json format {
   careerSuggestions : <list of all career suggestions, each in career_field json format>
 }
 `
+
+const USER_DATA_FORMAT_BASIC = `
+personality_trait json format {
+  trait : <name of trait>,
+  traitDescription: <description of the trait>,
+  traitLogic: <logic and reasoning career bear had assigning the user this personality trait>
+}
+
+career_field format {
+  careerField : <name of broad career field>,
+  careerFieldDescription: <a general description of the career field and potential roles>
+  careerFieldLogic : <the logic that was used to determine this career field based on user personality traits and question answers>
+  careerFieldJobs : <list of jobs within this career field>
+} 
+
+results json_format {
+  personalityTraits : <list of all personality data, each in personality_trait json format>,
+  careerFieldSuggestions : <list of all career fields, each in career_field format>
+}
+`
+
+
 
 const questionTypes = ["HYPOTHETICAL","RATHER","INTREST", "TRAITS"]
 
@@ -255,7 +279,7 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
         },
         {
           role : "system",
-          content : "Format the user's personality traits and career suggestions into the json format specificed," + USER_DATA_FORMAT
+          content : "Format the user's personality traits and career suggestions into the json format specified," + USER_DATA_FORMAT
         }
       ],
       //I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
@@ -268,5 +292,51 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
       return completion;
     }
   }
+}
 
+export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz) {
+
+  initalizeAPI();
+
+  let completion = null
+
+  let careerBearQuestions = "Career Bear Questions: ";
+  let userResponses = "User Responses: ";
+
+  quizData.questionList.forEach((question : Question) => {
+    careerBearQuestions += `,"${question.name}"`;
+    userResponses += `,"${question.answer}"`;
+  })
+
+  if (openai !== null) {
+    completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role : "user",
+          content: careerBearQuestions
+        },
+        {
+          role : "user",
+          content: userResponses
+        },
+        {
+          role : "system",
+          content : `Using the user responses to the career bear questions, give an overview by listing three basic personality traits with a general description of the trait, and the overall logic that was used to deduce the trait
+          then list three career fields that may suit the user based on those traits, putting the name, a description of the field, the logic used to determine the field and what personality traits were associated, as well as three popular jobs within that field
+          `
+        },
+        {
+          role : "system",
+          content : "Format the user's personality traits and career field suggestions into the json formatted specified, " + USER_DATA_FORMAT_BASIC
+        }
+      ],
+        //@ts-ignore
+        response_format : {type : "json_object"},
+        model : "gpt-4-turbo"
+      })
+    }
+
+  if (completion !== null) { 
+    return completion;
+  }
 }
