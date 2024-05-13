@@ -69,8 +69,6 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
         return true;
     }
 
-
-
     return (
         <div className="quiz-data-display">
             
@@ -88,6 +86,7 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
                     } else if (displayCard.quizType === "detailed" && isDetailedQuiz(displayCard.data)) {
                         return <QuizDataCard detailedQuizData={displayCard.data} userData={userData} />
                     }
+                    return null
                 })
             }
 
