@@ -1,6 +1,6 @@
 import './App.css';
 
-import { HashRouter, Route, Routes, ScrollRestoration} from 'react-router-dom';
+import { HashRouter, Route, Routes} from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage';
 import { MembersPage } from './Pages/MembersPage/MembersPage';
 import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
