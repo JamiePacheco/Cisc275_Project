@@ -77,7 +77,7 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         </Tab>
         
         <Tab eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
-          <h3>Your personality</h3>
+          <h2 className = 'personality-header'>Your personality</h2>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
         </Tab>
 

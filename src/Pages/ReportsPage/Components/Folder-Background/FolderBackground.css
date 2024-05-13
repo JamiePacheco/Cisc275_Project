@@ -1,7 +1,7 @@
 .manilla-folder{
   position: flex;
   background-color: #f2f2f2;
-  padding: 100px;
+  padding: 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 10%; 
@@ -22,4 +22,8 @@
 .tabs-title-text{
   font-weight: bold;
   color: #6c4c41;
+}
+
+.personality-header{
+  padding-top: 20px;
 }
