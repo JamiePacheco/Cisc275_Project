@@ -1,6 +1,6 @@
 import './App.css';
 
-import { HashRouter, Route, Routes} from 'react-router-dom';
+import { HashRouter, Route, Routes, ScrollRestoration} from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage';
 import { MembersPage } from './Pages/MembersPage/MembersPage';
 import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
@@ -64,25 +64,28 @@ function App() {
   // }, [user])
 
   return (
-    <HashRouter>
-      <div 
-      className="App">
-        <AppHeader user={user} setUser={setUser}></AppHeader>
-        <div className = "App-content">
-            <Routes>
-              <Route path = "/home" element = {<HomePage user = {user} handleKeySubmit={handleSubmit} handleKeyClear={clearKey}/>}> </Route>
-              <Route path = "/login" element = {<LoginPage setUser={setUser}/>}></Route>
-              <Route path = "/sign-up" element = {<SignUpPage setUser = {setUser}/>}></Route>
-              <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
-              <Route path = "/detailed-quiz" element = {<DetailedPage user = {user}/>}> </Route>
-              <Route path = "/reports" element = {<ReportsPage/>}> </Route>
-              <Route path = "/user-page" element = {<UserPage setUser = {setUser}/>}> </Route>
-              <Route path = "/" element = {<MembersPage/>}></Route>
-            </Routes>
+    <>
+      <HashRouter>
+        <div 
+        className="App">
+          <AppHeader user={user} setUser={setUser}></AppHeader>
+          <div className = "App-content">
+              <Routes>
+                <Route path = "/home" element = {<HomePage user = {user} handleKeySubmit={handleSubmit} handleKeyClear={clearKey}/>}> </Route>
+                <Route path = "/login" element = {<LoginPage setUser={setUser}/>}></Route>
+                <Route path = "/sign-up" element = {<SignUpPage setUser = {setUser}/>}></Route>
+                <Route path = "/short-quiz" element = {<BasicQuestionsPage/>}> </Route>
+                <Route path = "/detailed-quiz" element = {<DetailedPage user = {user}/>}> </Route>
+                <Route path = "/reports" element = {<ReportsPage/>}> </Route>
+                <Route path = "/user-page" element = {<UserPage setUser = {setUser}/>}> </Route>
+                <Route path = "/" element = {<MembersPage/>}></Route>
+              </Routes>
+          </div>
+          <AppFooter></AppFooter>
         </div>
-        <AppFooter></AppFooter>
-      </div>
-    </HashRouter>
+      </HashRouter>
+
+    </>
   );
 }
 

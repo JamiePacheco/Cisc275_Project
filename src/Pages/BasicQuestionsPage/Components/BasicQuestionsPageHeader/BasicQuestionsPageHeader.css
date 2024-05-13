@@ -1,11 +1,9 @@
 .basic-questions-page-header {
-    justify-content: space-between;
     align-items: center;
     font-size: 17px;
     font-weight: 400;
 }
 
 .main-header {
-    font-size: 50px;
-    font-weight: 600;
+    padding: 2vh;
 }
