@@ -71,8 +71,6 @@ export const QUESTION_DATA = {
       {
         "name": "I am a…",
         "options": [
-          "Technical person: I love computers and technology",
-          "Health person: People can always rely on me for health advice, the latest health trends, and workout routines",
           "People person: I enjoy socializing and working with others.",
           "Logical person: I enjoy coming up with new ideas and solutions to real world problems",
           "Creative person: I enjoy making art, coming up with ideas, and am comfortable with ambiguity.",

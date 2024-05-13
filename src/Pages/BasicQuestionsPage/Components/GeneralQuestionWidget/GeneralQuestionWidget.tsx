@@ -6,6 +6,7 @@ import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 import { BasicQuestionsPageHeader } from "../BasicQuestionsPageHeader/BasicQuestionsPageHeader";
 
 import { CareerProgressBear } from "../../../../Components/ProgressBar/ProgressBar";
+import { User } from "../../../../Interfaces/User/User";
 
 interface GeneralQuestionsProps {
   isVisible: boolean;
@@ -24,9 +25,21 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
 
   const [progress, setProgress] = useState<number>(answers.filter(ans => ans !== "").length);
 
+  const [user, setUser] = useState<User | undefined>(undefined);
+
   useEffect(() => {
     setProgress(answers.filter(ans => ans !== "").length);
   }, [answers, quiz])
+
+  useEffect(() => {
+
+    const userData = sessionStorage.getItem("CURRENT_USER");
+
+    if (userData !== null) {
+      setUser(JSON.parse(userData));
+    }
+
+  }, [])
 
 
   useEffect(() => {
@@ -61,11 +74,11 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
 
   return (
     <div className="question-component--content">
-      <BasicQuestionsPageHeader />
+      <BasicQuestionsPageHeader user={user}/>
      
       <div className = "question--main-content">
         <h1 className="question--heading">
-          {quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
+          Q{quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
         </h1>
         <div className="question--choices">
           {quiz.questionList[index].options.map((option, optionIndex) => (
