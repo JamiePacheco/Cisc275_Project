@@ -56,32 +56,48 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
 
     return (
         <div>
-            <div className="review-header"><h2>🐻 Review Answers 🐻</h2></div>
             <div className="review-container">
-                {displayOrder.map((index, position) => {
-                    const question = questions[position]; //get the question based on position
-                    const answer = answers[position]; //get the answer based on the original question index
-                    return (
-                        <div key={index} className="question-answer-container">
-                        <h3 className="question-name">{position + 1}. {question.name}</h3>
-                        <div className="answer-text-default">
-                            <strong>You Chose:</strong> <span className="answer-text">{answer}</span>
-                        </div>
-                        <button onClick={() => {
-                            setStartingIndex(displayOrder[index - 1] - 1);
-                            setReviewIsVisible(false);
-                            setIsVisible(true);
-                        }} 
-                        > 
-                            Change Answer 
-                        </button>
-                    </div>
-                );
-                })}
+                <h2 className = "review-header"> Assessment Overview </h2>
+                <div className="review-content">
+                    {displayOrder.map((index, position) => {
+                        const question = questions[position]; //get the question based on position
+                        const answer = answers[position]; //get the answer based on the original question index
+                        return (
+                            <div key={index} className="question-answer-container">
 
-                <div>
+                                <button 
+                                    className = "question-change-action"
+                                    onClick={() => {
+                                    setStartingIndex(index - 1);
+                                    setReviewIsVisible(false);
+                                    setIsVisible(true);
+                                }} 
+                                > 
+                                    Q{position + 1} 
+                                </button>
+                                
+                                <div>
+                                    <h5 className="question-name"><strong>Q. </strong>{question.name}</h5>
+                                    <h5><strong>A. </strong>{answer}</h5>
+                                </div>
+                            </div>
+                    );
+                    })}
+                </div>
+                <div className = "actions">
                     <button className = "submit-test-button" onClick={() => submitBasicQuiz()}> 
                         Submit Test
+                    </button>
+
+                    <button 
+                        className = "change-answers-button"
+                        onClick={() => {
+                            setStartingIndex(0);
+                            setReviewIsVisible(false);
+                            setIsVisible(true);
+                        }}     
+                    >
+                        Go To Start
                     </button>
                 </div>
             </div>

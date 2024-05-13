@@ -1,11 +1,10 @@
 import "./GeneralQuestionWidget.css";
-import { ProgressBar, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { QuizInteraction } from "../QuizInteraction/QuizInteraction";
 import { BasicQuestionsPageHeader } from "../BasicQuestionsPageHeader/BasicQuestionsPageHeader";
 
-import careerBearSleeping from "../../../../assets/career-bear/sleeping-career-bear.png"
 import { CareerProgressBear } from "../../../../Components/ProgressBar/ProgressBar";
 
 interface GeneralQuestionsProps {
@@ -25,6 +24,19 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
 
   const [progress, setProgress] = useState<number>(answers.filter(ans => ans !== "").length);
 
+  useEffect(() => {
+    setProgress(answers.filter(ans => ans !== "").length);
+  }, [answers, quiz])
+
+
+  useEffect(() => {
+    setIndex(startingIndex)
+  }, [startingIndex, isVisible])
+
+  if (!isVisible) {
+    return null; //do not render the component if not visible
+  }
+
   const updateValues = (event: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const newAnswer = event.target.value;
     const newAnswers = [...answers];
@@ -42,21 +54,10 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
         questionList:  newQuestions
       }
     )
-
   };
 
-  useEffect(() => {
-    setProgress(answers.filter(ans => ans !== "").length);
-  }, [answers, quiz])
-
-
-  useEffect(() => {
-    setIndex(startingIndex)
-  }, [startingIndex])
-
-  if (!isVisible) {
-    return null; //do not render the component if not visible
-  }
+  console.log("starting index: " + startingIndex);
+  console.log("Showing question of index: " + index)
 
   return (
     <div className="question-component--content">
@@ -69,6 +70,7 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
         <div className="question--choices">
           {quiz.questionList[index].options.map((option, optionIndex) => (
             <Form.Check
+                className = "question--choices-radio"
                 key={optionIndex}
                 type="radio"
                 name={`question-${index}`}
@@ -89,7 +91,7 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
           setReviewIsVisible={setReviewIsVisible}
         />
       </div>
-        {/* (answers.filter(ans => ans !== "").length / quiz.questionList.length) * 100 */}
+        {/* Custom progress bar that used sleeping career bear on top */}
       <CareerProgressBear 
         curr={progress} 
         total={quiz.questionList.length}

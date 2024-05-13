@@ -18,7 +18,7 @@
 }
 
 .question--main-content {
-    margin: 5%;
+    margin-inline: 5%;
     min-width: 500px;
     max-width: 1000px;
 
@@ -28,7 +28,7 @@
 
 .question--heading {
     width: 100%;
-    font-size: 2.5vh;
+    font-size: 2.2vh;
     margin: 2% 0 0 0;
     text-align: left;
     margin-left: 15px; 
@@ -38,7 +38,7 @@
     margin-top: 20px;
     padding: 10px;
     text-align: left; 
-    font-size: 20px;
+    font-size: 1.75vh;
 
     width: 100%;
     height: 100%;
@@ -47,4 +47,15 @@
 
 .question--choices .form-check { /*margin between choices*/
     margin-bottom: 6px;
+}
+
+input[type="radio"]:checked {
+    background-color: #6c4c41;;
+    border: none
+}
+
+input[type="radio"]:focus   {
+    border: none;
+    background-color:#6c4c41;
+    box-shadow: none;
 }
