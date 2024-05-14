@@ -30,7 +30,7 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
         if(element.current){
             setWidth(element.current.offsetWidth);
         }
-    })
+    }, [])
 
     useEffect(() => {
         
