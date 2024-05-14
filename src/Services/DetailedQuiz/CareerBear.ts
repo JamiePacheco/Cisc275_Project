@@ -8,6 +8,9 @@ import { BasicQuestion } from "../../Interfaces/BasicQuestionInterfaces/Question
 
 let openai : OpenAI;
 
+const CURRENT_MODEL = "gpt-4o"
+
+
 export const CAREER_BEAR_PERSONALITY = `
 Career Bear is a very thoughtful bear; he works hard to ensure that people are able to find careers in areas they enjoy. 
 He loves to ask questions to get to know the person more. He is professional, friendly, and loves bear puns. 
@@ -156,7 +159,7 @@ export async function initalizeCareerBear(user : User | null) : Promise<OpenAI.C
         
     ],
 
-      model: "gpt-4-turbo",
+      model: CURRENT_MODEL,
     });
 
     if (completion !== undefined) {
@@ -179,7 +182,7 @@ export async function sendMessageToCareerBear(message : string, context : string
           content : CAREER_BEAR_MESSAGE_SPECIFICATIONS + BEAR_PUNS +  generateQuestionPrompt() + generateQuestionContext(context)
         },
         ],
-      model: "gpt-4-turbo",
+      model: CURRENT_MODEL,
     });
 
     if (completion !== undefined) {
@@ -197,7 +200,7 @@ export async function getCareerBearQuestion() {
           role : "system",
           content : generateQuestionPrompt()
         }],
-        model : "gpt-4-turbo"
+        model : CURRENT_MODEL
     });
 
     if (completion !== undefined) {
@@ -221,7 +224,7 @@ export async function getQuizSessionData() : Promise<OpenAI.Chat.Completions.Cha
           content: QUIZ_DATA_FORMAT
         }
       ],
-      model: "gpt-4-turbo",
+      model: CURRENT_MODEL
     });
 
     if (completion !== undefined) {
@@ -239,7 +242,7 @@ export async function notifyUser() : Promise<OpenAI.Chat.Completions.ChatComplet
           role : "system",
           content : IMPRESSION
         }],
-        model: "gpt-4-turbo",
+        model: CURRENT_MODEL
     });
 
     if (completion !== undefined) {
@@ -285,7 +288,7 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
       //I would never usually do this but for some reason the field 'response_format' is not valid on some machines but valid on others
       //@ts-ignore
       response_format : {type : "json_object"},
-      model : "gpt-4-turbo"
+      model : CURRENT_MODEL
     });
 
     if (completion !== undefined) {
@@ -335,7 +338,7 @@ export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz)
       ],
         //@ts-ignore
         response_format : {type : "json_object"},
-        model : "gpt-4-turbo"
+        model : CURRENT_MODEL
       })
     }
 

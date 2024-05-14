@@ -42,7 +42,6 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
 
     useMemo(() => {
         const interval = setInterval(() => {
-            console.log("setting interval")
             const messagePopped = messages[0];
             if (messagePopped) {
                 setMessage(messagePopped);
