@@ -10,26 +10,26 @@
     width: 20vh;
 }
 
-.career-bear-prompt {
+.career-intern-prompt {
     width: 100%;
     height: 100%;
     margin-block: 10vh;
 }
 
-.career-bear-prompt--content {
+.career-intern-prompt--content {
     margin-inline: 10vw;
     justify-content: flex-end;
     display: flex;
 }
 
-.content--text-box {
+.intern-content--text-box {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 90%;
 }
 
-.content--text {
+.intern-content-text {
     background-color: #fff8f3;
     border-radius: 25px;
     border: 1px solid #6c4c41;
@@ -39,8 +39,4 @@
     max-width: 300px;
 
     transition: 5ms;
-}
-
-.content--user-interface {
-    width: 80%;
 }

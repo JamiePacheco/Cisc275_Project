@@ -20,11 +20,15 @@ export function CareerBearPrompt(
     return (
         <div className = "career-bear-prompt">
             <div className = "career-bear-prompt--content">
-                <div className = "content--text-box">
-                    {typedMessage !== "" && <span className = "content--text">
-                        {typedMessage}
-                    </span>}
-                </div>
+                
+                {typedMessage !== "" && 
+                   <div className = "content--text-box">
+                        <span className = "content--text">
+                            {typedMessage}
+                        </span>
+                    </div>
+                }
+
                 <CareerBearModel 
                     onBearClick = {bearClickHandler}
                     bearEmotion = {bearEmotion}    

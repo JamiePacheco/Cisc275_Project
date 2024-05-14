@@ -6,7 +6,6 @@ import { useTypeWriter } from "../../../../Hooks/useTypeWriter";
 
 import "./CareerInternModel.css"
 import { startingScript } from "./CareerInternScript";
-import { useStackState } from "rooks";
 
 export type fitzEmotion = "happy" | "sad" | "mad" | "thirsty"
 
@@ -29,7 +28,8 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
     const [inProgress, setInProgress] = useState<boolean>(false);
 
     const [internYapConstant, setInternYapConstant] = useState(5000);
-
+    
+    const [talking, setTalking] = useState(true);
 
     useEffect(() => {
         console.log("In Progress: " + inProgress)
@@ -39,8 +39,7 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
         }
     }, [inProgress, started])
 
-
-    useMemo(() => {
+    useMemo(() => { 
         const interval = setInterval(() => {
             const messagePopped = messages[0];
             if (messagePopped) {

@@ -4,7 +4,7 @@ import { evaluateUserCareerFromQuiz, initalizeCareerBear, sendMessageToCareerBea
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
-import { UPSET_PHRASES } from "./CareerBearPhrases";
+import { UPSET_PHRASES, WORKING_INITAL_MESSAGE } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
 import { DetailedPageProps } from "./DetailedPageProps";
@@ -15,8 +15,11 @@ import { AxiosError, AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 import { ReportsResults } from "../../Interfaces/Reports/ReportsResults";
+import { CareerProgressBear } from "../../Components/ProgressBar/ProgressBar";
 
 export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
+
+const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in debugging mode!", "I love to gamble!", "(I should decrease Fitz's pay...)", "Concentrate every minute like a Roman—like a man—on doing what’s in front of you with precise and genuine seriousness, tenderly, willingly, with justice. And on freeing yourself from all other distractions. Yes, you can—if you do everything as if it were the last thing you were doing in your life, and stop being aimless, stop letting your emotions override what your mind tells you, stop being hypocritical, self-centered, irritable. You see how few things you have to do to live a satisfying and reverent life? If you can manage this, that’s all even the gods can ask of you"]
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
@@ -36,15 +39,16 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [careerBearEmotion, setCareerBearEmotion] = useState<BearEmotion>("sleeping");
   //the amount of thoughtful, valid interactions the user has had with career bear
   const [interactions, setInteractions] = useState<number>(0);
+  const [requiredInteractions, setRequiredInteractions] = useState<number>(3);
   //state to check if the user has been notified about their session being able to be processed
   const [notified, setNotified] = useState<boolean>(false);
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
-  const [careerBearMessage, setCareerBearMessage] = useState<string>("");
+  const [careerBearMessage, setCareerBearMessage] = useState<string>(WORKING_INITAL_MESSAGE);
   const [userMessage, setUserMessage] = useState("");
 
   const [bearClicked, setBearClicked] = useState<number>(0);
-  
+
   const [interactionNumber, setInteractionNumber] = useState<number>(1);
 
   const [quizData, setQuizData] = useState<DetailedQuiz>(
@@ -61,6 +65,15 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   useEffect(() => {
     console.log("initalizing career bear " + initalized)
     if (!initalized && careerBearTalking && !paused && validKey) {
+
+      if (debugging) {
+        setInitalized(true);
+        setCareerBearMessage("Hi I am Fitz Ferguson, better know as Career Bear!")
+        setCareerBearEmotion("neutral")
+        return;
+      }
+
+      setCareerBearMessage("(Career Bear needs a minute to wake up)")
       initalizeCareerBear(user).then((value) => {
         if (value !== null &&  value !== undefined) {
           const bearMessage = value.choices[0].message.content
@@ -73,11 +86,12 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         }
       }).catch((reason : Error) => {
         if (reason.message.includes("Incorrect API")) {
-          setCareerBearMessage("(It appears career bear does not like your key...)")
+          setCareerBearMessage("(It appears Career Bear does not like your key...)")
+          setValidKey(false);
         }
       })
-    }
-  }, [careerBearTalking, initalized, paused, user, validKey])
+    } 
+  }, [careerBearTalking, initalized, paused, user, validKey, debugging])
 
   useEffect(() => {
     if (debugging) {
@@ -97,7 +111,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   useEffect(() => {
     if (bearClicked > 0 && bearClicked % 3 === 0 && paused && !consulting) {
       if (careerBearEmotion === "sleeping") {
-        setCareerBearMessage("(Career Bear Is Sleeping...)")
+        setCareerBearMessage("(Career Bear  Is Sleeping...)")
         return;
       }
       setCareerBearMessage(UPSET_PHRASES[Math.floor(Math.random() * UPSET_PHRASES.length)]);
@@ -113,14 +127,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       setValidKey(true);
     } else {
       setValidKey(false)
-      setCareerBearMessage(
-        careerBearEmotion !== "sleeping" ?
-        "hmmmm, I'm bear-y sorry, but I can only talk to you if you have an API key" :
-        "(it appears your invalid api key caused career bear to fall asleep...)"
-        
-      )
     }
-  }, [careerBearEmotion])
+  }, [])
 
   //Checks if career bear is talking or thinking of a response (awaiting gpt promise) and presents message
   useEffect(() => {
@@ -173,11 +181,25 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   //notifies the user that the results may be compiled
   function formBearMessage(bearMessage : string) : string {
     console.log(interactions)
-    if (interactions >= 1 && !notified) {
+    if (interactions >= requiredInteractions && !notified) {
       setNotified(true);
       return bearMessage + "\n\nAlso I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }
     return bearMessage;
+  }
+
+  function handleFlowControl() {
+    if (!initalized) {
+      if (validKey) {
+        setPaused(false);
+      } else {
+        setCareerBearMessage("(it appears your invalid api key cannot wake career bear...)"
+        )
+      }
+    } else {
+      setPaused(prev => !prev)
+    }
+    
   }
 
   //updates the current quiz session data
@@ -208,34 +230,42 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //called when user sends message to career bear that changes state and sends message
   function answerQuestion() {
-    setCareerBearTalking(false);
-    sendMessageToCareerBear(userMessage, careerBearMessage).then((value) => {
-      if (value !== null && value !== undefined) {
-        const bearMessage = value.choices[0].message.content;
-        setCareerBearTalking(true);
-        if (bearMessage !== undefined && bearMessage !== null) {
-          updateQuizData();
-          if (consulting) {
-            setInteractions(prev => prev + 1);
 
-            setCareerBearMessage(formBearMessage(bearMessage));
-            console.log(`Consulting : ${consulting}`)
-            if (bearMessage.trim() === "...") {
-              setCareerBearEmotion("sad");
-            } else {
-              setCareerBearEmotion("neutral")
+    setCareerBearTalking(false);
+    if (!debugging) {
+      sendMessageToCareerBear(userMessage, careerBearMessage).then((value) => {
+        if (value !== null && value !== undefined) {
+          const bearMessage = value.choices[0].message.content;
+          setCareerBearTalking(true);
+          if (bearMessage !== undefined && bearMessage !== null) {
+            updateQuizData();
+            if (consulting) {
+              setInteractions(prev => prev + 1);
+
+              setCareerBearMessage(formBearMessage(bearMessage));
+              console.log(`Consulting : ${consulting}`)
+              if (bearMessage.trim() === "...") {
+                setCareerBearEmotion("sad");
+              } else {
+                setCareerBearEmotion("neutral")
+              }
+              console.log(careerBearEmotion)
             }
-            console.log(careerBearEmotion)
           }
         }
-      }
-    })
+      })
+    } else {
+      setCareerBearTalking(false);
+      setCareerBearMessage(formBearMessage(debuggingPhrases[Math.floor(Math.random() * debuggingPhrases.length)]));
+      setInteractions(prev => prev + 1);
+      setCareerBearTalking(true)
+    }
   }
 
   //makes career bear compile all of the data from the session convo
   function getData() {
     console.log(quizData);
-    if (quizData !== undefined){
+    if (quizData !== undefined && !debugging){
       setCareerBearTalking(false);
       setLoading(true);
       evaluateUserCareerFromQuiz(quizData).then((value) => {
@@ -289,6 +319,9 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       className="detailed-quiz"
     >
       <div className="detailed-quiz--content">
+
+        <CareerProgressBear curr={interactions} total={requiredInteractions} mode={"intern"}></CareerProgressBear>
+
         <CareerBearPrompt 
           message={careerBearMessage} 
           bearClickHandler = {onBearClick}
@@ -309,18 +342,20 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           </div>
           
           <div className = "user-interface--buttons">
+            {
+              (!paused && initalized) && (
+                <button 
+                  onClick={answerQuestion} 
+                  disabled={!initalized}
+                > 
+                Send 
+                </button>
+              )
+            }
             <button 
-              onClick={answerQuestion} 
-              disabled={!initalized}
-            > 
-              Send 
-            </button>
-
-            <button 
-              onClick={() => setPaused(prev => !prev)}
-              disabled={!validKey}  
+              onClick={() => handleFlowControl()}
             >
-              {paused ? (initalized ? "Continue" : "Start") : "Pause"} 
+              {!initalized ?  "Start Session" : (paused ? "Continue" : "Pause")} 
             </button>
 
             {notified && <button
@@ -330,17 +365,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               End Session
             </button>
             }     
-            <button
-              onClick = {() => cycleEmotion()}
-            >
-              manipulate
-            </button>
-
-            <button
-              onClick = {() => setDebugging(prev => !prev)}
-            >
-              {!debugging ? "Start Debugging Mode" : "Stop Debugging Mode"}
-            </button>
           </div>
         </div>
       </div>
