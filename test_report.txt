@@ -69,7 +69,7 @@ All files                                                         |       0 |   
  src/Components/LoadingScreen                                     |       0 |      100 |       0 |       0 |                   
   LoadingScreen.tsx                                               |       0 |      100 |       0 |       0 | 9-32              
  src/Components/ProgressBar                                       |       0 |        0 |       0 |       0 |                   
-  ProgressBar.tsx                                                 |       0 |        0 |       0 |       0 | 13-36             
+  ProgressBar.tsx                                                 |       0 |        0 |       0 |       0 | 13-47             
  src/Hooks                                                        |       0 |        0 |       0 |       0 |                   
   useTypeWriter.tsx                                               |       0 |        0 |       0 |       0 | 5-24              
  src/Interfaces/BasicQuestionInterfaces                           |       0 |        0 |       0 |       0 |                   
@@ -177,5 +177,5 @@ All files                                                         |       0 |   
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.375 s
+Time:        4.456 s
 Ran all test suites.
