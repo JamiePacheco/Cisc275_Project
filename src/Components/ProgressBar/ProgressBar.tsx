@@ -4,7 +4,7 @@ import { ProgressBar } from "react-bootstrap";
 import careerBearSleeping from "../../assets/career-bear/sleeping-career-bear.png"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
-import { useRef, useEffect, useState, ReactElement } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export type Bear = "career" | "intern" 
 
