@@ -18,9 +18,22 @@ interface GeneralQuestionsProps {
   setAnswers: (answers: string[]) => void;
   startingIndex: number,
   setQuiz : React.Dispatch<React.SetStateAction<BasicQuiz>>
+  setStarted : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, quiz, displayOrder, answers, setAnswers, startingIndex, setQuiz}: GeneralQuestionsProps): JSX.Element | null {
+export function GeneralQuestions({
+    isVisible,
+    setIsVisible,
+    setReviewIsVisible, 
+    quiz, 
+    displayOrder, 
+    answers, 
+    setAnswers, 
+    startingIndex, 
+    setQuiz,
+    setStarted
+  }
+   : GeneralQuestionsProps): JSX.Element | null {
   const [index, setIndex] = useState<number>(startingIndex);
 
   const [progress, setProgress] = useState<number>(answers.filter(ans => ans !== "").length);
@@ -28,8 +41,13 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
   const [user, setUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
-    setProgress(answers.filter(ans => ans !== "").length);
-  }, [answers, quiz])
+    const prevProgress = progress;
+    const currentProgress = answers.filter(ans => ans !== "").length;
+    setProgress(currentProgress);
+    if (prevProgress === 0 && prevProgress !== currentProgress) {
+      setStarted(true);
+    }
+  }, [answers, progress, quiz, setStarted])
 
   useEffect(() => {
 
@@ -54,7 +72,6 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
     const newAnswer = event.target.value;
     const newAnswers = [...answers];
     newAnswers[questionIndex] = newAnswer; //map answer to original question index using displayOrder
-    console.log("question: " + questionIndex);
     setAnswers(newAnswers);
 
     console.log("Answers after update:", newAnswers);  //debug test
@@ -69,17 +86,14 @@ export function GeneralQuestions({ isVisible, setIsVisible, setReviewIsVisible, 
     )
   };
 
-  console.log("starting index: " + startingIndex);
-  console.log("Showing question of index: " + index)
-
   return (
     <div className="question-component--content">
       <BasicQuestionsPageHeader user={user}/>
      
       <div className = "question--main-content">
-        <h1 className="question--heading">
-          Q{quiz.questionList[index].questionNumber}. {quiz.questionList[index].name}
-        </h1>
+        <span className="question--heading">
+         <strong>Q{quiz.questionList[index].questionNumber}.</strong> {quiz.questionList[index].name}
+        </span>
         <div className="question--choices">
           {quiz.questionList[index].options.map((option, optionIndex) => (
             <Form.Check

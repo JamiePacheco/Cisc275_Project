@@ -14,6 +14,7 @@ import { saveDetailedQuizData } from "../../Services/UserServices/UserDataServic
 import { AxiosError, AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
+import { ReportsResults } from "../../Interfaces/Reports/ReportsResults";
 
 export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
 
@@ -257,7 +258,13 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz>>) => {
                 console.log(e.response?.data);
               })
-              sessionStorage.setItem("QUIZ_DATA", JSON.stringify(requestData))
+
+              const reportsObject : ReportsResults = {
+                quizResultsType : "detailed",
+                data : requestData
+              }
+
+              sessionStorage.setItem("QUIZ_DATA", JSON.stringify(reportsObject))
               nav("/reports")
             } 
           }
