@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {ReportsHeader} from '../ReportsHeader/ReportsHeader'
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import './FolderBackground.css';
 import { DetailedQuiz } from '../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
 import { FileView } from '../FileView/FileView';
 import signature from '../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
+import CareerBearSticker from '../../CareerBearSticker/CareerBearSticker';
 
 
 
@@ -21,7 +21,6 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
  
   return (
     <div className="manilla-folder">
-      <ReportsHeader></ReportsHeader>
       <Tabs
         id="manilla-folder"
         activeKey={key}
@@ -76,11 +75,11 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
             </div>
         </Container>
         </Tab>
-        
-        <Tab eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
+        <Tab className ='personality-tab5' eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
           <h2 className = 'personality-header'>Your personality</h2>
           <p>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
+          <CareerBearSticker />
         </Tab>
 
         {tabs}

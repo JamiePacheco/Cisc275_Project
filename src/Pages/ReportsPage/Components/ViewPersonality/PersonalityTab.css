@@ -1,86 +1,45 @@
-.personality-tab  { 
-    position: flex;
-    padding: 50px;
-    background-color: inherit;
+.personality-tab-container{
+    position: flex; 
+    padding: 10px;
+    max-width: 1275px;
 }
 
-.personality-tab--content {
-
-    /* width: 100%;
-    height: 100%; */
-
-    /* display: flex;
+.personality-tab-container-content{
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap; */
-    
+    flex-wrap: wrap;    
+    height: 100%;
+}
+
+.personality-tab--content{
     flex-basis: 50%;
     flex-wrap: wrap;
     display: flex;
     text-align: left; 
-    /* justify-content: flex-start; */
-    max-height: 225px;
-    max-width: 500px;
-
+    max-height: 250px;
+    max-width: 400px;
+    min-height: 100px;
+    min-width: 300px;
 }
 
-.personality-trait-container {
-    max-width: 748px;
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* max-width: fit-content; */
-    max-height: fit-content;
-
-    /* min-height: 100px;
-    margin: 10%; */ 
-}
-
-.personality-tab-container-content {
+.personality-row{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;    
-    /* min-height: 650px;
-    min-width: 665px; */
-    height: 100%;
-}
-
-.personality-text-explaination{
-    font-style: italic;
-    padding-left: 5px;
-    max-height: auto;
-    /* max-width: auto; */
-}
-
-.personality-logic-test{
-    padding-left: 5px;
-    max-height: auto;
-    /* max-width: auto; */
-
+    flex-wrap: wrap;
+    padding: 10px;
+    column-gap: 25px;
+    row-gap: 25px;
 }
 
 .personality-header-content{
     max-height: auto;
-    padding-left: 5px;
+}
 
-    /* max-width: auto; */
+.personality-text-explaination{
+    font-style: italic;
+    max-height: auto;
 
 }
 
-.personality-row{
-    /* max-height: 200px; */
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    column-gap: 25px;
-    /* display: flex; */
-}
-
-
-.career-bear-image{ 
-    position: relative; 
-    bottom: 15%;
-    right: -15%;
-    min-height:300px;
-    min-width: 300px;
-
+.personality-logic-test{
+    max-height: auto;
 }

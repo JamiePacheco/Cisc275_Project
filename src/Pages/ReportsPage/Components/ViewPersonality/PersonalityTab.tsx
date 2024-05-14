@@ -1,4 +1,4 @@
-import careerbearimage from "../../../../assets/career-bear/fitzandcareerbear.png"
+// import careerbearimage from "../../../../assets/career-bear/fitzandcareerbear.png"
 import { PersonalityTrait } from "../../../../Interfaces/Results/PersonalityTrait"
 import "./PersonalityTab.css"
 // import bearimage from "../../../../assets/career-bear/neutral_career_bear.png"
