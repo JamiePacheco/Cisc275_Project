@@ -1,6 +1,6 @@
-.personality-tab  {
-    height: 80%;
-    min-width: 80%;
+.personality-tab  { 
+    position: flex;
+    padding: 50px;
     background-color: inherit;
 }
 
@@ -16,39 +16,71 @@
     flex-basis: 50%;
     flex-wrap: wrap;
     display: flex;
-    padding: 5px; 
     text-align: left; 
-    justify-content: flex-start;
-    column-gap: 100px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-    
+    /* justify-content: flex-start; */
+    max-height: 225px;
+    max-width: 500px;
+
 }
 
 .personality-trait-container {
-    /* max-width: 250px; */
+    max-width: 748px;
     display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
+    /* max-width: fit-content; */
+    max-height: fit-content;
+
     /* min-height: 100px;
-    margin: 10%; */
+    margin: 10%; */ 
+}
+
+.personality-tab-container-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    /* min-height: 650px;
+    min-width: 665px; */
+    height: 100%;
 }
 
 .personality-text-explaination{
     font-style: italic;
-    padding-bottom: .5px;
+    padding-left: 5px;
+    max-height: auto;
+    /* max-width: auto; */
+}
+
+.personality-logic-test{
+    padding-left: 5px;
+    max-height: auto;
+    /* max-width: auto; */
+
+}
+
+.personality-header-content{
+    max-height: auto;
+    padding-left: 5px;
+
+    /* max-width: auto; */
+
 }
 
 .personality-row{
-    height: min-content;
+    /* max-height: 200px; */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    column-gap: 25px;
     /* display: flex; */
 }
 
 
 .career-bear-image{ 
-    position: relative;
-    bottom: 400px ; 
-    left: 500px;
-    object-fit: contain;
-    width: 625px;
+    position: relative; 
+    bottom: 15%;
+    right: -15%;
+    min-height:300px;
+    min-width: 300px;
+
 }

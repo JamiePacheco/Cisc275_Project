@@ -8,6 +8,7 @@ import signature from '../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
 
 
+
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
   const [key, setKey] = useState('tab4');
 
@@ -78,6 +79,7 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         
         <Tab eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
           <h2 className = 'personality-header'>Your personality</h2>
+          <p>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
         </Tab>
 
