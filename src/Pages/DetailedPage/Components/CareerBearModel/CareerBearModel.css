@@ -1,8 +1,9 @@
 .career-bear-model {
-    max-width: 30vw;
-    width: 300px;
+    max-width: 200px;
+    width: 30vw;
     min-width: 150px;
-    right: 0;
+    right: 10%;
+
 }
 
 .career-bear-model img {

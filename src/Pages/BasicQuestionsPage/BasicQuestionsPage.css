@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: center;
     /* min-height: 125vh; 
-    max-height: 300vh; */
+    /* max-height: 300vh; */
     /* background-color: rgb(204, 190, 176); */
     /* box-shadow: 0px 2.98256px 10px 10px rgba(0, 0, 0, 0.1); */
     width: 80%;
@@ -47,8 +47,6 @@
     background-color: #B99976;
 
     border-radius: 40px;
-
-
     box-shadow: 0px 2.98256px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
