@@ -24,6 +24,8 @@
     background-color: #6c4c41; /*change progressbar color if needed*/
     height: 20px;
     border-radius: 5px;
+    -webkit-transition: width 300ms ease;
+    transition: width 300ms ease;
 }
 
 .progress-bear-image {
