@@ -3,7 +3,7 @@ import { BasicQuestion } from "../../../Interfaces/BasicQuestionInterfaces/Quest
 import { evaluateUserCareerFieldFromBasicQuiz } from "../../../Services/DetailedQuiz/CareerBear";
 import { BasicQuiz } from "../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { LoadingScreen } from "../../../Components/LoadingScreen/LoadingScreen";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BasicQuizResults } from "../../../Interfaces/Results/BasicQuizResults";
 import { saveBasicQuestionData } from "../../../Services/UserServices/UserDataService";
 
@@ -14,14 +14,13 @@ interface ReviewWidgetProps {
     questions: BasicQuestion[];
     displayOrder: number[];
     answers: string[];
-    setStartingIndex : React.Dispatch<React.SetStateAction<number>>
+    setStartingIndex : React.Dispatch<React.SetStateAction<number>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questions, displayOrder, answers, setStartingIndex }: ReviewWidgetProps): JSX.Element {
+export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questions, displayOrder, answers, setStartingIndex, setLoading}: ReviewWidgetProps): JSX.Element {
     console.log("Answers in ReviewWidget:", answers); //debug test
     console.log("Display Order in ReviewWidget:", displayOrder); //debug test
-
-    const [loading, setLoading] = useState<boolean>(false);
 
     function submitBasicQuiz() {
         const userBasicQuizData = {...quizData}
@@ -39,7 +38,7 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
                 if (userData !== null) {
                     const parsedUserData = JSON.parse(userData)
                     saveBasicQuestionData(parsedUserData, userBasicQuizData).then((res) => {
-                        console.log(JSON.stringify(res.data.responseContent, null, 4 ))
+                        console.log(JSON.stringify(userBasicQuizData, null, 4 ))
                     }).catch((err) => {
                         console.log(err)
                     })
@@ -48,10 +47,6 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
                 console.log(JSON.stringify(jsonData, null, 4))
             }
         })
-    }
-
-    if (loading) {
-        return <LoadingScreen/>
     }
 
     return (

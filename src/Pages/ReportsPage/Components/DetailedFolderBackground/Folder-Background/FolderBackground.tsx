@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import './FolderBackground.css';
-import { DetailedQuiz } from '../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
+import { DetailedQuiz } from '../../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
 import { FileView } from '../FileView/FileView';
-import signature from '../../../../assets/logos/signature.png'
+import signature from '../../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
-import CareerBearSticker from '../../CareerBearSticker/CareerBearSticker';
+import CareerBearSticker from '../../../CareerBearSticker/CareerBearSticker';
 
 
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
