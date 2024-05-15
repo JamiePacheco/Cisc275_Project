@@ -4,14 +4,14 @@ import './Basic-FolderBackground.css';
 import React, { useState } from 'react';
 import signature from '../../../../../assets/logos/signature.png'
 import { BasicQuiz } from '../../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
-// import { CareerSuggestionView } from '../CareerSuggestionView/CareerSuggestion';
-
+import { CareerSuggestionView } from '../CareerSuggestionView/CareerSuggestion';
 export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}) : JSX.Element{
     const[key, setKey] = useState('tab4');
 
     const tabs = quizData?.basicQuizResults?.careerFieldSuggestions.map((career, i) => {
         return (
           <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tab-name'>{career.careerField}</span>}>
+            <CareerSuggestionView data={career}></CareerSuggestionView>
           </Tab>
         )})
     
@@ -37,17 +37,13 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
                 <div className = "careerintro-personality">
                 <h5>Your Personality</h5>
                 <p>
-                I, CareerBear, found you to be 
-                {/* <span style = {{"fontWeight" : "bold"}}>{quizData?.results?.personalityTraits.map(trait => trait.trait).slice(0, -1).join(', ') + ', and ' + quizData?.results?.personalityTraits.map(trait => trait.trait).pop()}</span>. */}
-                In the next section of the CarrerFile, we'll go into depth on these traits, and how they factored into the careers selected for you.
+                I, CareerBear, found you to be <span style = {{"fontWeight" : "bold"}}>{quizData?.basicQuizResults?.personalityTraits.map(trait => trait.trait).slice(0, -1).join(', ') + ', and ' + quizData?.basicQuizResults?.personalityTraits.map(trait => trait.trait).pop()}</span>. In the next section of the CarrerFile, we'll go into depth on these traits, and how they factored into the careers selected for you.
                 </p>
                 </div>
 
                 <div className = "careerintro-careers">
                 <h5>Your Careers</h5>
-                <p>After close examination of your results, the careers that I found to most fit you are the following: 
-                    {/* <span style = {{"fontWeight" : "bold"}}>{quizData?.results?.careerSuggestions.map(career => career.career).slice(0, -1).join(', ') + ', and ' + quizData?.results?.careerSuggestions.map(career =>career.career).pop()} </span>.*/} 
-                    We will further go into detail about these further in your file!</p>
+                <p>After close examination of your results, the career fields that I found to most fit you are the following: <span style = {{"fontWeight" : "bold"}}>{quizData?.basicQuizResults?.careerFieldSuggestions.map(career => career.careerField).slice(0, -1).join(', ') + ', and ' + quizData?.basicQuizResults?.careerFieldSuggestions.map(career =>career.careerField).pop()} </span>. We will further go into detail about these further in your file!</p>
                 </div>
 
                 </Col>

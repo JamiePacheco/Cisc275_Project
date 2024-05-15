@@ -11,9 +11,15 @@
     max-width: 1020px;
   }
   
-  .tab-name {
+.tab-name {
     font-weight: bold;
     color: #6c4c41;
+    width: 120px; 
+    overflow: hidden;
+    text-align: left; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
   }
   
   
@@ -23,7 +29,7 @@
   
   .column-container{
     align-items: left;
-    display: block;
+    /* display: block; */
     padding: 10px;
   }
   
@@ -35,9 +41,32 @@
     max-width: 1275px;
   }
   
-  .nav-item{
-    max-width: 200px;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-    white-space: none;
+  .nav-tabs .nav-link{
+    margin-bottom: -5px;
+    background: 0 0;
+    border: 1px solid transparent;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-top:5px;
+    padding-bottom:5px;
+    max-height: 40px ;
+    
   }
+
+  .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    max-height: 100px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    height: 40px;
+}
+
+

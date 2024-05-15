@@ -1,0 +1,6 @@
+.career-tab-containers{
+    position: flex;
+    padding: 15px;
+    max-width: 1275px;
+    align-items: center;
+}
