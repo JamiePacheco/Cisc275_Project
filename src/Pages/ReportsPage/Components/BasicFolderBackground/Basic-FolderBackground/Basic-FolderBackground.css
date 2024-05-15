@@ -9,6 +9,7 @@
 
 .tab-content{
     max-width: 1020px;
+    max-height: 575px; 
   }
   
 .tab-name {
@@ -69,4 +70,11 @@
     height: 40px;
 }
 
+.personality-header{
+  padding-top: 10px;
+}
+
+.personality-header-content{
+  margin: 3px;
+}
 

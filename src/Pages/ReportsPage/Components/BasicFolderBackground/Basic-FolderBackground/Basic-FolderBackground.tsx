@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import signature from '../../../../../assets/logos/signature.png'
 import { BasicQuiz } from '../../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
 import { CareerSuggestionView } from '../CareerSuggestionView/CareerSuggestion';
+import { PersonalityView } from '../PersonalityView/PersonalityView';
+import BasicSticker from '../../../BasicCareerSticker/BasicCareerSticker'
 export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}) : JSX.Element{
     const[key, setKey] = useState('tab4');
 
@@ -74,9 +76,11 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
 
         <Tab className = "personality-tab" eventKey={"tab5"} title = {<span className = 'tab-name'>Personality</span>}>
         <h2 className = 'personality-header'>Your personality</h2>
-          <p>The following is a list of your personality traits, along with how I chose them!</p>
-
+          <p className='personality-header-content'>The following is a list of your personality traits, along with how I chose them!</p>
+          <PersonalityView personalityData={quizData?.basicQuizResults?.personalityTraits} />
+          <BasicSticker />
         </Tab>
+
 
         {tabs}
       </Tabs>
