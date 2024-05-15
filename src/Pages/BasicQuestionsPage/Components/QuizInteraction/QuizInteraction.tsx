@@ -3,7 +3,7 @@ import { IndexState } from "./QuestionIndexProp";
 
 export function QuizInteraction({ setIndex, index, isProgressBarFull, length, setIsVisible, setReviewIsVisible }: IndexState): JSX.Element {
   const handleClick = (value: boolean) => {
-    setIndex(value && index < 7 ? index + 1: !value && index > 0 ? index -1 : index );
+    setIndex(value && index < length ? index + 1: !value && index > 0 ? index -1 : index );
   }
 
   const handleReviewClick = () => {

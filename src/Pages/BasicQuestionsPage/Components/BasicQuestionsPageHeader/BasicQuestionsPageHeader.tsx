@@ -4,10 +4,10 @@ import './BasicQuestionsPageHeader.css';
 
     return (
         <div className='main-header'>
-            <p>Career Assesment</p>
+            <h1>Career Bear's Assessment</h1>
             <div className ='basic-questions-page-header'>
-            <p>Carefully think about each answer, and no cheating!</p>
-       </div>
+                 <p>Carefully think about each answer, and no cheating!</p>
+            </div>
         </div>
      
     )
