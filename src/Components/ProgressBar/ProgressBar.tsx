@@ -2,6 +2,7 @@ import "./CareerProgressBear.css"
 
 import { ProgressBar } from "react-bootstrap";
 import careerBearSleeping from "../../assets/career-bear/sleeping-career-bear.png"
+import internRunning from "../../assets/career-intern/blankfitzrunning.gif"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
 import { useRef, useEffect, useState } from "react";
@@ -45,11 +46,28 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
     console.log(integerProgression); 
     console.log((progressConstant)* 45)
     return (
-        <div className="progress-bar-bootstrap">
-            <div ref={element} className="progress-bar--component">
-                <ProgressBar ref={element} now={progressConstant} className="custom-progress-bar" color="#6c4c41"/>
-            </div>
-            <img src = {careerBearSleeping} alt = "" className = "progress-bear-image" style = {{left :  `${ curr > 1 && curr <= total ? width* (curr-1)/total: curr <=1? 0: width}px`}} />
+        <div className = {`progress-bar-bootstrap ${mode === "career" ? "progress-bar-career" : "progress-bar-intern"}`}>
+            <ProgressBar
+                now={progressConstant}  
+                color="#6c4c41"
+                className = "custom-progress-bar"
+            />
+            {
+                mode === "career" && <img 
+                src = {careerBearSleeping} 
+                alt = "" 
+                className = "progress-bear-image"  
+                style = {{left :  `${ curr > 1 && curr <= total ? width* (curr-1)/total: curr <=1? 0: width}px`}} />
+            }
+
+            {
+                mode === "intern" && <img 
+                src = {internRunning} 
+                alt = "" 
+                className = "progress-intern-image" 
+                style = {{left : `${integerProgression * progressConstant}px`}}
+            />}
+
       </div>
     )   
 }

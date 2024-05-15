@@ -1,9 +1,23 @@
 .basic-questions-page-header {
-    align-items: center;
     font-size: 17px;
     font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-top: 40px;
 }
 
 .main-header {
-    padding: 2vh;
+    margin: 20px 0 0 0
+}
+
+.quiz-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quiz-details p {
+    margin: 0;
 }
