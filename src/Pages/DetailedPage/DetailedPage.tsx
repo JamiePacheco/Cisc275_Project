@@ -23,7 +23,7 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-  const [debugging, setDebugging] = useState(true);
+  const [debugging, setDebugging] = useState(false);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -94,10 +94,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }, [careerBearTalking, initalized, paused, user, validKey, debugging])
 
   useEffect(() => {
-    if (debugging) {
-      console.log(JSON.stringify(quizData, null, 4));
-    }
-  }, [quizData, debugging])
+    console.log(JSON.stringify(quizData, null, 4));
+  }, [quizData])
 
   //used to prevent sudden page refresh
   useEffect(() => {

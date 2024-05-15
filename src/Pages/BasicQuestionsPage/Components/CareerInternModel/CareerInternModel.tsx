@@ -39,20 +39,20 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
         }
     }, [inProgress, started])
 
-    useMemo(() => { 
-        const interval = setInterval(() => {
-            const messagePopped = messages[0];
-            if (messagePopped) {
-                setMessage(messagePopped);
-                setMessages(messages.slice(1))
-                console.log("Message popped: " + messagePopped)
-            }   
+    // // useMemo(() => { 
+    // //     const interval = setInterval(() => {
+    // //         const messagePopped = messages[0];
+    // //         if (messagePopped) {
+    // //             setMessage(messagePopped);
+    // //             setMessages(messages.slice(1))
+    // //             console.log("Message popped: " + messagePopped)
+    // //         }   
 
-        }, internYapConstant)
+    // //     }, internYapConstant)
 
-        return () => clearInterval(interval)
-    }
-    ,[internYapConstant, messages])
+    // //     return () => clearInterval(interval)
+    // // }
+    // ,[internYapConstant, messages])
 
     useEffect(() => {
         setFitzFit(emotionImageMapping[emotion])

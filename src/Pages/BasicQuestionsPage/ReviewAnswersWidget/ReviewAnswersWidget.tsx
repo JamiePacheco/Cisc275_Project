@@ -38,7 +38,7 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
                 if (userData !== null) {
                     const parsedUserData = JSON.parse(userData)
                     saveBasicQuestionData(parsedUserData, userBasicQuizData).then((res) => {
-                        console.log(JSON.stringify(res.data.responseContent, null, 4 ))
+                        console.log(JSON.stringify(userBasicQuizData, null, 4 ))
                     }).catch((err) => {
                         console.log(err)
                     })

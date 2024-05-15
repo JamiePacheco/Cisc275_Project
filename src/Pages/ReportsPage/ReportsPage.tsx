@@ -9,6 +9,7 @@ import { isBasicQuiz, isDetailedQuiz } from '../../Services/ReportResults/Report
 import { DataSetOne } from './TestingData/TestingData'
 import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
 import { BasicQuiz } from '../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
+import { BasicDataSetOne } from './TestingData/BasicTestingData'
 
 export function ReportsPage() : JSX.Element{
 
@@ -44,10 +45,11 @@ export function ReportsPage() : JSX.Element{
             const detailedData : DetailedQuiz = DataSetOne;
 
             //gets the data from data set one of basic questions
-            // const basicData : BasicQuiz = BasicDataSetOne;
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const basicData : BasicQuiz = BasicDataSetOne;
 
             //change to whatever type is beign tested
-            const testQuizType : quizType = "detailed"
+            const testQuizType : quizType = "basic"
 
             setQuizData({
                 quizResultsType : testQuizType,
