@@ -24,7 +24,6 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         id="careerFile"
         activeKey={key}
         onSelect={(k) => setKey(k as string)}
-        className = 'tabs-career-file'
       >
         {/* content for overview tab */}
          <Tab eventKey="tab4" title={<span className = 'tab-name'>Overview</span>}>
