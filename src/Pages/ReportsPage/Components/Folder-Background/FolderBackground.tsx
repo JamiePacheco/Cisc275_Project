@@ -8,13 +8,12 @@ import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
 import CareerBearSticker from '../../CareerBearSticker/CareerBearSticker';
 
 
-
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
   const [key, setKey] = useState('tab4');
 
   const tabs = quizData?.results?.careerSuggestions.map((career, i) => {
     return (
-      <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tabs-title-text'>{career.career}</span>}>
+      <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tab-name'>{career.career}</span>}>
         <FileView data={career}></FileView>
       </Tab>
     )})
@@ -22,12 +21,13 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
   return (
     <div className="manilla-folder">
       <Tabs
-        id="manilla-folder"
+        id="careerFile"
         activeKey={key}
         onSelect={(k) => setKey(k as string)}
+        className = 'tabs-career-file'
       >
         {/* content for overview tab */}
-         <Tab eventKey="tab4" title={<span className = 'tabs-title-text'>Overview</span>}>
+         <Tab eventKey="tab4" title={<span className = 'tab-name'>Overview</span>}>
          <Container>
           <div>
             <Row className = "tabs-content">
@@ -75,7 +75,7 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
             </div>
         </Container>
         </Tab>
-        <Tab className ='personality-tab5' eventKey={"tab5"} title = {<span className = 'tabs-title-text'>Personality</span>}>
+        <Tab className ='personality-tab5' eventKey={"tab5"} title = {<span className = 'tab-name'>Personality</span>}>
           <h2 className = 'personality-header'>Your personality</h2>
           <p>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />

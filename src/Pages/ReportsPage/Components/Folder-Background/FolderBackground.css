@@ -1,18 +1,24 @@
 .manilla-folder{
-  position: flex;
   background-color: #f2f2f2;
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 10%; 
-  max-width: 1275px;
-  max-height: 950px;
+  padding: 50px; 
+  max-width: 1020px; 
+  min-height: fit-content;
+  max-height: 2500px;
+  margin: 115px; 
 }
 
-.tabs-content{
-  text-align: left;
-  padding: 10px;
-  max-height: 600px; 
+.tab-content{
+  max-width: 1020px;
+}
+
+.tab-name {
+  font-weight: bold;
+  color: #6c4c41;
+}
+
+
+.personality-tab5{
+  max-height: 750px;
 }
 
 .column-container{
@@ -21,11 +27,12 @@
   padding: 10px;
 }
 
-.tabs-title-text{
-  font-weight: bold;
-  color: #6c4c41;
+.tabs-content{
+  text-align: left;
+  padding: 10px;
+  min-height: 400px; 
+  max-height: 1300px;
+  max-width: 1275px;
 }
 
-.personality-header{
-  padding-top: 20px;
-}
+

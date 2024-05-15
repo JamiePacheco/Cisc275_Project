@@ -2,6 +2,7 @@
     position: flex; 
     padding: 10px;
     max-width: 1275px;
+    max-height: 600px;
 }
 
 .personality-tab-container-content{
@@ -9,6 +10,7 @@
     flex-direction: row;
     flex-wrap: wrap;    
     height: 100%;
+    max-height: 640px;
 }
 
 .personality-tab--content{
@@ -16,30 +18,38 @@
     flex-wrap: wrap;
     display: flex;
     text-align: left; 
-    max-height: 250px;
+    max-height: 200px;
     max-width: 400px;
     min-height: 100px;
-    min-width: 300px;
-}
+    overflow: hidden;
+
+} 
 
 .personality-row{
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
-    column-gap: 25px;
-    row-gap: 25px;
+    column-gap: 40px;
+    row-gap: 10px;
+    min-height: 600px;
+    max-height: 640px; 
+    overflow: hidden;
+    max-width: 900px;
 }
 
 .personality-header-content{
     max-height: auto;
+    min-height: 30px;
 }
 
 .personality-text-explaination{
     font-style: italic;
-    max-height: auto;
-
+    min-height: 40px;
 }
 
 .personality-logic-test{
-    max-height: auto;
+    max-height: 200px ;
+    min-height: 100px;
+    overflow: hidden;
+
 }

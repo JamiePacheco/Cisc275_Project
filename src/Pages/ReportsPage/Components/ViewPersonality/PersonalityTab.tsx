@@ -16,7 +16,7 @@ export function PersonalityTab({personalityData} : {personalityData : Personalit
     })
 
     return (
-        <div>
+        // <div>
             <div className = "personality-tab-container">
                  <div className="personality-tab-container-content">
                     <div className = "personality-row">
@@ -24,7 +24,7 @@ export function PersonalityTab({personalityData} : {personalityData : Personalit
                     </div>
                 </div>
             </div>
-        </div>
+        // </div>
         
         
     )
