@@ -7,4 +7,18 @@
 
 .careertab-paragraphstyle{
     text-align: left;
+    padding:5px;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 30px;
+}
+  
+li {
+    margin-bottom: 5px;
+}
+
+.career-tab--job:hover {
+    text-decoration: underline;
 }

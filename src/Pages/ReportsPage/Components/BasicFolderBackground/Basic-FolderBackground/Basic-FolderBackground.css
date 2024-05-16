@@ -15,7 +15,7 @@
 .tab-name {
     font-weight: bold;
     color: #6c4c41;
-    width: 120px; 
+    max-width: 135px; 
     overflow: hidden;
     text-align: left; 
     text-overflow: ellipsis;
@@ -53,12 +53,17 @@
     padding-top:5px;
     padding-bottom:5px;
     max-height: 40px ;
+    width: 160px;
     
   }
 
   .nav-tabs {
     border-bottom: 1px solid #dee2e6;
     max-height: 100px;
+  }
+
+  .nav-item{
+    max-width: 175px;
   }
 
   .nav {
