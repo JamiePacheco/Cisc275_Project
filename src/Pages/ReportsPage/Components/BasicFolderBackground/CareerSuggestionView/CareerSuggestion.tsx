@@ -4,10 +4,11 @@ import { CareerFieldSuggestion } from '../../../../../Interfaces/Results/CareerF
 import { Col, Container, Row } from "react-bootstrap";
 import SleepingBearSticker from '../../../CareerBasicSticker/CareerBasicSticker'
 import { getJobsDetailsFromSuggestedJob } from "../../../../../Services/DetailedQuiz/CareerBear";
+import { useTypeWriter } from "../../../../../Hooks/useTypeWriter";
 
 export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : React.JSX.Element {
 
-    const [jobDetails, setJobDetails] = useState(""); 
+    const [jobDetails, setJobDetails] = useState("if you want to know more about a particular job, feel free to click the job above"); 
 
     function getJobDetails(job : string) {
 
@@ -21,6 +22,8 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
         setJobDetails(`${job} is pretty cool!`);
     }
 
+    const careerBearMessage = useTypeWriter(jobDetails);
+
     return (
         <div className = 'career-tab-containers'>
             <h3> {data.careerField} </h3>
@@ -29,6 +32,13 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
                 <div>
                     <Row>
                         <Col>
+
+                        <div className = "careertab-paragraphstyle">
+                            <h5>Introduction</h5>
+                            <p>
+                            Congratulations on completing the CareerQuiz! Inside, you'll uncover one of three career fields I've paw-sonalized just for you. I hope you have a bear-y good time exploring, and may you find something that truly makes you roar with delight!
+                            </p>
+                        </div>
 
                         <div className = "careertab-paragraphstyle">
                             <h5>Description</h5>
@@ -54,16 +64,25 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
                                 ))}
                                 </ul>                            
                             </div>
-                            
-                            <div>
+                            <div className = 'careertab-paragraphstyle'>
+                                <h5>Learn More</h5>
+                            </div>
+                    
+
+
+                            <div className="career-bear-sticker-container">
+                                <div className = 'text-for-careerbear'>
+                                    {careerBearMessage}
+                                </div>
+
+
+                                
                                 <SleepingBearSticker/>
                             </div>
 
                         </Col>
 
-                        {
-                            jobDetails !== "" && <span> {jobDetails} </span>
-                        }
+
 
                     </Row>
                 </div>
