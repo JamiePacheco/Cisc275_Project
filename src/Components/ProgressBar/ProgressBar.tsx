@@ -18,6 +18,8 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     const [integerProgression, setIntegerProgression] = useState(0);
 
+    const [filled, setFilled] = useState(false);
+
     const [width, setWidth] = useState<number>(0);
 
     const element = useRef<HTMLDivElement>(null);
@@ -27,6 +29,11 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
         setIntegerProgression(curr === 1 ? 0 : curr);
     }, [curr, total])
 
+    useEffect(() => {
+        if (curr === total && total > 0) {
+            setFilled(true);
+        }
+    }, [curr, total])
 
     useEffect( () => {
         if(element.current){
@@ -63,9 +70,9 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
             {
                 mode === "intern" && <img 
-                src = {curr === total ? internRunning : internSearching} 
+                src = {filled ? internSearching : internRunning} 
                 alt = "" 
-                className = {`progress-intern-image ${curr === total ? "progress-intern-searching-image" : ""}`}  
+                className = {`progress-intern-image ${filled ? "progress-intern-searching-image" : ""}`}  
                 style = {{left : `${integerProgression * progressConstant}px`}}
             />}
 

@@ -45,3 +45,8 @@
     bottom: 0;
     transform: rotateY(180deg)
 }
+
+.progress-intern-searching-image {
+    transition: 0;
+    transform: none;
+}

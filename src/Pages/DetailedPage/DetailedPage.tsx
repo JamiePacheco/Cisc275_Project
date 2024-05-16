@@ -232,7 +232,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   function answerQuestion() {
 
     setCareerBearTalking(false);
-    if (!debugging) {
+    if (!debugging && userMessage.trim() !== undefined) {
       sendMessageToCareerBear(userMessage, careerBearMessage).then((value) => {
         if (value !== null && value !== undefined) {
           const bearMessage = value.choices[0].message.content;
@@ -313,7 +313,8 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       style={
         {
           backgroundImage: `url(${background})`,
-          backgroundSize: "100%",
+          backgroundSize: "auto%",
+          backgroundRepeat: "no-repeat"
         }
       } 
       className="detailed-quiz"
