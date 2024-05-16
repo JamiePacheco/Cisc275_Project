@@ -5,6 +5,7 @@ import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestio
 import { User } from "../../Interfaces/User/User";
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { BasicQuestion } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
+import { compileFunction } from "vm";
 
 let openai : OpenAI;
 
@@ -337,6 +338,7 @@ export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz)
         }
       ],
         //@ts-ignore
+        //throws a fit when trying to use json type, state response_format does not exist
         response_format : {type : "json_object"},
         model : "gpt-4o"
       })
@@ -344,5 +346,26 @@ export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz)
 
   if (completion !== null) { 
     return completion;
+  }
+}
+
+//These are service functions to get extra data about careers, career fields, etc.
+
+
+export async function getJobsDetailsFromSuggestedJob(job : string) {
+  if (initalizeAPI()) {
+    const completion = await openai.chat.completions.create({
+        messages: [
+        {
+          role : "user",
+          content : "Give me a brief, broad overview in less than 50 words of this career: " + job
+        }
+      ],
+      model : "gpt-4-turbo"
+    });
+
+    if (completion !== null) {
+      return completion;
+    }
   }
 }

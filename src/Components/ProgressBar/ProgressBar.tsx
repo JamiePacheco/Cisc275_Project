@@ -3,6 +3,7 @@ import "./CareerProgressBear.css"
 import { ProgressBar } from "react-bootstrap";
 import careerBearSleeping from "../../assets/career-bear/sleeping-career-bear.png"
 import internRunning from "../../assets/career-intern/blankfitzrunning.gif"
+import internSearching from "../../assets/career-intern/fitzsearching.gif"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
 import { useRef, useEffect, useState } from "react";
@@ -17,21 +18,20 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     const [integerProgression, setIntegerProgression] = useState(0);
 
-    const [width, setWidth] = useState<number>(0);
+    const [filled, setFilled] = useState(false);
 
-    const element = useRef<HTMLDivElement>(null);
+    const [width, setWidth] = useState<number>(0);
 
     useEffect(() => {
         setProgressConstant((curr / total) * 100);
         setIntegerProgression(curr === 1 ? 0 : curr);
     }, [curr, total])
 
-
-    useEffect( () => {
-        if(element.current){
-            setWidth(element.current.offsetWidth);
+    useEffect(() => {
+        if (curr === total && total > 0) {
+            setFilled(true);
         }
-    }, [])
+    }, [curr, total])
 
     useEffect(() => {
         
@@ -43,8 +43,8 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     }, [mode, bearImage])
     
-    console.log(integerProgression); 
-    console.log((progressConstant)* 45)
+    console.log(curr); 
+    console.log(total)
     return (
         <div className = {`progress-bar-bootstrap ${mode === "career" ? "progress-bar-career" : "progress-bar-intern"}`}>
             <ProgressBar
@@ -57,15 +57,15 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
                 src = {careerBearSleeping} 
                 alt = "" 
                 className = "progress-bear-image"  
-                style = {{left :  `${ curr > 1 && curr <= total ? width* (curr-1)/total: curr <=1? 0: width}px`}} />
+                style = {{left :  `${ curr > 1 && curr <= total ? 100 * (curr-1)/total: curr <=1? 0: 100}px`}} />
             }
 
             {
                 mode === "intern" && <img 
-                src = {internRunning} 
+                src = {filled ? internSearching : internRunning} 
                 alt = "" 
-                className = "progress-intern-image" 
-                style = {{left : `${integerProgression * progressConstant}px`}}
+                className = {`progress-intern-image ${filled ? "progress-intern-searching-image" : ""}`}  
+                style = {{left : `${ curr > 1 && curr <= total ? 200 * (curr): curr <=1? 0: 50}px`}}
             />}
 
       </div>

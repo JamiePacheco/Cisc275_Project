@@ -16,7 +16,7 @@ export function ReportsPage() : JSX.Element{
     const [quizData, setQuizData] = useState<ReportsResults | null>(null);
 
     //changes whether reports page uses mock data or data from localhost so set to true or false depending on what you want to test out
-    const [debugging] = useState(true);
+    const [debugging] = useState(false);
 
     const nav = useNavigate();
 
@@ -65,7 +65,7 @@ export function ReportsPage() : JSX.Element{
         <div className="reports-page">
 
             {
-                (quizData?.data !== undefined && isDetailedQuiz(quizData?.data)) && (<FolderBackground quizData={quizData.data}></FolderBackground>)
+                (quizData?.data !== undefined && isDetailedQuiz(quizData?.data, quizData.quizResultsType)) && (<FolderBackground quizData={quizData.data}></FolderBackground>)
 
             }
 
@@ -73,7 +73,7 @@ export function ReportsPage() : JSX.Element{
 
                 // This is for when the quiz data is from basic qustions, uncomment when working with it and when the component exists.
 
-                // (quizData?.data !== undefined && isBasicQuiz(quizData?.data)) && (<BasicFolderBackground quizData={quizData.data}></BasicFolderBackground>)
+                (quizData?.data !== undefined && isBasicQuiz(quizData?.data, quizData.quizResultsType)) && (<BasicFolderBackground quizData={quizData.data}></BasicFolderBackground>)
 
             } 
         </div>

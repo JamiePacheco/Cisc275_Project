@@ -6,24 +6,69 @@ import signature from '../../../../../assets/logos/signature.png'
 import { BasicQuiz } from '../../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
 import { CareerSuggestionView } from '../CareerSuggestionView/CareerSuggestion';
 import { PersonalityView } from '../PersonalityView/PersonalityView';
-import BasicSticker from '../../../BasicCareerSticker/BasicCareerSticker'
+import { getJobsDetailsFromSuggestedJob } from '../../../../../Services/DetailedQuiz/CareerBear';
+import { useTypeWriter } from '../../../../../Hooks/useTypeWriter';
+
+import fitz from "../../../../../assets/career-intern/fitzemotehappy.png"
+import { PERSONALITY_PHRASES } from './InternMessages';
+import { getRandomElement } from '../../../../../Services/MiscServices';
+
+
 export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}) : JSX.Element{
     const[key, setKey] = useState('tab4');
+    const [internmessage, setInternMessage] = useState("I am beary excited to show your results!"); 
+
+    const setInternMessageOnTabChange = (key : string) => {
+      setKey (key as string)
+
+      if (key === "tab5") {
+        setInternMessage(getRandomElement(PERSONALITY_PHRASES))
+        return;
+      }
+
+      if (key === "tab1" || key === "tab2" || key === "tab3") {
+        setInternMessage("Feel free to click on any of the suggested jobs for more information!")
+        return;
+      }
+    }
+
+
+    const getJobDetails = (job : string) => {
+
+        setInternMessage("(Career Bear is thinking...)")
+        getJobsDetailsFromSuggestedJob(job).then((response) => {
+            if (response !== null) {
+                const message = response?.choices[0].message.content;
+
+                if (message !== null && message !== undefined) {
+                    setInternMessage(message)
+                } else {
+
+                }
+            }
+        })
+    }
+
+    const careerBearMessage = useTypeWriter(internmessage);
 
     const tabs = quizData?.basicQuizResults?.careerFieldSuggestions.map((career, i) => {
         return (
           <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tab-name'>{career.careerField}</span>}>
-            <CareerSuggestionView data={career}></CareerSuggestionView>
+            <CareerSuggestionView data={career} getJobDetails = {getJobDetails}></CareerSuggestionView>
           </Tab>
         )})
-    
+  
     return(
 
         <div className = "manillafolder">
             <Tabs
                 id="careerFile"
                 activeKey ={key}
-                onSelect = {(k) => setKey (k as string)}
+                onSelect = {(k) => {
+                  if (k !== null){
+                    setInternMessageOnTabChange(k)
+                  }
+                }}
             >
         
         <Tab eventKey="tab4" title={<span className = 'tab-name'>Overview</span>}>
@@ -82,10 +127,22 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
 
 
         {tabs}
-      </Tabs>
+        </Tabs>
 
+        {
+          key !== "tab4" && (
+            <div className="career-bear-sticker-container">
+              <span className = 'text-for-careerbear'>
+                  {careerBearMessage}
+              </span>
 
-        </div>
+              <img src = {fitz} alt = "happy fitz boy" />                                 
+            </div>
+          )
+        }
+        
+
+      </div>
 
     )
 }

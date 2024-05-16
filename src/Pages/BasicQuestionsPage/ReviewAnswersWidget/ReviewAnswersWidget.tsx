@@ -2,10 +2,10 @@ import "./ReviewAnswersWidget.css";
 import { BasicQuestion } from "../../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
 import { evaluateUserCareerFieldFromBasicQuiz } from "../../../Services/DetailedQuiz/CareerBear";
 import { BasicQuiz } from "../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
-import { LoadingScreen } from "../../../Components/LoadingScreen/LoadingScreen";
-import React, { useState } from "react";
 import { BasicQuizResults } from "../../../Interfaces/Results/BasicQuizResults";
 import { saveBasicQuestionData } from "../../../Services/UserServices/UserDataService";
+import { ReportsResults } from "../../../Interfaces/Reports/ReportsResults";
+import { useNavigate } from "react-router-dom";
 
 interface ReviewWidgetProps {
     quizData : BasicQuiz,
@@ -21,6 +21,9 @@ interface ReviewWidgetProps {
 export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questions, displayOrder, answers, setStartingIndex, setLoading}: ReviewWidgetProps): JSX.Element {
     console.log("Answers in ReviewWidget:", answers); //debug test
     console.log("Display Order in ReviewWidget:", displayOrder); //debug test
+
+
+    const nav = useNavigate()
 
     function submitBasicQuiz() {
         const userBasicQuizData = {...quizData}
@@ -43,8 +46,16 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
                         console.log(err)
                     })
                 }
+
+                const quizData : ReportsResults = {
+                    quizResultsType: "basic",
+                    data: userBasicQuizData
+                };
+
+                
+                sessionStorage.setItem("QUIZ_DATA", JSON.stringify(quizData))
                 setLoading(false);
-                console.log(JSON.stringify(jsonData, null, 4))
+                nav("/reports")
             }
         })
     }

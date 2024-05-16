@@ -22,26 +22,3 @@
 .career-tab--job:hover {
     text-decoration: underline;
 }
-
-.career-bear-sticker-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 200px;
-    justify-content: center;
-    align-items: end;
-}
-
-.text-for-careerbear{
-    min-height: 100px;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    justify-content: center;
-    overflow-y: scroll;
-
-    border-radius: 20px;
-
-    border: 3.5px solid #6c4c41;
-    background-color: rgb(255, 255, 249);
-}

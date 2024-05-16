@@ -5,7 +5,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    margin: 10vh 10vh 30vh 10vh;
+    margin: 10vh 10vh 0 10vh;
+
+    object-fit: co;
 }
 
 .detailed-quiz--content{
@@ -17,8 +19,12 @@
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: flex-start;
+}
+
+.content--user-interface {
+    margin-bottom: 5%;
 }
 
 .user-interface--buttons {

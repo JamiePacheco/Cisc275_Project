@@ -1,10 +1,11 @@
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
+import { quizType } from "../../Interfaces/Reports/ReportsResults";
 
-export function isBasicQuiz(reportResult : BasicQuiz | DetailedQuiz) : reportResult is BasicQuiz {
-    return true;
+export function isBasicQuiz(reportResult : BasicQuiz | DetailedQuiz, quizType : quizType) : reportResult is BasicQuiz {
+    return quizType === "basic"
 } 
 
-export function isDetailedQuiz(reportResult : BasicQuiz | DetailedQuiz) : reportResult is DetailedQuiz {
-    return true;
+export function isDetailedQuiz(reportResult : BasicQuiz | DetailedQuiz, quizType : quizType) : reportResult is DetailedQuiz {
+    return quizType === "detailed"
 }
