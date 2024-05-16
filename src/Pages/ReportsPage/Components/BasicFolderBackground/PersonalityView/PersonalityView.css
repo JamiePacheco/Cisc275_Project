@@ -53,3 +53,13 @@
     overflow: hidden;
 
 }
+
+.career-bear-sticker-container-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    max-width: 300px; 
+    justify-content: end;
+     
+}

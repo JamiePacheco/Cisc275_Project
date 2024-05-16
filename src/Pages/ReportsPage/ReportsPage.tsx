@@ -46,7 +46,7 @@ export function ReportsPage() : JSX.Element{
 
             //gets the data from data set one of basic questions
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const basicData : BasicQuiz = BasicDataSetOne;
+            // const basicData : BasicQuiz = BasicDataSetOne;
 
             //change to whatever type is beign tested
             const testQuizType : quizType = "detailed"

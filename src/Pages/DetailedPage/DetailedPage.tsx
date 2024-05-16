@@ -25,7 +25,6 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-
   const [debugging] = useState(false);
 
   const [initalized, setInitalized] = useState<boolean>(false);
@@ -294,7 +293,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
             setPaused(true);
             const requestData = computeResultData(jsonData);
             
-            if (user !== null) {
+            if (user !== null && user !== undefined) {
               requestData.user = user;
               saveDetailedQuizData(requestData, user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz>>) => {
                 const savedData = res.data.responseContent;
@@ -302,7 +301,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz>>) => {
                 console.log(e.response?.data);
               })
-            } 
+            }
 
             const reportsObject : ReportsResults = {
               quizResultsType : "detailed",
@@ -322,7 +321,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   }
 
   return (
-    
     <div 
       style={
         {
