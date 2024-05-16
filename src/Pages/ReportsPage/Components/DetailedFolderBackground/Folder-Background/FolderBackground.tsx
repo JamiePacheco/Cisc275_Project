@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {ReportsHeader} from '../ReportsHeader/ReportsHeader'
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import './FolderBackground.css';
-import { DetailedQuiz } from '../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
+import { DetailedQuiz } from '../../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
 import { FileView } from '../FileView/FileView';
-import signature from '../../../../assets/logos/signature.png'
+import signature from '../../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
+import CareerBearSticker from '../../../CareerBearSticker/CareerBearSticker';
 
 
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
@@ -13,23 +13,20 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
 
   const tabs = quizData?.results?.careerSuggestions.map((career, i) => {
     return (
-      <Tab eventKey={`tab${i + 1}`}  title={career.career}>
+      <Tab eventKey={`tab${i + 1}`}  title={<span className = 'tab-name'>{career.career}</span>}>
         <FileView data={career}></FileView>
       </Tab>
     )})
  
-  
-  
   return (
     <div className="manilla-folder">
-      <ReportsHeader></ReportsHeader>
       <Tabs
-        id="manilla-folder"
+        id="careerFile"
         activeKey={key}
         onSelect={(k) => setKey(k as string)}
       >
         {/* content for overview tab */}
-         <Tab eventKey="tab4" title="Overview">
+         <Tab eventKey="tab4" title={<span className = 'tab-name'>Overview</span>}>
          <Container>
           <div>
             <Row className = "tabs-content">
@@ -77,10 +74,11 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
             </div>
         </Container>
         </Tab>
-        
-        <Tab eventKey={"tab5"} title="Personality">
-          <h3>Your personality</h3>
+        <Tab className ='personality-tab5' eventKey={"tab5"} title = {<span className = 'tab-name'>Personality</span>}>
+          <h2 className = 'personality-header'>Your personality</h2>
+          <p>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
+          <CareerBearSticker />
         </Tab>
 
         {tabs}

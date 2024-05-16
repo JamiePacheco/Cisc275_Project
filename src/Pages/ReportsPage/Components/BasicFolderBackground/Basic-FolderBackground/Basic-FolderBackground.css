@@ -1,0 +1,85 @@
+.manillafolder{
+    background-color: #f2f2f2;
+    padding: 50px; 
+    width: 1020px; 
+    min-height: fit-content;
+    max-height: 2500px;
+    margin: 115px; 
+}
+
+.tab-content{
+    max-width: 1020px;
+    max-height: 575px; 
+  }
+  
+.tab-name {
+    font-weight: bold;
+    color: #6c4c41;
+    max-width: 135px; 
+    overflow: hidden;
+    text-align: left; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  
+  
+  .personality-tab5{
+    max-height: 750px;
+  }
+  
+  .column-container{
+    align-items: left;
+    /* display: block; */
+    padding: 10px;
+  }
+  
+  .tabs-content{
+    text-align: left;
+    padding: 10px;
+    min-height: 400px; 
+    max-height: 1300px;
+    max-width: 1275px;
+  }
+  
+  .nav-tabs .nav-link{
+    margin-bottom: -5px;
+    background: 0 0;
+    border: 1px solid transparent;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-top:5px;
+    padding-bottom:5px;
+    max-height: 40px ;
+    width: 160px;
+    
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    max-height: 100px;
+  }
+
+  .nav-item{
+    max-width: 175px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    height: 40px;
+}
+
+.personality-header{
+  padding-top: 10px;
+}
+
+.personality-header-content{
+  margin: 3px;
+}
+

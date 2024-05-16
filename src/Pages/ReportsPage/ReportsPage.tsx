@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './ReportsPage'
-import { FolderBackground } from './Components/Folder-Background/FolderBackground'
+import { FolderBackground } from './Components/DetailedFolderBackground/Folder-Background/FolderBackground'
+import { BasicFolderBackground } from './Components/BasicFolderBackground/Basic-FolderBackground/Basic-FolderBackground'
 
 import "./ReportsPage.css"
 import { useNavigate } from 'react-router-dom'
@@ -42,7 +42,7 @@ export function ReportsPage() : JSX.Element{
             //uncommnet whatever one you want to use
 
             //gets the data from data set one if debugging
-            const detailedData : DetailedQuiz = DataSetOne;
+            // const detailedData : DetailedQuiz = DataSetOne;
 
             //gets the data from data set one of basic questions
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -53,7 +53,7 @@ export function ReportsPage() : JSX.Element{
 
             setQuizData({
                 quizResultsType : testQuizType,
-                data: detailedData
+                data: basicData
             });
         }
     }, [debugging, nav])
@@ -64,18 +64,18 @@ export function ReportsPage() : JSX.Element{
     return(
         <div className="reports-page">
 
-            {
+            {/* {
                 (quizData?.data !== undefined && isDetailedQuiz(quizData?.data)) && (<FolderBackground quizData={quizData.data}></FolderBackground>)
 
-            }
+            } */}
 
-            {/* {
+            {
 
-                This is for when the quiz data is from basic qustions, uncomment when working with it and when the component exists.
+                // This is for when the quiz data is from basic qustions, uncomment when working with it and when the component exists.
 
                 (quizData?.data !== undefined && isBasicQuiz(quizData?.data)) && (<BasicFolderBackground quizData={quizData.data}></BasicFolderBackground>)
 
-            } */}
+            } 
         </div>
     )
 };

@@ -1,21 +1,3 @@
-.reports {
-    width: 100%;
-    min-height: 100%;
-}
-
-.reports-page {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-self: center;
-}
-
-.reports-content {
-    margin: 10vh 10vh 30vh 10vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.reports_page{
+    max-height: 1000px;
 }

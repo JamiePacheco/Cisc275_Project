@@ -1,0 +1,38 @@
+.manilla-folder{
+  background-color: #f2f2f2;
+  padding: 50px; 
+  max-width: 1020px; 
+  min-height: fit-content;
+  max-height: 2500px;
+  margin: 115px; 
+}
+
+.tab-content{
+  max-width: 1020px;
+}
+
+.tab-name {
+  font-weight: bold;
+  color: #6c4c41;
+}
+
+
+.personality-tab5{
+  max-height: 750px;
+}
+
+.column-container{
+  align-items: center;
+  display: block;
+  padding: 10px;
+}
+
+.tabs-content{
+  text-align: left;
+  padding: 10px;
+  min-height: 400px; 
+  max-height: 1300px;
+  max-width: 1275px;
+}
+
+
