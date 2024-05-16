@@ -17,6 +17,8 @@ import { getRandomElement } from '../../../../../Services/MiscServices';
 export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}) : JSX.Element{
     const[key, setKey] = useState('tab4');
     const [internmessage, setInternMessage] = useState("I am beary excited to show your results!"); 
+    const [messageVisible, setMessageVisible] = useState(true);
+
 
     const setInternMessageOnTabChange = (key : string) => {
       setKey (key as string)
@@ -131,12 +133,12 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
 
         {
           key !== "tab4" && (
-            <div className="career-bear-sticker-container">
-              <span className = 'text-for-careerbear'>
+            <div className="career-bear-intern-container">
+              <span className = 'text-for-careerbear' hidden = {!messageVisible} >
                   {careerBearMessage}
               </span>
 
-              <img src = {fitz} alt = "happy fitz boy" />                                 
+              <img onClick={() => setMessageVisible(prev => !prev)} src = {fitz} alt = "happy fitz boy" />                                 
             </div>
           )
         }

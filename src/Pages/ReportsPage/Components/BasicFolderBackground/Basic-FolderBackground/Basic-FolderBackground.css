@@ -86,7 +86,7 @@
   margin: 3px;
 }
 
-.career-bear-sticker-container {
+.career-bear-intern-container {
   /* position: absolute;
   display: flex;
 
@@ -99,17 +99,23 @@
   right: min(300px, 10%);
   bottom: 100px; */
 
-  position: relative;
+  position: absolute;
   display: flex;
+  flex-direction: row;
+
+  align-items: flex-start;
+  justify-content: flex-end;
 
   overflow-wrap: normal;
 
   column-count: 2;
   column-fill: auto;
-  height: 150px;
+  height: 200px;
   width: 440px;
-  right: min(-450px, 15%);
-  bottom: 225px;
+  /* right: min(-450px, 15%); */
+  /* bottom: 225px; */
+  margin-left: 30%;
+  bottom: 100px;
 
 }
 
