@@ -3,12 +3,21 @@ import './CareerSuggestion.css'
 import { CareerFieldSuggestion } from '../../../../../Interfaces/Results/CareerFieldSuggestion'
 import { Col, Container, Row } from "react-bootstrap";
 import SleepingBearSticker from '../../../CareerBasicSticker/CareerBasicSticker'
+import { getJobsDetailsFromSuggestedJob } from "../../../../../Services/DetailedQuiz/CareerBear";
 
 export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : React.JSX.Element {
 
     const [jobDetails, setJobDetails] = useState(""); 
 
     function getJobDetails(job : string) {
+
+        setJobDetails("(Career Bear is thinking...)")
+        getJobsDetailsFromSuggestedJob(job).then((response) => {
+            if (response !== null) {
+                console.log(response)
+            }
+        })
+
         setJobDetails(`${job} is pretty cool!`);
     }
 
