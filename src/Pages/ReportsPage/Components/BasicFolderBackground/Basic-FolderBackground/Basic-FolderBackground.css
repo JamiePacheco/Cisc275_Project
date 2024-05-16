@@ -5,6 +5,9 @@
     min-height: fit-content;
     max-height: 2500px;
     margin: 115px; 
+
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
 .tab-content{
@@ -83,3 +86,42 @@
   margin: 3px;
 }
 
+.career-bear-sticker-container {
+  position: absolute;
+  display: flex;
+
+  overflow-wrap: normal;
+
+  column-gap: 10%;
+  width: 500px;
+  height: 150px;
+
+  right: min(300px, 10%);
+  bottom: 100px;
+}
+
+.career-bear-sticker-container img {
+  width: 20%;
+}
+
+.text-for-careerbear{
+  max-height: 300px;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
+  word-wrap: break-word;
+
+  overflow-y: auto;
+  scroll-behavior: auto;
+
+  display: flex;
+  flex-direction: column-reverse;
+
+
+  border-radius: 20px;
+
+  border: 3.5px solid #6c4c41;
+  background-color: rgb(255, 255, 249);
+}

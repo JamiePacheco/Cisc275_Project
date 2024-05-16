@@ -69,3 +69,16 @@ button:hover {
   color:#6c4c41;
 }
 
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6c4c41;
+  border-radius: 20px;
+}
