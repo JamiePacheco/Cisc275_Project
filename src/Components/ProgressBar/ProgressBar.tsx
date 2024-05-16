@@ -65,7 +65,7 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
                 src = {filled ? internSearching : internRunning} 
                 alt = "" 
                 className = {`progress-intern-image ${filled ? "progress-intern-searching-image" : ""}`}  
-                style = {{left : `${ curr > 1 && curr <= total ? 200 * (curr): curr <=1? 0: 50}px`}}
+                style = {{left : `${ (curr > 1 && curr <= total) ? 200 * (curr): 0}px`}}
             />}
 
       </div>

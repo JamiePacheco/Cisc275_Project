@@ -1,7 +1,7 @@
 .manilla-folder{
   background-color: #f2f2f2;
   padding: 50px; 
-  width: 1020px; 
+  max-width: 1200px; 
   /* min-height: fit-content; */
   max-height: 2500px;
   margin: 115px; 

@@ -20,6 +20,16 @@ export function ReportsPage() : JSX.Element{
 
     const nav = useNavigate();
 
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
+
     //gets the stored quiz data locally and parses it as a string
     useEffect(() => {
         //gets the stored string
@@ -32,7 +42,7 @@ export function ReportsPage() : JSX.Element{
                 //sets the ReportsResults.ts object to the quizdata state
 
                 const parsedQuizObject : ReportsResults = JSON.parse(quizSessionData);
-
+                console.log(JSON.stringify(parsedQuizObject, null, 4))
                 setQuizData(parsedQuizObject);
             } else {
                 nav("/home")

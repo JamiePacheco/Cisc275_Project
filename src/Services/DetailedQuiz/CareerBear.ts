@@ -398,9 +398,9 @@ job_requirments json format {
 const SALARY_DATA = `
 json format {
   salary : {
-    high : <give the high end salary of specified job in string format>,
-    average : <give the average salary of specified job in string format>,
-    low : <give the low end salary of specified job in string format>
+    high : <give the high end salary of specified job in string format with commas and $ sign>,
+    average : <give the average salary of specified job in string format with commas and $ sign>,
+    low : <give the low end salary of specified job in string format with commas and $ sign>
   },
   employmentRate : <give the percentage of employment>,
   nationalJobs : <give the amount of jobs avaliable for this career in the united states>

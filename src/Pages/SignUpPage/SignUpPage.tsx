@@ -1,6 +1,6 @@
 import {Col, Container, Form, Row} from "react-bootstrap"
 import "./SignUpPage.css"
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { User } from "../../Interfaces/User/User";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpPageProps } from "./SignUpPageProps";
@@ -22,6 +22,18 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     const [emailMessage, setEmailMessage] = useState<string>("");
 
     const nav = useNavigate();
+
+    //used to scroll to the top when landing on page
+    //easiest solution to workaround being unable to access browser history
+    //cursed hash router...
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
 
     function getAge() : number {
 

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User/User";
@@ -20,6 +20,19 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     const [validated, setValidated] = useState(false);
 
     const nav = useNavigate();
+
+    //used to scroll to the top when landing on page
+    //easiest solution to workaround being unable to access browser history
+    //cursed hash router...
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
 
     function setErrorMessages() {
         if (email === "") {

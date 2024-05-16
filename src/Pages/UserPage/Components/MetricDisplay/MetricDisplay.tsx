@@ -3,6 +3,7 @@ import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQues
 import { MetricCard } from "./MetricCard/MetricCard"
 import "./MetricDisplay.css"
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface"
+import { ReportsResults } from "../../../../Interfaces/Reports/ReportsResults"
 
 export function MetricDisplay(
     {detailedQuizData, basicQuizData}
@@ -18,10 +19,9 @@ export function MetricDisplay(
     const [detailedQuizzesTaken, setdetailedQuizzesTaken] = useState<number>(0);
     const [basicQuizzesTaken, setBasicQuizzesTaken] = useState<number>(0);
 
-
     useEffect(() => {
         if (detailedQuizData && basicQuizData) {
-            setQuizAmount(detailedQuizData.length);
+            setQuizAmount(detailedQuizData.length + basicQuizData.length);
             setBearTouched(detailedQuizData.map((quiz)=>quiz.bearClicked).reduce((prev, curr)=>prev+curr));
             setBasicQuizzesTaken(basicQuizData.length);
             setdetailedQuizzesTaken(detailedQuizData.length)
@@ -34,7 +34,7 @@ export function MetricDisplay(
             <div className = "quiz-data-display--header">
                 <h4 className = "quiz-data--heading"> Quiz Metrics </h4>
                 <div> 
-                    <button> Refresh </button>
+                    {/* <button> Refresh </button> */}
                 </div>
             </div>
             <div className = "metrics-data-card--content">

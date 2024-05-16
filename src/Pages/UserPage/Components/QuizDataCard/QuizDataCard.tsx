@@ -2,10 +2,14 @@ import { useState } from "react"
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 import "./QuizDataCard.css"
 import { User } from "../../../../Interfaces/User/User"
+import { useNavigate } from "react-router-dom"
+import { ReportsResults } from "../../../../Interfaces/Reports/ReportsResults"
 
 export function QuizDataCard({detailedQuizData, userData} : {detailedQuizData : DetailedQuiz, userData : User}) : React.JSX.Element {
     
     const [detailedQuiz] = useState(detailedQuizData)
+
+    const nav = useNavigate();
 
     // const quizChatLogs = detailedQuiz.bearInteractions !== undefined ? detailedQuiz.bearInteractions.map((interaction : BearInteraction) => {
         
@@ -14,6 +18,17 @@ export function QuizDataCard({detailedQuizData, userData} : {detailedQuizData : 
     //         <p> <span className = "bold-span">{userData.firstName}: </span> {interaction.userResponse.response} </p>
     //     </div>)
     // }) : "Logs Not Avaliable";
+
+    function loadReportData() {
+
+        const reportData : ReportsResults = {
+            quizResultsType: "detailed",
+            data: detailedQuiz
+        }
+
+        sessionStorage.setItem("QUIZ_DATA", JSON.stringify(reportData));
+        nav("/reports")
+    }
 
     console.log(JSON.stringify(detailedQuizData, null, 4))
 
@@ -31,7 +46,7 @@ export function QuizDataCard({detailedQuizData, userData} : {detailedQuizData : 
     const careers = detailedQuizData.quizResults?.careerSuggestions.map((career) => career.career);
 
     return (
-        <div className = "quiz-data-card">
+        <div className = "quiz-data-card" onClick={()=> loadReportData()}>
             <div className = "quiz-data-card--header">
                 
             </div>
