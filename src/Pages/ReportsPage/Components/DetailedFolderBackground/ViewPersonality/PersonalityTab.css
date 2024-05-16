@@ -1,48 +1,46 @@
-.personality-tab-container{
+.detailed-personality-tab-container{
     position: flex; 
     padding: 10px;
     max-width: 1275px;
-    max-height: 600px;
+    max-height: fit-content;
 }
 
-.personality-tab-container-content{
+.detailed-personality-tab-container-content{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;    
     height: 100%;
-    max-height: 640px;
+    max-height: 900px;
 }
 
-.personality-tab--content{
+.detailed-personality-tab--content{
     flex-basis: 50%;
     flex-wrap: wrap;
     display: flex;
     text-align: left; 
-    max-height: 200px;
+    max-height: 400px;
     max-width: 400px;
     min-height: 100px;
-    overflow: hidden;
 
 } 
 
-.personality-row{
+.detailed-personality-row{
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
     column-gap: 40px;
     row-gap: 10px;
     min-height: 600px;
-    max-height: 640px; 
-    overflow: hidden;
+    max-height: 900px; 
     max-width: 900px;
 }
 
-.personality-header-content{
+.detailed-personality-header-content{
     max-height: auto;
     min-height: 30px;
 }
 
-.personality-text-explaination{
+.detailed-personality-text-explaination{
     font-style: italic;
     min-height: 40px;
 }

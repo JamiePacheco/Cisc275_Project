@@ -5,7 +5,7 @@ import { DetailedQuiz } from '../../../../../Interfaces/QuizInterfaces/DetailedQ
 import { FileView } from '../FileView/FileView';
 import signature from '../../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
-import CareerBearSticker from '../../../CareerBearSticker/CareerBearSticker';
+// import CareerBearSticker from '../../../CareerBearSticker/CareerBearSticker';
 
 
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
@@ -28,8 +28,8 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
         {/* content for overview tab */}
          <Tab eventKey="tab4" title={<span className = 'tab-name'>Overview</span>}>
          <Container>
-          <div>
-            <Row className = "tabs-content">
+          <div className = "detailed-tabs-content">
+            <Row>
                 <Col>
 
                 <div className = "careerfile-intro">
@@ -73,12 +73,12 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
             </Row>
             </div>
         </Container>
-        </Tab>
-        <Tab className ='personality-tab5' eventKey={"tab5"} title = {<span className = 'tab-name'>Personality</span>}>
-          <h2 className = 'personality-header'>Your personality</h2>
+        </Tab >
+        <Tab className ='detailed-personality-tab5' eventKey={"tab5"} title = {<span className = 'tab-name'>Personality</span>}>
+          <h2 className = 'detailed-personality-header'>Your personality</h2>
           <p>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
-          <CareerBearSticker />
+          {/* <CareerBearSticker /> */}
         </Tab>
 
         {tabs}

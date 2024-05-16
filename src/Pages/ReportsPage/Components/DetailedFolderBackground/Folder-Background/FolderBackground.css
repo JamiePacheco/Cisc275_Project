@@ -1,33 +1,37 @@
 .manilla-folder{
   background-color: #f2f2f2;
   padding: 50px; 
-  max-width: 1020px; 
-  min-height: 80%;
+  width: 1020px; 
+  /* min-height: fit-content; */
   max-height: 2500px;
   margin: 115px; 
+
+  /* box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1); */
+  /* border-radius: 15px; */
 }
 
-.tab-content{
+.detailed-tab-content{
   max-width: 1020px;
+  align-items: left;
 }
 
-.tab-name {
+.detailed-tab-name {
   font-weight: bold;
   color: #6c4c41;
 }
 
 
-.personality-tab5{
-  max-height: 750px;
+.detailed-personality-tab5{
+  max-height: fit-content;
 }
 
-.column-container{
+.detailed-column-container{
   align-items: center;
   display: block;
   padding: 10px;
 }
 
-.tabs-content{
+.detailed-tabs-content{
   text-align: left;
   padding: 10px;
   min-height: 400px; 

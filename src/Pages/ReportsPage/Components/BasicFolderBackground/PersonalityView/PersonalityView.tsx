@@ -1,6 +1,6 @@
 import { PersonalityTrait } from '../../../../../Interfaces/Results/PersonalityTrait';
 import "./PersonalityView.css"
-import BasicSticker from '../../../BasicCareerSticker/BasicCareerSticker'
+// import BasicSticker from '../../../BasicCareerSticker/BasicCareerSticker'
 
 
 export function PersonalityView({personalityData} : {personalityData : PersonalityTrait[] | undefined}) : JSX.Element {
@@ -20,7 +20,7 @@ export function PersonalityView({personalityData} : {personalityData : Personali
                     <div className = "personality-row">
                         {mappedPersonalityData}
                         <div className = 'career-bear-sticker-container-2'>
-                            <BasicSticker/>
+                            {/* <BasicSticker/> */}
                         </div>
                     </div>
                 </div>

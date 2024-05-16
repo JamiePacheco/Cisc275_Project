@@ -7,19 +7,19 @@ export function PersonalityTab({personalityData} : {personalityData : Personalit
 
     const mappedPersonalityData = personalityData === undefined ? "No Data :(" : personalityData.map((per : PersonalityTrait) => {
         return (
-            <div className = "personality-tab--content"> 
-                <h5 className = 'personality-header-content'> {per.trait}  </h5>
-                <p className = 'personality-text-explaination'> {per.traitDescription} </p>
-                <p className = 'personality-logic-test'> {per.traitLogic} </p>
+            <div className = "detailed-personality-tab--content"> 
+                <h5 className = 'detailed-personality-header-content'> {per.trait}  </h5>
+                <p className = 'detailed-personality-text-explaination'> {per.traitDescription} </p>
+                <p className = 'detailed-personality-logic-test'> {per.traitLogic} </p>
             </div> 
         )
     })
 
     return (
         // <div>
-            <div className = "personality-tab-container">
-                 <div className="personality-tab-container-content">
-                    <div className = "personality-row">
+            <div className = "detailed-personality-tab-container">
+                 <div className="detailed-personality-tab-container-content">
+                    <div className = "detailed-personality-row">
                         {mappedPersonalityData}
                     </div>
                 </div>
