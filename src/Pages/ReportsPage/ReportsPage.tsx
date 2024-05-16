@@ -42,18 +42,18 @@ export function ReportsPage() : JSX.Element{
             //uncommnet whatever one you want to use
 
             //gets the data from data set one if debugging
-            // const detailedData : DetailedQuiz = DataSetOne;
+            const detailedData : DetailedQuiz = DataSetOne;
 
             //gets the data from data set one of basic questions
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const basicData : BasicQuiz = BasicDataSetOne;
+            // const basicData : BasicQuiz = BasicDataSetOne;
 
             //change to whatever type is beign tested
-            const testQuizType : quizType = "basic"
+            const testQuizType : quizType = "detailed"
 
             setQuizData({
                 quizResultsType : testQuizType,
-                data: basicData
+                data: detailedData
             });
         }
     }, [debugging, nav])
@@ -64,16 +64,16 @@ export function ReportsPage() : JSX.Element{
     return(
         <div className="reports-page">
 
-            {/* {
+            {
                 (quizData?.data !== undefined && isDetailedQuiz(quizData?.data)) && (<FolderBackground quizData={quizData.data}></FolderBackground>)
 
-            } */}
+            }
 
             {
 
                 // This is for when the quiz data is from basic qustions, uncomment when working with it and when the component exists.
 
-                (quizData?.data !== undefined && isBasicQuiz(quizData?.data)) && (<BasicFolderBackground quizData={quizData.data}></BasicFolderBackground>)
+                // (quizData?.data !== undefined && isBasicQuiz(quizData?.data)) && (<BasicFolderBackground quizData={quizData.data}></BasicFolderBackground>)
 
             } 
         </div>
