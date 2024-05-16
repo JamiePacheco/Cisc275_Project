@@ -75,15 +75,18 @@ export const DataSetOne : DetailedQuiz = {
       "careerSuggestions": [
         {
           "career": "Philosophy Professor",
-          "careerDescription": "Teaches philosophy at a collegiate level, engaging students in discussions and guiding them through complex philosophical theories and ideas."
+          "careerDescription": "Teaches philosophy at a collegiate level, engaging students in discussions and guiding them through complex philosophical theories and ideas.",
+          "careerLogic" : ""
         },
         {
           "career": "Ethics Compliance Officer",
-          "careerDescription": "Works within organizations to ensure policies and practices adhere to ethical standards, including the emerging dilemmas around tech and AI."
+          "careerDescription": "Works within organizations to ensure policies and practices adhere to ethical standards, including the emerging dilemmas around tech and AI.",
+          "careerLogic" : ""
         },
         {
           "career": "Futurist",
-          "careerDescription": "Analyzes trends and predicts future changes affecting society and technology. Involves interdisciplinary research and the development of strategic plans for long-term advancements."
+          "careerDescription": "Analyzes trends and predicts future changes affecting society and technology. Involves interdisciplinary research and the development of strategic plans for long-term advancements.",
+          "careerLogic" : ""
         }
       ]
     }
@@ -171,15 +174,18 @@ export const DataSetTwo : DetailedQuiz = {
           {
               "career": "Software Developer",
               "careerDescription": "Designs, codes, and modifies software applications to suit the needs of users. Software developers can specialize in various coding languages and may work on diverse projects including environmental and scientific applications."
-          },
+              ,"careerLogic" : ""
+            },  
           {
               "career": "Environmental Data Analyst",
               "careerDescription": "Utilizes technical and analytical skills to assess environmental data and provide insights for conservation efforts, policy making, and resource management. This role would blend coding skills with a commitment to ecological stewardship."
-          },
+              ,"careerLogic" : ""
+            },
           {
               "career": "Conservation Technology Specialist",
               "careerDescription": "Combines technology and environmental science to develop tools and technologies to aid in conservation and natural resource management. This can include software for tracking animal migrations, analyzing habitat data, and other applications to support ecological goals."
-          }
+              ,"careerLogic" : ""
+            }
       ]
   }
 }

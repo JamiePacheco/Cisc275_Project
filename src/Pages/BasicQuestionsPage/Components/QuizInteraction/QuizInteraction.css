@@ -1,16 +1,14 @@
 .previous-button, .next-button, .review-button {
-    border-radius: 6px;
     background-color: #6c4c41;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
     color: #FFF6EC;
-    min-height: 50px;
-    max-height: 100px;
+    height: 50px;
     min-width: 150px;
 }
 
 .buttons {
     position: absolute;
-    bottom: 100px; 
+    bottom: 50px; 
     left: 0;
     right: 0;
     display: flex;

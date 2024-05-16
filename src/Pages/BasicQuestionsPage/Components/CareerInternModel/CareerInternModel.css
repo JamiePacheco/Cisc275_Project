@@ -7,7 +7,7 @@
 }
 
 .the-intern {
-    width: 20vh;
+    width: 15vh;
 }
 
 .career-intern-prompt {
@@ -26,7 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 90%;
+    max-width: 90%;
 }
 
 .intern-content-text {
@@ -36,6 +36,7 @@
     padding: 5%;
     font-size: larger;
 
+    min-width: 0;
     max-width: 300px;
 
     transition: 5ms;

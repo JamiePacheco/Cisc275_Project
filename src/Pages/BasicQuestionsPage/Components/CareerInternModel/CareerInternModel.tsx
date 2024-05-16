@@ -20,10 +20,8 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
 
     //image of fitz william being used
     const [fitzFit, setFitzFit] = useState<string>("");
-    const [previousMeditation, setPreviousMeditation] = useState<string[]>()
     const [message, setMessage] = useState<string>("");
     const [messages, setMessages] = useState<string[]>([...startingScript]);
-
 
     const [inProgress, setInProgress] = useState<boolean>(false);
 
@@ -32,27 +30,12 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
     const [talking, setTalking] = useState(true);
 
     useEffect(() => {
-        console.log("In Progress: " + inProgress)
-        console.log("Started: " + started);
         if (started && !inProgress) {
             setInProgress(true);
         }
     }, [inProgress, started])
 
-    // // useMemo(() => { 
-    // //     const interval = setInterval(() => {
-    // //         const messagePopped = messages[0];
-    // //         if (messagePopped) {
-    // //             setMessage(messagePopped);
-    // //             setMessages(messages.slice(1))
-    // //             console.log("Message popped: " + messagePopped)
-    // //         }   
-
-    // //     }, internYapConstant)
-
-    // //     return () => clearInterval(interval)
-    // // }
-    // ,[internYapConstant, messages])
+    
 
     useEffect(() => {
         setFitzFit(emotionImageMapping[emotion])
@@ -64,7 +47,7 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
     return (
         <div className = "fitzModelContainer">
             
-            <div className="content--text-box">
+            <div className="intern-content--text-box">
                 <span className = "content--text"> {displayMessage} </span>
             </div>
             <div>
