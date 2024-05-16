@@ -96,8 +96,8 @@
   width: 500px;
   height: 150px;
 
-  right: 15%;
-  bottom: 20%
+  right: min(300px, 10%);
+  bottom: 100px;
 }
 
 .career-bear-sticker-container img {
