@@ -54,18 +54,6 @@
     overflow-y: scroll;
 }
 
-.content--text::-webkit-scrollbar {
-    width: 10px;
-}
-
-.content--text::-webkit-scrollbar-track {
-    background: none;
-}
-
-.content--text::-webkit-scrollbar-thumb {
-    background-color: #6c4c41;
-    border-radius: 20px;
-}
 
 
 

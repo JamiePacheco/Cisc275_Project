@@ -16,7 +16,7 @@ export function ReportsPage() : JSX.Element{
     const [quizData, setQuizData] = useState<ReportsResults | null>(null);
 
     //changes whether reports page uses mock data or data from localhost so set to true or false depending on what you want to test out
-    const [debugging] = useState(true);
+    const [debugging] = useState(false);
 
     const nav = useNavigate();
 

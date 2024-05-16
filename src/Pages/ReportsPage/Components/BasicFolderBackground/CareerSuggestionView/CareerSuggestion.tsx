@@ -1,32 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import './CareerSuggestion.css'
 import { CareerFieldSuggestion } from '../../../../../Interfaces/Results/CareerFieldSuggestion'
 import { Col, Container, Row } from "react-bootstrap";
-import SleepingBearSticker from '../../../CareerBasicSticker/CareerBasicSticker'
-import { getJobsDetailsFromSuggestedJob } from "../../../../../Services/DetailedQuiz/CareerBear";
-import { useTypeWriter } from "../../../../../Hooks/useTypeWriter";
 
-export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : React.JSX.Element {
-
-    const [jobDetails, setJobDetails] = useState("if you want to know more about a particular job, feel free to click the job above"); 
-
-    function getJobDetails(job : string) {
-
-        setJobDetails("(Career Bear is thinking...)")
-        getJobsDetailsFromSuggestedJob(job).then((response) => {
-            if (response !== null) {
-                const message = response?.choices[0].message.content;
-
-                if (message !== null && message !== undefined) {
-                    setJobDetails(message)
-                } else {
-
-                }
-            }
-        })
-    }
-
-    const careerBearMessage = useTypeWriter(jobDetails);
+export function CareerSuggestionView({data, getJobDetails} : {data : CareerFieldSuggestion, getJobDetails : (job : string) => void}) : React.JSX.Element {
 
     return (
         <div className = 'career-tab-containers'>
@@ -67,21 +44,6 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
                                     <li key={index} className = "career-tab--job" onClick={() => {getJobDetails(job)}}>{job}</li>
                                 ))}
                                 </ul>                            
-                            </div>
-                            <div className = 'careertab-paragraphstyle'>
-                                <h5>Learn More</h5>
-                            </div>
-                    
-
-
-                            <div className="career-bear-sticker-container">
-                                <div className = 'text-for-careerbear'>
-                                    {careerBearMessage}
-                                </div>
-
-
-                                
-                                <SleepingBearSticker/>
                             </div>
 
                         </Col>
