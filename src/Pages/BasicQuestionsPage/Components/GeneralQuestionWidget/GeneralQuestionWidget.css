@@ -5,7 +5,7 @@
     background-color: #FFF6EC;
     box-shadow: 0px 2.98256px 7.4564px 5px rgba(0, 0, 0, 0.1);
 
-    min-height: 90vh;
+    min-height: 95vh;
     width: 100%;
 
     min-width: 400px; 
@@ -30,7 +30,7 @@
 }
 
 .question--choices {
-    margin-top: 20px;
+    margin-block: 20px;
     padding: 10px;
     text-align: left; 
     font-size: 1.75vh;
