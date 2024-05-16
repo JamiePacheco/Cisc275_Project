@@ -5,7 +5,7 @@ import './BasicCareerSticker.css'
 
 const basicCareerSticker = () => {   
     return (
-        <img className='career-bear-sticker' src={congratsfitz} alt="fitz"/>
+        <img className='career-intern-sticker' src={congratsfitz} alt="fitz"/>
     )
 }
 
