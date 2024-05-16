@@ -25,7 +25,7 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-  const [debugging] = useState(false);
+  const [debugging] = useState(true);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);

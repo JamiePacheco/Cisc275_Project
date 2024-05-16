@@ -22,8 +22,6 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     const [width, setWidth] = useState<number>(0);
 
-    const element = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         setProgressConstant((curr / total) * 100);
         setIntegerProgression(curr === 1 ? 0 : curr);
@@ -34,12 +32,6 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
             setFilled(true);
         }
     }, [curr, total])
-
-    useEffect( () => {
-        if(element.current){
-            setWidth(element.current.offsetWidth);
-        }
-    }, [])
 
     useEffect(() => {
         
@@ -65,7 +57,7 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
                 src = {careerBearSleeping} 
                 alt = "" 
                 className = "progress-bear-image"  
-                style = {{left :  `${ curr > 1 && curr <= total ? width* (curr-1)/total: curr <=1? 0: width}px`}} />
+                style = {{left :  `${ curr > 1 && curr <= total ? 100 * (curr-1)/total: curr <=1? 0: 100}px`}} />
             }
 
             {
@@ -73,7 +65,7 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
                 src = {filled ? internSearching : internRunning} 
                 alt = "" 
                 className = {`progress-intern-image ${filled ? "progress-intern-searching-image" : ""}`}  
-                style = {{left : `${integerProgression * progressConstant}px`}}
+                style = {{left : `${ curr > 1 && curr <= total ? 200 * (curr): curr <=1? 0: 50}px`}}
             />}
 
       </div>
