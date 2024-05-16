@@ -23,6 +23,10 @@
     justify-content: flex-start;
 }
 
+.content--user-interface {
+    margin-bottom: 5%;
+}
+
 .user-interface--buttons {
     display: flex;
     flex-wrap: wrap;
