@@ -34,11 +34,23 @@ export function GeneralQuestions({
     setStarted
   }
    : GeneralQuestionsProps): JSX.Element | null {
+
+
   const [index, setIndex] = useState<number>(startingIndex);
 
   const [progress, setProgress] = useState<number>(answers.filter(ans => ans !== "").length);
 
   const [user, setUser] = useState<User | undefined>(undefined);
+
+  const [onLanding, setOnLanding] = useState(true);
+
+  useEffect(() => {
+    if (onLanding) {
+      window.scrollTo(0, 0)
+      setOnLanding(false);
+    }
+  }, [onLanding])
+
 
   useEffect(() => {
     const prevProgress = progress;

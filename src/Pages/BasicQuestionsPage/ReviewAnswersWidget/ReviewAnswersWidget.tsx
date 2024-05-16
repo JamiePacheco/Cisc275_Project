@@ -6,6 +6,7 @@ import { BasicQuizResults } from "../../../Interfaces/Results/BasicQuizResults";
 import { saveBasicQuestionData } from "../../../Services/UserServices/UserDataService";
 import { ReportsResults } from "../../../Interfaces/Reports/ReportsResults";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface ReviewWidgetProps {
     quizData : BasicQuiz,
@@ -22,8 +23,20 @@ export function ReviewWidget({quizData, setReviewIsVisible, setIsVisible, questi
     console.log("Answers in ReviewWidget:", answers); //debug test
     console.log("Display Order in ReviewWidget:", displayOrder); //debug test
 
-
     const nav = useNavigate()
+
+    //used to scroll to the top when landing on page
+    //easiest solution to workaround being unable to access browser history
+    //cursed hash router...
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
 
     function submitBasicQuiz() {
         const userBasicQuizData = {...quizData}

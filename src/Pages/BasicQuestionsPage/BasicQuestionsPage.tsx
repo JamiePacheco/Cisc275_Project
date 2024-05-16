@@ -16,7 +16,7 @@ export function BasicQuestionsPage(): JSX.Element {
     const [quiz, setQuiz] = useState(() => generateBasicQuiz()) 
     const [answers, setAnswers] = useState<string[]>(() => Array(quiz.questionList.length).fill(""));
     const [startingIndex, setStartingIndex] = useState<number>(quiz.currentQuestion - 1)
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     //State largely to control the speech and image of fitz willy
     const [startedQuiz, setStartedQuiz] = useState<boolean>(false);

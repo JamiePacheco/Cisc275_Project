@@ -18,7 +18,7 @@ export function QuizInteraction({ setIndex, index, isProgressBarFull, length, se
       </button>
       {isProgressBarFull && ( //sets widgets to invisible on click
         <button className="review-button" onClick={handleReviewClick}> 
-          Review Answers
+          Review Quiz
         </button>
       )}
       <button className="next-button" onClick={() => handleClick(true)} disabled={index === length-1}>

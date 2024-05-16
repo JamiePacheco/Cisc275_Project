@@ -25,7 +25,8 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-  const [debugging] = useState(true);
+
+  const [debugging] = useState(false);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -63,6 +64,19 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   const nav = useNavigate();
   
+  //used to scroll to the top when landing on page
+  //easiest solution to workaround being unable to access browser history
+  //cursed hash router...
+  const [onLanding, setOnLanding] = useState(true);
+
+  useEffect(() => {
+    if (onLanding) {
+      window.scrollTo(0, 0)
+      setOnLanding(false);
+    }
+  }, [onLanding])
+
+
   //Initalized career bear is user has pressed start and there is a valid key 
   useEffect(() => {
     console.log("initalizing career bear " + initalized)
@@ -183,7 +197,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     console.log(interactions)
     if (interactions >= requiredInteractions && !notified) {
       setNotified(true);
-      return bearMessage + "\n\nAlso I'm bear-y excited to say that I the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
+      return bearMessage + "\n\nAlso I'm bear-y excited to say that I have the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
     }
     return bearMessage;
   }
@@ -288,15 +302,15 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
               }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz>>) => {
                 console.log(e.response?.data);
               })
-
-              const reportsObject : ReportsResults = {
-                quizResultsType : "detailed",
-                data : requestData
-              }
-
-              sessionStorage.setItem("QUIZ_DATA", JSON.stringify(reportsObject))
-              nav("/reports")
             } 
+
+            const reportsObject : ReportsResults = {
+              quizResultsType : "detailed",
+              data : requestData
+            }
+
+            sessionStorage.setItem("QUIZ_DATA", JSON.stringify(reportsObject))
+            nav("/reports")
           }
         }
       })
@@ -321,7 +335,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     >
       <div className="detailed-quiz--content">
 
-        <CareerProgressBear curr={interactions} total={requiredInteractions} mode={"intern"}></CareerProgressBear>
+        <CareerProgressBear curr={interactions - 1} total={requiredInteractions} mode={"intern"}></CareerProgressBear>
 
         <CareerBearPrompt 
           message={careerBearMessage} 
