@@ -69,6 +69,7 @@ personality_trait json format {
 career_field json format {
   career : <name of the career/job>,
   careerDescription : <a detailed description of what said job entails and the responsibilites/ work done>
+  careerLogic: <the logic and reasoning career bear had while assigning the user this career>
 }
 
 results json format {
@@ -279,7 +280,7 @@ export async function evaluateUserCareerFromQuiz(quizData : DetailedQuiz) {
           role : "system",
           content : 
           `Using the user responses to the career bear messages, give an overview of the user's personality by listing five personality traits with a general description of the trait, and the overall logic career bear used to deduce the trait 
-          then list three jobs that may suit them based on those five traits with it's name and an overall description of said job.` 
+          then list three jobs that may suit them based on those five traits with it's name and an overall description of said job as well as the logic career bear used to deduce such a job.` 
         },
         {
           role : "system",
@@ -351,7 +352,6 @@ export async function evaluateUserCareerFieldFromBasicQuiz(quizData : BasicQuiz)
 
 //These are service functions to get extra data about careers, career fields, etc.
 
-
 export async function getJobsDetailsFromSuggestedJob(job : string) {
   if (initalizeAPI()) {
     const completion = await openai.chat.completions.create({
@@ -369,3 +369,58 @@ export async function getJobsDetailsFromSuggestedJob(job : string) {
     }
   }
 }
+
+export async function getDayInLifeForJob(job : string) {
+  if (initalizeAPI()) {
+    const completion = await openai.chat.completions.create({
+        messages: [
+        {
+          role : "user",
+          content : "Give me a brief, broad overview of what a day might look like in less than 75 for this career: " + job
+        }
+      ],
+      model : "gpt-4-turbo"
+    });
+
+    if (completion !== null) {
+      return completion;
+    }
+  }
+}
+
+export async function getRequirementsForJob(job : string) {
+  if (initalizeAPI()) {
+    const completion = await openai.chat.completions.create({
+        messages: [
+        {
+          role : "user",
+          content : "Give me a brief, broad overview of the education, certifications, or any other requirements in less than 50 words of this career: " + job
+        }
+      ],
+      model : "gpt-4-turbo"
+    });
+
+    if (completion !== null) {
+      return completion;
+    }
+  }
+}
+
+export async function getSalaryInformation(job : string) {
+  if (initalizeAPI()) {
+    const completion = await openai.chat.completions.create({
+        messages: [
+        {
+          role : "user",
+          content : "Give me a brief, broad overview in less than 50 words of this career: " + job
+        }
+      ],
+      model : "gpt-4-turbo"
+    });
+
+    if (completion !== null) {
+      return completion;
+    }
+  }
+}
+

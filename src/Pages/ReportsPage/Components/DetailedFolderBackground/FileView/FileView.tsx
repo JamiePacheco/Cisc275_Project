@@ -8,6 +8,8 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
             <h1> {data.career} </h1>
 
             <span> {data.careerDescription} </span>
+
+            <span> {data.careerLogic} </span>
         </div>
     )
 }
