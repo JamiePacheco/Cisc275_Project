@@ -21,34 +21,26 @@ export function CareerInternModel({emotion, started} : {emotion : fitzEmotion, s
     //image of fitz william being used
     const [fitzFit, setFitzFit] = useState<string>("");
     const [message, setMessage] = useState<string>("");
-    const [messages, setMessages] = useState<string[]>([...startingScript]);
 
-    const [inProgress, setInProgress] = useState<boolean>(false);
-
-    const [internYapConstant, setInternYapConstant] = useState(5000);
     
     const [talking, setTalking] = useState(true);
 
-    useEffect(() => {
-        if (started && !inProgress) {
-            setInProgress(true);
-        }
-    }, [inProgress, started])
-
+   
     
+
+
+
 
     useEffect(() => {
         setFitzFit(emotionImageMapping[emotion])
     }, [emotion])
-
-    console.log(messages)
 
     const displayMessage = useTypeWriter(message);
     return (
         <div className = "fitzModelContainer">
             
             <div className="intern-content--text-box">
-                <span className = "content--text"> {displayMessage} </span>
+                {talking && <span className = "content--text"> {displayMessage} </span>}
             </div>
             <div>
                 <img className = "the-intern" alt="HELP ME THEY TOOK MY BODY!!!!!" src = {fitzFit} />

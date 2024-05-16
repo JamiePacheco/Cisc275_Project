@@ -8,6 +8,8 @@ import clipboard from "../../assets/images/clipboard-clip.png"
 import { LoadingScreen } from '../../Components/LoadingScreen/LoadingScreen';
 import { CareerInternModel, fitzEmotion } from './Components/CareerInternModel/CareerInternModel';
 
+import background from "../../assets/images/background.jpg"
+
 export function BasicQuestionsPage(): JSX.Element {
     const [isVisible, setIsVisible] = useState(true);
     const [reviewIsVisible, setReviewIsVisible] = useState(false);
@@ -62,7 +64,7 @@ export function BasicQuestionsPage(): JSX.Element {
                         </div>
                     </div>
                 </div>
-                <CareerInternModel emotion={fitzEmotion} started = {startedQuiz}/>
+                {/* <CareerInternModel emotion={fitzEmotion} started = {startedQuiz}/> */}
             </div>
         </div>
     );
