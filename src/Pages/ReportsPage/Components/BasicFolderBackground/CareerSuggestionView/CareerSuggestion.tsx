@@ -45,8 +45,16 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
                                 ))}
                                 </ul>                            
                             </div>
-                            
+
                             <div className="career-bear-sticker-container">
+                                
+                                <div className = 'text-for-careerbear'>
+                                <h5>Learn More</h5>
+                                <p> 
+                                    If you would like to learn more about the suggested jobs, click on the name from the list above!
+                                </p>
+                                </div>
+                                
                                 <SleepingBearSticker/>
                             </div>
 
