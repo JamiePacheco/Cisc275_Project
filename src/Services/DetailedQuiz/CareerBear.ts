@@ -103,7 +103,7 @@ const questionTypes = ["HYPOTHETICAL","RATHER","INTREST", "TRAITS"]
 
 function initalizeAPI() : boolean {
   const userKey : string | null = localStorage.getItem("MYKEY");
-  
+
   if (userKey !== null){
     openai = new OpenAI(
       {
@@ -358,7 +358,7 @@ export async function getJobsDetailsFromSuggestedJob(job : string) {
         messages: [
         {
           role : "user",
-          content : "Give me a brief overview less than 100 words with things to get started for this career: " + job
+          content : "Give me a brief, broad overview in less than 50 words of this career: " + job
         }
       ],
       model : "gpt-4-turbo"

@@ -3,6 +3,7 @@ import "./CareerProgressBear.css"
 import { ProgressBar } from "react-bootstrap";
 import careerBearSleeping from "../../assets/career-bear/sleeping-career-bear.png"
 import internRunning from "../../assets/career-intern/blankfitzrunning.gif"
+import internSearching from "../../assets/career-intern/fitzsearching.gif"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
 import { useRef, useEffect, useState } from "react";
@@ -43,8 +44,8 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     }, [mode, bearImage])
     
-    console.log(integerProgression); 
-    console.log((progressConstant)* 45)
+    console.log(curr); 
+    console.log(total)
     return (
         <div className = {`progress-bar-bootstrap ${mode === "career" ? "progress-bar-career" : "progress-bar-intern"}`}>
             <ProgressBar
@@ -62,9 +63,9 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
             {
                 mode === "intern" && <img 
-                src = {internRunning} 
+                src = {curr === total ? internRunning : internSearching} 
                 alt = "" 
-                className = "progress-intern-image" 
+                className = {`progress-intern-image ${curr === total ? "progress-intern-searching-image" : ""}`}  
                 style = {{left : `${integerProgression * progressConstant}px`}}
             />}
 

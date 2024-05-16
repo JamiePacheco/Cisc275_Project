@@ -15,11 +15,15 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
         setJobDetails("(Career Bear is thinking...)")
         getJobsDetailsFromSuggestedJob(job).then((response) => {
             if (response !== null) {
-                console.log(response)
+                const message = response?.choices[0].message.content;
+
+                if (message !== null && message !== undefined) {
+                    setJobDetails(message)
+                } else {
+
+                }
             }
         })
-
-        setJobDetails(`${job} is pretty cool!`);
     }
 
     const careerBearMessage = useTypeWriter(jobDetails);

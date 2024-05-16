@@ -13,7 +13,8 @@
 }
 
 .progress-bar-intern {
-    bottom: 150px;
+    position: fixed;
+    bottom: 0;
 }
 
 .progress-bar-career {

@@ -4,6 +4,8 @@ import { evaluateUserCareerFromQuiz, initalizeCareerBear, sendMessageToCareerBea
 import { Form } from "react-bootstrap";
 import "./DetailedPage.css";
 
+import background from "../../assets/images/background.jpg"
+
 import { UPSET_PHRASES, WORKING_INITAL_MESSAGE } from "./CareerBearPhrases";
 import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/BearInteraction";
 import { DetailedQuiz } from "../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz";
@@ -23,7 +25,7 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-  const [debugging, setDebugging] = useState(false);
+  const [debugging, setDebugging] = useState(true);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -308,12 +310,12 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   return (
     
     <div 
-      // style={
-      //   // {
-      //   //   backgroundImage: `url(${background})`,
-      //   //   backgroundSize: "cover"
-      //   // }
-      // } 
+      style={
+        {
+          backgroundImage: `url(${background})`,
+          backgroundSize: "100%",
+        }
+      } 
       className="detailed-quiz"
     >
       <div className="detailed-quiz--content">
