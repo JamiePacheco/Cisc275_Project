@@ -87,7 +87,7 @@
 }
 
 .career-bear-sticker-container {
-  position: absolute;
+  /* position: absolute;
   display: flex;
 
   overflow-wrap: normal;
@@ -97,7 +97,20 @@
   height: 150px;
 
   right: min(300px, 10%);
-  bottom: 100px;
+  bottom: 100px; */
+
+  position: relative;
+  display: flex;
+
+  overflow-wrap: normal;
+
+  column-count: 2;
+  column-fill: auto;
+  height: 150px;
+  width: 440px;
+  right: min(-450px, 15%);
+  bottom: 225px;
+
 }
 
 .career-bear-sticker-container img {

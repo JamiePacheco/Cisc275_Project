@@ -5,9 +5,7 @@ import { CareerSuggestion } from "../../../../../Interfaces/Results/CareerSugges
 export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element {
     return (
         <div className = 'career-tab-containers'>
-            <h1> {data.career} </h1>
-
-            <span> {data.careerDescription} </span>
+            <h3> {data.career} </h3>
         </div>
     )
 }
