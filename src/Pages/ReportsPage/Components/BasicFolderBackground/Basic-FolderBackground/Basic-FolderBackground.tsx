@@ -78,7 +78,6 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
         <h2 className = 'personality-header'>Your personality</h2>
           <p className='personality-header-content'>The following is a list of your personality traits, along with how I chose them!</p>
           <PersonalityView personalityData={quizData?.basicQuizResults?.personalityTraits} />
-          <BasicSticker />
         </Tab>
 
 
