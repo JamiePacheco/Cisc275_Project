@@ -396,10 +396,14 @@ job_requirments json format {
 `
 
 const SALARY_DATA = `
-salary_data json format {
-  high : <give the high end salary of specified job in string format>,
-  average : <give the average salary of specified job in string format>,
-  low : <give the low end salary of specified job in string format>
+json format {
+  salary : {
+    high : <give the high end salary of specified job in string format>,
+    average : <give the average salary of specified job in string format>,
+    low : <give the low end salary of specified job in string format>
+  },
+  employmentRate : <give the percentage of employment>,
+  nationalJobs : <give the amount of jobs avaliable for this career in the united states>
 }
 `
 
@@ -431,13 +435,13 @@ export async function getSalaryInformation(job : string) {
         messages: [
         {
           role : "user",
-          content : `Give me numerical salary information in the form of json object ${SALARY_DATA} for this career: ${job}` 
+          content : `Give me statistical information in string format, in the form of json object with fields specified in ${SALARY_DATA} for this career: ${job}` 
         }
       ],
       //@ts-ignore
       //throws a fit when trying to use json type, state response_format does not exist
       response_format : {type : "json_object"},
-      model : "gpt-4-turbo"
+      model : "gpt-4o"
     });
 
     if (completion !== null) {
