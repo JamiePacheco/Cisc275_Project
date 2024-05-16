@@ -22,3 +22,13 @@ li {
 .career-tab--job:hover {
     text-decoration: underline;
 }
+
+.career-bear-sticker-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+
+    justify-content: end;
+    align-items: end;
+}

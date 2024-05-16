@@ -46,7 +46,7 @@ export function CareerSuggestionView({data} : {data : CareerFieldSuggestion}) : 
                                 </ul>                            
                             </div>
                             
-                            <div>
+                            <div className="career-bear-sticker-container">
                                 <SleepingBearSticker/>
                             </div>
 
