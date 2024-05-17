@@ -37,7 +37,7 @@ export function BasicFolderBackground({quizData} : {quizData : BasicQuiz | null}
 
     const getJobDetails = (job : string) => {
 
-        setInternMessage("(Career Bear is thinking...)")
+        setInternMessage("(Fitz is thinking...)")
         getJobsDetailsFromSuggestedJob(job).then((response) => {
             if (response !== null) {
                 const message = response?.choices[0].message.content;

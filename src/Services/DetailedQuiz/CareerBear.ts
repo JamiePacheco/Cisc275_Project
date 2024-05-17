@@ -358,7 +358,7 @@ export async function getJobsDetailsFromSuggestedJob(job : string) {
         messages: [
         {
           role : "user",
-          content : "Give me a brief, broad overview in less than 50 words of this career: " + job
+          content : "Give me a brief, broad overview in 25 words or less about this career: " + job
         }
       ],
       model : "gpt-4-turbo"

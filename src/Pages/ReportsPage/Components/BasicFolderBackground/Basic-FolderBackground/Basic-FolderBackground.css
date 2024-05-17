@@ -115,16 +115,16 @@
   /* right: min(-450px, 15%); */
   /* bottom: 225px; */
   margin-left: 30%;
-  bottom: 100px;
+  bottom: -50px;
 
 }
 
-.career-bear-sticker-container img {
-  width: 20%;
+.career-bear-intern-container img {
+  width: 30%;
 }
 
 .text-for-careerbear{
-  max-height: 300px;
+  max-height: 150px;
   text-align: center;
   padding: 15px;
   width: 100%;
