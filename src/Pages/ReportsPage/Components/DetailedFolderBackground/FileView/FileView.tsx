@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useSyncExternalStore } from "react";
+import React, {useMemo, useState } from "react";
 import './FileView.css'
 import { CareerSuggestion } from "../../../../../Interfaces/Results/CareerSuggestion";
 import { getDayInLifeForJob, getRequirementsForJob, getSalaryInformation } from "../../../../../Services/DetailedQuiz/CareerBear";
