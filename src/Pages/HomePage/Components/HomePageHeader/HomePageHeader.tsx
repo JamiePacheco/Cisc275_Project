@@ -16,7 +16,7 @@ export function HomePageHeader({user} : HomePageProps) : React.JSX.Element {
         } else {
             setSignedIn(false)
         }
-    }, [user])
+    }, [signedIn, user])
 
     return (
         <div className = "home-page-header">

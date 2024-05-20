@@ -5,7 +5,6 @@ import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestio
 import { User } from "../../Interfaces/User/User";
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { BasicQuestion } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
-import { compileFunction } from "vm";
 
 let openai : OpenAI;
 
