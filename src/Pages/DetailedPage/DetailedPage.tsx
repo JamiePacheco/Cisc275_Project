@@ -339,7 +339,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
         {
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "100%"
+          backgroundSize: "cover"
         }
       } 
       className="detailed-quiz"
