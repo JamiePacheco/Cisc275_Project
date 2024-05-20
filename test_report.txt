@@ -116,7 +116,7 @@ All files                                                                       
   ReviewAnswersWidget.tsx                                                         |       0 |        0 |       0 |       0 | 23-116            
  src/Pages/DetailedPage                                                           |       0 |        0 |       0 |       0 |                   
   CareerBearPhrases.ts                                                            |       0 |      100 |     100 |       0 | 1-8               
-  DetailedPage.tsx                                                                |       0 |        0 |       0 |       0 | 25-410            
+  DetailedPage.tsx                                                                |       0 |        0 |       0 |       0 | 25-411            
   DetailedPageProps.ts                                                            |       0 |        0 |       0 |       0 |                   
  src/Pages/DetailedPage/Components                                                |       0 |      100 |       0 |       0 |                   
   DetailedPage-interface.ts                                                       |       0 |      100 |       0 |       0 | 13-16             
@@ -205,5 +205,5 @@ All files                                                                       
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        5.185 s
+Time:        5.116 s
 Ran all test suites.
