@@ -41,7 +41,7 @@ export function BasicQuestionsPage(): JSX.Element {
             style={
                 {
                 backgroundImage: `url(${background})`,
-                backgroundSize: "100vw 100vh",
+                backgroundSize: "cover",
                 backgroundRepeat: "repeat"
                 }
             } 
