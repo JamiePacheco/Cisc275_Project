@@ -338,7 +338,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       style={
         {
           backgroundImage: `url(${background})`,
-          backgroundSize: "100%",
           backgroundRepeat: "no-repeat"
         }
       } 
