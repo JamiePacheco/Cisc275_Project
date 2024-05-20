@@ -18,4 +18,3 @@ export function AppFooter() : React.JSX.Element {
         </div>
       );
     };
-    

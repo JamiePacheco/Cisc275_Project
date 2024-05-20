@@ -40,3 +40,11 @@
   .App-footer .list-inline-item a{
     color: #f4ece2 ;
   }
+
+  .App-footer a {
+    text-decoration: none;
+  }
+  
+  .App-footer a:hover {
+    text-decoration: underline;
+  }
