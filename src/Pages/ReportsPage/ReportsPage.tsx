@@ -8,8 +8,6 @@ import { ReportsResults, quizType } from '../../Interfaces/Reports/ReportsResult
 import { isBasicQuiz, isDetailedQuiz } from '../../Services/ReportResults/ReportResultsService'
 import { DataSetOne } from './TestingData/TestingData'
 import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
-import { BasicQuiz } from '../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
-import { BasicDataSetOne } from './TestingData/BasicTestingData'
 
 export function ReportsPage() : JSX.Element{
 

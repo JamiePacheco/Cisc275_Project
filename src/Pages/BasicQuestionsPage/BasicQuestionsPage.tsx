@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './BasicQuestionsPage.css';
 import { GeneralQuestions } from "./Components/GeneralQuestionWidget/GeneralQuestionWidget";
 import { ReviewWidget } from "./ReviewAnswersWidget/ReviewAnswersWidget";
