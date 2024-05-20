@@ -1,10 +1,12 @@
-import React, {useMemo, useState } from "react";
+import React, {useMemo, useState, useSyncExternalStore } from "react";
 import './FileView.css'
 import { CareerSuggestion } from "../../../../../Interfaces/Results/CareerSuggestion";
 import { getDayInLifeForJob, getRequirementsForJob, getSalaryInformation } from "../../../../../Services/DetailedQuiz/CareerBear";
 
 import internSearching from "../../../../../assets/career-intern/fitzsearching.gif"
+import internConfused from "../../../../../assets/career-intern/confused-intern.png"
 import careerBearSleeping from "../../../../../assets/career-bear/sleeping-career-bear.png"
+
 import { CareerMetric } from "./CareerMetric";
 
 interface JobRequirments {
@@ -29,6 +31,8 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
     const [requirements, setRequirements] = useState<JobRequirments>();
     const [salaryInformation, setSalaryInformation] = useState<JobStatistics>();
     const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(false);
+
 
     useMemo(() => {
         if(!loaded){
@@ -40,6 +44,9 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
                         setDayInLifeDetails(message);
                     }
                 }
+            }).catch((e) => {
+                setError(true);
+                setLoaded(true)
             })
 
             getRequirementsForJob(data.career).then((res) => {
@@ -51,6 +58,9 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
                         console.log(message);
                     }
                 }
+            }).catch((e) => {
+                setError(true);
+                setLoaded(true)
             })
 
             getSalaryInformation(data.career).then((res) => {
@@ -65,6 +75,9 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
                         }, 3000)
                     }
                 }
+            }).catch((e) => {
+                setLoaded(true)
+                setError(true)
             })
         }
     }, [data, loaded])
@@ -73,8 +86,17 @@ export function FileView({data} : {data : CareerSuggestion}) : React.JSX.Element
     if (!loaded) {
         return (
             <div>
-                <img src={internSearching} alt = "fitz is searching"/>
+                <img className="file-image" src={internSearching} alt = "fitz is searching"/>
                 <h4> Fitz is gathering your data </h4>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div>
+                <img className="file-image" src={internConfused} alt = "confused intern"/>
+                <h4> fitz cannot find your career data... </h4>
             </div>
         )
     }
