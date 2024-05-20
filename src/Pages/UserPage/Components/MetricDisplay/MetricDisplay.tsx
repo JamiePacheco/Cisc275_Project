@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
+import { useMemo, useState } from "react"
 import { DetailedQuiz } from "../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz"
 import { MetricCard } from "./MetricCard/MetricCard"
 import "./MetricDisplay.css"
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface"
-import { ReportsResults } from "../../../../Interfaces/Reports/ReportsResults"
 
 export function MetricDisplay(
     {detailedQuizData, basicQuizData}
@@ -19,13 +18,16 @@ export function MetricDisplay(
     const [detailedQuizzesTaken, setdetailedQuizzesTaken] = useState<number>(0);
     const [basicQuizzesTaken, setBasicQuizzesTaken] = useState<number>(0);
 
-    useEffect(() => {
-        if (detailedQuizData && basicQuizData) {
+    useMemo(() => {
+        if (detailedQuizData && basicQuizData && detailedQuizData.length > 0 && basicQuizData.length > 0) {
             setQuizAmount(detailedQuizData.length + basicQuizData.length);
-            setBearTouched(detailedQuizData.map((quiz)=>quiz.bearClicked).reduce((prev, curr)=>prev+curr));
+            setBearTouched(detailedQuizData.map((quiz)=>quiz.bearClicked).reduce((prev, curr)=>{
+                    return prev+curr
+                },10)
+            );
             setBasicQuizzesTaken(basicQuizData.length);
             setdetailedQuizzesTaken(detailedQuizData.length)
-        }
+        }    
     }, [basicQuizData, detailedQuizData])
 
     return (

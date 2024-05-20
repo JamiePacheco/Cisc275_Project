@@ -7,11 +7,13 @@ import { SignUpPageProps } from "./SignUpPageProps";
 import { createUser } from "../../Services/UserServices/UserCredentialService";
 import axios, {AxiosError, AxiosResponse } from "axios";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
+import { CredentialLoadingScreen } from "../../Components/LoadingScreen/CredentialLoadingScreen";
 
 export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
     //TODO extract password input into own component perhaps???
 
+    //all state to hold the value of the respective fields
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -20,6 +22,8 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
     const [password, setPassword] = useState("");
 
     const [emailMessage, setEmailMessage] = useState<string>("");
+
+    const [loading, setLoading] = useState(false);
 
     const nav = useNavigate();
 
@@ -35,6 +39,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
         }
     }, [onLanding])
 
+    //not really used but might always be good to have
     function getAge() : number {
 
         let today = new Date();
@@ -48,6 +53,7 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
         return age;
     }
 
+    //as the name suggests
     function createUserObject() : User {
         const age = getAge();
         const newAccount : User = {
@@ -64,12 +70,11 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
 
         return newAccount;
     }
- 
+    
     function createAccount(event : FormEvent<HTMLFormElement>) {
         const form = event.currentTarget;
-        console.log("Creating new account")
+        //checks if the form and input fields are actually valid or not
         if (!form.checkValidity()) {
-            console.log("Form is invalid")
             setEmailMessage("Invalid Email")
 
             event.preventDefault();
@@ -77,29 +82,38 @@ export function SignUpPage({setUser} : SignUpPageProps) : React.JSX.Element {
             setValidated(true)
             return;
         } else {
-            console.log("creating user account")
             const newAccount = createUserObject();
-
+            setLoading(true);
+            
+            //sends request to the backend to create new user account
             createUser(newAccount).then((response : AxiosResponse<ApiCallResponse<User>>) => {
-                
+                setLoading(false);
                 const responseData = response.data;
 
+                //parses the data into a string and saves it to the session storage
                 const accountJSONString = JSON.stringify(responseData.responseContent, null, 4);
-                console.log(accountJSONString);
                 sessionStorage.setItem("CURRENT_USER", accountJSONString);
                 setUser(responseData.responseContent);
                 nav("/home")
+            //for whatever reason it may fail
         }).catch((e : AxiosError<ApiCallResponse<User>>) => {
+                setLoading(false);
                 if (axios.isAxiosError(e) && e.response && e.response.data) {
-                    console.log(e)
                     const errorResponse = e.response?.data;
 
+                    //really there is only one backend error and that is the email is already in use.
+                    //future will have email validation here to check if email exists.
+                    //Also profanity check might be good just in case any hooligans decide to be funny...
                     if (errorResponse.detailedMessage.includes("email")) {
                         setEmailMessage(errorResponse.detailedMessage);
                     }
                 }
             })
         }   
+    }
+
+    if (loading) {
+        return <CredentialLoadingScreen></CredentialLoadingScreen>
     }
 
     return (

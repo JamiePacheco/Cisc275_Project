@@ -6,6 +6,8 @@ import { BasicQuizDataCard } from "../QuizDataCard/BasicQuizCard";
 import { QuizDataCard } from "../QuizDataCard/QuizDataCard";
 import "./QuizDataDisplay.css"
 
+import confusedIntern from "../../../../assets/career-intern/confusedfitz.png"
+
 export type quizType = "basic" | "detailed";
 
 interface displayCard {
@@ -79,7 +81,9 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
                 </div>
             </div>
 
-            {
+            {   
+                cardData.length !== 0 &&
+
                 cardData.map((displayCard) => {
                     if (displayCard.quizType === "basic" && isBasicQuiz(displayCard.data)) {
                         return <BasicQuizDataCard basicQuizData={displayCard.data} userData={userData}/>
@@ -88,6 +92,17 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
                     }
                     return null
                 })
+            }
+
+            {
+                cardData.length === 0 && (
+                    <div>
+                        <img src = {confusedIntern} alt = "confused intern" className = "no-data-intern"/> 
+                        <h5> 
+                            fitz cannot seem to find any quiz data for you...
+                        </h5>
+                    </div>
+                )
             }
 
 
