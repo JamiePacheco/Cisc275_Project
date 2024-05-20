@@ -6,7 +6,8 @@ import { generateBasicQuiz} from './Components/GeneralQuestionWidget/QuestionFun
 
 import clipboard from "../../assets/images/clipboard-clip.png"
 import { LoadingScreen } from '../../Components/LoadingScreen/LoadingScreen';
-import { CareerInternModel, fitzEmotion } from './Components/CareerInternModel/CareerInternModel';
+
+import background from "../../assets/images/background.jpg"
 
 export function BasicQuestionsPage(): JSX.Element {
     const [isVisible, setIsVisible] = useState(true);
@@ -18,18 +19,33 @@ export function BasicQuestionsPage(): JSX.Element {
     const [startingIndex, setStartingIndex] = useState<number>(quiz.currentQuestion - 1)
     const [loading, setLoading] = useState<boolean>(false);
 
+
+    //TODO implement fitz speaking to the side of the clipboard (one day...)
     //State largely to control the speech and image of fitz willy
+    //will use this value in future feature
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [startedQuiz, setStartedQuiz] = useState<boolean>(false);
-    const [fitzEmotion, setFitzEmotion] = useState<fitzEmotion>("happy")
+    // const [fitzEmotion, setFitzEmotion] = useState<fitzEmotion>("happy")
 
 
     if (loading) {
         return <LoadingScreen></LoadingScreen>
     }
 
+
+    //TODO fix sizing to have background fit more nicely
     console.log("question index: " + startingIndex)
+    console.log("started quiz: " + startedQuiz)
     return (
-        <div className='BasicQuestionsPage'>
+        <div className='BasicQuestionsPage'
+            style={
+                {
+                backgroundImage: `url(${background})`,
+                backgroundSize: "100vw 100vh",
+                backgroundRepeat: "repeat"
+                }
+            } 
+        >
             <div className = "BasicQuestionsPage-Content">
                 <div className = "BasicQuestionPage-clipboard-container">
                     <img src = {clipboard} alt = "clip" className = "clip"/>
@@ -62,7 +78,7 @@ export function BasicQuestionsPage(): JSX.Element {
                         </div>
                     </div>
                 </div>
-                <CareerInternModel emotion={fitzEmotion} started = {startedQuiz}/>
+                {/* <CareerInternModel emotion={fitzEmotion} started = {startedQuiz}/> */}
             </div>
         </div>
     );

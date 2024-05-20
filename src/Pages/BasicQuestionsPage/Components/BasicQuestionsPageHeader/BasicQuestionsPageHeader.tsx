@@ -18,6 +18,7 @@ import { User } from '../../../../Interfaces/User/User';
             <div className ='basic-questions-page-header'>
               <h1 className='main-header'>Career Exam</h1>
               <p>Carefully think about each answer, and no cheating!</p>
+              <p style = {{fontSize: "12px"}}> Any inquirys may be satisfied by poking the bear </p>
             </div>
             <div className = "quiz-details">
               <p><strong>Date</strong> : {new Date().toISOString().split("T")[0].replaceAll("-", "/")} </p>

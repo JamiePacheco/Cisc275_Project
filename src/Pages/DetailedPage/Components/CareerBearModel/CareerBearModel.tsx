@@ -24,7 +24,6 @@ export function CareerBearModel({onBearClick, bearEmotion} : CareerBearModelProp
     }, [bearEmotion])
 
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return (<div className = "career-bear-model">
         <img alt = "career-bear" src = {bearImage} onClick={() => onBearClick()}/>
     </div>)

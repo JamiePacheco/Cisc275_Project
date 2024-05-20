@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import './FolderBackground.css';
 import { DetailedQuiz } from '../../../../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz';
 import { FileView } from '../FileView/FileView';
 import signature from '../../../../../assets/logos/signature.png'
 import { PersonalityTab } from '../ViewPersonality/PersonalityTab';
+import { TranscriptTab } from '../FileView/TranscriptTab/TranscriptTab';
 // import CareerBearSticker from '../../../CareerBearSticker/CareerBearSticker';
 
 
 export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}): JSX.Element {
   const [key, setKey] = useState('tab4');
+
+  useMemo(() => {
+    if (quizData?.bearInteractions) {
+      quizData.interactions = quizData.bearInteractions;
+    } else if (quizData?.interactions){
+      quizData.bearInteractions = quizData.interactions;
+    } 
+
+    if (quizData?.quizResults) {
+      quizData.results = quizData.quizResults;
+    } else if (quizData?.results) {
+      quizData.quizResults = quizData.results;
+    }
+  }, [quizData])
+
 
   const tabs = quizData?.results?.careerSuggestions.map((career, i) => {
     return (
@@ -80,8 +96,15 @@ export function FolderBackground({quizData} : {quizData : DetailedQuiz | null}):
           <PersonalityTab personalityData={quizData?.results?.personalityTraits}  />
           {/* <CareerBearSticker /> */}
         </Tab>
-
         {tabs}
+
+        {
+          (quizData?.bearInteractions || quizData?.interactions)  && (
+            <Tab title={<span className = 'tab-name'> Transcript </span>} eventKey={"tab6"}>
+              <TranscriptTab interactions={quizData?.bearInteractions ? quizData.bearInteractions : quizData?.interactions} />
+          </Tab>
+          )
+        }
       </Tabs>
     </div>
   );

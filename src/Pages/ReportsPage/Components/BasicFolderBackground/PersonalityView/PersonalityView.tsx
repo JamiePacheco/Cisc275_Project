@@ -2,7 +2,6 @@ import { PersonalityTrait } from '../../../../../Interfaces/Results/PersonalityT
 import "./PersonalityView.css"
 // import BasicSticker from '../../../BasicCareerSticker/BasicCareerSticker'
 
-
 export function PersonalityView({personalityData} : {personalityData : PersonalityTrait[] | undefined}) : JSX.Element {
     const mappedPersonalityData = personalityData === undefined ? "Data Not Found..." : personalityData.map((per : PersonalityTrait) => {
     return(
@@ -20,7 +19,6 @@ export function PersonalityView({personalityData} : {personalityData : Personali
                     <div className = "personality-row">
                         {mappedPersonalityData}
                         <div className = 'career-bear-sticker-container-2'>
-                            {/* <BasicSticker/> */}
                         </div>
                     </div>
                 </div>

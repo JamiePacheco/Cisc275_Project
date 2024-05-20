@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Container, Row, Form, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "../../Interfaces/User/User";
@@ -6,21 +6,38 @@ import { LoginPageProps } from "./LoginPageProps";
 import { authenticateUser } from "../../Services/UserServices/UserCredentialService";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
+import { CredentialLoadingScreen } from "../../Components/LoadingScreen/CredentialLoadingScreen";
 
 export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
     
+    //state to hold current password and email user input
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState(""); 
 
     //will use this but until then...
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [emailMessage, setEmailMessage] = useState<string>("")
     const [passwordMessage, setPasswordMessage] = useState<string>("")
 
+    //holds if form is validated or not
     const [validated, setValidated] = useState(false);
+
+    const [loading, setLoading] = useState(false);
 
     const nav = useNavigate();
 
+    //used to scroll to the top when landing on page
+    //easiest solution to workaround being unable to access browser history
+    //cursed hash router...
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
+    
     function setErrorMessages() {
         if (email === "") {
             setEmailMessage("Email is required");
@@ -44,20 +61,28 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
             return;
         }
 
+        setLoading(true)
+
+        //backend post request to authenticate the user
         authenticateUser(email, password).then((response : AxiosResponse<ApiCallResponse<User>>) => {
                 const user = response.data.responseContent;
                 if (user !== null) {
+                    //sets the retrieved data to the current user in session storage then navigates to home
                     sessionStorage.setItem("CURRENT_USER", JSON.stringify(user));   
                     setUser(user); 
+                    setLoading(false)
                     nav("/home"); 
                 }
+        //for whatever reason that it might fail...
         }).catch((e : AxiosError<ApiCallResponse<User>>) => {
             if (axios.isAxiosError(e) && e.response && e.response.data) {
                 console.log(e)
+                setLoading(false)
                 //placeholder until I can deduce proper embeded type...
                 //Proper typing has been deduced :)
                 const message = e.response.data;
 
+                //checks the error sent from backend and parses the contents.
                 if (message !== undefined){
                     if (message.detailedMessage.toLowerCase().includes("email")) {
                         setEmailMessage(message.detailedMessage);
@@ -74,6 +99,10 @@ export function LoginPage({setUser} : LoginPageProps) : React.JSX.Element {
         })
     }
 
+
+    if (loading) {
+        return <CredentialLoadingScreen></CredentialLoadingScreen>
+    }
 
     return (
         <div className = "sign-up-page">

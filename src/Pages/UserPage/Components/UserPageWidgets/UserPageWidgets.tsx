@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { User } from "../../../../Interfaces/User/User";
 import { MetricDisplay } from "../MetricDisplay/MetricDisplay";
 import { QuizDataDisplay } from "../QuizDataDisplay/QuizDataDisplay";
@@ -9,6 +9,7 @@ import { getBasicQuizData, getDetailedQuizData } from "../../../../Services/User
 import { AxiosError, AxiosResponse } from "axios";
 import { ApiCallResponse } from "../../../../Interfaces/Responses/ApiCallResponse";
 
+import internSearching from "../../../../assets/career-intern/fitzsearching.gif"
 import fitzWilliam from "../../../../assets/career-intern/confused-intern.png"
 import { BasicQuiz } from "../../../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 
@@ -22,7 +23,20 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
 
     const [loading, setLoading] = useState<boolean>(true);
 
+    //used to scroll to the top when landing on page
+    //easiest solution to workaround being unable to access browser history
+    //cursed hash router...
+    const [onLanding, setOnLanding] = useState(true);
+
     useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
+
+    useMemo(() => {
         getDetailedQuizData(user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz[]>>) => {
             setDetailedQuizData(res.data.responseContent);
         }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz[]>>) => {
@@ -37,7 +51,10 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
             console.log(e)
         })
 
-        setLoading(false)
+        setTimeout(() => {
+            setLoading(false)
+        }, 5000)
+
     }, [user])
 
     function getTimeBasedGreeting() {
@@ -55,7 +72,7 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
             return "Good Morning"
         }
 
-        if ((hour <= 12 && hour > 6 && timeOfDay === "PM") || (hour >= 1 && hour < 6 && timeOfDay === "AM") ) {
+        if ((hour <= 12 && hour > 6 && timeOfDay === "PM") || (hour >= 12 && hour < 6 && timeOfDay === "AM") ) {
             return "Good Evening"
         }
 
@@ -63,6 +80,17 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
             return "Good Afternoon"
         }
 
+        return "Welcome Back"
+
+    }
+
+    if (loading) {
+        return (
+            <div>
+                <img src={internSearching} alt = "fitz is searching"/>
+                <h4> Fitz is gathering your data </h4>
+            </div>
+        )
     }
 
     return (

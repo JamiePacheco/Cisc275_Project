@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { ApiCallResponse } from "../../Interfaces/Responses/ApiCallResponse";
 import { ReportsResults } from "../../Interfaces/Reports/ReportsResults";
 import { CareerProgressBear } from "../../Components/ProgressBar/ProgressBar";
+import { SettingsDialogBox } from "./Components/SettingsDialogBox/SettingsDialogBox";
 
 export type BearEmotion = "neutral" | "sad" | "happy" | "sleeping"
 
@@ -25,7 +26,11 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
-  const [debugging] = useState(false);
+  //will enable debuggging mode which makes interactions radom text instead of GPT responses for yknow money saving purposes
+  const [debugging, setDebugging] = useState(true);
+
+  //checks if the settings dialog is open
+  const [settings, setSettings] = useState(false);
 
   const [initalized, setInitalized] = useState<boolean>(false);
   const [paused, setPaused] = useState<boolean>(true);
@@ -44,6 +49,9 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   const [requiredInteractions, setRequiredInteractions] = useState<number>(3);
   //state to check if the user has been notified about their session being able to be processed
   const [notified, setNotified] = useState<boolean>(false);
+
+  //variable to keep trap of typewriter output speed
+  const [bearTalkSpeed, setBearTalkSpeed] = useState<number>(30);
 
   const [careerBearTalking, setCareerBearTalking] = useState<boolean>(true);
   const [careerBearMessage, setCareerBearMessage] = useState<string>(WORKING_INITAL_MESSAGE);
@@ -74,7 +82,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       setOnLanding(false);
     }
   }, [onLanding])
-
 
   //Initalized career bear is user has pressed start and there is a valid key 
   useEffect(() => {
@@ -165,11 +172,6 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     e.preventDefault();
   }
 
-  function cycleEmotion() {
-    const emotions : BearEmotion[] = ["sleeping", "sad", "neutral"]
-    setCareerBearEmotion(emotions[Math.floor(Math.random() * 3)])
-  }
-
   //saves the generated results to the current quiz session 
   function computeResultData(generatedResults :  QuizResults) : DetailedQuiz {
 
@@ -196,7 +198,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     console.log(interactions)
     if (interactions >= requiredInteractions && !notified) {
       setNotified(true);
-      return bearMessage + "\n\nAlso I'm bear-y excited to say that I have the bear minimum to compile your results! So whenever you feel ready click the 'End Session' button or feel free to contiue!"
+      return bearMessage + "\n\nAlso I'm bear-y excited to say that I have the bear minimum to compile your results! So whenever you feel ready click the 'Get Report' button or feel free to contiue!"
     }
     return bearMessage;
   }
@@ -206,7 +208,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       if (validKey) {
         setPaused(false);
       } else {
-        setCareerBearMessage("(it appears your invalid api key cannot wake career bear...)"
+        setCareerBearMessage("(it appears your invalid api key cannot wake the career bear...)"
         )
       }
     } else {
@@ -277,10 +279,12 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //makes career bear compile all of the data from the session convo
   function getData() {
-    console.log(quizData);
+
     if (quizData !== undefined && !debugging){
       setCareerBearTalking(false);
       setLoading(true);
+
+      //calls OpenAI api to evaluate all questions and answers
       evaluateUserCareerFromQuiz(quizData).then((value) => {
         if (value !== null && value !== undefined) {
           const data = value.choices[0].message.content;
@@ -288,31 +292,40 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
           if (data !== null){
             setCareerBearTalking(true)
             const jsonData = JSON.parse(data);
-            //TODO remove after reports page is done
-            setCareerBearMessage("I have compiled your results! Check the console to view them! (Make sure to enable debugging)")
             setPaused(true);
+
+            //saves the compiled results data into the overarching quiz object
             const requestData = computeResultData(jsonData);
             
+            // if the user is logged in then begin the user save progress
             if (user !== null && user !== undefined) {
               requestData.user = user;
+            
+              //send post error to backend to save the data
               saveDetailedQuizData(requestData, user).then((res : AxiosResponse<ApiCallResponse<DetailedQuiz>>) => {
-                const savedData = res.data.responseContent;
-                console.log(JSON.stringify(savedData, null, 2))
+                console.log("Data has been successfully saved")
+                console.log("Request status: " + res.status)
               }).catch((e : AxiosError<ApiCallResponse<DetailedQuiz>>) => {
-                console.log(e.response?.data);
+                console.log(`Error saving data: ${e.message}`);
               })
             }
 
+            //creates a general reports object to send to the reports page
             const reportsObject : ReportsResults = {
               quizResultsType : "detailed",
               data : requestData
             }
 
+            //saves teh reports object locally to easily access
             sessionStorage.setItem("QUIZ_DATA", JSON.stringify(reportsObject))
             nav("/reports")
           }
         }
-      })
+      }).catch((e) => {
+          setCareerBearTalking(true);
+          setCareerBearMessage("Hmmm I'm beary sorry but there appears to be an issue with the bear algorithims...(Open AI appears to be failing, try again later).")
+        }
+      )
     }
   }
 
@@ -325,7 +338,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       style={
         {
           backgroundImage: `url(${background})`,
-          backgroundSize: "auto%",
+          backgroundSize: "auto",
           backgroundRepeat: "no-repeat"
         }
       } 
@@ -333,12 +346,27 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
     >
       <div className="detailed-quiz--content">
 
+
+        {
+          settings && 
+          <SettingsDialogBox 
+            debuggingMode={debugging}
+            talkSpeed={bearTalkSpeed}
+            interactions={requiredInteractions}
+            setDebugging={setDebugging} 
+            setBearTalkSpeed={setBearTalkSpeed} 
+            setRequiredInteractions={setRequiredInteractions}
+            setOpen={setSettings}
+          />
+        }
+
         <CareerProgressBear curr={interactions - 1} total={requiredInteractions} mode={"intern"}></CareerProgressBear>
 
         <CareerBearPrompt 
           message={careerBearMessage} 
           bearClickHandler = {onBearClick}
           bearEmotion={careerBearEmotion} 
+          talkingSpeed = {bearTalkSpeed}
         />
         <div className = "content--user-interface">
 
@@ -361,23 +389,30 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
                   onClick={answerQuestion} 
                   disabled={!initalized}
                 > 
-                Send 
+                <i className ="bi bi-send-fill"></i> Send 
                 </button>
               )
             }
             <button 
               onClick={() => handleFlowControl()}
             >
-              {!initalized ?  "Start Session" : (paused ? "Continue" : "Pause")} 
+              <i className ={`bi ${paused ? "bi-play-fill" : "bi-pause-fill"}`}/> {!initalized ?  "Start Session" : (paused ? "Continue" : "Pause")} 
             </button>
 
             {notified && <button
               onClick = {() => getData()}
               disabled={!initalized}
             >
-              End Session
+              <i className="bi bi-folder-fill"></i> Get Report
             </button>
-            }     
+            }   
+
+            <button
+              onClick={() => setSettings(prev => !prev)}
+            >
+              <i className="bi bi-gear-fill"></i> Settings
+            </button>
+
           </div>
         </div>
       </div>

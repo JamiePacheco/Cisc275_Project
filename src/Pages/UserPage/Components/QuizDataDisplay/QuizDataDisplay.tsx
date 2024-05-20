@@ -6,6 +6,8 @@ import { BasicQuizDataCard } from "../QuizDataCard/BasicQuizCard";
 import { QuizDataCard } from "../QuizDataCard/QuizDataCard";
 import "./QuizDataDisplay.css"
 
+import confusedIntern from "../../../../assets/career-intern/confusedfitz.png"
+
 export type quizType = "basic" | "detailed";
 
 interface displayCard {
@@ -13,7 +15,8 @@ interface displayCard {
     data: BasicQuiz | DetailedQuiz
 }
 
-const sortingTypes = ["default", "basic", "detailed", "date-descending", "date-ascending"]
+//TODO add date sorting
+const sortingTypes = ["default", "basic", "detailed"]
 
 export function QuizDataDisplay({quizData, basicData ,userData, loading} 
     : {quizData : DetailedQuiz[], basicData : BasicQuiz[] ,userData : User , loading: boolean}
@@ -54,8 +57,6 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
         if (sortingType === "detailed") {
             concatCards = concatCards.filter((card) => card.quizType === "detailed");
         }
-
-
         setCardData(concatCards);
     }, [basicData, cardSorting, quizData, setCardData])
 
@@ -79,7 +80,9 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
                 </div>
             </div>
 
-            {
+            {   
+                cardData.length !== 0 &&
+
                 cardData.map((displayCard) => {
                     if (displayCard.quizType === "basic" && isBasicQuiz(displayCard.data)) {
                         return <BasicQuizDataCard basicQuizData={displayCard.data} userData={userData}/>
@@ -88,6 +91,17 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
                     }
                     return null
                 })
+            }
+
+            {
+                cardData.length === 0 && (
+                    <div>
+                        <img src = {confusedIntern} alt = "confused intern" className = "no-data-intern"/> 
+                        <h5> 
+                            fitz cannot seem to find any quiz data for you...
+                        </h5>
+                    </div>
+                )
             }
 
 
