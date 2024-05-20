@@ -13,6 +13,7 @@ import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { UserPage } from './Pages/UserPage/UserPage';
 import { useEffect, useState } from 'react';
 import { User } from './Interfaces/User/User';
+import { AboutPage } from './Pages/AboutPage/AboutPage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
@@ -78,6 +79,7 @@ function App() {
                 <Route path = "/detailed-quiz" element = {<DetailedPage user = {user}/>}> </Route>
                 <Route path = "/reports" element = {<ReportsPage/>}> </Route>
                 <Route path = "/user-page" element = {<UserPage setUser = {setUser}/>}> </Route>
+                <Route path = "/about" element = {<AboutPage></AboutPage>}></Route>
                 <Route path = "/" element = {<MembersPage/>}></Route>
               </Routes>
           </div>

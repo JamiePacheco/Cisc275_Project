@@ -15,7 +15,8 @@ interface displayCard {
     data: BasicQuiz | DetailedQuiz
 }
 
-const sortingTypes = ["default", "basic", "detailed", "date-descending", "date-ascending"]
+//TODO add date sorting
+const sortingTypes = ["default", "basic", "detailed"]
 
 export function QuizDataDisplay({quizData, basicData ,userData, loading} 
     : {quizData : DetailedQuiz[], basicData : BasicQuiz[] ,userData : User , loading: boolean}
@@ -56,8 +57,6 @@ export function QuizDataDisplay({quizData, basicData ,userData, loading}
         if (sortingType === "detailed") {
             concatCards = concatCards.filter((card) => card.quizType === "detailed");
         }
-
-
         setCardData(concatCards);
     }, [basicData, cardSorting, quizData, setCardData])
 

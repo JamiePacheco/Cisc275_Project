@@ -72,13 +72,15 @@ export function UserPageWidgetsView({user} : {user : User}) : React.JSX.Element 
             return "Good Morning"
         }
 
-        if ((hour <= 12 && hour > 6 && timeOfDay === "PM") || (hour >= 1 && hour < 6 && timeOfDay === "AM") ) {
+        if ((hour <= 12 && hour > 6 && timeOfDay === "PM") || (hour >= 12 && hour < 6 && timeOfDay === "AM") ) {
             return "Good Evening"
         }
 
         if (hour <= 6 && timeOfDay === "PM") {
             return "Good Afternoon"
         }
+
+        return "Welcome Back"
 
     }
 

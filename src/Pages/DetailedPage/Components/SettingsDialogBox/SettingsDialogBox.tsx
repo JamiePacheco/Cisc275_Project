@@ -1,4 +1,4 @@
-import { ChangeEvent, SetStateAction, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 
 import "./SettingsDialogBox.css"
@@ -15,6 +15,8 @@ interface SettingsDialogBoxProps {
 
 //dialog box to control some of the settings within the detailed quiz
 export function SettingsDialogBox({debuggingMode, interactions, talkSpeed, setDebugging, setRequiredInteractions, setBearTalkSpeed, setOpen} : SettingsDialogBoxProps) {
+
+    //TODO fix issue with talk speed chaange not rendering to career bear speech
 
     const [debuggingSelected, setLocalDebugging] = useState<boolean>(debuggingMode);
     const [interactionsSelected, setInteractions] = useState<number>(interactions);

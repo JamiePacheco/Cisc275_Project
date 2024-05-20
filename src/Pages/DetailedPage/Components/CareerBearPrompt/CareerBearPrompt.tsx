@@ -21,7 +21,7 @@ export function CareerBearPrompt(
         setDisplayText(message)
     }, [message])
 
-    const typedMessage = useTypeWriter(displayText, talkingSpeed);
+    const typedMessage = useTypeWriter(displayText, talkSpeed);
 
     return (
         <div className = "career-bear-prompt">
