@@ -27,7 +27,7 @@ const debuggingPhrases = ["Hello my name is career bear!" , "Currently we are in
 export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
 
   //will enable debuggging mode which makes interactions radom text instead of GPT responses for yknow money saving purposes
-  const [debugging, setDebugging] = useState(true);
+  const [debugging, setDebugging] = useState(false);
 
   //checks if the settings dialog is open
   const [settings, setSettings] = useState(false);
@@ -338,7 +338,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
       style={
         {
           backgroundImage: `url(${background})`,
-          backgroundSize: "auto",
+          backgroundSize: "100%",
           backgroundRepeat: "no-repeat"
         }
       } 
