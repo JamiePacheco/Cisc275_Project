@@ -332,7 +332,7 @@ export function DetailedPage({user} : DetailedPageProps): React.JSX.Element {
   if (loadingData) {
     return (<LoadingScreen/>)
   }
-
+   
   return (
     <div 
       style={
