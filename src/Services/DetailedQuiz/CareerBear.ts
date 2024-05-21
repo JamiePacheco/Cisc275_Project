@@ -5,7 +5,6 @@ import { BearInteraction } from "../../Interfaces/QuizInterfaces/DetailedQuestio
 import { User } from "../../Interfaces/User/User";
 import { BasicQuiz } from "../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface";
 import { BasicQuestion } from "../../Interfaces/BasicQuestionInterfaces/QuestionInterface";
-import { compileFunction } from "vm";
 
 let openai : OpenAI;
 
@@ -358,7 +357,7 @@ export async function getJobsDetailsFromSuggestedJob(job : string) {
         messages: [
         {
           role : "user",
-          content : "Give me a brief, broad overview in less than 50 words of this career: " + job
+          content : "Give me a brief, broad overview in 25 words or less about this career: " + job
         }
       ],
       model : "gpt-4-turbo"
@@ -396,10 +395,14 @@ job_requirments json format {
 `
 
 const SALARY_DATA = `
-salary_data json format {
-  high : <give the high end salary of specified job in string format>,
-  average : <give the average salary of specified job in string format>,
-  low : <give the low end salary of specified job in string format>
+json format {
+  salary : {
+    high : <give the high end salary of specified job in string format with commas and $ sign>,
+    average : <give the average salary of specified job in string format with commas and $ sign>,
+    low : <give the low end salary of specified job in string format with commas and $ sign>
+  },
+  employmentRate : <give the percentage of employment>,
+  nationalJobs : <give the amount of jobs avaliable for this career in the united states>
 }
 `
 
@@ -431,13 +434,13 @@ export async function getSalaryInformation(job : string) {
         messages: [
         {
           role : "user",
-          content : `Give me numerical salary information in the form of json object ${SALARY_DATA} for this career: ${job}` 
+          content : `Give me statistical information in string format, in the form of json object with fields specified in ${SALARY_DATA} for this career: ${job}` 
         }
       ],
       //@ts-ignore
       //throws a fit when trying to use json type, state response_format does not exist
       response_format : {type : "json_object"},
-      model : "gpt-4-turbo"
+      model : "gpt-4o"
     });
 
     if (completion !== null) {

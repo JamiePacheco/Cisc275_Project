@@ -8,8 +8,6 @@ import { ReportsResults, quizType } from '../../Interfaces/Reports/ReportsResult
 import { isBasicQuiz, isDetailedQuiz } from '../../Services/ReportResults/ReportResultsService'
 import { DataSetOne } from './TestingData/TestingData'
 import { DetailedQuiz } from '../../Interfaces/QuizInterfaces/DetailedQuestionInterfaces/DetailedQuiz'
-import { BasicQuiz } from '../../Interfaces/BasicQuestionInterfaces/BasicQuizInterface'
-import { BasicDataSetOne } from './TestingData/BasicTestingData'
 
 export function ReportsPage() : JSX.Element{
 
@@ -19,6 +17,16 @@ export function ReportsPage() : JSX.Element{
     const [debugging] = useState(false);
 
     const nav = useNavigate();
+
+    const [onLanding, setOnLanding] = useState(true);
+
+    useEffect(() => {
+        if (onLanding) {
+        window.scrollTo(0, 0)
+        setOnLanding(false);
+        }
+    }, [onLanding])
+
 
     //gets the stored quiz data locally and parses it as a string
     useEffect(() => {
@@ -32,7 +40,7 @@ export function ReportsPage() : JSX.Element{
                 //sets the ReportsResults.ts object to the quizdata state
 
                 const parsedQuizObject : ReportsResults = JSON.parse(quizSessionData);
-
+                console.log(JSON.stringify(parsedQuizObject, null, 4))
                 setQuizData(parsedQuizObject);
             } else {
                 nav("/home")
@@ -45,7 +53,6 @@ export function ReportsPage() : JSX.Element{
             const detailedData : DetailedQuiz = DataSetOne;
 
             //gets the data from data set one of basic questions
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             // const basicData : BasicQuiz = BasicDataSetOne;
 
             //change to whatever type is beign tested

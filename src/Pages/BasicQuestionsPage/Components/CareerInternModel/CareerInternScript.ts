@@ -9,14 +9,15 @@ export const lines : Record<lineName, string> = {
 }
 
 export const startingScript : string[] = [
-    "Hell~o, I am Fitz William",
-    "You may call me Fitz",
-    "please don't call me willy",
+    "Hell~o, my name is Fitz William and I will be your proctor for your basic quiz.",
+    "So whenever you're ready feel free to start",
+    "And remember...",
+    "NO CHEATING!!!!!"
 ]
 
 
 //“The best revenge is not to be like your enemy.” Marcus Aurelius
 export const internMeditations : string[] = [
-    "I wonder if Fitz Ferguson will give me a raise?...",
-    "I wonder what a union is?..."
+    "(I wonder if Fitz Ferguson will give me a raise?...)",
+    "(I wonder what a union is?...)"
 ]

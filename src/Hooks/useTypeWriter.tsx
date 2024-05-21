@@ -8,7 +8,7 @@ export function useTypeWriter(text : string, speed = 30) {
         useEffect(() => {
             let i = 0;
             const typingInterval = setInterval(() => {
-                if (i < text.length) {
+                if (text !== undefined && i < text.length) {
                     setDisplayText((text.substring(0, i + 1)));
                     ++i;
                 } else {

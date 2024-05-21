@@ -7,8 +7,6 @@ const BASE_USER_URL = process.env.REACT_APP_API_KEY + "/user";
 // const BASE_USER_URL = "http://localhost:8080/api/v1/user"
 
 
-console.log(BASE_USER_URL);
-
 export function createUser(user : User) : Promise<AxiosResponse<ApiCallResponse<User>>>{
     console.log(BASE_USER_URL)
     return axios.post(`${BASE_USER_URL}/save-user`, user);

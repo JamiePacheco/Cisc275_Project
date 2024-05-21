@@ -6,7 +6,7 @@ import internRunning from "../../assets/career-intern/blankfitzrunning.gif"
 import internSearching from "../../assets/career-intern/fitzsearching.gif"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
-import { useRef, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 
 export type Bear = "career" | "intern" 
 
@@ -16,15 +16,11 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     const [progressConstant, setProgressConstant] = useState(0);
 
-    const [integerProgression, setIntegerProgression] = useState(0);
-
     const [filled, setFilled] = useState(false);
 
-    const [width, setWidth] = useState<number>(0);
 
     useEffect(() => {
         setProgressConstant((curr / total) * 100);
-        setIntegerProgression(curr === 1 ? 0 : curr);
     }, [curr, total])
 
     useEffect(() => {
@@ -65,7 +61,7 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
                 src = {filled ? internSearching : internRunning} 
                 alt = "" 
                 className = {`progress-intern-image ${filled ? "progress-intern-searching-image" : ""}`}  
-                style = {{left : `${ curr > 1 && curr <= total ? 200 * (curr): curr <=1? 0: 50}px`}}
+                style = {{left : `${ (curr > 1 && curr <= total) ? 200 * (curr): 0}px`}}
             />}
 
       </div>

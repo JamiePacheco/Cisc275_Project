@@ -4,4 +4,5 @@ export interface CareerBearPromptProps {
     message : string;
     bearEmotion : BearEmotion;
     bearClickHandler : () => void;
+    talkingSpeed : number;
 }
