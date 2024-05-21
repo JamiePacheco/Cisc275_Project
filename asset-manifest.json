@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Cisc275_Project/static/css/main.07c6d8b5.css",
-    "main.js": "/Cisc275_Project/static/js/main.d45dd289.js",
+    "main.css": "/Cisc275_Project/static/css/main.3cad9e50.css",
+    "main.js": "/Cisc275_Project/static/js/main.0e50012a.js",
     "static/js/453.bad6c33a.chunk.js": "/Cisc275_Project/static/js/453.bad6c33a.chunk.js",
     "static/media/the-career-bear.jpg": "/Cisc275_Project/static/media/the-career-bear.bf03b032282617500342.jpg",
     "static/media/bootstrap-icons.woff?": "/Cisc275_Project/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
@@ -21,12 +21,12 @@
     "static/media/career-bear-logo-2-dark.png": "/Cisc275_Project/static/media/career-bear-logo-2-dark.f93882129162d08d42a2.png",
     "static/media/career-bear-2-neutral.png": "/Cisc275_Project/static/media/career-bear-2-neutral.7f675e13af8e09ac5d7e.png",
     "index.html": "/Cisc275_Project/index.html",
-    "main.07c6d8b5.css.map": "/Cisc275_Project/static/css/main.07c6d8b5.css.map",
-    "main.d45dd289.js.map": "/Cisc275_Project/static/js/main.d45dd289.js.map",
+    "main.3cad9e50.css.map": "/Cisc275_Project/static/css/main.3cad9e50.css.map",
+    "main.0e50012a.js.map": "/Cisc275_Project/static/js/main.0e50012a.js.map",
     "453.bad6c33a.chunk.js.map": "/Cisc275_Project/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.07c6d8b5.css",
-    "static/js/main.d45dd289.js"
+    "static/css/main.3cad9e50.css",
+    "static/js/main.0e50012a.js"
   ]
 }
