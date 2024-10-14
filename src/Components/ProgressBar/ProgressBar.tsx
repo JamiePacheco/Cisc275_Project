@@ -6,7 +6,7 @@ import internRunning from "../../assets/career-intern/blankfitzrunning.gif"
 import internSearching from "../../assets/career-intern/fitzsearching.gif"
 
 import careerBearIntern from "../../assets/career-bear/career-bear-2-neutral.png"
-import {useEffect, useState } from "react";
+import {useEffect, useRef, useState } from "react";
 
 export type Bear = "career" | "intern" 
 
@@ -17,7 +17,6 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
     const [progressConstant, setProgressConstant] = useState(0);
 
     const [filled, setFilled] = useState(false);
-
 
     useEffect(() => {
         setProgressConstant((curr / total) * 100);
@@ -39,8 +38,6 @@ export function CareerProgressBear({curr, total, mode} : {curr : number, total :
 
     }, [mode, bearImage])
     
-    console.log(curr); 
-    console.log(total)
     return (
         <div className = {`progress-bar-bootstrap ${mode === "career" ? "progress-bar-career" : "progress-bar-intern"}`}>
             <ProgressBar
